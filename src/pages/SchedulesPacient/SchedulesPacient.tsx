@@ -1,46 +1,49 @@
-import { IonContent, IonHeader, IonIcon, IonLabel, IonPage, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, IonTitle, IonToolbar } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import { Redirect, Route } from 'react-router';
+import {
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonDatetime,
+  IonHeader,
+  IonIcon,
+  IonImg,
+  IonLabel,
+  IonPage,
+  IonRouterOutlet,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
+import { IonReactRouter } from "@ionic/react-router";
+import { chevronDown, ellipse, heart, square, triangle } from "ionicons/icons";
+import { useRef, useState } from "react";
+import { Redirect, Route } from "react-router";
+import DateTime from "../../components/DateTime/DateTime";
+import Identificador from "../../components/Identificador/Identificador";
 
+import Schedules from "../../components/Schedules/Schedules";
 
 const HomePaciente: React.FC = () => {
   return (
-    <IonPage>
-      {/* <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
-          </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/tab1" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter> */}
+    <IonPage className="justify-start">
+      <Identificador />
+      <DateTime />
+      <div className="container_schedules">
+        {/* <Schedules/> */}
+        <div className="container flex flex-col align-center justify-center items-center">
+          <IonImg
+            className="w-[240px] h-[262px]"
+            src="./assets/icon/agenda.svg"
+          ></IonImg>
+          <div className="flex flex-col text-center">
+            <span className="text-center">NÃO HÁ CONSULTAS</span>
+            <span className="text-center">AGENDADAS NO MOMENTO</span>
+          </div>
+        </div>
+      </div>
     </IonPage>
   );
 };
 
-export default  HomePaciente;
+export default HomePaciente;

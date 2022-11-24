@@ -20,33 +20,26 @@ import { IonReactRouter } from "@ionic/react-router";
 import { ellipse, square, triangle } from "ionicons/icons";
 import { Redirect, Route } from "react-router";
 import Appointments from "../../components/Appointments/Appointments";
+import Identificador from "../../components/Identificador/Identificador";
+import PopularDoctor from "../../components/PopularDoctor/PopularDoctor";
 import QuickAccess from "../../components/QuickAcess/QuickAccess";
 
 const HomePaciente: React.FC = () => {
   return (
     <IonPage className="justify-start">
-      <IonItem>
-        <IonThumbnail slot="end">
-          <IonAvatar>
-            <img
-              alt="Silhouette of a person's head"
-              src="https://ionicframework.com/docs/img/demos/avatar.svg"
-            />
-          </IonAvatar>
-        </IonThumbnail>
-        <IonLabel>
-          <IonText>Olá, Maycon!</IonText>
-          <div>Encontre seu médico</div>
-        </IonLabel>
-      </IonItem>
-      <IonItem>
+      <Identificador/>
+      <div className="font-bold">Encontre seu médico</div>
+      <IonItem className="mt-0 mb-0">
         <IonSearchbar placeholder="Pesquise por médico ou especialidade"></IonSearchbar>
       </IonItem>
-      <IonItem>
+      <IonItem className="mt-0 mb-0">
         <Appointments />
       </IonItem>
-      <IonItem>
+      <IonItem className="mt-0 mb-0">
         <QuickAccess />
+      </IonItem>
+      <IonItem className="mt-0 mb-0">
+        <PopularDoctor/>
       </IonItem>
     </IonPage>
   );

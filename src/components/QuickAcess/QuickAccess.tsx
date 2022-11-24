@@ -10,6 +10,7 @@ import {
   IonCardTitle,
   IonImg,
   IonLabel,
+  IonRow,
   IonSlide,
   IonSlides,
   IonThumbnail,
@@ -17,20 +18,28 @@ import {
 } from "@ionic/react";
 
 
-const slideOpts = {
-  initialSlide: 1,
-  speed: 400,
-};
-
 const QuickAccess: React.FC = () => {
   return (
     <div className="container">
-      <IonTitle>Acesso Rápido</IonTitle>
-      <IonSlides pager={true} options={slideOpts}>
-        <IonSlide>
-
-        </IonSlide>
-      </IonSlides>
+     <h1 className="font-bold">Acesso Rápido</h1>
+        <IonRow className="flex overflow-x-auto flex-nowrap  mb-0">
+          <IonCard className="min-w-[100px] h-[100px] mr-1">
+            <IonImg className="w-[50px] h-[50px]" src="./assets/icon/microscope.svg"></IonImg>
+            <div className="text-left">Resultados de Exames</div>
+          </IonCard>
+          <IonCard className="min-w-[100px] h-[100px] mr-1">
+            <IonImg className="w-[50px] h-[50px]" src="./assets/icon/appointment.svg"></IonImg>
+            <div className="text-left">Consultas Anteriores</div>
+          </IonCard>
+          <IonCard className="min-w-[100px] h-[100px] mr-1">
+            <IonImg className="w-[50px] h-[50px]" src="./assets/icon/historical.svg"></IonImg>
+            <div className="text-left">Histórico Clínico</div>
+          </IonCard>
+          <IonCard className="min-w-[100px] h-[100px] mr-1">
+            <IonImg className="w-[50px] h-[50px]" src="./assets/icon/chat.svg"></IonImg>
+            <div className="text-left">Chamadas Anteriores</div>
+          </IonCard>
+        </IonRow>
     </div>
   );
 };

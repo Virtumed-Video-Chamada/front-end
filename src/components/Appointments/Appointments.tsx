@@ -24,14 +24,15 @@ const slideOpts = {
 const Appointments: React.FC = () => {
   return (
     <div className="container">
+      <h1 className="font-bold">Consultas Agendadas</h1>
       <IonSlides pager={true} options={slideOpts}>
         <IonSlide>
-          <IonCard>
-            <IonCardContent className="d-flex">
+          <IonCard className="bd-20 bg-[#4B39B3]">
+            <IonCardContent className="flex">
               <IonThumbnail slot="start">
                 <img alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />
               </IonThumbnail>
-              <div>
+              <div className="text-neutral-50 text-left">
                 <span>Dra. Maria Renata</span>
                 <p>Psicóloga</p>
                 <span>Hoje, 14:00</span>
@@ -41,12 +42,12 @@ const Appointments: React.FC = () => {
           </IonCard>
         </IonSlide>
         <IonSlide>
-          <IonCard>
-            <IonCardContent className="d-flex">
+          <IonCard className="bd-20 bg-[#4B39B3]">
+            <IonCardContent className="flex">
               <IonThumbnail slot="start">
                 <img alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />
               </IonThumbnail>
-              <div>
+              <div className="text-neutral-50 text-left">
                 <span>Dra. Maria Renata</span>
                 <p>Psicóloga</p>
                 <span>Hoje, 14:00</span>
@@ -55,7 +56,6 @@ const Appointments: React.FC = () => {
             </IonCardContent>
           </IonCard>
         </IonSlide>
-
       </IonSlides>
     </div>
   );
