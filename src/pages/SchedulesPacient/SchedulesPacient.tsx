@@ -30,8 +30,8 @@ const HomePaciente: React.FC = () => {
       <Identificador />
       <DateTime />
       <div className="container_schedules">
-        {/* <Schedules/> */}
-        <div className="container flex flex-col align-center justify-center items-center">
+        <Schedules/>
+        {/* <div className="container flex flex-col align-center justify-center items-center">
           <IonImg
             className="w-[240px] h-[262px]"
             src="./assets/icon/agenda.svg"
@@ -40,7 +40,7 @@ const HomePaciente: React.FC = () => {
             <span className="text-center">NÃO HÁ CONSULTAS</span>
             <span className="text-center">AGENDADAS NO MOMENTO</span>
           </div>
-        </div>
+        </div> */}
       </div>
     </IonPage>
   );

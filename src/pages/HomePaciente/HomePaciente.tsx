@@ -28,7 +28,7 @@ const HomePaciente: React.FC = () => {
   return (
     <IonPage className="justify-start">
       <Identificador/>
-      <div className="font-bold">Encontre seu médico</div>
+      <h1 className="font-bold">Encontre seu médico</h1>
       <IonItem className="mt-0 mb-0">
         <IonSearchbar placeholder="Pesquise por médico ou especialidade"></IonSearchbar>
       </IonItem>

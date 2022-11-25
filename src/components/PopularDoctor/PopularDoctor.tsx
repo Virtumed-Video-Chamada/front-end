@@ -31,7 +31,7 @@ const PopularDoctor: React.FC = () => {
       <h1 className="font-bold">Médicos Populares</h1>
       <span>Ver todos...</span>
       <IonCard className="bd-20">
-        <IonCardContent className="flex">
+        <IonCardContent className="flex justify-between">
           <IonThumbnail slot="start">
             <img
               alt="Pic-Doctor"

@@ -39,6 +39,7 @@ import Principal from './pages/Principal/Principal';
 import SchedulesPacient from './pages/SchedulesPacient/SchedulesPacient';
 import Chat from './pages/Chat/Chat';
 import WebChat from './pages/WebChat/WebChat';
+import Conversation from './pages/Conversation/Conversation';
 
 setupIonicReact();
 
@@ -72,8 +73,10 @@ const RoutingTabs: React.FC = () => {
               <Chat />
             </Route>
             <Route exact path="/webchat">
-            <WebChat />
-              {/* <Redirect to="/tab1" /> */}
+              <WebChat />
+            </Route>
+            <Route exact path="/conversation">
+              <Conversation />
             </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
@@ -83,7 +86,7 @@ const RoutingTabs: React.FC = () => {
             <IonTabButton tab="tab2" href="/agendamentos">
               <IonIcon src="./assets/icon/calendar.svg" />
             </IonTabButton>
-            <IonTabButton tab="tab3" href="/home-pacient">
+            <IonTabButton tab="tab3" href="/chat">
               <IonIcon src="./assets/icon/Chat-icon.svg"/>
             </IonTabButton>
             <IonTabButton tab="tab5" href="/home-pacient">
@@ -101,9 +104,10 @@ const App: React.FC = () => {
 
   return (
     <IonApp>
-      <div id="modalLoading"></div>
+      <div id="principal">
       <RoutingSystem/>
       <RoutingTabs />
+      </div>
     </IonApp>
   );
 };
