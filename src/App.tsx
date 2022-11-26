@@ -40,6 +40,10 @@ import SchedulesPacient from './pages/SchedulesPacient/SchedulesPacient';
 import Chat from './pages/Chat/Chat';
 import WebChat from './pages/WebChat/WebChat';
 import Conversation from './pages/Conversation/Conversation';
+import MyHealth from './pages/MyHealth/MyHealth';
+import HistoricalClinic from './pages/HistoricalClinic/HistoricalClinic';
+import ExamResults from './pages/ExamResults/ExamResults';
+import FindDoctor from './pages/FindDoctor/FindDoctor';
 
 setupIonicReact();
 
@@ -78,6 +82,18 @@ const RoutingTabs: React.FC = () => {
             <Route exact path="/conversation">
               <Conversation />
             </Route>
+            <Route exact path="/health">
+              <MyHealth />
+            </Route>
+            <Route exact path="/historical-clinic">
+              <HistoricalClinic />
+            </Route>
+            <Route exact path="/exam-results">
+              <ExamResults/>
+            </Route>
+            <Route exact path="/find-doctor">
+              <FindDoctor/>
+            </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
             <IonTabButton tab="home" href="/home-pacient">
@@ -89,7 +105,7 @@ const RoutingTabs: React.FC = () => {
             <IonTabButton tab="tab3" href="/chat">
               <IonIcon src="./assets/icon/Chat-icon.svg"/>
             </IonTabButton>
-            <IonTabButton tab="tab5" href="/home-pacient">
+            <IonTabButton tab="tab4" href="/health">
               <IonIcon src="./assets/icon/doctor.svg"/>
             </IonTabButton>
             <IonTabButton tab="tab5" href="/home-pacient">
@@ -105,7 +121,7 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <div id="principal">
-      <RoutingSystem/>
+      {/* <RoutingSystem/> */}
       <RoutingTabs />
       </div>
     </IonApp>
