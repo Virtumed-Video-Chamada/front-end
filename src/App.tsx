@@ -1,17 +1,25 @@
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
+  IonButton,
+  IonContent,
+  IonHeader,
   IonIcon,
+  IonItem,
   IonLabel,
+  IonMenu,
+  IonMenuToggle,
   IonRouterOutlet,
   IonSplitPane,
   IonTabBar,
   IonTabButton,
   IonTabs,
+  IonTitle,
+  IonToolbar,
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, home, square, triangle } from 'ionicons/icons';
+import { ellipse, home, logOutOutline, settingsOutline, square, triangle } from 'ionicons/icons';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -39,6 +47,7 @@ import Principal from './pages/Principal/Principal';
 import SchedulesPacient from './pages/SchedulesPacient/SchedulesPacient';
 import Chat from './pages/Chat/Chat';
 import WebChat from './pages/WebChat/WebChat';
+import PatientSettings from './pages/PatientSettings/PatientSettings';
 
 setupIonicReact();
 
@@ -50,6 +59,7 @@ const RoutingSystem: React.FC = () => {
           <Route path="/" component={HomePacient} exact />
           <Route path="/login" component={Login} exact />
           <Route path="/register" component={Register} exact />
+          <Route path="/patient-settings" component={PatientSettings} exact />
           {/* <Route path="/home" component={HomePacient} exact /> */}
         </IonRouterOutlet>
       </IonSplitPane>
@@ -89,7 +99,7 @@ const RoutingTabs: React.FC = () => {
             <IonTabButton tab="tab5" href="/home-pacient">
               <IonIcon src="./assets/icon/doctor.svg"/>
             </IonTabButton>
-            <IonTabButton tab="tab5" href="/home-pacient">
+            <IonTabButton tab="tab5" href="/home-pacient" >
               <IonIcon src="./assets/icon/Profile-icon.svg"/>
             </IonTabButton>
           </IonTabBar>
