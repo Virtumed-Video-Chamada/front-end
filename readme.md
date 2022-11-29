@@ -58,7 +58,7 @@
 Clone o projeto na janela que abriu com o seguinte comando:
 
 ```bash
-  git clone git@github.com/Virtumed-Video-Chamada/front-end.git
+  git clone git@github.com:Virtumed-Video-Chamada/front-end.git
 ```
 
 Após isso pode fechar a janela!
