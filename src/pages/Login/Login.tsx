@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { App } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 import { Link, useHistory } from 'react-router-dom';
+import logo from '../../assets/icons/logo.png'
 // import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -94,7 +95,10 @@ const Login: React.FC = () => {
     <IonPage>
       <div className="container px-8 py-3 font-semibold">
         <div className="splash-info"></div>
-        <IonList>
+        <IonList >
+          <IonHeader className='flex items-center mt-10 '>
+            <img src={logo} alt="virtumed Logo" />
+          </IonHeader>
           <IonItem>
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>E-mail</span></span>
@@ -109,8 +113,8 @@ const Login: React.FC = () => {
             <IonInput className='inputSelsyn' type="password" value={senha} placeholder="Informe senha" onIonChange={e => setSenha(e.detail.value!)}></IonInput>
           </IonItem>
           
-          <IonButton className='btnDefault mt-8' expand="block" onClick={executeLogin}>ENTRAR</IonButton>
-          <IonButton className='btnDefault mt-8' expand="block" routerLink="/register">REGISTRE-SE</IonButton>
+          <IonButton className='btnDefault mt-8' expand="block" onClick={executeLogin} color='tertiary'>ENTRAR</IonButton>
+          <IonButton className='btnDefault mt-8' expand="block" routerLink="/register" color='tertiary'>REGISTRE-SE</IonButton>
           
           <div className='my-10'>
             <IonText className="text-center text-xs" onClick={lembrarSenha}>
