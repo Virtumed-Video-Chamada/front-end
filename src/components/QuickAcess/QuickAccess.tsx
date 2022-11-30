@@ -23,21 +23,21 @@ const QuickAccess: React.FC = () => {
     <div className="container">
      <h1 className="font-bold">Acesso Rápido</h1>
         <IonRow className="flex overflow-x-auto flex-nowrap mb-0" class="justify-content-center" >
-          <IonCard className="min-w-[100px] h-[100px] mr-1"  color="#fff">
+          <IonCard className="min-w-[100px] h-[100px] mr-1 flex flex-col justify-center items-center"  color="#fff">
             <IonImg className="w-[50px] h-[50px] mt-1 " src="./assets/icon/microscope.svg"></IonImg>
-            <div>Resultados de Exames</div>
+            <div className="text-center">Resultados de Exames</div>
           </IonCard>
-          <IonCard className="min-w-[100px] h-[100px] mr-1" color="#fff">
+          <IonCard className="min-w-[100px] h-[100px] mr-1 flex flex-col justify-center items-center" color="#fff">
             <IonImg className="w-[50px] h-[50px]" src="./assets/icon/appointment.svg"></IonImg>
-            <div className="text-left">Consultas Anteriores</div>
+            <div className="text-center">Consultas Anteriores</div>
           </IonCard>
-          <IonCard className="min-w-[100px] h-[100px] mr-1" color="#fff"> 
+          <IonCard className="min-w-[100px] h-[100px] mr-1  flex flex-col justify-center items-center" color="#fff"> 
             <IonImg className="w-[50px] h-[50px]" src="./assets/icon/historical.svg"></IonImg>
-            <div className="text-left">Histórico Clínico</div>
+            <div className="text-center">Histórico Clínico</div>
           </IonCard>
-          <IonCard className="min-w-[100px] h-[100px] mr-1" color="#fff">
+          <IonCard className="min-w-[100px] h-[100px] mr-1  flex flex-col justify-center items-center" color="#fff">
             <IonImg className="w-[50px] h-[50px]" src="./assets/icon/chat.svg"></IonImg>
-            <div className="text-left">Chamadas Anteriores</div>
+            <div className="text-center">Chamadas Anteriores</div>
           </IonCard>
         </IonRow>
     </div>
