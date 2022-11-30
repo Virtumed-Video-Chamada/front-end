@@ -19,10 +19,10 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import { ellipse, square, triangle } from "ionicons/icons";
 import { Redirect, Route } from "react-router";
-import Appointments from "../../components/Appointments/Appointments";
-import Identificador from "../../components/Identificador/Identificador";
-import PopularDoctor from "../../components/PopularDoctor/PopularDoctor";
-import QuickAccess from "../../components/QuickAcess/QuickAccess";
+import Appointments from "../../../components/Appointments/Appointments";
+import Identificador from "../../../components/Identificador/Identificador";
+import PopularDoctor from "../../../components/Pacient/PopularDoctor/PopularDoctor";
+import QuickAccess from "../../../components/Pacient/QuickAcess/QuickAccess";
 
 const HomePaciente: React.FC = () => {
   return (

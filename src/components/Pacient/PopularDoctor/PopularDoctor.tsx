@@ -17,8 +17,11 @@ import {
   IonSlides,
   IonThumbnail,
   IonTitle,
+  useIonAlert,
+  useIonToast,
 } from "@ionic/react";
 import { heartOutline } from "ionicons/icons";
+import { useState } from "react";
 
 const slideOpts = {
   initialSlide: 1,
@@ -26,11 +29,33 @@ const slideOpts = {
 };
 
 const PopularDoctor: React.FC = () => {
+  const [change, setChange] = useState<boolean>(false);
+  const [_class, setClass] = useState<string>("flex hidden");
+  const [presentAlert] = useIonAlert();
+  const [handlerMessage, setHandlerMessage] = useState("");
+  const [roleMessage, setRoleMessage] = useState("");
+  const [present] = useIonToast();
+  const presentToast = () => {
+    present({
+      message: 'Consulta cancelada com sucesso',
+      duration: 1500,
+      position: 'top',
+    });
+  };
+
+  const showChat = () => {
+    setChange(!change);
+    if(change === true) {
+      setClass("flex")
+    } else {
+      setClass("flex hidden")
+    }
+  }
   return (
     <div className="container">
       <h1 className="font-bold">Médicos Populares</h1>
       <span>Ver todos...</span>
-      <IonCard className="bd-20">
+      <IonCard className="bd-20" onClick={showChat}>
         <IonCardContent className="flex justify-between">
           <IonThumbnail slot="start">
             <img
@@ -48,6 +73,10 @@ const PopularDoctor: React.FC = () => {
           </IonButton>
           <IonImg src="./assets/icon/Logo.svg"></IonImg>
         </IonCardContent>
+             <div className={_class}>
+                <IonButton className="text-xs" color="secondary">ABRIR CHAT</IonButton>
+                 <IonButton className="text-xs" color="primary">AGENDAR</IonButton>
+           </div>
       </IonCard>
     </div>
   );

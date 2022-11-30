@@ -55,7 +55,7 @@ const ListDoctor: React.FC = () => {
              <div className="text-left">
                <span>Dra. Maria Renata</span>
                <p>Psicóloga</p>
-               <span>Hoje, 14:00</span>
+               <span>98 Avaliações</span>
                <div className="flex">
                  
                </div>

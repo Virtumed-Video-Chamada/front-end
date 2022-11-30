@@ -19,10 +19,10 @@ import { IonReactRouter } from "@ionic/react-router";
 import { chevronDown, ellipse, heart, square, triangle } from "ionicons/icons";
 import { useRef, useState } from "react";
 import { Redirect, Route } from "react-router";
-import DateTime from "../../components/DateTime/DateTime";
-import Identificador from "../../components/Identificador/Identificador";
+import DateTime from "../../../components/DateTime/DateTime";
+import Identificador from "../../../components/Identificador/Identificador";
 
-import Schedules from "../../components/Schedules/Schedules";
+import Schedules from "../../../components/Schedules/Schedules";
 
 const HomePaciente: React.FC = () => {
   return (

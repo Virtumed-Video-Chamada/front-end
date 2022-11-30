@@ -110,7 +110,7 @@ const Login: React.FC = () => {
           </IonItem>
           
           <IonButton className='btnDefault mt-8' expand="block" onClick={executeLogin}>ENTRAR</IonButton>
-          <IonButton className='btnDefault mt-8' expand="block" routerLink="/register">REGISTRE-SE</IonButton>
+          <IonButton className='btnDefault mt-8' expand="block" routerLink="/register-choice">REGISTRE-SE</IonButton>
           
           <div className='my-10'>
             <IonText className="text-center text-xs" onClick={lembrarSenha}>
