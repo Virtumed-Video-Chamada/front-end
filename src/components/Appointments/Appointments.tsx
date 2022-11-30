@@ -25,8 +25,8 @@ const Appointments: React.FC = () => {
   return (
     <div className="container">
       <h1 className="font-bold">Consultas Agendadas</h1>
-      <IonSlides pager={true} options={slideOpts}>
-        <IonSlide>
+      <IonSlides pager={true} options={slideOpts} >
+        <IonSlide className="mb-3">
           <IonCard className="bd-20 bg-[#4B39B3]">
             <IonCardContent className="flex">
               <IonThumbnail slot="start">
