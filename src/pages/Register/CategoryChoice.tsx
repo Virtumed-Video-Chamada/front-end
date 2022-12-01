@@ -50,7 +50,7 @@ const CategoryChoice: React.FC = () => {
           <div className="my-10">
             <IonButton
               fill="clear"
-              className="text-center text-xs"
+              className="text-center text-xs font-semibold"
               routerLink="/login"
             >
               <p>Voltar para login</p>
