@@ -24,10 +24,9 @@ const CategoryChoice: React.FC = () => {
     <IonPage>
       <div className="container px-8 py-3 font-semibold">
         <div className="splash-info"></div>
-        <IonImg src="./assets/logo.png" className="imgLogo" />
+        <IonImg src="./assets/logo.png" className='imgLogo flex items-center mx-auto' />
         <div className="container px-8 py-3 font-semibold">
           <div className="splash-info"></div>
-          <IonImg src="./assets/logo.png" className="imgLogo" />
           <IonText>Escolha uma opção</IonText>
           <IonList>
             <IonRadioGroup allowEmptySelection={true} value="">

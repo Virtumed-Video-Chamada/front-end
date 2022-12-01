@@ -317,3 +317,13 @@ height: 100vh;
 
 .msg-other{
 }
+
+.text-colored{
+  color: #4B39B3;
+}
+
+.imgLogo{
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  width: 20rem;
+}
