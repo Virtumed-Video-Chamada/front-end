@@ -105,7 +105,7 @@ const RoutingTabs: React.FC = () => {
             <IonTabButton tab="home" href="/home-pacient">
               <IonIcon icon={home} />
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/agendamentos">
+            <IonTabButton tab="tab2" href="/schedules">
               <IonIcon src="./assets/icon/calendar.svg" />
             </IonTabButton>
             <IonTabButton tab="tab3" href="/chat">
@@ -127,8 +127,8 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <div id="principal">
-      <RoutingSystem/>
-      {/* <RoutingTabs /> */}
+      {/* <RoutingSystem/> */}
+      <RoutingTabs />
       </div>
     </IonApp>
   );
