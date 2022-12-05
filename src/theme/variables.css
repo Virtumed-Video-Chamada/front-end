@@ -7,10 +7,10 @@ http://ionicframework.com/docs/theming/ */
 @tailwind utilities;
 
 :root {
-  ----ion-font-family: 'Poppins', sans-serif;
-  --ion-background-color: #D9D9D9;
+  --ion-font-family: 'Poppins', sans-serif;
+  --ion-background-color:  #ffffff;
   --ion-item-background: transparent;
-  --ion-toolbar-background: transparent;
+  --ion-toolbar-background: #4B39B3;;
   --ion-tab-bar-background:  #ffffff;
   --ion-card-background: #ffffff;
   --ion-searchbar-background: #F5F5F5;
@@ -298,3 +298,32 @@ button.alert-button.alert-button-cancel {
   border-radius: 10px;
 }
 
+.principal {
+height: 100vh;
+}
+
+.badge {
+  background: #3880FF;
+  border-radius: 50%;
+  width: 1rem;
+  height:1rem;
+}
+
+.msg{
+}
+
+.msg-your{
+}
+
+.msg-other{
+}
+
+.text-colored{
+  color: #4B39B3;
+}
+
+.imgLogo{
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  width: 20rem;
+}

@@ -19,10 +19,10 @@ import { IonReactRouter } from "@ionic/react-router";
 import { chevronDown, ellipse, heart, square, triangle } from "ionicons/icons";
 import { useRef, useState } from "react";
 import { Redirect, Route } from "react-router";
-import DateTime from "../../components/DateTime/DateTime";
-import Identificador from "../../components/Identificador/Identificador";
+import DateTime from "../../../components/DateTime/DateTime";
+import Identificador from "../../../components/Identificador/Identificador";
 
-import Schedules from "../../components/Schedules/Schedules";
+import Schedules from "../../../components/Schedules/Schedules";
 
 const HomePaciente: React.FC = () => {
   return (
@@ -30,8 +30,8 @@ const HomePaciente: React.FC = () => {
       <Identificador />
       <DateTime />
       <div className="container_schedules">
-        {/* <Schedules/> */}
-        <div className="container flex flex-col align-center justify-center items-center">
+        <Schedules/>
+        {/* <div className="container flex flex-col align-center justify-center items-center">
           <IonImg
             className="w-[240px] h-[262px]"
             src="./assets/icon/agenda.svg"
@@ -40,7 +40,7 @@ const HomePaciente: React.FC = () => {
             <span className="text-center">NÃO HÁ CONSULTAS</span>
             <span className="text-center">AGENDADAS NO MOMENTO</span>
           </div>
-        </div>
+        </div> */}
       </div>
     </IonPage>
   );
