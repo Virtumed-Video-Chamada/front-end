@@ -32,11 +32,7 @@ const Identificador: React.FC = () => {
             />
           </IonAvatar>
         </IonThumbnail>
-       <IonContent className="ion-padding">
-          <IonMenuToggle>
-            <IonButton>Click to open the menu</IonButton>
-          </IonMenuToggle>
-        </IonContent> 
+      
         <IonLabel>
           <IonText>Olá, Maycon!</IonText>
         </IonLabel>

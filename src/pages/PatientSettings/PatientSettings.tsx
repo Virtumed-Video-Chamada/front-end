@@ -1,8 +1,10 @@
 import {
   IonAvatar,
   IonButton,
+  IonCard,
   IonContent,
   IonHeader,
+  IonIcon,
   IonInput,
   IonItem,
   IonLabel,
@@ -12,7 +14,9 @@ import {
   IonText,
   useIonToast,
 } from "@ionic/react";
+import { camera } from "ionicons/icons";
 import { useState } from "react";
+import "./main.css";
 
 const PatientSettings: React.FC = () => {
   //validação ionic ----
@@ -41,7 +45,7 @@ const PatientSettings: React.FC = () => {
   /* ----- */
 
   return (
-    <IonPage>
+    <>
       <IonHeader>
         <IonItem>
           <IonLabel>
@@ -51,12 +55,19 @@ const PatientSettings: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonList>
-          <IonAvatar className="border-b-2 border-primary">
-            <img
-              alt="Silhouette of a person's head"
-              src="https://avatars.githubusercontent.com/u/97128625?v=4"
-            />
-          </IonAvatar>
+          
+          <div className="flex flex-col justify-center items-center mt-2">
+          <IonAvatar className=" w-40 h-40">
+              <img
+                alt="Silhouette of a person's head"
+                src="https://avatars.githubusercontent.com/u/97128625?v=4"
+              />
+            </IonAvatar>
+            <IonIcon icon={camera} className="w-5 h-5"></IonIcon>
+          </div>
+           
+          
+
           <IonItem
             fill="solid"
             className={`${isValid && "ion-valid"} ${
@@ -97,7 +108,7 @@ const PatientSettings: React.FC = () => {
           Atualizar dados
         </IonButton>
       </IonContent>
-    </IonPage>
+    </>
   );
 };
 
