@@ -11,7 +11,7 @@ import {
 } from "@ionic/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import RegisterPacient from "../../components/Register/RegisterPacient";
+import RegisterPacient from "../../components/Register/RegisterPatient";
 
 const CategoryChoice: React.FC = () => {
 
