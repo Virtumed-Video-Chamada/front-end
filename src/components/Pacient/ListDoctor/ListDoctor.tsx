@@ -1,7 +1,3 @@
-// interface ContainerProps {
-//   name: string;
-// }
-
 import {
   IonButton,
   IonCard,
@@ -13,7 +9,12 @@ import {
   useIonAlert,
   useIonToast,
 } from "@ionic/react";
-import { heartOutline } from "ionicons/icons";
+import {
+  calendarOutline,
+  chatbubbleOutline,
+  heartOutline,
+  watch,
+} from "ionicons/icons";
 import { useState } from "react";
 
 const slideOpts = {
@@ -30,46 +31,56 @@ const ListDoctor: React.FC = () => {
   const [present] = useIonToast();
   const presentToast = () => {
     present({
-      message: 'Consulta cancelada com sucesso',
+      message: "Consulta cancelada com sucesso",
       duration: 1500,
-      position: 'top',
+      position: "top",
     });
   };
 
   const showChat = () => {
     setChange(!change);
-    if(change === true) {
-      setClass("flex")
+    if (change === true) {
+      setClass("flex");
     } else {
-      setClass("flex hidden")
+      setClass("flex hidden");
     }
-  }
+  };
 
   return (
     <div className="container" onClick={showChat}>
-    <IonCard className="bd-20 card">
-           <IonCardContent className="flex justify-between w-auto">
-             <IonThumbnail slot="start">
-               <img className="min-w-[80px]"alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />
-             </IonThumbnail>
-             <div className="text-left">
-               <span>Dra. Maria Renata</span>
-               <p>Psicóloga</p>
-               <span>98 Avaliações</span>
-               <div className="flex">
-                 
-               </div>
-             </div>
-             <IonImg src="./assets/icon/Logo.svg"></IonImg>
-           </IonCardContent>
-           <div className={_class}>
-                 <IonButton className="text-xs" color="secondary">ABRIR CHAT</IonButton>
-                 <IonButton className="text-xs" color="primary" routerLink="/medical-schedules">AGENDAR</IonButton>
-           </div>
+      <IonCard className="bd-20 card">
+        <IonCardContent className="flex justify-between w-auto">
+          <IonThumbnail slot="start">
+            <img
+              className="min-w-[80px]"
+              alt="Pic-Doctor"
+              src="./assets/avatar/Pic-Doctor.png"
+            />
+          </IonThumbnail>
+          <div className="flex ml-9">
+            <div className="flex flex-col gap-2">
+              <span className="text-black font-bold">Dra. Maria Renata</span>
+              <p className="font-normal">Psicóloga</p>
+              <span className="font-medium">98 Avaliações</span>
+            </div>
+          </div>
+          <IonImg src="./assets/icon/Logo.svg"></IonImg>
+        </IonCardContent>
+        <div className="flex flex-row justify-center items-center">
+          <div className={_class}>
+            <IonButton className="text-xs w-max">
+              ABRIR CHAT
+              <IonIcon slot="start" icon={chatbubbleOutline}></IonIcon>
+            </IonButton>
+            <IonButton className="text-xs"  color="tertiary" routerLink="/medical-schedules">
+              AGENDAR
+              <IonIcon slot="start" icon={calendarOutline}></IonIcon>
+            </IonButton>
+          </div>
+        </div>
       </IonCard>
-   </div>
+    </div>
   );
 };
 
 export default ListDoctor;
-

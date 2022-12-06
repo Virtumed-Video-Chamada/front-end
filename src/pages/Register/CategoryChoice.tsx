@@ -10,8 +10,6 @@ import {
   IonText,
 } from "@ionic/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import RegisterPacient from "../../components/Register/RegisterPacient";
 
 const CategoryChoice: React.FC = () => {
 
@@ -22,9 +20,9 @@ const CategoryChoice: React.FC = () => {
 
   return (
     <IonPage>
-          <div className="splash-info"></div>  
-          <IonImg src="./assets/logo.png" className="imgLogo" />
-          <IonText>Escolha uma opção</IonText> 
+        <div className="splash-info"></div>
+        <IonImg src="./assets/logo.png" className='imgLogo flex items-center mx-auto' />
+          <IonText>Escolha uma opção:</IonText>
           <IonList>
             <IonRadioGroup allowEmptySelection={true} value="">
               <IonItem>
@@ -47,7 +45,7 @@ const CategoryChoice: React.FC = () => {
           <div className="my-10">
             <IonButton
               fill="clear"
-              className="text-center text-xs"
+              className="text-center text-xs font-semibold"
               routerLink="/login"
             >
               <p>Voltar para login</p>
