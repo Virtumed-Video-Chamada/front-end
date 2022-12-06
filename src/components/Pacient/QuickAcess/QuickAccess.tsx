@@ -29,15 +29,15 @@ const QuickAccess: React.FC = () => {
           </IonCard>
           <IonCard className="min-w-[100px] h-[100px] mr-1 bd-20">
             <IonImg className="w-[50px] h-[50px]" src="./assets/icon/appointment.svg"></IonImg>
-            <div className="text-left">Consultas Anteriores</div>
+            <div className="text-center">Consultas Anteriores</div>
           </IonCard>
           <IonCard className="min-w-[100px] h-[100px] mr-1 bd-20" routerLink="historical-clinic">
             <IonImg className="w-[50px] h-[50px]" src="./assets/icon/historical.svg"></IonImg>
-            <div className="text-left">Histórico Clínico</div>
+            <div className="text-center">Histórico Clínico</div>
           </IonCard>
           <IonCard className="min-w-[100px] h-[100px] mr-1 bd-20">
             <IonImg className="w-[50px] h-[50px]" src="./assets/icon/chat.svg"></IonImg>
-            <div className="text-left">Chamadas Anteriores</div>
+            <div className="text-center">Chamadas Anteriores</div>
           </IonCard>
         </IonRow>
     </div>

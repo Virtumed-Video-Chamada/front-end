@@ -18,7 +18,7 @@ const DateTime: React.FC = () => {
 
  
   const onBlock = () => {
-    setChange('block center text-center mx-auto bg-slate-200')
+    setChange('cover block center text-center mx-auto bg-slate-200 z-50 w-full absolute')
   }
 
   const datetime = useRef<null | HTMLIonDatetimeElement>(null);
@@ -31,12 +31,13 @@ const DateTime: React.FC = () => {
     datetime.current?.confirm();
     const listDatas: any = datetime.current?.value;
     setData(listDatas);
-    setChange('hidden');
+    console.log(datetime.current?.value);
     datetime.current?.reset();
+    setChange('hidden');
   }
 
   return (
-    <div className='rounded-[10px] w-[173px] h-[37px] bg-white calendar-container align-center text-center py-2 my-5'>
+    <div className='rounded-[10px] w-[173px] h-[37px] bg-white calendar-container align-center text-center py-2 my-5 z-50'>
     <span className='bold border py-2' onClick={() => onBlock()}>{dataInicio}</span>
     <IonIcon src={chevronDown}></IonIcon> 
      <IonDatetime

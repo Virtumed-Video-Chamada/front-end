@@ -1,7 +1,3 @@
-// interface ContainerProps {
-//   name: string;
-// }
-
 import {
   IonAvatar,
   IonBadge,
@@ -10,6 +6,8 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonCol,
+  IonGrid,
   IonIcon,
   IonImg,
   IonInfiniteScroll,
@@ -18,31 +16,39 @@ import {
   IonItem,
   IonLabel,
   IonList,
+  IonRow,
   IonSlide,
   IonSlides,
   IonThumbnail,
 } from "@ionic/react";
 import { checkmark, checkmarkOutline } from "ionicons/icons";
 import { useEffect, useState } from "react";
+import moment from 'moment';
+import { ChatConversationProps } from "../../@types/interfaces";
+import './ChatConversation.css';
 
-const ChatConversation: React.FC = () => {
+
+export function ChatConversation(props: ChatConversationProps) {
+
+  const currentUser = 'max';
+
 
   return (
-    <div className="container h-full w-full flex flex-col justify-between">
-      <div className="chat">
-        <div className="msg msg-your">Olá</div>
-        <div className="msg msg-other">Bom dia</div>
-        <span className="text-xs ml-3 text[#a6a6a6a6]">
-            <IonIcon icon={checkmarkOutline}></IonIcon>
-            16:50
-          </span>
-      </div>
-      <div className="flex items-center fixed-bottom">
-          <IonInput placeholder="Digite sua mensagem"></IonInput>
-      </div>
-    </div>
+  <IonGrid>
+    <IonRow>
+      {currentUser !== props.user ? 
+       <IonCol size="9" className="message other-message">
+        {/* <b>{props.user}</b><br></br> */}
+        <span>{props.msg}</span>
+        <div className="text-right time"> {moment(props.createdAt).format("HH:mm A")}</div>
+       </IonCol> :
+        <IonCol size="9" offset="3" className="message my-message">
+        {/* <b>{props.user}</b><br></br> */}
+        <span>{props.msg}</span>
+        <div className="text-right time"> {moment(props.createdAt).format("HH:mm A")}</div>
+       </IonCol> }
+    </IonRow>
+  </IonGrid>
   );
 };
-
-export default ChatConversation;
 

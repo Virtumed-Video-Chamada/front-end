@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { App } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 import { Link, useHistory } from 'react-router-dom';
+import logo from '../../assets/icons/logo.png'
 // import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -96,14 +97,14 @@ const Login: React.FC = () => {
         <div className="splash-info"></div>
         <IonList>
           <IonImg src='./assets/logo.png' className='imgLogo flex items-center mx-auto'/>
-          <IonItem>
+          <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-semibold pl-2 pb-4'>E-mail</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe usuário" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe e-mail" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
           </IonItem>
 
-          <IonItem className='pb-10'>
+          <IonItem lines="inset" className="pr-2 pb-10">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-semibold pl-2 pb-4'>Senha</span></span>
             </IonLabel>
