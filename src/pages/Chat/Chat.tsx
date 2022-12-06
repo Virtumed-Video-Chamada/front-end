@@ -8,6 +8,7 @@ import Identificador from '../../components/Identificador/Identificador';
 
 
 const Chat: React.FC = () => {
+
   return (
     <IonPage className="justify-start">
     <Identificador/>

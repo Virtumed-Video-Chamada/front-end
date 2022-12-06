@@ -22,13 +22,9 @@ const CategoryChoice: React.FC = () => {
 
   return (
     <IonPage>
-      <div className="container px-8 py-3 font-semibold">
-        <div className="splash-info"></div>
-        <IonImg src="./assets/logo.png" className="imgLogo" />
-        <div className="container px-8 py-3 font-semibold">
-          <div className="splash-info"></div>
+          <div className="splash-info"></div>  
           <IonImg src="./assets/logo.png" className="imgLogo" />
-          <IonText>Escolha uma opção</IonText>
+          <IonText>Escolha uma opção</IonText> 
           <IonList>
             <IonRadioGroup allowEmptySelection={true} value="">
               <IonItem>
@@ -57,8 +53,6 @@ const CategoryChoice: React.FC = () => {
               <p>Voltar para login</p>
             </IonButton>
           </div>
-        </div>
-      </div>
     </IonPage>
   );
 };
