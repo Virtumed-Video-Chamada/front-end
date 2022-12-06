@@ -75,7 +75,7 @@ const PopularDoctor: React.FC = () => {
         </IonCardContent>
              <div className={_class}>
                 <IonButton className="text-xs" color="secondary">ABRIR CHAT</IonButton>
-                 <IonButton className="text-xs" color="primary">AGENDAR</IonButton>
+                 <IonButton className="text-xs" color="primary" routerLink="/medical-schedules">AGENDAR</IonButton>
            </div>
       </IonCard>
     </div>

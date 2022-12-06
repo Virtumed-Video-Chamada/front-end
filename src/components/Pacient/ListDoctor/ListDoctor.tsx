@@ -1,7 +1,3 @@
-// interface ContainerProps {
-//   name: string;
-// }
-
 import {
   IonButton,
   IonCard,
@@ -76,7 +72,7 @@ const ListDoctor: React.FC = () => {
               ABRIR CHAT
               <IonIcon slot="start" icon={chatbubbleOutline}></IonIcon>
             </IonButton>
-            <IonButton className="text-xs"  color="tertiary">
+            <IonButton className="text-xs"  color="tertiary" routerLink="/medical-schedules">
               AGENDAR
               <IonIcon slot="start" icon={calendarOutline}></IonIcon>
             </IonButton>

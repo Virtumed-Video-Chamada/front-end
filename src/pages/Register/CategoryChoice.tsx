@@ -10,8 +10,6 @@ import {
   IonText,
 } from "@ionic/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import RegisterPacient from "../../components/Register/RegisterPatient";
 
 const CategoryChoice: React.FC = () => {
 
@@ -24,7 +22,6 @@ const CategoryChoice: React.FC = () => {
     <IonPage>
         <div className="splash-info"></div>
         <IonImg src="./assets/logo.png" className='imgLogo flex items-center mx-auto' />
-               
           <IonText>Escolha uma opção:</IonText>
           <IonList>
             <IonRadioGroup allowEmptySelection={true} value="">
