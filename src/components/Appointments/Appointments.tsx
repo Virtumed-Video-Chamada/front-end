@@ -27,7 +27,7 @@ const Appointments: React.FC = () => {
       <h1 className="font-bold">Consultas Agendadas</h1>
       <IonSlides pager={true} options={slideOpts}>
         <IonSlide>
-          <IonCard className="bd-20 bg-[#4B39B3]">
+          <IonCard className="bd-20 bg-[#4B39B3]" routerLink="/webchat">
             <IonCardContent className="flex">
               <IonThumbnail slot="start">
                 <img alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />
@@ -42,7 +42,7 @@ const Appointments: React.FC = () => {
           </IonCard>
         </IonSlide>
         <IonSlide>
-          <IonCard className="bd-20 bg-[#4B39B3]">
+          <IonCard className="bd-20 bg-[#4B39B3]" routerLink="/webchat">
             <IonCardContent className="flex">
               <IonThumbnail slot="start">
                 <img alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />

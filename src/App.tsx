@@ -32,14 +32,20 @@ import '@ionic/react/css/typography.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import HomePacient from './pages/HomePaciente/HomePaciente';
+import HomePacient from './pages/Pacient/HomePaciente/HomePaciente';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Principal from './pages/Principal/Principal';
-import SchedulesPacient from './pages/SchedulesPacient/SchedulesPacient';
+import SchedulesPacient from './pages/Pacient/SchedulesPacient/SchedulesPacient';
 import Chat from './pages/Chat/Chat';
 import WebChat from './pages/WebChat/WebChat';
 import Conversation from './pages/Conversation/Conversation';
+import MyHealth from './pages/Pacient/MyHealth/MyHealth';
+import HistoricalClinic from './pages/Pacient/HistoricalClinic/HistoricalClinic';
+import ExamResults from './pages/Pacient/ExamResults/ExamResults';
+import FindDoctor from './pages/Pacient/FindDoctor/FindDoctor';
+import MedicalSchedule from './pages/Pacient/MedicalSchedule/MedicalSchedule';
+import CategoryChoice from './pages/Register/CategoryChoice';
 
 setupIonicReact();
 
@@ -50,6 +56,7 @@ const RoutingSystem: React.FC = () => {
         <IonRouterOutlet id="main">
           <Route path="/" component={HomePacient} exact />
           <Route path="/login" component={Login} exact />
+          <Route path="/register-choice" component={CategoryChoice} exact />
           <Route path="/register" component={Register} exact />
           {/* <Route path="/home" component={HomePacient} exact /> */}
         </IonRouterOutlet>
@@ -66,8 +73,11 @@ const RoutingTabs: React.FC = () => {
             <Route exact path="/home-pacient">
               <HomePacient />
             </Route>
-            <Route exact path="/agendamentos">
+            <Route exact path="/schedules">
               <SchedulesPacient />
+            </Route>
+            <Route exact path="/medical-schedules">
+              <MedicalSchedule />
             </Route>
             <Route exact path="/chat">
               <Chat />
@@ -77,6 +87,18 @@ const RoutingTabs: React.FC = () => {
             </Route>
             <Route exact path="/conversation">
               <Conversation />
+            </Route>
+            <Route exact path="/health">
+              <MyHealth />
+            </Route>
+            <Route exact path="/historical-clinic">
+              <HistoricalClinic />
+            </Route>
+            <Route exact path="/exam-results">
+              <ExamResults/>
+            </Route>
+            <Route exact path="/find-doctor">
+              <FindDoctor/>
             </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
@@ -89,7 +111,7 @@ const RoutingTabs: React.FC = () => {
             <IonTabButton tab="tab3" href="/chat">
               <IonIcon src="./assets/icon/Chat-icon.svg"/>
             </IonTabButton>
-            <IonTabButton tab="tab5" href="/home-pacient">
+            <IonTabButton tab="tab4" href="/health">
               <IonIcon src="./assets/icon/doctor.svg"/>
             </IonTabButton>
             <IonTabButton tab="tab5" href="/home-pacient">
@@ -106,7 +128,7 @@ const App: React.FC = () => {
     <IonApp>
       <div id="principal">
       <RoutingSystem/>
-      <RoutingTabs />
+      {/* <RoutingTabs /> */}
       </div>
     </IonApp>
   );
