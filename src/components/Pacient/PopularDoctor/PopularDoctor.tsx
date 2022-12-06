@@ -63,7 +63,7 @@ const PopularDoctor: React.FC = () => {
               src="https://media-exp1.licdn.com/dms/image/C4D03AQG34BiNMXpuKw/profile-displayphoto-shrink_200_200/0/1663620501676?e=1674691200&v=beta&t=RGNlx1yPdT9_COlYwhbg6gCF9ejlvqaakGi0KpQ6wkY"
             />
           </IonThumbnail>
-          <div className="text-left">
+          <div className="text-left ml-5">
             <span>Dr. Ricardo Lima</span>
             <p>Otorrinolaringologista</p>
             <span>98 Avaliações</span>

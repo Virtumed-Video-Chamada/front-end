@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { App } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 import { Link, useHistory } from 'react-router-dom';
+import logo from '../../assets/icons/logo.png'
 // import { useDispatch, useSelector } from 'react-redux';
 
 

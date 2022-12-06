@@ -32,13 +32,13 @@ const HomePaciente: React.FC = () => {
       <IonItem className="mt-0 mb-0" routerLink="/find-doctor">
         <IonSearchbar placeholder="Pesquise por médico ou especialidade"></IonSearchbar>
       </IonItem>
-      <IonItem className="mt-0 mb-0">
+      <IonItem className="mt-0 mb-0" lines="none">
         <Appointments />
       </IonItem>
-      <IonItem className="mt-0 mb-0">
+      <IonItem className="mt-0 mb-0" lines="none">
         <QuickAccess />
       </IonItem>
-      <IonItem className="mt-0 mb-0">
+      <IonItem className="mt-0 mb-0" lines="none">
         <PopularDoctor/>
       </IonItem>
     </IonPage>
