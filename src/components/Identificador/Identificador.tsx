@@ -5,14 +5,15 @@ import {
   IonText,
   IonThumbnail,
 } from "@ionic/react";
+import './style.css';
 
 
 
 const Identificador: React.FC = () => {
   return (
     <div className="container">
-     <IonItem>
-        <IonThumbnail slot="end">
+     <IonItem lines="none">
+        <IonThumbnail slot="end" className="pt-2">
           <IonAvatar className="border-b-2 border-primary">
             <img
               alt="Silhouette of a person's head"
@@ -21,7 +22,7 @@ const Identificador: React.FC = () => {
           </IonAvatar>
         </IonThumbnail>
         <IonLabel>
-          <IonText>Olá, Maycon!</IonText>
+          <IonText className="font-medium text-lg pl-3">Olá, Maycon!</IonText>
         </IonLabel>
       </IonItem>
     </div>

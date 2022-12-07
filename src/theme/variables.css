@@ -327,3 +327,11 @@ height: 100vh;
   padding-bottom: 2rem;
   width: 20rem;
 }
+
+.imgLogoSmall{
+  width: 15rem;
+}
+
+h1 {
+  font-family: 'Poppins';
+}

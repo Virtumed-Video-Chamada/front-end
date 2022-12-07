@@ -3,6 +3,7 @@ import {
   IonContent,
   IonHeader,
   IonIcon,
+  IonImg,
   IonItem,
   IonLabel,
   IonPage,
@@ -23,16 +24,18 @@ import Appointments from "../../../components/Appointments/Appointments";
 import Identificador from "../../../components/Identificador/Identificador";
 import PopularDoctor from "../../../components/Pacient/PopularDoctor/PopularDoctor";
 import QuickAccess from "../../../components/Pacient/QuickAcess/QuickAccess";
+import './style.css';
 
 const HomePaciente: React.FC = () => {
   return (
     <IonPage className="justify-start">
+      <IonImg src='./assets/logo.png' className='imgLogoSmall flex items-center mx-auto' />
       <Identificador/>
-      <h1 className="font-bold">Encontre seu médico</h1>
-      <IonItem className="mt-0 mb-0" routerLink="/find-doctor">
-        <IonSearchbar placeholder="Pesquise por médico ou especialidade"></IonSearchbar>
+      <h1 className="font-bold text-xl pl-8">Encontre seu médico</h1>
+      <IonItem lines="none" className="mt-0 mb-0" routerLink="/find-doctor">
+        <IonSearchbar color="light" placeholder="Pesquise por médico ou especialidade"></IonSearchbar>
       </IonItem>
-      <IonItem className="mt-0 mb-0">
+      <IonItem lines="none" className="mt-0 mb-0">
         <Appointments />
       </IonItem>
       <IonItem className="mt-0 mb-0">
