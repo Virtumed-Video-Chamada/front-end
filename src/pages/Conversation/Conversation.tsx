@@ -83,7 +83,7 @@ const Conversation: React.FC = () => {
                 <TextareaAutosize
                   className="message-input"
                   cacheMeasurements
-                  onHeightChange={(height) => console.log(height)}
+                  onHeightChange={(height: any) => console.log(height)}
                 />
                 {/* <TextareaAutosize maxRows={3} className="message-input" > {newMsg} </TextareaAutosize> */}
               </IonCol>
