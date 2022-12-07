@@ -28,8 +28,11 @@ const HomePaciente: React.FC = () => {
   return (
     <IonPage className="justify-start">
       <Identificador />
-      <DateTime />
-      <div className="container_schedules">
+      <div className="w-100">
+        <DateTime />
+      </div>
+      
+      <div className="container_schedules relative z-0">
         <Schedules/>
         {/* <div className="container flex flex-col align-center justify-center items-center">
           <IonImg

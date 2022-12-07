@@ -1,17 +1,25 @@
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
+  IonButton,
+  IonContent,
+  IonHeader,
   IonIcon,
+  IonItem,
   IonLabel,
+  IonMenu,
+  IonMenuToggle,
   IonRouterOutlet,
   IonSplitPane,
   IonTabBar,
   IonTabButton,
   IonTabs,
+  IonTitle,
+  IonToolbar,
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, home, square, triangle } from 'ionicons/icons';
+import { ellipse, home, logOutOutline, settingsOutline, square, triangle } from 'ionicons/icons';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -39,6 +47,7 @@ import Principal from './pages/Principal/Principal';
 import SchedulesPacient from './pages/Pacient/SchedulesPacient/SchedulesPacient';
 import Chat from './pages/Chat/Chat';
 import WebChat from './pages/WebChat/WebChat';
+import PatientSettings from './pages/PatientSettings/PatientSettings';
 import Conversation from './pages/Conversation/Conversation';
 import MyHealth from './pages/Pacient/MyHealth/MyHealth';
 import HistoricalClinic from './pages/Pacient/HistoricalClinic/HistoricalClinic';
@@ -46,6 +55,7 @@ import ExamResults from './pages/Pacient/ExamResults/ExamResults';
 import FindDoctor from './pages/Pacient/FindDoctor/FindDoctor';
 import MedicalSchedule from './pages/Pacient/MedicalSchedule/MedicalSchedule';
 import CategoryChoice from './pages/Register/CategoryChoice';
+
 
 setupIonicReact();
 
@@ -58,6 +68,7 @@ const RoutingSystem: React.FC = () => {
           <Route path="/login" component={Login} exact />
           <Route path="/register-choice" component={CategoryChoice} exact />
           <Route path="/register" component={Register} exact />
+          <Route path="/patient-settings" component={PatientSettings} exact />
           {/* <Route path="/home" component={HomePacient} exact /> */}
         </IonRouterOutlet>
       </IonSplitPane>
@@ -105,7 +116,7 @@ const RoutingTabs: React.FC = () => {
             <IonTabButton tab="home" href="/home-pacient">
               <IonIcon icon={home} />
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/agendamentos">
+            <IonTabButton tab="tab2" href="/schedules">
               <IonIcon src="./assets/icon/calendar.svg" />
             </IonTabButton>
             <IonTabButton tab="tab3" href="/chat">
@@ -115,7 +126,9 @@ const RoutingTabs: React.FC = () => {
               <IonIcon src="./assets/icon/doctor.svg"/>
             </IonTabButton>
             <IonTabButton tab="tab5" href="/home-pacient">
-              <IonIcon src="./assets/icon/Profile-icon.svg"/>
+            <IonMenuToggle>
+                <IonIcon src="./assets/icon/Profile-icon.svg"/>
+            </IonMenuToggle>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
@@ -127,8 +140,8 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <div id="principal">
-      <RoutingSystem/>
-      {/* <RoutingTabs /> */}
+      {/* <RoutingSystem/> */}
+      <RoutingTabs />
       </div>
     </IonApp>
   );

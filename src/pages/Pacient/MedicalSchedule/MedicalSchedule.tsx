@@ -1,6 +1,7 @@
 import {
   IonButton,
   IonButtons,
+  IonCard,
   IonContent,
   IonDatetime,
   IonFab,
@@ -11,6 +12,7 @@ import {
   IonImg,
   IonItem,
   IonLabel,
+  IonList,
   IonPage,
   IonRouterOutlet,
   IonTabBar,
@@ -34,39 +36,49 @@ const MedicalSchedule: React.FC = () => {
     <IonPage className="justify-start">
       <Identificador />
       <div className="container_schedules">
-      <IonItem>
-        <IonThumbnail slot="start" >
-          <img alt="Silhouette of mountains" className="rounded-xl" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-        </IonThumbnail>
-        <div className="flex flex-col">
-          <IonLabel>Dra. Meredithy Grey</IonLabel>
-          <IonLabel>Neurologista</IonLabel>
+        <IonItem>
+          <IonThumbnail slot="start" >
+            <img alt="Silhouette of mountains" className="rounded-xl" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+          </IonThumbnail>
+          <div className="flex flex-col">
+            <IonLabel>Dra. Meredithy Grey</IonLabel>
+            <IonLabel>Neurologista</IonLabel>
+            </div>
+        </IonItem>
+          <IonDatetime
+            presentation="date"
+            minuteValues="0,15,30,45"
+            dayValues="5,10,15,20,25,30"
+            size="cover"
+          >
+          </IonDatetime>
+          <span>ESCOLHA UMA DATA</span>
+        <IonCard >
+          <div className="flex flex-col height-[150px]">
+          <span>ESCOLHA UM HORÁRIO</span>
+          <div>
+            <IonFab slot="fixed" className="mx-auto flex justify-center items-center">
+              <IonFabButton color="primary-contrast" className="button-outline">
+                <span className="font-semibold text-4xl">08:00</span>
+              </IonFabButton>
+              <IonFabList side="top">
+                  <IonList>
+                    <IonItem>
+                      08:00
+                    </IonItem>
+                    <IonItem>
+                      08:00
+                    </IonItem>
+                  </IonList>
+              </IonFabList>
+           </IonFab>
           </div>
-      </IonItem>
-        <IonDatetime
-          presentation="date"
-          minuteValues="0,15,30,45"
-          dayValues="5,10,15,20,25,30"
-        >
-        </IonDatetime>
-        <span>ESCOLHA UMA DATA</span>
-      </div>
-      <div>
-        <span>ESCOLHA UM HORÁRIO</span>
-        <IonButton  fill="outline">08:00</IonButton>
-  <div>
-  <IonFab slot="fixed" horizontal="center" vertical="bottom">
-      <IonFabButton color="secondary">
-      <span>08:00</span>
-      </IonFabButton>
-      <IonFabList side="top">
-        <IonFabButton color="primary">
-          <IonIcon icon={chevronUp}></IonIcon>
-        </IonFabButton>
-      </IonFabList>
-    </IonFab>
-  </div>
-      </div>
+          </div>
+        </IonCard>
+     
+  
+       </div>
+  
     </IonPage>
   );
 };
