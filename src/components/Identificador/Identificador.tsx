@@ -22,7 +22,7 @@ const Identificador: React.FC = () => {
   return (
     <div className="container">
       <SideMenu />
-     <IonItem id="main-content">  
+     <IonItem id="main-content" lines="none">  
         <IonThumbnail slot="end">
           <IonAvatar className="border-b-2 border-primary"  >
             <img
@@ -32,8 +32,7 @@ const Identificador: React.FC = () => {
             />
           </IonAvatar>
         </IonThumbnail>
-      
-        <IonLabel>
+        <IonLabel className="font-bold" >
           <IonText>Olá, Maycon!</IonText>
         </IonLabel>
       </IonItem>
