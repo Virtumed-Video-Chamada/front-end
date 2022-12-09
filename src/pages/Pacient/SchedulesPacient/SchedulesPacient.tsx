@@ -24,21 +24,21 @@ import Identificador from "../../../components/Identificador/Identificador";
 
 import Schedules from "../../../components/Schedules/Schedules";
 
-const HomePaciente: React.FC = () => {
+const SchedulesPacient: React.FC = () => {
   return (
     <IonPage className="justify-start">
       <Identificador />
       <DateTime />
       <div className="container_schedules">
-        <Schedules/>
-        {/* <div className="container flex flex-col align-center justify-center items-center">
+        <Schedules/> 
+       {/*  <div className="container flex flex-col align-center justify-center items-center">
           <IonImg
             className="w-[240px] h-[262px]"
             src="./assets/icon/agenda.svg"
           ></IonImg>
-          <div className="flex flex-col text-center">
-            <span className="text-center">NÃO HÁ CONSULTAS</span>
-            <span className="text-center">AGENDADAS NO MOMENTO</span>
+          <div className="flex flex-col text-center" >
+            <span className="text-center" color="#000">NÃO HÁ CONSULTAS</span>
+            <span className="text-center" color="#000">AGENDADAS NO MOMENTO</span>
           </div>
         </div> */}
       </div>
@@ -46,4 +46,4 @@ const HomePaciente: React.FC = () => {
   );
 };
 
-export default HomePaciente;
+export default SchedulesPacient;
