@@ -5,30 +5,30 @@ import ModalAlert from "../ModalAlert/ModalAlert";
 
 
 
-const RegisterClinic: React.FC = () => {
+const RegisterMedic: React.FC = () => {
   const [usuario, setUsuario] = useState<string>('');
   const [senha, setSenha] = useState<string>('');
 
 
   return (
     <div>
-    <IonText>Clínica</IonText>  
+    <IonText>Médico</IonText>  
         <IonList>
         <IonItem>
             <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>Nome Fantasia</span></span>
+              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>Nome Completo</span></span>
             </IonLabel>
             <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe usuário" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>Razão Social</span></span>
+              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>CPF</span></span>
             </IonLabel>
             <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe usuário" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>CNPJ</span></span>
+              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>CRM</span></span>
             </IonLabel>
             <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe usuário" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
           </IonItem>
@@ -64,4 +64,4 @@ const RegisterClinic: React.FC = () => {
   );
 };
 
-export default RegisterClinic;
+export default RegisterMedic;

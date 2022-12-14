@@ -1,6 +1,6 @@
 
 import { IonAvatar, IonItem, IonLabel, IonText, IonThumbnail } from '@ionic/react';
-import './style.css';
+// import './style.css';
 
 const Identificador: React.FC = () => {
   return (
