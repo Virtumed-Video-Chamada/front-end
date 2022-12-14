@@ -23,8 +23,8 @@ const Identificador: React.FC = () => {
   return (
     <div className="container">
      <IonItem lines="none">
-        <IonThumbnail slot="end" className="pt-2">
-          <IonAvatar className="border-b-2 border-primary">
+        <IonThumbnail className="pt-3" slot="end">
+          <IonAvatar className="border-primary">
             <img
             
               alt="Silhouette of a person's head"

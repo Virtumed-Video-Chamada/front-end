@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { App } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 import { Link, useHistory } from 'react-router-dom';
-import logo from '../../assets/icons/logo.png'
+import logo from '../../assets/logo.png'
 // import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -69,7 +69,6 @@ const Login: React.FC = () => {
     }
   }
 
-
   useIonViewDidEnter(() => {
     // getStorage('userPwd').then((response) => {
     //   if (response){
@@ -95,8 +94,8 @@ const Login: React.FC = () => {
     <IonPage>
       <div className="container px-8 py-3 font-semibold">
         <div className="splash-info"></div>
-        <IonList>
-          <IonImg src='./assets/logo.png' className='imgLogo flex items-center mx-auto'/>
+        <IonList>          
+          <IonImg src={logo} className='imgLogo flex items-center mx-auto'/>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-semibold pl-2 pb-4'>E-mail</span></span>

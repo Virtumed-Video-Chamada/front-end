@@ -22,6 +22,7 @@ import {
 } from "@ionic/react";
 import { heartOutline } from "ionicons/icons";
 import { useState } from "react";
+import "./style.css";
 
 const slideOpts = {
   initialSlide: 1,
@@ -53,12 +54,14 @@ const PopularDoctor: React.FC = () => {
   }
   return (
     <div className="container">
-      <h1 className="font-bold">Médicos Populares</h1>
-      <span>Ver todos...</span>
+      <div className="titlePopular">
+      <h1 className="font-bold text-xl pl-3">Médicos Populares</h1>
+      <span className="font-bold text-xs text-colored">Ver todos...</span>
+      </div>
       <IonCard className="bd-20" onClick={showChat}>
         <IonCardContent className="flex justify-between">
           <IonThumbnail slot="start">
-            <img
+            <img className="imgDoctor max-h-[130%] max-w-[130%] bd-20"
               alt="Pic-Doctor"
               src="https://media-exp1.licdn.com/dms/image/C4D03AQG34BiNMXpuKw/profile-displayphoto-shrink_200_200/0/1663620501676?e=1674691200&v=beta&t=RGNlx1yPdT9_COlYwhbg6gCF9ejlvqaakGi0KpQ6wkY"
             />
@@ -71,7 +74,6 @@ const PopularDoctor: React.FC = () => {
           <IonButton fill="clear">
             <IonIcon slot="icon-only" icon={heartOutline}></IonIcon>
           </IonButton>
-          <IonImg src="./assets/icon/Logo.svg"></IonImg>
         </IonCardContent>
              <div className={_class}>
                 <IonButton className="text-xs" color="secondary">ABRIR CHAT</IonButton>
