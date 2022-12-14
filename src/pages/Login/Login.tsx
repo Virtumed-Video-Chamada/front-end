@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { App } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 import { Link, useHistory } from 'react-router-dom';
+import logo from '../../assets/icons/logo.png'
 // import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -95,25 +96,26 @@ const Login: React.FC = () => {
       <div className="container px-8 py-3 font-semibold">
         <div className="splash-info"></div>
         <IonList>
+          <IonImg src='./assets/logo.png' className='imgLogo flex items-center mx-auto'/>
           <IonItem>
             <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>E-mail</span></span>
+              <span className="flex items-center"><span className='text-sm font-semibold pl-2 pb-4'>E-mail</span></span>
             </IonLabel>
             <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe usuário" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
           </IonItem>
 
-          <IonItem>
+          <IonItem className='pb-10'>
             <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>Senha</span></span>
+              <span className="flex items-center"><span className='text-sm font-semibold pl-2 pb-4'>Senha</span></span>
             </IonLabel>
             <IonInput className='inputSelsyn' type="password" value={senha} placeholder="Informe senha" onIonChange={e => setSenha(e.detail.value!)}></IonInput>
           </IonItem>
           
-          <IonButton className='btnDefault mt-8' expand="block" onClick={executeLogin}>ENTRAR</IonButton>
-          <IonButton className='btnDefault mt-8' expand="block" routerLink="/register-choice">REGISTRE-SE</IonButton>
+          <IonButton className='btnDefault tracking-normal mt-8' expand="block" onClick={executeLogin}>ENTRAR</IonButton>
+          <IonButton className='btnDefault tracking-normal mt-8' expand="block" routerLink="/register-choice">REGISTRE-SE</IonButton>
           
           <div className='my-10'>
-            <IonText className="text-center text-xs" onClick={lembrarSenha}>
+            <IonText className="text-center text-sm text-colored font-semibold hover:font-bold" onClick={lembrarSenha}>
               <p>Esqueci minha senha</p>
             </IonText>
           </div>
@@ -123,11 +125,9 @@ const Login: React.FC = () => {
             <IonToggle slot="end" color='selsyn' checked={salvarSenha} onClick={SaveLogin}></IonToggle>
           </IonItem> */}
 
-          <IonItem className='no-border'>
-            <IonImg src='./assets/logo.png' className='imgLogo'/>
-          </IonItem>
+          
 
-          <div>
+          <div className='mt-[10rem]'>        
             <IonText className="text-center">
             <h6 className='text-[10px]'>Versão 1.0.00</h6>
             </IonText>

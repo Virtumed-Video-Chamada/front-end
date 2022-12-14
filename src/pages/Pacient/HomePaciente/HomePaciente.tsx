@@ -22,10 +22,10 @@ const HomePaciente: React.FC = () => {
       <IonItem className="mt-0 mb-0">
         <Appointments />
       </IonItem>
-      <IonItem className="mt-0 mb-0">
+      <IonItem className="mt-0 mb-0" lines="none">
         <QuickAccess />
       </IonItem>
-      <IonItem className="mt-0 mb-0">
+      <IonItem className="mt-0 mb-0" lines="none">
         <PopularDoctor/>
       </IonItem>
     </IonPage>
