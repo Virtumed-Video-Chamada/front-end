@@ -1,31 +1,8 @@
-import {
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonCol,
-  IonContent,
-  IonFooter,
-  IonHeader,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonPage,
-  IonRouterOutlet,
-  IonRow,
-  IonSearchbar,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, square, triangle } from "ionicons/icons";
-import { Redirect, Route } from "react-router";
 import { ChatConversation } from "../../components/ChatConversation/ChatConversation";
 import Identificador from "../../components/Identificador/Identificador";
 import TextareaAutosize from "react-textarea-autosize";
 import './Conversation.css'
+import { IonBackButton, IonButton, IonButtons, IonCol, IonFooter, IonHeader, IonIcon, IonPage, IonRow, IonTabBar, IonToolbar } from "@ionic/react";
 
 const Conversation: React.FC = () => {
   const messages: any[] = [
@@ -83,7 +60,7 @@ const Conversation: React.FC = () => {
                 <TextareaAutosize
                   className="message-input"
                   cacheMeasurements
-                  onHeightChange={(height: any) => console.log(height)}
+                  onHeightChange={(height) => console.log(height)}
                 />
                 {/* <TextareaAutosize maxRows={3} className="message-input" > {newMsg} </TextareaAutosize> */}
               </IonCol>

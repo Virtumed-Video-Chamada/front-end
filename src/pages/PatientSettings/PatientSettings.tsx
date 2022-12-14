@@ -55,9 +55,8 @@ const PatientSettings: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonList>
-          
           <div className="flex flex-col justify-center items-center mt-2">
-          <IonAvatar className=" w-40 h-40">
+            <IonAvatar className=" w-32 h-32">
               <img
                 alt="Silhouette of a person's head"
                 src="https://avatars.githubusercontent.com/u/97128625?v=4"
@@ -65,8 +64,6 @@ const PatientSettings: React.FC = () => {
             </IonAvatar>
             <IonIcon icon={camera} className="w-5 h-5"></IonIcon>
           </div>
-           
-          
 
           <IonItem
             fill="solid"
@@ -85,11 +82,11 @@ const PatientSettings: React.FC = () => {
           </IonItem>
           <IonItem>
             <IonLabel position="floating">Senha</IonLabel>
-            <IonInput type="password" value="password"></IonInput>
+            <IonInput type="password"></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="floating">Confirme sua senha</IonLabel>
-            <IonInput type="password" value="password"></IonInput>
+            <IonInput type="password"></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="floating">Endereço</IonLabel>
@@ -101,10 +98,10 @@ const PatientSettings: React.FC = () => {
           </IonItem>
           <IonItem>
             <IonLabel position="floating">CEP</IonLabel>
-            <IonInput type="number" placeholder="000"></IonInput>
+            <IonInput type="number" placeholder="000000-000"></IonInput>
           </IonItem>
         </IonList>
-        <IonButton className="btnDefault mt-8" expand="block" color="tertiary">
+        <IonButton className="btnDefault mt-4" expand="block" color="tertiary">
           Atualizar dados
         </IonButton>
       </IonContent>
