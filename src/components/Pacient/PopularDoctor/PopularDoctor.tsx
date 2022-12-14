@@ -2,12 +2,12 @@ import {
   IonList,
   IonSlide,
   IonSlides,
-  useIonAlert,
   useIonToast,
 } from "@ionic/react";
 import { useState } from "react";
 import { mockedDoctors } from "../../../mocks/doctor";
-import DoctorCard from "../../Doctor/DoctorCard/DoctorCard";
+import DoctorCard from "../../Doctor/DoctorCard";
+import './style.css';
 
 const PopularDoctor: React.FC = () => {
   const [change, setChange] = useState<boolean>(false);
@@ -37,19 +37,15 @@ const PopularDoctor: React.FC = () => {
 
   return (
     <div className="container">
-      <div className="flex flex-row justify-around align-baseline mt-2" >
-      <h1 className="font-bold ">Médicos Populares</h1>
-      <span>Ver todos...</span>
-      </div>
-      <IonList className="flex flex-row">
-        <IonSlides pager={true} options={slideOpts}>
+      <h1 className="font-bold pl-3">Médicos Populares</h1>
+      {/* <span>Ver todos...</span> */}
+        <IonSlides pager={true} options={slideOpts} >
           {mockedDoctors.map((element: any) => (
             <IonSlide className="mb-10">
               <DoctorCard doctor={element} key={element.id} />
             </IonSlide>
           ))}
         </IonSlides>
-      </IonList>
     </div>
   );
 };

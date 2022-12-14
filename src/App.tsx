@@ -1,25 +1,6 @@
-import { Redirect, Route } from 'react-router-dom';
-import {
-  IonApp,
-  IonButton,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonMenu,
-  IonMenuToggle,
-  IonRouterOutlet,
-  IonSplitPane,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  IonTitle,
-  IonToolbar,
-  setupIonicReact
-} from '@ionic/react';
+
 import { IonReactRouter } from '@ionic/react-router';
-import { calendarClearOutline, calendarOutline, camera, ellipse, home, logOutOutline, person, settingsOutline, square, triangle } from 'ionicons/icons';
+import {  calendarOutline,  home, person } from 'ionicons/icons';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -55,6 +36,8 @@ import ExamResults from './pages/Pacient/ExamResults/ExamResults';
 import FindDoctor from './pages/Pacient/FindDoctor/FindDoctor';
 import MedicalSchedule from './pages/Pacient/MedicalSchedule/MedicalSchedule';
 import CategoryChoice from './pages/Register/CategoryChoice';
+import { IonApp, IonIcon, IonMenuToggle, IonRouterOutlet, IonSplitPane, IonTabBar, IonTabButton, IonTabs, setupIonicReact } from '@ionic/react';
+import { Route } from 'react-router';
 
 
 
@@ -150,7 +133,7 @@ const App: React.FC = () => {
     <IonApp>
       <div id="principal">
       <RoutingSystem/>
-       {/* <RoutingTabs />  */}
+       <RoutingTabs /> 
       </div>
     </IonApp>
   );

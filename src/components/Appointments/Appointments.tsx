@@ -16,8 +16,7 @@ const slideOpts = {
 const Appointments: React.FC = () => {
   return (
     <div className="container">
-
-      <h1 className="font-bold text-xl pl-3">Consultas Agendadas</h1>
+      <h1 className="font-bold pl-3">Consultas Agendadas</h1>
       <IonSlides className="h-[160px]" pager={true} options={slideOpts}>
         <IonSlide>
           <IonCard className="bd-20 cardDoctor" routerLink="/webchat">

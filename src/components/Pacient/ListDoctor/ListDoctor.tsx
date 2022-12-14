@@ -7,7 +7,7 @@ import {
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { mockedDoctors } from "../../../mocks/doctor";
-import DoctorCard from "../../Doctor/DoctorCard/DoctorCard";
+import DoctorCard from "../../Doctor/DoctorCard";
 
 const ListDoctor: React.FC = () => {
   const [items, setItems] = useState<any>(mockedDoctors);
