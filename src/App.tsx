@@ -19,7 +19,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { camera, ellipse, home, logOutOutline, person, settingsOutline, square, triangle } from 'ionicons/icons';
+import { calendarClearOutline, calendarOutline, camera, ellipse, home, logOutOutline, person, settingsOutline, square, triangle } from 'ionicons/icons';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -99,7 +99,7 @@ const RoutingTabs: React.FC = () => {
               <WebChat />
             </Route>
             <Route exact path="/conversation">
-              <Conversation />
+              <Conversation/>
             </Route>
             <Route exact path="/health">
               <MyHealth />
@@ -116,13 +116,16 @@ const RoutingTabs: React.FC = () => {
             <Route exact path="/patient-settings" >
               <PatientSettings/>
             </Route>
+            <Route exact path="/agendamentos">
+              <SchedulesPacient/>
+            </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
             <IonTabButton tab="home" href="/home-pacient">
               <IonIcon icon={home} />
             </IonTabButton>
             <IonTabButton tab="tab2" href="/agendamentos">
-              <IonIcon src="./assets/icon/calendar.svg" />
+            <IonIcon icon={calendarOutline} className="w-7 h-7" color="tertiary"></IonIcon>
             </IonTabButton>
             <IonTabButton tab="tab3" href="/chat">
               <IonIcon src="./assets/icon/Chat-icon.svg"/>

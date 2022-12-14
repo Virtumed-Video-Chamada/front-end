@@ -25,7 +25,7 @@ const QuickAccess: React.FC = () => {
         <IonCard
           className="min-w-[100px] h-[100px] mr-1 p-1 flex flex-col justify-center items-center"
           color="#fff"
-          /* routerLink="/exam-results" */
+           routerLink="/exam-results" 
         >
           <IonImg
             className="w-[50px] h-[50px]"
@@ -46,7 +46,7 @@ const QuickAccess: React.FC = () => {
         <IonCard
           className="min-w-[100px] h-[100px] mr-1 p-1 flex flex-col justify-center items-center"
           color="#fff"
-          /*  routerLink="/historical-clinic" */
+          routerLink="/historical-clinic" 
         >
           <IonImg
             className="w-[50px] h-[50px]"
@@ -54,16 +54,7 @@ const QuickAccess: React.FC = () => {
           ></IonImg>
           <div className="text-center">Histórico Clínico</div>
         </IonCard>
-        <IonCard
-          className="min-w-[100px] h-[100px] mr-1 p-1 flex flex-col justify-center items-center"
-          color="#fff"
-        >
-          <IonImg
-            className="w-[50px] h-[50px]"
-            src="./assets/icon/chat.svg"
-          ></IonImg>
-          <div className="text-center">Chamadas Anteriores</div>
-        </IonCard>
+        
       </IonRow>
     </div>
   );

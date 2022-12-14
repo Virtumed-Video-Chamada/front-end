@@ -15,6 +15,7 @@ import {
   useIonToast,
 } from "@ionic/react";
 import ModalAlert from "../ModalAlert/ModalAlert";
+import { chatbubbleOutline } from "ionicons/icons";
 
 const Schedules: React.FC = () => {
   const [change, setChange] = useState<boolean>(false);
@@ -73,17 +74,16 @@ const Schedules: React.FC = () => {
   return (
     <div className="container" onClick={showChat}>
       <IonCard className="bd-20 card">
-        <IonCardContent className="flex justify-between w-auto">
+        <IonCardContent className="flex justify-around w-auto">
           <IonThumbnail slot="start">
             <img
-              className="min-w-[80px]"
+              className="min-w-[80px] min-h-[80px]"
               alt="Pic-Doctor"
               src="./assets/avatar/Pic-Doctor.png"
             />
           </IonThumbnail>
-          <div className="flex flex-col gap-1 ml-11">
+          <div className="flex flex-col gap-1 ml-11 font-bold text-black">
             <span>Dra. Maria Renata</span>
-            <p>Psicóloga</p>
             <span>Hoje, 14:00</span>
             <div className="flex">
               <IonButton className="text-xs" color="secondary" onClick={alert}>
@@ -97,17 +97,15 @@ const Schedules: React.FC = () => {
         
         </IonCardContent>
 
-        <IonCardContent className="flex justify-between">
         <div className="flex flex-row justify-center items-center">
           <div className={_class}>
-            <IonImg
-              className="w-[50px] h-[50px]"
-              src="./assets/icon/chat.svg"
-            ></IonImg>
-            <span>ABRIR CHAT</span>
+            <IonButton className="text-xs w-max" expand="block">
+              ABRIR CHAT
+              <IonIcon slot="start" icon={chatbubbleOutline}></IonIcon>
+            </IonButton>
+            
           </div>
         </div>
-        </IonCardContent>
         
       </IonCard>
     </div>

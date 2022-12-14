@@ -38,12 +38,12 @@ function DoctorCard({ doctor }: DoctorCardProps) {
     }
   };
   return (
-    <div className="container" onClick={showChat} >
+    <div  onClick={showChat} >
       <IonCard className="bd-20 card" >
         <IonCardContent className="flex justify-between">
           <IonThumbnail slot="start">
             <img
-              className="min-w-[80px]"
+              className="min-w-[80px] min-h-[80px] bd-20"
               alt="Pic-Doctor"
               src="./assets/avatar/Pic-Doctor.png"
               />
