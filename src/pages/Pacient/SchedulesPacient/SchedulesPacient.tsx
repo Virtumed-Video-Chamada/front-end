@@ -1,24 +1,5 @@
-import {
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonDatetime,
-  IonHeader,
-  IonIcon,
-  IonImg,
-  IonLabel,
-  IonPage,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
-import { chevronDown, ellipse, heart, square, triangle } from "ionicons/icons";
-import { useRef, useState } from "react";
-import { Redirect, Route } from "react-router";
+
+import { IonPage } from "@ionic/react";
 import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 
@@ -32,6 +13,7 @@ const SchedulesPacient: React.FC = () => {
       <div className="container_schedules">
          <Schedules/>  
        {/*  <div className="container flex flex-col align-center justify-center items-center">
+
           <IonImg
             className="w-[240px] h-[262px]"
             src="./assets/icon/agenda.svg"

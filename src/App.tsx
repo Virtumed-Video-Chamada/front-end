@@ -124,8 +124,9 @@ const RoutingTabs: React.FC = () => {
             <IonTabButton tab="home" href="/home-pacient">
               <IonIcon icon={home} />
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/agendamentos">
+            <IonTabButton tab="tab2" href="/schedules">
             <IonIcon icon={calendarOutline} className="w-7 h-7" color="tertiary"></IonIcon>
+
             </IonTabButton>
             <IonTabButton tab="tab3" href="/chat">
               <IonIcon src="./assets/icon/Chat-icon.svg"/>

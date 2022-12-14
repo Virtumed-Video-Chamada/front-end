@@ -1,27 +1,10 @@
-// interface ContainerProps {
-//   name: string;
-// }
-
 import {
-  IonButton,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonIcon,
-  IonImg,
-  IonLabel,
   IonList,
-  IonRow,
   IonSlide,
   IonSlides,
-  IonThumbnail,
-  IonTitle,
   useIonAlert,
   useIonToast,
 } from "@ionic/react";
-import { heartOutline } from "ionicons/icons";
 import { useState } from "react";
 import { mockedDoctors } from "../../../mocks/doctor";
 import DoctorCard from "../../Doctor/DoctorCard/DoctorCard";
@@ -33,6 +16,7 @@ const PopularDoctor: React.FC = () => {
   const [handlerMessage, setHandlerMessage] = useState("");
   const [roleMessage, setRoleMessage] = useState("");
   const [present] = useIonToast();
+  
   const presentToast = () => {
     present({
       message: "Consulta cancelada com sucesso",
@@ -62,7 +46,7 @@ const PopularDoctor: React.FC = () => {
       </div>
       <IonList className="flex flex-row">
         <IonSlides pager={true} options={slideOpts}>
-          {mockedDoctors.map((element) => (
+          {mockedDoctors.map((element: any) => (
             <IonSlide className="mb-10">
               <DoctorCard doctor={element} key={element.id} />
             </IonSlide>

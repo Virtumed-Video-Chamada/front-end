@@ -1,30 +1,10 @@
-// interface ContainerProps {
-//   name: string;
-// }
-
 import {
-  IonAvatar,
-  IonButton,
-  IonCard,
-  IonCardContent,
   IonContent,
-  IonIcon,
-  IonImg,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonItem,
-  IonLabel,
   IonList,
-  IonThumbnail,
-  useIonAlert,
-  useIonToast,
 } from "@ionic/react";
-import {
-  calendarOutline,
-  chatbubbleOutline,
-  heartOutline,
-  watch,
-} from "ionicons/icons";
 import { useEffect, useState } from "react";
 import { mockedDoctors } from "../../../mocks/doctor";
 import DoctorCard from "../../Doctor/DoctorCard/DoctorCard";
@@ -65,6 +45,7 @@ const ListDoctor: React.FC = () => {
         <IonInfiniteScrollContent></IonInfiniteScrollContent>
       </IonInfiniteScroll>
     </IonContent>
+
   );
 };
 
