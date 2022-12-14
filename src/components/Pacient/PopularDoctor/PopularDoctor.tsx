@@ -1,55 +1,85 @@
+// interface ContainerProps {
+//   name: string;
+// }
+
 import {
-  IonList,
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonIcon,
+  IonImg,
+  IonLabel,
+  IonRow,
   IonSlide,
   IonSlides,
+  IonThumbnail,
+  IonTitle,
   useIonAlert,
   useIonToast,
 } from "@ionic/react";
+import { heartOutline } from "ionicons/icons";
 import { useState } from "react";
-import { mockedDoctors } from "../../../mocks/doctor";
-import DoctorCard from "../../Doctor/DoctorCard/DoctorCard";
+import "./style.css";
+
+const slideOpts = {
+  initialSlide: 1,
+  speed: 400,
+};
 
 const PopularDoctor: React.FC = () => {
   const [change, setChange] = useState<boolean>(false);
   const [_class, setClass] = useState<string>("flex hidden");
+  const [presentAlert] = useIonAlert();
+  const [handlerMessage, setHandlerMessage] = useState("");
+  const [roleMessage, setRoleMessage] = useState("");
   const [present] = useIonToast();
-  
   const presentToast = () => {
     present({
-      message: "Consulta cancelada com sucesso",
+      message: 'Consulta cancelada com sucesso',
       duration: 1500,
-      position: "top",
+      position: 'top',
     });
   };
 
   const showChat = () => {
     setChange(!change);
-    if (change === true) {
-      setClass("flex");
+    if(change === true) {
+      setClass("flex")
     } else {
-      setClass("flex hidden");
+      setClass("flex hidden")
     }
-  };
-  const slideOpts = {
-    initialSlide: 1,
-    speed: 400,
-  };
-
+  }
   return (
     <div className="container">
-      <div className="flex flex-row justify-around align-baseline mt-2" >
-      <h1 className="font-bold ">Médicos Populares</h1>
-      <span>Ver todos...</span>
+      <div className="titlePopular">
+      <h1 className="font-bold text-xl pl-3">Médicos Populares</h1>
+      <span className="font-bold text-xs text-colored">Ver todos...</span>
       </div>
-      <IonList className="flex flex-row">
-        <IonSlides pager={true} options={slideOpts}>
-          {mockedDoctors.map((element: any) => (
-            <IonSlide className="mb-10">
-              <DoctorCard doctor={element} key={element.id} />
-            </IonSlide>
-          ))}
-        </IonSlides>
-      </IonList>
+      <IonCard className="bd-20" onClick={showChat}>
+        <IonCardContent className="flex justify-between">
+          <IonThumbnail slot="start">
+            <img className="imgDoctor max-h-[130%] max-w-[130%] bd-20"
+              alt="Pic-Doctor"
+              src="https://media-exp1.licdn.com/dms/image/C4D03AQG34BiNMXpuKw/profile-displayphoto-shrink_200_200/0/1663620501676?e=1674691200&v=beta&t=RGNlx1yPdT9_COlYwhbg6gCF9ejlvqaakGi0KpQ6wkY"
+            />
+          </IonThumbnail>
+          <div className="text-left ml-5">
+            <span>Dr. Ricardo Lima</span>
+            <p>Otorrinolaringologista</p>
+            <span>98 Avaliações</span>
+          </div>
+          <IonButton fill="clear">
+            <IonIcon slot="icon-only" icon={heartOutline}></IonIcon>
+          </IonButton>
+        </IonCardContent>
+             <div className={_class}>
+                <IonButton className="text-xs" color="secondary">ABRIR CHAT</IonButton>
+                 <IonButton className="text-xs" color="primary" routerLink="/medical-schedules">AGENDAR</IonButton>
+           </div>
+      </IonCard>
     </div>
   );
 };
