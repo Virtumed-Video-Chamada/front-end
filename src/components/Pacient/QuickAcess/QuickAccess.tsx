@@ -1,21 +1,4 @@
-// interface ContainerProps {
-//   name: string;
-// }
-
-import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonImg,
-  IonLabel,
-  IonRow,
-  IonSlide,
-  IonSlides,
-  IonThumbnail,
-  IonTitle,
-} from "@ionic/react";
+import { IonCard, IonImg, IonRow } from "@ionic/react";
 
 const QuickAccess: React.FC = () => {
   return (

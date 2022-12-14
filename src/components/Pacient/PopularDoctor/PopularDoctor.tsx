@@ -12,9 +12,6 @@ import DoctorCard from "../../Doctor/DoctorCard/DoctorCard";
 const PopularDoctor: React.FC = () => {
   const [change, setChange] = useState<boolean>(false);
   const [_class, setClass] = useState<string>("flex hidden");
-  const [presentAlert] = useIonAlert();
-  const [handlerMessage, setHandlerMessage] = useState("");
-  const [roleMessage, setRoleMessage] = useState("");
   const [present] = useIonToast();
   
   const presentToast = () => {

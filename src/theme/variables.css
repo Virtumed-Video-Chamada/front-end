@@ -361,4 +361,29 @@ height: 100vh;
   padding-top: 4rem;
   padding-bottom: 2rem;
   width: 20rem;
+  height: 14rem;
+}
+
+.imgLogoSmall{
+  width: 15rem;
+  height: 5rem;
+}
+
+h1 {
+  font-family: 'Poppins';
+}
+
+.cardDoctor {
+  background-color: #4B39B3;
+  width: 85vw;
+}
+
+.cardDoctorWhite {
+  background-color: #ffffff;
+  width: 85vw;
+}
+
+.imgDoctor {
+  width: 60px;
+  height: 60px;
 }
