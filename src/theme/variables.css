@@ -245,6 +245,15 @@ http://ionicframework.com/docs/theming/ */
   }
 }
 
+.container {
+  overflow-y: scroll !important;
+}
+
+
+ion-page{
+  overflow-y: scroll !important;
+}
+
 .bd-20 {
   border-radius: 20px;
 }

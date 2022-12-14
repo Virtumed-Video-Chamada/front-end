@@ -17,7 +17,7 @@ export interface Doctor {
   rank?: number;
 }
 
-export interface Patient {
+export interface Pacient {
   id?: string;
   name: string;
   age: string;
@@ -25,4 +25,48 @@ export interface Patient {
   password: string;
   cep: string;
   cpf: string;
+}
+
+export interface userLogin {
+	email: string;
+	password: string;
+}
+
+export interface userPacient {
+	id?: string;
+	name: string;
+	rg: string;
+	cpf: string;
+	address: string,
+	email: string;
+	password: string;
+	confirmPassword: string;
+	role: string;
+	isAdmin: boolean;
+}
+
+export interface userDoctor {
+	id?: string;
+	name: string;
+	cpf: string;
+	crm: string;
+	address: string,
+	email: string;
+	password: string;
+	confirmPassword: string;
+	role: string;
+	isAdmin: boolean;
+}
+
+export interface userClinic {
+	id?: string;
+	name: string;
+	cnpj: string;
+	crm: string;
+	address: string,
+	email: string;
+	password: string;
+	confirmPassword: string;
+	role: string;
+	isAdmin: boolean;
 }

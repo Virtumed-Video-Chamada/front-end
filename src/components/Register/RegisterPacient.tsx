@@ -12,50 +12,50 @@ const RegisterPacient: React.FC = () => {
 
   return (
     <div>
-    <IonText>Paciente</IonText>  
+    <IonText className="flex justify-center mx-auto pb-8 text-lg">Paciente</IonText>  
         <IonList>
-        <IonItem>
+        <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>Nome Completo</span></span>
+              <span className="flex items-center"><span className='text-sm font-medium pl-2'>Nome Completo</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe usuário" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe nome completo" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
           </IonItem>
-          <IonItem>
+          <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>RG</span></span>
+              <span className="flex items-center"><span className='text-sm font-medium pl-2'>RG</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe usuário" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe RG" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
           </IonItem>
-          <IonItem>
+          <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>CPF</span></span>
+              <span className="flex items-center"><span className='text-sm font-medium pl-2'>CPF</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe usuário" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe CPF" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
           </IonItem>
-          <IonItem>
+          <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>Endereço</span></span>
+              <span className="flex items-center"><span className='text-sm font-medium pl-2'>Endereço</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe usuário" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe endereço" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
           </IonItem>
 
-          <IonItem>
+          <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>Email</span></span>
+              <span className="flex items-center"><span className='text-sm font-medium pl-2'>E-mail</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="password" value={senha} placeholder="Informe senha" onIonChange={e => setSenha(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="password" value={senha} placeholder="Informe e-mail" onIonChange={e => setSenha(e.detail.value!)}></IonInput>
           </IonItem>
-          <IonItem>
+          <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-xs font-extrabold pl-2'>Senha</span></span>
+              <span className="flex items-center"><span className='text-sm font-medium pl-2'>Senha</span></span>
             </IonLabel>
             <IonInput className='inputSelsyn' type="password" value={senha} placeholder="Informe senha" onIonChange={e => setSenha(e.detail.value!)}></IonInput>
           </IonItem>
           
           <IonButton className='btnDefault mt-8' expand="block" routerLink="/register">REGISTRE-SE</IonButton>
           
-          <div className='my-10'>
-            <IonButton fill="clear" className="text-center text-xs" routerLink="/login">
+          <div className='my-8'>
+            <IonButton fill="clear" className="flex justify-center mx-auto text-xs" routerLink="/login">
               <p>Voltar para login</p>
             </IonButton>
           </div>

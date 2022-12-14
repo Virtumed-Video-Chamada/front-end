@@ -1,6 +1,6 @@
 import { IonImg, IonPage } from '@ionic/react';
 import RegisterClinic from '../../components/Register/RegisterClinic';
-import RegisterMedic from '../../components/Register/RegisterMedic';
+import RegisterMedic from '../../components/Register/RegisterDoctor';
 import RegisterPacient from '../../components/Register/RegisterPacient';
 
 

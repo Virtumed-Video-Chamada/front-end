@@ -4,7 +4,7 @@ import './style.css';
 
 const Identificador: React.FC = () => {
   return (
-    <div className="container">
+    <div >
      <IonItem lines="none">
         <IonThumbnail className="pt-3" slot="end">
           <IonAvatar className="border-primary">

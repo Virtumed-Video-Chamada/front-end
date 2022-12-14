@@ -13,13 +13,13 @@ import {
     IonTitle,
     IonToolbar,
   } from "@ionic/react";
-  import { informationCircle, informationCircleOutline, logOutOutline, notificationsCircleOutline, notificationsOutline, settingsOutline, settingsSharp, shieldCheckmarkOutline } from "ionicons/icons";
+  import { informationCircleOutline, logOutOutline, notificationsOutline, settingsOutline, shieldCheckmarkOutline } from "ionicons/icons";
   
   
   
   const SideMenu: React.FC = () => {
     return (
-      <div className="container">
+      <div>
          <IonMenu contentId="main-content">
           <IonHeader>
             <IonToolbar>
