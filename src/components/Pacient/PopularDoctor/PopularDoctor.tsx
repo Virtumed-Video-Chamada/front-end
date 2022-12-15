@@ -37,8 +37,10 @@ const PopularDoctor: React.FC = () => {
 
   return (
     <div className="container">
-      <h1 className="font-bold pl-3">Médicos Populares</h1>
-      {/* <span>Ver todos...</span> */}
+      <div className="titlePopular">
+      <h1 className="font-bold text-xl pl-3">Médicos Populares</h1>
+      <span className="font-bold text-xs text-colored">Ver todos...</span>
+      </div>
         <IonSlides pager={true} options={slideOpts} >
           {mockedDoctors.map((element: any) => (
             <IonSlide className="mb-10">
