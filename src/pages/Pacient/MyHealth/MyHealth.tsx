@@ -37,7 +37,10 @@ import Identificador from "../../../components/Identificador/Identificador";
 import QuickAccess from "../../../components/Pacient/QuickAcess/QuickAccess";
 import Schedules from "../../../components/Schedules/Schedules";
 
+
+
 const MyHealth: React.FC = () => {
+  const teste: any = "none"
   return (
     <IonPage >
       <IonHeader className="flex flex-col justify-center items-center">
@@ -79,7 +82,7 @@ const MyHealth: React.FC = () => {
           <IonButton className='mt-8' color="tertiary">
             Salvar
           </IonButton>
-          {/*   <QuickAccess /> */}
+            <QuickAccess />
           <IonCard color="tertiary" className="bd-20" >
             <IonCardContent className="flex justify-center align-middle">
             <span className="font-bold text-2xl text-center"> AGENDA DE MEDICAMENTOS</span>

@@ -317,6 +317,19 @@ height: 100vh;
   height: 50px;
 
 }
+
+.clinicalHistory-yellow {
+  background-color:  #EBE4A2;
+}
+
+.clinicalHistory-red {
+  background-color: #EBA2A2;
+}
+
+.clinicalHistory-green {
+  background-color: #A2EBBF;
+}
+
 .msg{
 }
 

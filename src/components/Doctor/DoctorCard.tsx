@@ -40,7 +40,7 @@ function DoctorCard({ doctor }: DoctorCardProps) {
   };
   return (
     <div  onClick={showChat} >
-      <IonCard className="bd-20 card" >
+      <IonCard className="bd-20 card h-[150px]" >
         <IonCardContent className="flex justify-between">
           <IonThumbnail slot="start">
             <img
@@ -61,11 +61,11 @@ function DoctorCard({ doctor }: DoctorCardProps) {
         </IonCardContent>
         <div className="flex flex-row justify-center items-center">
           <div className={_class}>
-            <IonButton className="text-xs w-max">
+            <IonButton className="text-xs w-max" routerLink="/conversation">
               ABRIR CHAT
               <IonIcon slot="start" icon={chatbubbleOutline}></IonIcon>
             </IonButton>
-            <IonButton className="text-xs" color="tertiary">
+            <IonButton className="text-xs" color="tertiary" routerLink="/medical-schedules">
               AGENDAR
               <IonIcon slot="start" icon={calendarOutline}></IonIcon>
             </IonButton>

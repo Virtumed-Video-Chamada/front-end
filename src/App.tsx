@@ -134,10 +134,13 @@ const RoutingTabs: React.FC = () => {
             <IonTabButton tab="tab4" href="/health">
               <IonIcon src="./assets/icon/doctor.svg"/>
             </IonTabButton>
-            <IonTabButton tab="person">
+            <IonTabButton tab="tab5">
+           
             <IonMenuToggle>
-                 <IonIcon icon={person} className="w-7 h-7" color="tertiary"></IonIcon>
+             <IonIcon icon={person} className="w-7 h-7" color="tertiary"></IonIcon>
+            
             </IonMenuToggle>
+                 
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
