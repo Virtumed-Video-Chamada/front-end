@@ -13,13 +13,13 @@ import {
     IonTitle,
     IonToolbar,
   } from "@ionic/react";
-  import { informationCircle, informationCircleOutline, logOutOutline, notificationsCircleOutline, notificationsOutline, settingsOutline, settingsSharp, shieldCheckmarkOutline } from "ionicons/icons";
+  import { informationCircleOutline, logOutOutline, notificationsOutline, settingsOutline, shieldCheckmarkOutline } from "ionicons/icons";
   
   
   
   const SideMenu: React.FC = () => {
     return (
-      <div className="container">
+      <div>
          <IonMenu contentId="main-content">
           <IonHeader>
             <IonToolbar>
@@ -27,7 +27,7 @@ import {
             </IonToolbar>
           </IonHeader>
           <IonContent className="ion-padding">
-            <IonItem routerLink="/patient-settings/">
+            <IonItem href="/patient-settings/">
           <IonIcon icon={settingsOutline} slot="start" ></IonIcon>
           <IonLabel>
             Configurações

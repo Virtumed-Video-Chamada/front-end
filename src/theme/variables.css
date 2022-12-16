@@ -317,6 +317,19 @@ height: 100vh;
   height: 50px;
 
 }
+
+.clinicalHistory-yellow {
+  background-color:  #EBE4A2;
+}
+
+.clinicalHistory-red {
+  background-color: #EBA2A2;
+}
+
+.clinicalHistory-green {
+  background-color: #A2EBBF;
+}
+
 .msg{
 }
 
@@ -334,4 +347,29 @@ height: 100vh;
   padding-top: 4rem;
   padding-bottom: 2rem;
   width: 20rem;
+  height: 14rem;
+}
+
+.imgLogoSmall{
+  width: 15rem;
+  height: 5rem;
+}
+
+h1 {
+  font-family: 'Poppins';
+}
+
+.cardDoctor {
+  background-color: #4B39B3;
+  width: 85vw;
+}
+
+.cardDoctorWhite {
+  background-color: #ffffff;
+  width: 85vw;
+}
+
+.imgDoctor {
+  width: 60px;
+  height: 60px;
 }

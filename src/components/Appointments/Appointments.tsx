@@ -1,15 +1,7 @@
-// interface ContainerProps {
-//   name: string;
-// }
 
 import {
   IonCard,
   IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonImg,
-  IonLabel,
   IonSlide,
   IonSlides,
   IonThumbnail,
@@ -24,35 +16,36 @@ const slideOpts = {
 const Appointments: React.FC = () => {
   return (
     <div className="container">
-      <h1 className="font-bold">Consultas Agendadas</h1>
-      <IonSlides pager={true} options={slideOpts}>
+     <h1 className="font-bold text-xl pl-3">Consultas Agendadas</h1>
+      <IonSlides className="h-[160px]" pager={true} options={slideOpts}>
         <IonSlide>
-          <IonCard className="bd-20 bg-[#4B39B3]" routerLink="/webchat">
+          <IonCard className="bd-20 cardDoctor" routerLink="/webchat">
             <IonCardContent className="flex">
               <IonThumbnail slot="start">
-                <img alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />
+                <img className="imgDoctor max-h-[130%] max-w-[130%]" alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />
               </IonThumbnail>
-              <div className="text-neutral-50 text-left">
+              <div className="text-neutral-50 text-left ml-8">
+
                 <span>Dra. Maria Renata</span>
                 <p>Psicóloga</p>
                 <span>Hoje, 14:00</span>
-              </div>
-              <IonImg src="./assets/icon/Logo.svg"></IonImg>
+              </div>              
             </IonCardContent>
-          </IonCard>
+          </IonCard>          
         </IonSlide>
         <IonSlide>
-          <IonCard className="bd-20 bg-[#4B39B3]" routerLink="/webchat">
+
+          <IonCard className="bd-20 cardDoctor" routerLink="/webchat">
             <IonCardContent className="flex">
               <IonThumbnail slot="start">
-                <img alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />
+                <img className="imgDoctor max-h-[130%] max-w-[130%]" alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />
               </IonThumbnail>
-              <div className="text-neutral-50 text-left">
+              <div className="text-neutral-50 text-left ml-8">
+
                 <span>Dra. Maria Renata</span>
                 <p>Psicóloga</p>
                 <span>Hoje, 14:00</span>
               </div>
-              <IonImg src="./assets/icon/Logo.svg"></IonImg>
             </IonCardContent>
           </IonCard>
         </IonSlide>

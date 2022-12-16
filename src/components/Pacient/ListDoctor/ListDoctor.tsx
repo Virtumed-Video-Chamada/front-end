@@ -1,85 +1,51 @@
 import {
-  IonButton,
-  IonCard,
-  IonCardContent,
-  IonIcon,
-  IonImg,
+  IonContent,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
+  IonItem,
   IonList,
-  IonThumbnail,
-  useIonAlert,
-  useIonToast,
 } from "@ionic/react";
-import {
-  calendarOutline,
-  chatbubbleOutline,
-  heartOutline,
-  watch,
-} from "ionicons/icons";
-import { useState } from "react";
-
-const slideOpts = {
-  initialSlide: 1,
-  speed: 400,
-};
+import { useEffect, useState } from "react";
+import { mockedDoctors } from "../../../mocks/doctor";
+import DoctorCard from "../../Doctor/DoctorCard";
 
 const ListDoctor: React.FC = () => {
-  const [change, setChange] = useState<boolean>(false);
-  const [_class, setClass] = useState<string>("flex hidden");
-  const [presentAlert] = useIonAlert();
-  const [handlerMessage, setHandlerMessage] = useState("");
-  const [roleMessage, setRoleMessage] = useState("");
-  const [present] = useIonToast();
-  const presentToast = () => {
-    present({
-      message: "Consulta cancelada com sucesso",
-      duration: 1500,
-      position: "top",
-    });
+  const [items, setItems] = useState<any>(mockedDoctors);
+  var listDoctors = mockedDoctors;
+
+  const generateItems = () => {
+    const newItems = [];
+    for (let i = 0; i < 5; i++) {
+      newItems.push(`Item ${1 + items.length + i}`);
+    }
+    setItems([...items, ...newItems]);
   };
 
-  const showChat = () => {
-    setChange(!change);
-    if (change === true) {
-      setClass("flex");
-    } else {
-      setClass("flex hidden");
-    }
-  };
+  useEffect(() => {
+    generateItems();
+    console.log(items);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <div className="container" onClick={showChat}>
-      <IonCard className="bd-20 card">
-        <IonCardContent className="flex justify-between w-auto">
-          <IonThumbnail slot="start">
-            <img
-              className="min-w-[80px]"
-              alt="Pic-Doctor"
-              src="./assets/avatar/Pic-Doctor.png"
-            />
-          </IonThumbnail>
-          <div className="flex ml-9">
-            <div className="flex flex-col gap-2">
-              <span className="text-black font-bold">Dra. Maria Renata</span>
-              <p className="font-normal">Psicóloga</p>
-              <span className="font-medium">98 Avaliações</span>
-            </div>
-          </div>
-          <IonImg src="./assets/icon/Logo.svg"></IonImg>
-        </IonCardContent>
-        <div className="flex flex-row justify-center items-center">
-          <div className={_class}>
-            <IonButton className="text-xs w-max">
-              ABRIR CHAT
-              <IonIcon slot="start" icon={chatbubbleOutline}></IonIcon>
-            </IonButton>
-            <IonButton className="text-xs"  color="tertiary" routerLink="/medical-schedules">
-              AGENDAR
-              <IonIcon slot="start" icon={calendarOutline}></IonIcon>
-            </IonButton>
-          </div>
-        </div>
-      </IonCard>
-    </div>
+    <IonContent>
+      <IonList>
+        {items.map((element: any, index: any) => (
+          <IonItem key={index}>
+            <DoctorCard doctor={element} key={element.id} />
+          </IonItem>
+        ))}
+      </IonList>
+      <IonInfiniteScroll
+        onIonInfinite={(ev) => {
+          generateItems();
+          setTimeout(() => ev.target.complete(), 5000);
+        }}
+      >
+        <IonInfiniteScrollContent></IonInfiniteScrollContent>
+      </IonInfiniteScroll>
+    </IonContent>
+
   );
 };
 

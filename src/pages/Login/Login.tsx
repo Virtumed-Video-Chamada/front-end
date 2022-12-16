@@ -1,10 +1,11 @@
-import { useIonViewDidEnter, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonImg, IonInput, IonItem, IonLabel, IonList, IonLoading, IonPage, IonSearchbar, IonText, IonThumbnail, IonTitle, IonToggle, IonToolbar, IonAlert, IonToast, useIonToast } from '@ionic/react';
-import { eye, person } from 'ionicons/icons';
+
 import { useState } from 'react';
-import { App } from '@capacitor/app';
-import { Capacitor } from '@capacitor/core';
-import { Link, useHistory } from 'react-router-dom';
 import logo from '../../assets/icons/logo.png'
+import { userLogin } from '../../@types/interfaces';
+import { setStorage } from '../../services/adminStorage';
+import * as service from '../../services/authService';
+import { alertaErro } from '../../utils/alertas';
+import { IonButton, IonImg, IonInput, IonItem, IonLabel, IonList, IonPage, IonText } from '@ionic/react';
 // import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -12,84 +13,30 @@ import logo from '../../assets/icons/logo.png'
 
 const Login: React.FC = () => {
 
-  const [usuario, setUsuario] = useState<string>('');
-  const [senha, setSenha] = useState<string>('');
-  const [salvarSenha, setSalvarSenha] = useState<boolean>(false);
-  const [versionInfo, setVersionInfo] = useState<string>('');
-  const [token, setToken] = useState<string>('');
-  const [dadosLogin, setDadosLogin] = useState<any>({});
-  const [showAlert, setShowAlert] = useState(false);
-  const [showAlertSenha, setShowAlertSenha] = useState(false);
-  const [messageAlert, setMessageAlert] = useState<string>(''); 
-  const [versaoLGPD, setVersaoLGPD] = useState<string>(''); 
-  const [showMessageForgot, setShowMessageForgot] = useState<boolean>(false);
-  const [toastMessage, setToastMessage] = useState<string>('');
-  const [showToastMessage, setShowToastMessage] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-  //-------------------------------------
-  // const [busy, setBusy] = useState<boolean>(false)
-  // const dispatch = useDispatch();
-  // const history = useHistory();
-  // const [userName, setUserName] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [present] = useIonToast();
-  // const [idDep, setIdDep] = useState('');
+const values: userLogin = {
+  email: email,
+  password: password
+}
 
-  const executeLogin = () => {
-    // setBusy(true);
-    //   serviceRemote.authenticationService(usuario, senha, versionInfo)
-    //   .then((response) => {
-    //     setToken(response.accessToken);
-    //     setStorage('dadosLogin', response);
-    //     setDadosLogin(response);
-    //     dispatch(setTokenState(response.accessToken));
-    //     dispatch(setIdDepartamento(response.login.abrangencia.departamento));
-    //     history.replace('/home');
-    //     setBusy(false);
-       ;
-
-        if (salvarSenha){
-        //   setStorage('userPwd', {user : usuario, pwd : senha});
-        // }else{
-        //   removeStorage('userPwd');
-        }
-
-      };
-  
- 
-  function SaveLogin(){
-    // setSalvarSenha(!salvarSenha);    
-    // removeTopic();
-  } 
-
-  function lembrarSenha(){
-    if(usuario){
-      setShowMessageForgot(false);
-      setShowAlertSenha(true);
-    }
+const executeLogin = async () => {
+  await service.loginService.login(values)
+   .then((response) => {
+    const jwt = response.data.token;
+    const user = response.data.user.id;
+    const admin = response.data.user.isAdmin;
+    const name = response.data.user.name;
+    setStorage('jwtLocalStorage', jwt);
+    setStorage('userIdStorage', user);
+    setStorage('userAdminStorage', admin);
+    setStorage('nameStorage', name);
+   })
+   .catch ((err) => {
+    alertaErro.alerta(`Usuario ou Senha Invalidos`);
+  })
   }
-
-
-  useIonViewDidEnter(() => {
-    // getStorage('userPwd').then((response) => {
-    //   if (response){
-    //     setSalvarSenha(true);
-    //     setUsuario(response.user);
-    //     setSenha(response.pwd);
-    //   }
-    // });  
-    // getStorage('dadosLogin').then( response => { 
-    //   setToken(response.accessToken);
-    //   setDadosLogin(response);
-    // });
-   
-    // App.getInfo().then((response) => {
-    //   setVersionInfo(response.build +'-'+response.version);
-    // }).catch((error) => {
-    //   setVersionInfo('Versão não suportada');
-    // });
-     
-  });
 
   return (
     <IonPage>
@@ -97,25 +44,25 @@ const Login: React.FC = () => {
         <div className="splash-info"></div>
         <IonList>
           <IonImg src='./assets/logo.png' className='imgLogo flex items-center mx-auto'/>
-          <IonItem lines="inset" className="pr-2">
+          <IonItem>
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-semibold pl-2 pb-4'>E-mail</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={usuario} placeholder="Informe e-mail" onIonChange={e => setUsuario(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={email} placeholder="Informe usuário" onIonChange={e => setEmail(e.detail.value!)}></IonInput>
           </IonItem>
 
-          <IonItem lines="inset" className="pr-2 pb-10">
+          <IonItem className='pb-10'>
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-semibold pl-2 pb-4'>Senha</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="password" value={senha} placeholder="Informe senha" onIonChange={e => setSenha(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="password" value={password} placeholder="Informe senha" onIonChange={e => setPassword(e.detail.value!)}></IonInput>
           </IonItem>
           
           <IonButton className='btnDefault tracking-normal mt-8' expand="block" onClick={executeLogin}>ENTRAR</IonButton>
           <IonButton className='btnDefault tracking-normal mt-8' expand="block" routerLink="/register-choice">REGISTRE-SE</IonButton>
           
           <div className='my-10'>
-            <IonText className="text-center text-sm text-colored font-semibold hover:font-bold" onClick={lembrarSenha}>
+            <IonText className="text-center text-sm text-colored font-semibold hover:font-bold">
               <p>Esqueci minha senha</p>
             </IonText>
           </div>
