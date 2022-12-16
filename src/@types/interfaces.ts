@@ -37,7 +37,12 @@ export interface userPacient {
 	name: string;
 	rg: string;
 	cpf: string;
-	address: string,
+	cep: string;
+	address: string;
+	number: number | string;
+	city: string;
+	district: string;
+	state: string;
 	email: string;
 	password: string;
 	confirmPassword: string;
@@ -50,20 +55,32 @@ export interface userDoctor {
 	name: string;
 	cpf: string;
 	crm: string;
-	address: string,
+	cep: string;
+	address: string;
+	number: number | string;
+	city: string;
+	district: string;
+	state: string;
 	email: string;
 	password: string;
 	confirmPassword: string;
+	speciality: string;
 	role: string;
 	isAdmin: boolean;
 }
 
+
 export interface userClinic {
 	id?: string;
 	name: string;
+	razao: string;
 	cnpj: string;
-	crm: string;
-	address: string,
+	cep: string;
+	address: string;
+	number: number | string;
+	city: string;
+	district: string;
+	state: string;
 	email: string;
 	password: string;
 	confirmPassword: string;

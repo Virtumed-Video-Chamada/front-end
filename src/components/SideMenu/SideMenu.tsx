@@ -27,7 +27,7 @@ import {
             </IonToolbar>
           </IonHeader>
           <IonContent className="ion-padding">
-            <IonItem href="/patient-settings/">
+            <IonItem routerLink="/patient-settings/">
           <IonIcon icon={settingsOutline} slot="start" ></IonIcon>
           <IonLabel>
             Configurações

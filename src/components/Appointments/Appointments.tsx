@@ -1,7 +1,16 @@
+// interface ContainerProps {
+//   name: string;
+// }
 
 import {
   IonCard,
   IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonImg,
+  IonItem,
+  IonLabel,
   IonSlide,
   IonSlides,
   IonThumbnail,
@@ -25,7 +34,6 @@ const Appointments: React.FC = () => {
                 <img className="imgDoctor max-h-[130%] max-w-[130%]" alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />
               </IonThumbnail>
               <div className="text-neutral-50 text-left ml-8">
-
                 <span>Dra. Maria Renata</span>
                 <p>Psicóloga</p>
                 <span>Hoje, 14:00</span>
@@ -34,14 +42,12 @@ const Appointments: React.FC = () => {
           </IonCard>          
         </IonSlide>
         <IonSlide>
-
           <IonCard className="bd-20 cardDoctor" routerLink="/webchat">
             <IonCardContent className="flex">
               <IonThumbnail slot="start">
                 <img className="imgDoctor max-h-[130%] max-w-[130%]" alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />
               </IonThumbnail>
               <div className="text-neutral-50 text-left ml-8">
-
                 <span>Dra. Maria Renata</span>
                 <p>Psicóloga</p>
                 <span>Hoje, 14:00</span>

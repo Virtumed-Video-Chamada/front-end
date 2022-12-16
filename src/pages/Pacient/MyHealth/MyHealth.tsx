@@ -1,8 +1,6 @@
 import {
   IonButton,
   IonButtons,
-  IonCard,
-  IonCardContent,
   IonContent,
   IonDatetime,
   IonHeader,
@@ -13,8 +11,6 @@ import {
   IonLabel,
   IonPage,
   IonRouterOutlet,
-  IonSelect,
-  IonSelectOption,
   IonTabBar,
   IonTabButton,
   IonTabs,
@@ -22,56 +18,41 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import {
-  chevronDown,
-  ellipse,
-  heart,
-  medkitOutline,
-  square,
-  triangle,
-} from "ionicons/icons";
+import { chevronDown, ellipse, heart, square, triangle } from "ionicons/icons";
 import { useRef, useState } from "react";
 import { Redirect, Route } from "react-router";
 import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 import QuickAccess from "../../../components/Pacient/QuickAcess/QuickAccess";
+
 import Schedules from "../../../components/Schedules/Schedules";
 
+
+
 const MyHealth: React.FC = () => {
+  const teste: any = "none"
   return (
-    <IonPage >
-      <IonHeader className="flex flex-col justify-center items-center">
-      <IonImg src='./assets/logo.png' className="w-44"/>
+    <IonPage className="justify-start">
       <Identificador />
-      
-     
       <div className="container_schedules">
         <form>
           <IonItem>
-            <h1 className="font-semibold text-2xl">Sobre você</h1>
-            <IonLabel position="floating">Idade</IonLabel>
-            <IonInput></IonInput>
-          </IonItem>
-
-          <IonItem className="mt-5">
-            <IonSelect
-              color="secondary"
-              interface="action-sheet"
-              placeholder="Gênero"
-              className="font-bold"
-            >
-              <IonSelectOption value="Masculino">Masculino</IonSelectOption>
-              <IonSelectOption value="Feminino">Feminino</IonSelectOption>
-            </IonSelect>
-          </IonItem>
-
-          <IonItem>
-            <IonLabel position="floating">Peso</IonLabel>
+            <IonLabel>Idade</IonLabel>
             <IonInput></IonInput>
           </IonItem>
 
           <IonItem>
-            <IonLabel position="floating">Altura</IonLabel>
+            <IonLabel>Gênero</IonLabel>
+            <IonInput></IonInput>
+          </IonItem>
+
+          <IonItem>
+            <IonLabel>Peso</IonLabel>
+            <IonInput></IonInput>
+          </IonItem>
+
+          <IonItem>
+            <IonLabel>Altura</IonLabel>
             <IonInput></IonInput>
           </IonItem>
         </form>
@@ -79,7 +60,7 @@ const MyHealth: React.FC = () => {
           <IonButton className='mt-8' color="tertiary">
             Salvar
           </IonButton>
-          {/*   <QuickAccess /> */}
+            <QuickAccess />
           <IonCard color="tertiary" className="bd-20" >
             <IonCardContent className="flex justify-center align-middle">
             <span className="font-bold text-2xl text-center"> AGENDA DE MEDICAMENTOS</span>
@@ -88,7 +69,6 @@ const MyHealth: React.FC = () => {
           </IonCard>
         </div>
       </div>
-      </IonHeader>
     </IonPage>
   );
 };
