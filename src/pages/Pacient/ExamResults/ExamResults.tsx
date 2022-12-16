@@ -1,6 +1,7 @@
 import {
   IonAccordion,
   IonAccordionGroup,
+  IonBackButton,
   IonButton,
   IonButtons,
   IonContent,
@@ -41,6 +42,13 @@ import Schedules from "../../../components/Schedules/Schedules";
 const ExamResults: React.FC = () => {
   return (
     <IonPage className="justify-start">
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton />
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
       <Identificador />
       <div className="container_schedules text-black">
         <h1 className="font-medium text-2xl text-black p-5">

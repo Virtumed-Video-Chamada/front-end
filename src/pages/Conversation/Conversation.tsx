@@ -1,8 +1,10 @@
 import { ChatConversation } from "../../components/ChatConversation/ChatConversation";
 import Identificador from "../../components/Identificador/Identificador";
-import TextareaAutosize from "react-textarea-autosize";
+// import TextareaAutosize from "react-textarea-autosize";
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 import './Conversation.css'
-import { IonBackButton, IonButton, IonButtons, IonCol, IonFooter, IonHeader, IonIcon, IonPage, IonRow, IonTabBar, IonToolbar } from "@ionic/react";
+import { IonBackButton, IonButton, IonButtons, IonCol, IonFooter, IonHeader, IonIcon, IonInput, IonPage, IonRow, IonTabBar, IonToolbar } from "@ionic/react";
+import { attach, send } from "ionicons/icons";
 
 const Conversation: React.FC = () => {
   const messages: any[] = [
@@ -30,14 +32,16 @@ const Conversation: React.FC = () => {
 
   const newMsg = "fffffff";
 
-  const sendMessage = () => {};
+  const sendMessage = () => {
+    messages.push()
+  };
 
   return (
     <IonPage className="justify-start">
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton text="Voltar" />
+            <IonBackButton />
           </IonButtons>
         </IonToolbar>
       </IonHeader>
@@ -53,24 +57,27 @@ const Conversation: React.FC = () => {
             />
           );
         })}
-        <IonFooter>
-          <IonTabBar color="light">
-            <IonRow>
-              <IonCol size="10">
-                <TextareaAutosize
-                  className="message-input"
-                  cacheMeasurements
-                  onHeightChange={(height) => console.log(height)}
-                />
-                {/* <TextareaAutosize maxRows={3} className="message-input" > {newMsg} </TextareaAutosize> */}
+        <IonFooter className="mb-0">
+          <IonToolbar>
+            <IonRow className="items-center padding-0">
+              <IonCol size="10" className="flex">
+                  <IonButton expand="block" fill="clear" color="primary" className="msg-btn" onClick={() => sendMessage()}>
+                    <IonIcon icon={attach} slot="icon-only"></IonIcon>
+                    </IonButton>
+                    <TextareaAutosize
+                      className="message-input h-10"
+                      autoFocus
+                      // onHeightChange={(height) => console.log(height)}
+                    />
+               
               </IonCol>
               <IonCol size="2">
                 <IonButton expand="block" fill="clear" color="primary" className="msg-btn" onClick={() => sendMessage()}>
-                  <IonIcon name="send" slot="icon-only"></IonIcon>
+                  <IonIcon icon={send} slot="icon-only"></IonIcon>
                 </IonButton>
               </IonCol>
             </IonRow>
-          </IonTabBar>
+            </IonToolbar>
         </IonFooter>
       </div>
     </IonPage>
