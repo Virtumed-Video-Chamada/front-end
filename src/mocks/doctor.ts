@@ -1,4 +1,6 @@
-import * as T from "../types/index";
+// import * as T from "../types/index";
+
+import * as T from "../@types/interfaces";
 
 export const mockedDoctors: T.Doctor[] = [
   {

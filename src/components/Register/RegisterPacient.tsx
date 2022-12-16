@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IonButton, IonInput, IonItem, IonLabel, IonList, IonText } from "@ionic/react";
 import ModalAlert from "../ModalAlert/ModalAlert";
 import { useHistory } from "react-router";
-import { userClinic, userDoctor } from "../../@types/interfaces";
+import { userClinic, userDoctor, userPacient } from "../../@types/interfaces";
 import { registerService } from "../../services/registerService";
 import { setStorage } from "../../services/adminStorage";
 import { alertaErro, alertaSucesso } from "../../utils/alertas";
@@ -10,12 +10,12 @@ import { alertaErro, alertaSucesso } from "../../utils/alertas";
 
 
 
-const RegisterDoctor: React.FC = () => {
+const RegisterPacient: React.FC = () => {
   const history = useHistory();
 
   const [name, setName] = useState<string>("");
   const [cpf, setCpf] = useState<string>("");
-  const [crm, setCrm] = useState<string>("");
+  const [rg, setRg] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordConf, setPasswordConf] = useState<string>("");
@@ -25,13 +25,12 @@ const RegisterDoctor: React.FC = () => {
   const [city, setCity] = useState<string>("");
   const [district, setDistrict] = useState<string>("");
   const [state, setState] = useState<string>("");
-  const [speciality, setSpeciality] = useState<string>("");
 
 
-  const values: userDoctor= {
+  const values: userPacient= {
     name: name,
     cpf: cpf,
-    crm: crm,
+    rg: rg,
     cep: cep,
     address: address,
     number: number,
@@ -41,7 +40,6 @@ const RegisterDoctor: React.FC = () => {
     email: email,
     password: password,
     confirmPassword: passwordConf,
-    speciality: speciality,
     role: "doctor",
     isAdmin: false,
   };
@@ -79,15 +77,9 @@ const RegisterDoctor: React.FC = () => {
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-sm font-medium pl-2'>CRM</span></span>
+              <span className="flex items-center"><span className='text-sm font-medium pl-2'>RG</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={crm} placeholder="Informe seu CRM" onIonChange={e => setCrm(e.detail.value!)}></IonInput>
-          </IonItem>
-          <IonItem lines="inset" className="pr-2">
-            <IonLabel position="floating" color="form">
-              <span className="flex items-center"><span className='text-sm font-medium pl-2'>Especialidade</span></span>
-            </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={speciality} placeholder="Informe sua Especialidade" onIonChange={e => setSpeciality(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={rg} placeholder="Informe seu RG" onIonChange={e => setRg(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
@@ -157,4 +149,4 @@ const RegisterDoctor: React.FC = () => {
   );
 };
 
-export default RegisterDoctor;
+export default RegisterPacient;

@@ -1,7 +1,8 @@
 import { IonCard, IonCardContent, IonThumbnail, IonImg, IonButton, IonIcon, useIonAlert, useIonToast } from '@ionic/react'
 import { heartOutline, chatbubbleOutline, calendarOutline } from 'ionicons/icons'
 import React, { useState } from 'react'
-import { Doctor } from '../../../types';
+import { Doctor } from '../../@types/interfaces';
+
 
 const slideOpts = {
     initialSlide: 1,
@@ -39,11 +40,11 @@ function DoctorCard({ doctor }: DoctorCardProps) {
   };
   return (
     <div  onClick={showChat} >
-      <IonCard className="bd-20 card" >
+      <IonCard className="bd-20" >
         <IonCardContent className="flex justify-between">
           <IonThumbnail slot="start">
             <img
-              className="min-w-[80px] min-h-[80px] bd-20"
+              className="imgDoctor max-h-[130%] max-w-[130%] bd-20"
               alt="Pic-Doctor"
               src="./assets/avatar/Pic-Doctor.png"
               />
@@ -60,11 +61,11 @@ function DoctorCard({ doctor }: DoctorCardProps) {
         </IonCardContent>
         <div className="flex flex-row justify-center items-center">
           <div className={_class}>
-            <IonButton className="text-xs w-max">
+            <IonButton className="text-xs w-max" routerLink="/conversation">
               ABRIR CHAT
               <IonIcon slot="start" icon={chatbubbleOutline}></IonIcon>
             </IonButton>
-            <IonButton className="text-xs" color="tertiary">
+            <IonButton className="text-xs" color="tertiary" routerLink="/medical-schedules">
               AGENDAR
               <IonIcon slot="start" icon={calendarOutline}></IonIcon>
             </IonButton>

@@ -9,18 +9,9 @@ import {
   useIonAlert,
   useIonToast,
 } from "@ionic/react";
-import {
-  calendarOutline,
-  chatbubbleOutline,
-  heartOutline,
-  watch,
-} from "ionicons/icons";
-import { useState } from "react";
-
-const slideOpts = {
-  initialSlide: 1,
-  speed: 400,
-};
+import { useEffect, useState } from "react";
+import { mockedDoctors } from "../../../mocks/doctor";
+import DoctorCard from "../../Doctor/DoctorCard";
 
 const ListDoctor: React.FC = () => {
   const [change, setChange] = useState<boolean>(false);

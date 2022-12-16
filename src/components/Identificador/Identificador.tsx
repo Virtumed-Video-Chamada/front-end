@@ -21,8 +21,8 @@ import SideMenu from "../SideMenu/SideMenu";
 
 const Identificador: React.FC = () => {
   return (
-    <div className="container">
-     <IonItem lines="none">
+    <div >
+     <IonItem lines="none" className="mb-2">
         <IonThumbnail className="pt-3" slot="end">
           <IonAvatar className="border-primary">
             <img
