@@ -19,7 +19,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { calendarClearOutline, calendarOutline, camera, ellipse, home, logOutOutline, person, settingsOutline, square, triangle } from 'ionicons/icons';
+import { calendarClearOutline, calendarOutline, camera, ellipse, home, logOutOutline, personOutline, settingsOutline, square, triangle, homeOutline, medkitOutline, chatbubblesOutline } from 'ionicons/icons';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -55,6 +55,7 @@ import ExamResults from './pages/Pacient/ExamResults/ExamResults';
 import FindDoctor from './pages/Pacient/FindDoctor/FindDoctor';
 import MedicalSchedule from './pages/Pacient/MedicalSchedule/MedicalSchedule';
 import CategoryChoice from './pages/Register/CategoryChoice';
+import './style.css'
 
 
 
@@ -120,26 +121,26 @@ const RoutingTabs: React.FC = () => {
               <SchedulesPacient/>
             </Route>
           </IonRouterOutlet>
-          <IonTabBar slot="bottom">
+          <IonTabBar className='menuTab' slot="bottom">
             <IonTabButton tab="home" href="/home-pacient">
-              <IonIcon icon={home} />
+              <IonIcon icon={homeOutline} className="w-6 h-6" color="primary" />
             </IonTabButton>
             <IonTabButton tab="tab2" href="/schedules">
-            <IonIcon icon={calendarOutline} className="w-7 h-7" color="tertiary"></IonIcon>
+            <IonIcon icon={calendarOutline} className="w-6 h-6" color="primary"></IonIcon>
 
             </IonTabButton>
             <IonTabButton tab="tab3" href="/chat">
-              <IonIcon src="./assets/icon/Chat-icon.svg"/>
+              <IonIcon icon={chatbubblesOutline} className="w-6 h-6" color="primary" />
             </IonTabButton>
             <IonTabButton tab="tab4" href="/health">
-              <IonIcon src="./assets/icon/doctor.svg"/>
+              <IonIcon icon={medkitOutline} className="w-6 h-6" color="primary"/>
             </IonTabButton>
             <IonTabButton tab="tab5">
            
-            <IonMenuToggle>
-             <IonIcon icon={person} className="w-7 h-7" color="tertiary"></IonIcon>
+            {/* <IonMenuToggle> */}
+             <IonIcon icon={personOutline} className="w-6 h-6" color="primary"></IonIcon>
             
-            </IonMenuToggle>
+            {/* </IonMenuToggle> */}
                  
             </IonTabButton>
           </IonTabBar>
