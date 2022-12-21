@@ -299,7 +299,11 @@ button.alert-button.alert-button-cancel {
 }
 
 .principal {
-height: 100vh;
+min-height: 100vh;
+}
+
+.ion-page {
+  min-height: 100vh;
 }
 
 .badge {

@@ -1,6 +1,7 @@
 .titlePopular {
   display: flex;
+  width: 90;
   flex-direction: row;
   align-items: baseline;
-  gap: 90px;
+  justify-content: space-between;
 }

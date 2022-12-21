@@ -48,7 +48,7 @@ const Conversation: React.FC = () => {
       <Identificador />
       <div className="container_schedules">
         {messages.map((message: any, index) => {
-          return (
+          return (        
             <ChatConversation
               key={index}
               user={message.user}
