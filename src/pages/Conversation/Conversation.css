@@ -16,3 +16,6 @@
 --padding-end: 0.5em;
 }
 
+.container_msg {
+  overflow-y: scroll;
+}

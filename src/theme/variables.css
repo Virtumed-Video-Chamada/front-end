@@ -248,7 +248,7 @@ http://ionicframework.com/docs/theming/ */
 .container_schedules {
   background: linear-gradient(180deg, #FFFFFF 0%, rgba(217, 217, 217, 0) 100%);
   border-radius: 45px 45px 0px 0px;
-  height: 100vh;
+  height: 100%;
 }
 
 .card {
