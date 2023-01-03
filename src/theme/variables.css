@@ -362,11 +362,13 @@ h1 {
 .cardDoctor {
   background-color: #4B39B3;
   width: 85vw;
+  height: 6rem;
 }
 
 .cardDoctorWhite {
   background-color: #ffffff;
   width: 85vw;
+  height: 6rem;
 }
 
 .imgDoctor {
@@ -388,4 +390,10 @@ ion-tab-button:hover {
 
 ion-tab-button.tab-selected {
   background-color: #e8dffc;
+}
+
+@media screen and (max-height: 825px) {
+  body {
+    font-size: 80%;
+  }
 }

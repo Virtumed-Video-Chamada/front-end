@@ -101,8 +101,8 @@ const Conversation: React.FC = () => {
                       id="textarea"
                       value={newMsg}
                       className="message-input h-10"
-                      onChange={(e) => setNewMsg(e.target.value)}
-                      onKeyPress={(event) => handleKeyPress(event)}
+                      onChange={(e: any) => setNewMsg(e.target.value)}
+                      onKeyPress={(event: any) => handleKeyPress(event)}
                     />
                
               </IonCol>

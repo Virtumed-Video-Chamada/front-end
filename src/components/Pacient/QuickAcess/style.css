@@ -7,7 +7,7 @@ ion-row {
     justify-content: space-evenly;
 }
 
-ion-card {
+.quickCard {
     display: flex;
     flex-direction: column;
     justify-content: center;
