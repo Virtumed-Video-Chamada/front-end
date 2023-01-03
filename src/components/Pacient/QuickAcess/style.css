@@ -2,12 +2,18 @@
     margin-top: 1.8rem;
 }
 
+ion-row {
+    padding-right: 1rem;
+    justify-content: space-evenly;
+}
+
 ion-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width: 100px;
-    height: 100px;
+    min-width: 6.25rem;
+    width: 6.25rem;
+    height: 6.25rem;
 }
 
 ion-img {
@@ -19,5 +25,5 @@ ion-img {
 }
 
 .textCard {
-    padding-top: 25px;
+    padding-top: 2rem;
 }
