@@ -245,11 +245,7 @@ http://ionicframework.com/docs/theming/ */
   background-color: --ion-color-secondary !important;
 }
 
-.container_schedules {
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(217, 217, 217, 0) 100%);
-  border-radius: 45px 45px 0px 0px;
-  height: 100%;
-}
+
 
 .card {
   background:  linear-gradient(180deg, #FFFFFF 0%, #D1D1D1 100%);
@@ -298,10 +294,6 @@ button.alert-button.alert-button-cancel {
   border-radius: 10px;
 }
 
-.principal {
-height: 100vh;
-}
-
 .badge {
   background: #3880FF;
   border-radius: 50%;
@@ -328,15 +320,6 @@ height: 100vh;
 
 .clinicalHistory-green {
   background-color: #A2EBBF;
-}
-
-.msg{
-}
-
-.msg-your{
-}
-
-.msg-other{
 }
 
 .text-colored{

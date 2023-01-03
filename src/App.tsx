@@ -56,8 +56,10 @@ import FindDoctor from './pages/Pacient/FindDoctor/FindDoctor';
 import MedicalSchedule from './pages/Pacient/MedicalSchedule/MedicalSchedule';
 import CategoryChoice from './pages/Register/CategoryChoice';
 import './style.css'
-
-
+import { useState } from 'react';
+import SideMenu from './components/SideMenu/SideMenu';
+import Example from './components/SideMenu/SideMenu';
+import VideoChat from './components/Call/VideoChat';
 
 setupIonicReact();
 
@@ -66,7 +68,7 @@ const RoutingSystem: React.FC = () => {
       <IonReactRouter>
       <IonSplitPane contentId="main">
         <IonRouterOutlet id="main">
-          <Route path="/" component={HomePacient} exact />
+          <Route path="/" component={Login} exact />
           <Route path="/login" component={Login} exact />
           <Route path="/register-choice" component={CategoryChoice} exact />
           <Route path="/register" component={Register} exact />
@@ -84,6 +86,9 @@ const RoutingTabs: React.FC = () => {
     <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
+            <Route exact path="/">
+            <HomePacient />
+            </Route>
             <Route exact path="/home-pacient">
               <HomePacient />
             </Route>
@@ -120,13 +125,19 @@ const RoutingTabs: React.FC = () => {
             <Route exact path="/agendamentos">
               <SchedulesPacient/>
             </Route>
+            <Route exact path="/call">
+              <VideoChat />
+            </Route>
+            <Route exact path="/side-menu">
+              <SideMenu/>
+            </Route>
           </IonRouterOutlet>
           <IonTabBar className='menuTab' slot="bottom">
             <IonTabButton tab="home" href="/home-pacient">
               <IonIcon icon={homeOutline} className="w-6 h-6" color="primary" />
             </IonTabButton>
             <IonTabButton tab="tab2" href="/schedules">
-            <IonIcon icon={calendarOutline} className="w-6 h-6" color="primary"></IonIcon>
+            <IonIcon icon={calendarOutline} className="w-6 h-6" color="primary"/>
 
             </IonTabButton>
             <IonTabButton tab="tab3" href="/chat">
@@ -136,25 +147,21 @@ const RoutingTabs: React.FC = () => {
               <IonIcon icon={medkitOutline} className="w-6 h-6" color="primary"/>
             </IonTabButton>
             <IonTabButton tab="tab5">
-           
-            {/* <IonMenuToggle> */}
-             <IonIcon icon={personOutline} className="w-6 h-6" color="primary"></IonIcon>
-            
-            {/* </IonMenuToggle> */}
-                 
-            </IonTabButton>
+                <IonIcon icon={personOutline} className="w-6 h-6 z-50" color="primary" id="open-modal"/>
+                <SideMenu />
+            </IonTabButton>                       
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
   )
 }
 const App: React.FC = () => {
-
+   const [user, setUser] = useState(true);
+   
   return (
     <IonApp>
-      <div id="principal">
-      {/* <RoutingSystem/> */}
-       <RoutingTabs /> 
+      <div className="ion-padding">
+        {user ?  <RoutingTabs /> :  <RoutingSystem/> }
       </div>
     </IonApp>
   );

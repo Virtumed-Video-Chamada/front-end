@@ -54,6 +54,7 @@ const Conversation: React.FC = () => {
       sendMessage();
     }
   }
+
   const contentRef = createRef<HTMLIonContentElement>();
   
   function scrollToBottom() {
@@ -61,6 +62,31 @@ const Conversation: React.FC = () => {
       var height = contentRef.current?.scrollHeight;
       contentRef.current?.scrollToBottom(height);
   }
+  const [imagem, setImagem] = useState<any>('https://ionicframework.com/docs/img/demos/avatar.svg');
+  
+  const startUpload = async (e: any) => {
+    const file = e.target.files[0];
+    const base64 = await convertBase64(file);
+    setImagem(base64);
+    const response = await fetch(file.data);
+    const blob = await response.blob();
+    const formData = new FormData();
+    formData.append('file', blob, file.name);
+}
+
+
+const convertBase64 = (file: any) => {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file)
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    }
+    fileReader.onerror = (error) => {
+      reject(error);
+    }
+  })
+}
 
   useEffect(() => {
     scrollToBottom()
@@ -94,9 +120,13 @@ const Conversation: React.FC = () => {
           <IonToolbar>
             <IonRow className="items-center padding-0">
               <IonCol size="10" className="flex">
-                  <IonButton expand="block" fill="clear" color="primary" className="msg-btn" onClick={() => sendMessage()}>
-                    <IonIcon icon={attach} slot="icon-only"></IonIcon>
-                    </IonButton>
+                  <IonButton expand="block" fill="clear" color="primary" className="msg-btn" onClick={(e) => startUpload(e)}>
+                    <IonIcon icon={attach} slot="icon-only">
+                    
+                    </IonIcon>
+                    <input type="file" id="file-input"
+                        accept="image/png, image/jpeg" ></input>
+                   </IonButton>
                     <TextareaAutosize
                       id="textarea"
                       value={newMsg}

@@ -2,7 +2,7 @@ import { IonBackButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, I
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, heart, square, triangle } from 'ionicons/icons';
 import { Redirect, Route } from 'react-router';
-import Call from '../../components/Call/Call';
+import VideoChat from '../../components/Call/VideoChat';
 import PreCall from '../../components/PreCall/PreCall';
 
 
@@ -17,13 +17,8 @@ const  WebChat: React.FC = () => {
           <IonTitle className="text-white">Em Consulta</IonTitle>
         </IonToolbar>
       </IonHeader>
-          <PreCall />
-          <Call />
-      <IonFooter>
-        <IonToolbar>
-          <IonTitle>Footer Toolbar</IonTitle>
-        </IonToolbar>
-      </IonFooter>
+          {/* <PreCall /> */}
+          <VideoChat />
     </IonPage>
   );
 };

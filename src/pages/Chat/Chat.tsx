@@ -15,9 +15,7 @@ const Chat: React.FC = () => {
       <IonItem className="mt-0 mb-3">
         <IonSearchbar placeholder="Pesquisar no chat"></IonSearchbar>
       </IonItem>
-      <div className="container_schedules">
         <ChatList />
-      </div>
     </IonPage>
   );
 };
