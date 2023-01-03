@@ -10,7 +10,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-font-family: 'Poppins', sans-serif;
   --ion-background-color:  #ffffff;
   --ion-item-background: transparent;
-  --ion-toolbar-background: #4B39B3;;
+  --ion-toolbar-background:#ffffff;
   --ion-tab-bar-background:  #ffffff;
   --ion-card-background: #ffffff;
   --ion-searchbar-background: #F5F5F5;
@@ -248,7 +248,7 @@ http://ionicframework.com/docs/theming/ */
 .container_schedules {
   background: linear-gradient(180deg, #FFFFFF 0%, rgba(217, 217, 217, 0) 100%);
   border-radius: 45px 45px 0px 0px;
-  height: 100vh;
+  height: 100%;
 }
 
 .card {
