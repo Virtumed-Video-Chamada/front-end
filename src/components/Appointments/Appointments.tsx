@@ -7,7 +7,6 @@ import {
   IonThumbnail,
 } from "@ionic/react";
 
-
 const slideOpts = {
   initialSlide: 1,
   speed: 400,

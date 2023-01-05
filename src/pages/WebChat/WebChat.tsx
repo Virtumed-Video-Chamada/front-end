@@ -8,7 +8,7 @@ import PreCall from '../../components/PreCall/PreCall';
 
 const  WebChat: React.FC = () => {
   return (
-    <IonPage>
+    <IonPage className="justify-start">
      <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">

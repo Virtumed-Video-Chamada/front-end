@@ -3,7 +3,8 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonItem,
-  IonList,
+  IonSearchbar,
+  IonList
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { mockedDoctors } from "../../../mocks/doctor";
@@ -27,8 +28,31 @@ const ListDoctor: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // const data = ['Amsterdam', 'Buenos Aires', 'Cairo', 'Geneva', 'Hong Kong', 'Istanbul', 'London', 'Madrid', 'New York', 'Panama City'];
+  const data = listDoctors;
+  let [results, setResults] = useState([...data]);
+
+  const handleChange = (ev: Event) => {
+    let query = "";
+    const target = ev.target as HTMLIonSearchbarElement;
+    console.log(data);
+    if (target) query = target.value!.toLowerCase();
+    let teste;
+    setResults(data.filter((d) => {
+      if(d.nameDoctor != undefined) {
+        teste = d.nameDoctor
+      } else {
+        teste = 'procurar'
+      }
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      teste.toLowerCase().indexOf(query) > -1
+    }))
+
+  }
+
   return (
     <IonContent>
+      <IonSearchbar debounce={1000} onIonChange={(ev) => handleChange(ev)}></IonSearchbar>
       <IonList>
         {items.map((element: any, index: any) => (
           <IonItem key={index}>

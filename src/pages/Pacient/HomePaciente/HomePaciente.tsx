@@ -1,5 +1,6 @@
 import {
   IonButton,
+  IonContent,
   IonImg,
   IonItem,
   IonPage,
@@ -22,7 +23,8 @@ const HomePaciente: React.FC = () => {
     history.replace("/find-doctor");
   };
   return (
-    <IonPage className="justify-start">
+    <IonPage>
+      <IonContent>
       <IonImg
         src="./assets/logo.png"
         className="imgLogoSmall flex items-center mx-auto"
@@ -43,6 +45,7 @@ const HomePaciente: React.FC = () => {
       <IonItem className="mt-0 mb-0" lines="none">
         <PopularDoctor />
       </IonItem>
+      </IonContent>
     </IonPage>
   );
 };
