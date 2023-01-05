@@ -1,7 +1,7 @@
 import { ChatConversation } from "../../components/ChatConversation/ChatConversation";
 import Identificador from "../../components/Identificador/Identificador";
 // import TextareaAutosize from "react-textarea-autosize";
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+// import TextareaAutosize from '@mui/base/TextareaAutosize';
 import './Conversation.css'
 import { IonBackButton, IonButton, IonButtons, IonCol, IonFooter, IonHeader, IonIcon, IonInput, IonPage, IonRow, IonTabBar, IonToolbar, IonContent  } from "@ionic/react";
 import { attach, send } from "ionicons/icons";
@@ -97,13 +97,13 @@ const Conversation: React.FC = () => {
                   <IonButton expand="block" fill="clear" color="primary" className="msg-btn" onClick={() => sendMessage()}>
                     <IonIcon icon={attach} slot="icon-only"></IonIcon>
                     </IonButton>
-                    <TextareaAutosize
+                    {/* <TextareaAutosize
                       id="textarea"
                       value={newMsg}
                       className="message-input h-10"
                       onChange={(e: any) => setNewMsg(e.target.value)}
                       onKeyPress={(event: any) => handleKeyPress(event)}
-                    />
+                    /> */}
                
               </IonCol>
               <IonCol size="2">

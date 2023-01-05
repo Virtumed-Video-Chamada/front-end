@@ -392,6 +392,11 @@ ion-tab-button.tab-selected {
   background-color: #e8dffc;
 }
 
+.ion-page {
+  min-height: 100vh;
+  overflow-y: auto !important;
+  }
+
 @media screen and (max-height: 825px) {
   body {
     font-size: 80%;

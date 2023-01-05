@@ -22,7 +22,7 @@ import "./style.css";
 const QuickAccess: React.FC = () => {
   return (
     <div className="container">
-     <h1 className="font-bold text-xl pl-3">Acesso Rápido</h1>
+     <h1 className="font-bold text-l pl-3">Acesso Rápido</h1>
         <IonRow className="flex overflow-x-auto flex-nowrap  mb-0">
           <IonCard className="mr-1 bd-20 quickCard" routerLink="/exam-results">
             <IonImg className="imgCard mx-auto" src="./assets/icon/microscope.svg"></IonImg>
