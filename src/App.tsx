@@ -153,8 +153,8 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <div id="principal">
-      {/* <RoutingSystem/> */}
-       <RoutingTabs /> 
+      <RoutingSystem/>
+       {/* <RoutingTabs />  */}
       </div>
     </IonApp>
   );
