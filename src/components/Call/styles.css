@@ -1,0 +1,51 @@
+.lobby {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lobby > h2 {
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #42329e;
+  margin-bottom: 20px;
+}
+
+.inputs {
+  margin-bottom: 20px;
+  width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputs > label {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #333;
+}
+
+.inputs > input {
+  border-radius: 5px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.room {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.room > .local-participant {
+  height: 100vh;
+}
+
+.room > .remote-participant {
+    height: 150px;
+    width: 90px;
+    position: absolute;
+    z-index: 1;
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import { LobbyProps } from "../../@types/interfaces";
 import { IonButton } from '@ionic/react';
+import "./styles.css"
 
 
 const Lobby = ({
@@ -12,10 +13,10 @@ const Lobby = ({
   connecting,
 }: LobbyProps) => {
   return (
-    <form onSubmit={handleSubmit} className="mt-52">
+    <form onSubmit={handleSubmit} className="mt-52 lobby">
       <h2>Entrar na Sala</h2>
-      <div>
-        <label htmlFor="name">Seu nome:</label>
+      <div className="inputs">
+        <label htmlFor="name">Seu nome</label>
         <input
           type="text"
           id="field"
@@ -26,8 +27,8 @@ const Lobby = ({
         />
       </div>
 
-      <div>
-        <label htmlFor="room">Nome da Sala:</label>
+      <div className="inputs">
+        <label htmlFor="room">Nome da Sala</label>
         <input
           type="text"
           id="room"

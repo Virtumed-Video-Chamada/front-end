@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RoomProps } from "../../@types/interfaces";
+import "./styles.css";
 import Participant from "./Participant";
-
 
 const Room = ({ roomName, room, handleLogout }: RoomProps) => {
   const [participants, setParticipants] = useState<any[]>([]);
