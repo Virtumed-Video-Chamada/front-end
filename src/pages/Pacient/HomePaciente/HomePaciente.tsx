@@ -40,6 +40,7 @@ const HomePaciente: React.FC = () => {
         </IonItem>
      </IonContent> 
     </IonPage>
+    
   );
 };
 
