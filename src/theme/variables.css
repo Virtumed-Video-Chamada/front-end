@@ -245,7 +245,11 @@ http://ionicframework.com/docs/theming/ */
   background-color: --ion-color-secondary !important;
 }
 
-
+.container_schedules {
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(217, 217, 217, 0) 100%);
+  border-radius: 45px 45px 0px 0px;
+  height: 100%;
+}
 
 .card {
   background:  linear-gradient(180deg, #FFFFFF 0%, #D1D1D1 100%);
@@ -294,6 +298,10 @@ button.alert-button.alert-button-cancel {
   border-radius: 10px;
 }
 
+.principal {
+height: 100vh;
+}
+
 .badge {
   background: #3880FF;
   border-radius: 50%;
@@ -322,6 +330,15 @@ button.alert-button.alert-button-cancel {
   background-color: #A2EBBF;
 }
 
+.msg{
+}
+
+.msg-your{
+}
+
+.msg-other{
+}
+
 .text-colored{
   color: #4B39B3;
 }
@@ -345,21 +362,18 @@ h1 {
 .cardDoctor {
   background-color: #4B39B3;
   width: 85vw;
+  height: 6rem;
 }
 
 .cardDoctorWhite {
   background-color: #ffffff;
   width: 85vw;
+  height: 6rem;
 }
 
 .imgDoctor {
-  width: 60px;
-  height: 60px;
-}
-
-.ion-page {
-  min-height: 100vh;
-  overflow-y: scroll !important;
+  width: 3.75rem;
+  height: 3.75rem;
 }
 
 ion-tab-bar {
@@ -367,7 +381,7 @@ ion-tab-bar {
 }
 
 ion-tab-button {
-  border-radius: 25px;
+  border-radius: 1rem;
 }
 
 ion-tab-button:hover {
@@ -376,4 +390,15 @@ ion-tab-button:hover {
 
 ion-tab-button.tab-selected {
   background-color: #e8dffc;
+}
+
+.ion-page {
+  min-height: 100vh;
+  overflow-y: auto !important;
+  }
+
+@media screen and (max-height: 825px) {
+  body {
+    font-size: 80%;
+  }
 }

@@ -79,23 +79,22 @@ const VideoChat = () => {
   }, [room, handleLogout]);
 
   let render;
-  // if (room) {
+  if (room) {
     render = (
       <Room roomName={roomName} room={room} handleLogout={handleLogout} />
-     )
-    //  ;}
-  // } else {
-  //   render = (
-  //     <Lobby
-  //       username={username}
-  //       roomName={roomName}
-  //       handleUsernameChange={handleUsernameChange}
-  //       handleRoomNameChange={handleRoomNameChange}
-  //       handleSubmit={handleSubmit}
-  //       connecting={connecting}
-  //     />
-  //   );
-  // }
+    );
+  } else {
+    render = (
+      <Lobby
+        username={username}
+        roomName={roomName}
+        handleUsernameChange={handleUsernameChange}
+        handleRoomNameChange={handleRoomNameChange}
+        handleSubmit={handleSubmit}
+        connecting={connecting}
+      />
+    );
+  }
   return render;
 };
 
