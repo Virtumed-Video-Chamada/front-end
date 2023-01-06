@@ -1,6 +1,5 @@
 .lobby {
   display: flex;
-  height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -33,19 +32,11 @@
   border-bottom: 1px solid #d9d9d9;
 }
 
-.room {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
 .room > .local-participant {
   height: 100vh;
 }
 
 .room > .remote-participant {
-    height: 150px;
-    width: 90px;
-    position: absolute;
-    z-index: 1;
+    /* z-index: 1; */
 }

@@ -13,7 +13,7 @@ const Lobby = ({
   connecting,
 }: LobbyProps) => {
   return (
-    <form onSubmit={handleSubmit} className="mt-52 lobby">
+    <form onSubmit={handleSubmit} className="lobby">
       <h2>Entrar na Sala</h2>
       <div className="inputs">
         <label htmlFor="name">Seu nome</label>
