@@ -48,7 +48,7 @@ const MyHealth: React.FC = () => {
       <Identificador />
       
      
-      <div className="container_schedules">
+      <div>
         <form>
           <IonItem>
             <h1 className="font-semibold text-2xl">Sobre você</h1>

@@ -36,7 +36,7 @@ const QuickAccess: React.FC = () => {
             <IonImg className="imgCard mx-auto" src="./assets/icon/historical.svg"></IonImg>
             <p className="text-center textCard">Histórico Clínico</p>
           </IonCard>
-          {/* <IonCard className="mr-1 bd-20">
+          {/* <IonCard className="mr-1 bd-20 quickCard">
             <IonImg className="imgCard" src="./assets/icon/chat.svg"></IonImg>
             <p className="text-center textCard">Chamadas Anteriores</p>
           </IonCard> */}

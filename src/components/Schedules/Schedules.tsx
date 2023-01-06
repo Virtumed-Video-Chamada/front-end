@@ -24,7 +24,6 @@ const Schedules: React.FC = () => {
   const [handlerMessage, setHandlerMessage] = useState("");
   const [roleMessage, setRoleMessage] = useState("");
   const [present] = useIonToast();
-
   const iconSucces = "./assets/icon/success.svg";
 
   const presentToast = () => {

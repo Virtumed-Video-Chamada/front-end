@@ -1,37 +1,27 @@
 import {
-  IonAvatar,
+  IonButton,
   IonContent,
-  IonHeader,
-  IonIcon,
   IonImg,
   IonItem,
-  IonLabel,
   IonPage,
-  IonRouterOutlet,
   IonSearchbar,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  IonText,
-  IonThumbnail,
-  IonTitle,
-  IonToolbar,
+
 } from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, square, triangle } from "ionicons/icons";
-import { Redirect, Route, useHistory } from "react-router";
+
+import {  useHistory } from "react-router";
 import Appointments from "../../../components/Appointments/Appointments";
 import Identificador from "../../../components/Identificador/Identificador";
 import PopularDoctor from "../../../components/Pacient/PopularDoctor/PopularDoctor";
 import QuickAccess from "../../../components/Pacient/QuickAcess/QuickAccess";
-import './style.css';
+import SideMenu from "../../../components/SideMenu/SideMenu";
+import "./style.css";
 // import logo from "../../../assets/logo.png"
 
 const HomePaciente: React.FC = () => {
   const history = useHistory();
   const router = () => {
-    history.replace('/find-doctor');
-  }
+    history.replace("/find-doctor");
+  };
   return (
     <IonPage>
       <IonContent>
