@@ -10,7 +10,7 @@ const SchedulesPacient: React.FC = () => {
     <IonPage className="justify-start">
       <Identificador />
        <DateTime /> 
-      <div className="container_schedules">
+      <div>
          <Schedules/>  
        {/*  <div className="container flex flex-col align-center justify-center items-center">
 

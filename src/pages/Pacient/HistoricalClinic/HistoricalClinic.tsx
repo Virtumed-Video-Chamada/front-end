@@ -49,7 +49,7 @@ const HistoricalClinic: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <Identificador />
-      <div className="container_schedules">
+      <div>
         <h1 className="font-medium text-2xl text-black p-5">
           Histórico Clínico
         </h1>

@@ -2,7 +2,6 @@ import { IonBackButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, I
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, heart, square, triangle } from 'ionicons/icons';
 import { Redirect, Route } from 'react-router';
-import Call from '../../../components/Call/Call';
 import Identificador from '../../../components/Identificador/Identificador';
 import ListDoctor from '../../../components/Pacient/ListDoctor/ListDoctor';
 import PreCall from '../../../components/PreCall/PreCall';

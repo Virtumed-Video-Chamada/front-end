@@ -35,7 +35,7 @@ const MedicalSchedule: React.FC = () => {
   return (
     <IonPage className="justify-start">
       <Identificador />
-      <div className="container_schedules">
+      <div>
         <IonItem>
           <IonThumbnail slot="start" >
             <img alt="Silhouette of mountains" className="rounded-xl" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />

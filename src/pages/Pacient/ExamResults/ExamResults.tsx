@@ -50,7 +50,7 @@ const ExamResults: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <Identificador />
-      <div className="container_schedules text-black">
+      <div className="text-black">
         <h1 className="font-medium text-2xl text-black p-5">
           Resultado de exames
         </h1>
