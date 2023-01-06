@@ -51,7 +51,7 @@ function DoctorCard({ doctor }: DoctorCardProps) {
 
   return (
     <div  onClick={showChat} >
-      <IonCard className="bd-20" >
+      <IonCard className="bd-20 cardDoctorWhite">
         <IonCardContent className="flex justify-between">
           <IonThumbnail slot="start">
             <img
