@@ -13,7 +13,17 @@ const Lobby = ({
   connecting,
 }: LobbyProps) => {
   return (
-    <form onSubmit={handleSubmit} className="lobby">
+    <div className="lobby-container">
+
+      <div className="extra-border">
+        <div className="border">
+          <div className="img-container">
+            <img src="https://avatars.githubusercontent.com/u/97128625?v=4" alt="User Photo Avatar" />
+          </div>
+        </div>
+      </div>
+      
+        <form onSubmit={handleSubmit} className="lobby">
       <h2>Entrar na Sala</h2>
       <div className="inputs">
         <label htmlFor="name">Seu nome</label>
@@ -23,8 +33,7 @@ const Lobby = ({
           value={username}
           onChange={handleUsernameChange}
           readOnly={connecting}
-          required
-        />
+          required />
       </div>
 
       <div className="inputs">
@@ -35,14 +44,15 @@ const Lobby = ({
           value={roomName}
           onChange={handleRoomNameChange}
           readOnly={connecting}
-          required
-        />
+          required />
       </div>
 
-      <IonButton type="submit" disabled={connecting}>
+      <IonButton type="submit" disabled={connecting} className="btn">
         {connecting ? "Connecting" : "Entrar"}
       </IonButton>
     </form>
+    </div>
+    
   );
 };
 
