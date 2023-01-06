@@ -32,15 +32,17 @@
   border-radius: 5px;
   border-bottom: 1px solid #d9d9d9;
 }
-
+/* 
 .room {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  width: 100%;
+  /* flex-direction: column;
+  justify-content: center; */
+/* } */
 
-.room > .local-participant {
+/* .room > .local-participant {
   height: 100vh;
+  position: relative;
 }
 
 .room > .remote-participant {
@@ -48,4 +50,27 @@
     width: 90px;
     position: absolute;
     z-index: 1;
+} */ 
+
+/* .participant01 video {
+  min-width: 50px;
+  min-height: 80vh;
+  display: inline;
 }
+
+.participant02 video {
+  min-width: 50px;
+  min-height: 50vh;
+  display: block !important;
+} */
+
+/* .participantLocal {
+  height: 100vh;
+}
+
+.participantRemote {
+    height: 150px;
+    width: 90px;
+    position: absolute;
+    z-index: 1;
+}  */

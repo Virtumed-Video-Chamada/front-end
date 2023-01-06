@@ -13,7 +13,9 @@ const Lobby = ({
   connecting,
 }: LobbyProps) => {
   return (
-    <form onSubmit={handleSubmit} className="mt-52 lobby">
+    <div className="flex flex-col">
+      
+        <form onSubmit={handleSubmit} className="lobby">
       <h2>Entrar na Sala</h2>
       <div className="inputs">
         <label htmlFor="name">Seu nome</label>
@@ -23,8 +25,7 @@ const Lobby = ({
           value={username}
           onChange={handleUsernameChange}
           readOnly={connecting}
-          required
-        />
+          required />
       </div>
 
       <div className="inputs">
@@ -35,14 +36,15 @@ const Lobby = ({
           value={roomName}
           onChange={handleRoomNameChange}
           readOnly={connecting}
-          required
-        />
+          required />
       </div>
 
       <IonButton type="submit" disabled={connecting}>
         {connecting ? "Connecting" : "Entrar"}
       </IonButton>
     </form>
+    </div>
+    
   );
 };
 
