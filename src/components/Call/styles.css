@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   margin-top: -200px;
+
 }
 
 .lobby > h2 {
@@ -31,6 +32,7 @@
   font-size: 12px;
   color: #333;
   text-align: start;
+
 }
 
 .inputs > input {
@@ -175,46 +177,4 @@
 
 .btn {
   width: 150px;
-}
-/* 
-.room {
-  display: flex;
-  width: 100%;
-  /* flex-direction: column;
-  justify-content: center; */
-/* } */
-
-/* .room > .local-participant {
-  height: 100vh;
-  position: relative;
-}
-
-.room > .remote-participant {
-    height: 150px;
-    width: 90px;
-    position: absolute;
-    z-index: 1;
-} */
-
-/* .participant01 video {
-  min-width: 50px;
-  min-height: 80vh;
-  display: inline;
-}
-
-.participant02 video {
-  min-width: 50px;
-  min-height: 50vh;
-  display: block !important;
-} */
-
-/* .participantLocal {
-  height: 100vh;
-}
-
-.participantRemote {
-    height: 150px;
-    width: 90px;
-    position: absolute;
-    z-index: 1;
-}  */
+} 

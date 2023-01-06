@@ -17,7 +17,6 @@ const  WebChat: React.FC = () => {
           <IonTitle className="text-white">Em Consulta</IonTitle>
         </IonToolbar>
       </IonHeader>
-          {/* <PreCall /> */}
           <VideoChat />
     </IonPage>
   );

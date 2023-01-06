@@ -60,6 +60,7 @@ import { useState } from 'react';
 import SideMenu from './components/SideMenu/SideMenu';
 import Example from './components/SideMenu/SideMenu';
 import VideoChat from './components/Call/VideoChat';
+import Privacy from './pages/Privacy/Privacy';
 
 setupIonicReact();
 
@@ -131,6 +132,9 @@ const RoutingTabs: React.FC = () => {
             <Route exact path="/side-menu">
               <SideMenu/>
             </Route>
+            <Route exact path="/privacy">
+              <Privacy/>
+            </Route>
           </IonRouterOutlet>
           <IonTabBar className='menuTab' slot="bottom">
             <IonTabButton tab="home" href="/home-pacient">
@@ -156,7 +160,7 @@ const RoutingTabs: React.FC = () => {
   )
 }
 const App: React.FC = () => {
-   const [user, setUser] = useState(true);
+   const [user, setUser] = useState(false);
    
   return (
     <IonApp>

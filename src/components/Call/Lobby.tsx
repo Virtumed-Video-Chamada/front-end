@@ -22,7 +22,6 @@ const Lobby = ({
           </div>
         </div>
       </div>
-      
         <form onSubmit={handleSubmit} className="lobby">
       <h2>Entrar na Sala</h2>
       <div className="inputs">

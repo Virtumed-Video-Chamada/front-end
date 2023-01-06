@@ -54,19 +54,22 @@ function Example() {
             Configurações
           </IonLabel>
         </IonItem> 
-        <IonItem>
+        {/* <IonItem>
           <IonIcon icon={notificationsOutline} slot="start"></IonIcon>
           <IonLabel>
             Notificações
           </IonLabel>
-        </IonItem>
+        </IonItem> */}
         <IonItem>
+          
           <IonIcon icon={informationCircleOutline} slot="start"></IonIcon>
+          <a href="https://www.virtumed.com.br/" target="_blank">
           <IonLabel>
             Sobre nós
           </IonLabel>
+          </a>
         </IonItem>
-        <IonItem>
+        <IonItem href="/privacy/">
           <IonIcon icon={shieldCheckmarkOutline} slot="start"></IonIcon>
           <IonLabel>
             Privacidade e segurança
