@@ -160,7 +160,7 @@ const RoutingTabs: React.FC = () => {
   )
 }
 const App: React.FC = () => {
-   const [user, setUser] = useState(true);
+   const [user, setUser] = useState(false);
    
   return (
     <IonApp>
