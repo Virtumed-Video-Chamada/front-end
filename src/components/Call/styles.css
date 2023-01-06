@@ -4,6 +4,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: -200px;
+
 }
 
 .lobby > h2 {
@@ -18,59 +20,161 @@
   margin-bottom: 20px;
   width: 90vw;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  /* gap: 15px; */
 }
 
 .inputs > label {
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 800;
+  font-size: 12px;
   color: #333;
+  text-align: start;
+
 }
 
 .inputs > input {
   border-radius: 5px;
   border-bottom: 1px solid #d9d9d9;
-}
-/* 
-.room {
-  display: flex;
   width: 100%;
-  /* flex-direction: column;
-  justify-content: center; */
-/* } */
-
-/* .room > .local-participant {
-  height: 100vh;
-  position: relative;
+  height: 40px;
 }
 
-.room > .remote-participant {
-    height: 150px;
-    width: 90px;
-    position: absolute;
-    z-index: 1;
-} */ 
-
-/* .participant01 video {
-  min-width: 50px;
-  min-height: 80vh;
-  display: inline;
+.inputs > input:focus {
+  outline: 0;
+  color: #999;
 }
 
-.participant02 video {
-  min-width: 50px;
-  min-height: 50vh;
-  display: block !important;
-} */
-
-/* .participantLocal {
-  height: 100vh;
+.lobby-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.participantRemote {
-    height: 150px;
-    width: 90px;
-    position: absolute;
-    z-index: 1;
-}  */
+.extra-border {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  width: 250px;
+  height: 250px;
+  background-color: rgba(75, 57, 179, 0.2);
+  border-radius: 50%;
+  animation: myAnim1 5s ease 1.5s infinite normal forwards;
+}
+
+@keyframes myAnim1 {
+  0% {
+    animation-timing-function: ease-out;
+    transform: scale(1);
+    transform-origin: center center;
+  }
+
+  10% {
+    animation-timing-function: ease-in;
+    transform: scale(0.91);
+  }
+
+  17% {
+    animation-timing-function: ease-out;
+    transform: scale(0.98);
+  }
+
+  33% {
+    animation-timing-function: ease-in;
+    transform: scale(0.87);
+  }
+
+  45% {
+    animation-timing-function: ease-out;
+    transform: scale(1);
+  }
+}
+
+.border-lobby {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 230px;
+  height: 230px;
+  border: none;
+  background-color: rgba(75, 57, 179, 0.5);
+  border-radius: 50%;
+  animation: myAnim2 5s ease 1.7s infinite normal forwards;
+}
+
+@keyframes myAnim2 {
+  0% {
+    animation-timing-function: ease-out;
+    transform: scale(1);
+    transform-origin: center center;
+  }
+
+  10% {
+    animation-timing-function: ease-in;
+    transform: scale(0.91);
+  }
+
+  17% {
+    animation-timing-function: ease-out;
+    transform: scale(0.98);
+  }
+
+  33% {
+    animation-timing-function: ease-in;
+    transform: scale(0.87);
+  }
+
+  45% {
+    animation-timing-function: ease-out;
+    transform: scale(1);
+  }
+}
+
+.img-container {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  animation: myAnim3 5s ease 2s infinite normal forwards;
+}
+
+@keyframes myAnim3 {
+  0% {
+    animation-timing-function: ease-out;
+    transform: scale(1);
+    transform-origin: center center;
+  }
+
+  10% {
+    animation-timing-function: ease-in;
+    transform: scale(0.91);
+  }
+
+  17% {
+    animation-timing-function: ease-out;
+    transform: scale(0.98);
+  }
+
+  33% {
+    animation-timing-function: ease-in;
+    transform: scale(0.87);
+  }
+
+  45% {
+    animation-timing-function: ease-out;
+    transform: scale(1);
+  }
+}
+
+.img-container > img {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 15px solid #4b39b3;
+}
+
+.btn {
+  width: 150px;
+} 

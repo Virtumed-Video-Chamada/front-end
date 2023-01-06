@@ -13,8 +13,14 @@ const Lobby = ({
   connecting,
 }: LobbyProps) => {
   return (
-    <div className="flex flex-col">
-      
+    <div className="lobby-container">
+      <div className="extra-border">
+        <div className="border-lobby ">
+          <div className="img-container">
+            <img src="https://avatars.githubusercontent.com/u/97128625?v=4" alt="User Photo Avatar" />
+          </div>
+        </div>
+      </div>
         <form onSubmit={handleSubmit} className="lobby">
       <h2>Entrar na Sala</h2>
       <div className="inputs">
@@ -39,7 +45,7 @@ const Lobby = ({
           required />
       </div>
 
-      <IonButton type="submit" disabled={connecting}>
+      <IonButton type="submit" disabled={connecting} className="btn">
         {connecting ? "Connecting" : "Entrar"}
       </IonButton>
     </form>
