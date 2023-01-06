@@ -56,6 +56,7 @@ import FindDoctor from './pages/Pacient/FindDoctor/FindDoctor';
 import MedicalSchedule from './pages/Pacient/MedicalSchedule/MedicalSchedule';
 import CategoryChoice from './pages/Register/CategoryChoice';
 import './style.css'
+import HomeClinic from './pages/Clinic/HomeClinic/HomeClinic';
 
 
 
@@ -86,6 +87,9 @@ const RoutingTabs: React.FC = () => {
           <IonRouterOutlet>
             <Route exact path="/home-pacient">
               <HomePacient />
+              </Route>
+            <Route exact path="/home-clinic">
+            <HomeClinic />
             </Route>
             <Route exact path="/schedules">
               <SchedulesPacient />
@@ -153,8 +157,8 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <div id="principal">
-      <RoutingSystem/>
-       {/* <RoutingTabs />  */}
+      {/* <RoutingSystem/> */}
+       <RoutingTabs /> 
       </div>
     </IonApp>
   );
