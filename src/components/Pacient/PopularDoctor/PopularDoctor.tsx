@@ -38,7 +38,7 @@ const PopularDoctor: React.FC = () => {
   return (
     <div className="container">
       <div className="titlePopular">
-      <h1 className="font-bold text-xl pl-3">Médicos Populares</h1>
+      <h1 className="font-bold text-l pl-3">Médicos Populares</h1>
       <span className="font-bold text-xs text-colored">Ver todos...</span>
       </div>
         <IonSlides pager={true} options={slideOpts} >

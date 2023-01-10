@@ -47,7 +47,7 @@ const Lobby = ({
           required />
       </div>
 
-      <IonButton type="submit" disabled={connecting} className="btn">
+      <IonButton type="submit" disabled={connecting} className="">
         {connecting ? "Connecting" : "Entrar"}
       </IonButton>
     </form>

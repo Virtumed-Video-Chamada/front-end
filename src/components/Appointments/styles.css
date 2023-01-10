@@ -1,0 +1,19 @@
+@media (max-width: 375px) {
+  .cardDoctor {
+    margin-top: -20px;
+    height: 80px;
+    /* padding: 1px 2px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .box {
+    height: 100%;
+    padding-top: -20px;
+  }
+
+  .span > span{
+    font-size: 10px;
+  }
+}

@@ -127,13 +127,13 @@ const convertBase64 = (file: any) => {
                     <input type="file" id="file-input"
                         accept="image/png, image/jpeg" ></input>
                    </IonButton>
-                    <TextareaAutosize
+                    {/* <TextareaAutosize
                       id="textarea"
                       value={newMsg}
                       className="message-input h-10"
                       onChange={(e) => setNewMsg(e.target.value)}
                       onKeyPress={(event) => handleKeyPress(event)}
-                    />
+                    /> */}
                
               </IonCol>
               <IonCol size="2">

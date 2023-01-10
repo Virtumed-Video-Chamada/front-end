@@ -1,84 +1,140 @@
 import {
   IonButton,
-  IonButtons,
   IonCard,
-  IonContent,
   IonDatetime,
-  IonFab,
-  IonFabButton,
-  IonFabList,
-  IonHeader,
   IonIcon,
-  IonImg,
   IonItem,
   IonLabel,
   IonList,
   IonPage,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
+  IonSelect,
+  IonSelectOption,
+  IonText,
   IonThumbnail,
-  IonTitle,
-  IonToolbar,
+  useIonAlert,
+  useIonToast,
 } from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
-import { add, chevronDown, chevronUp, ellipse, heart, square, triangle } from "ionicons/icons";
-import { useRef, useState } from "react";
-import { Redirect, Route } from "react-router";
+import {
+  checkmarkOutline
+} from "ionicons/icons";
+import {  useState } from "react";
 import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
-
 import Schedules from "../../../components/Schedules/Schedules";
+import "./style.css";
 
 const MedicalSchedule: React.FC = () => {
+  const [presentAlert] = useIonAlert();
+  const [handlerMessage, setHandlerMessage] = useState("");
+  const [roleMessage, setRoleMessage] = useState("");
+  const [present] = useIonToast();
+
+
+  const presentToast = () => {
+    present({
+      message: "Consulta marcada com sucesso!",
+      duration: 1500,
+      position: "top",
+      
+    });
+  };
+
+  const alert = () => {
+    presentAlert({
+      header: "DESEJA MARCAR SUA CONSULTA?",
+      cssClass: "custom-alert",
+      buttons: [
+        {
+          text: "NÃO",
+          role: "cancel",
+          cssClass: "alert-button-cancel",
+          handler: () => {
+            setHandlerMessage("Alert canceled");
+          },
+        },
+        {
+          text: "SIM",
+          role: "confirm",
+          cssClass: "alert-button-confirm",
+          handler: () => {
+            presentToast();
+          },
+        },
+      ],
+      onDidDismiss: (e: CustomEvent) =>
+        setRoleMessage(`Dismissed with role: ${e.detail.role}`),
+    });
+  };
+
   return (
     <IonPage className="justify-start">
       <Identificador />
+
       <div>
-        <IonItem>
-          <IonThumbnail slot="start" >
-            <img alt="Silhouette of mountains" className="rounded-xl" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+        <IonItem lines="none">
+          <IonThumbnail slot="start">
+            <img
+              alt="Silhouette of mountains"
+              className="rounded-xl"
+              src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+            />
           </IonThumbnail>
           <div className="flex flex-col">
-            <IonLabel>Dra. Meredithy Grey</IonLabel>
+            <IonLabel className="text-bold">Dra. Meredithy Grey</IonLabel>
             <IonLabel>Neurologista</IonLabel>
-            </div>
+          </div>
         </IonItem>
+        <IonItem className="mt-5" lines="none">
           <IonDatetime
+            color="black"
             presentation="date"
-            minuteValues="0,15,30,45"
-            dayValues="5,10,15,20,25,30"
+            min="2022-12-01T00:00:00"
             size="cover"
           >
+            <IonText
+              color="tertiary"
+              className="font-bold text-lg flex justify-center"
+              slot="title"
+            >
+              <span>ESCOLHA UMA DATA</span>
+            </IonText>
           </IonDatetime>
-          <span>ESCOLHA UMA DATA</span>
-        <IonCard >
-          <div className="flex flex-col height-[150px]">
-          <span>ESCOLHA UM HORÁRIO</span>
-          <div>
-            <IonFab slot="fixed" className="mx-auto flex justify-center items-center">
-              <IonFabButton color="primary-contrast" className="button-outline">
-                <span className="font-semibold text-4xl">08:00</span>
-              </IonFabButton>
-              <IonFabList side="top">
-                  <IonList>
-                    <IonItem>
-                      08:00
-                    </IonItem>
-                    <IonItem>
-                      08:00
-                    </IonItem>
-                  </IonList>
-              </IonFabList>
-           </IonFab>
-          </div>
+        </IonItem>
+
+        <IonCard className="bg-white">
+          <IonText
+            color="tertiary"
+            className="font-bold text-lg flex justify-center mt-10"
+          >
+            <span>ESCOLHA UM HORÁRIO</span>
+          </IonText>
+
+          <div className="mx-auto flex-col mb-10">
+            <IonList>
+              <div className="hourSelector">
+                <IonSelect
+                  interface="action-sheet"
+                  placeholder="08:00"
+                  className="placeholder"
+                >
+                  <IonSelectOption value="08:00">08:00</IonSelectOption>
+                  <IonSelectOption value="08:00">08:00</IonSelectOption>
+                  <IonSelectOption value="08:00">08:00</IonSelectOption>
+                  <IonSelectOption value="08:00">08:00</IonSelectOption>
+                  <IonSelectOption value="08:00">08:00</IonSelectOption>
+                </IonSelect>
+              </div>
+            </IonList>
           </div>
         </IonCard>
-     
-  
-       </div>
-  
+        <div className="flex justify-center">
+        <IonButton className="text-lg font-bold" color="tertiary" onClick={alert}>
+          <IonIcon slot="start" icon={checkmarkOutline}></IonIcon>
+          CONFIRMAR
+        </IonButton>
+        </div>
+        
+      </div>
     </IonPage>
   );
 };
