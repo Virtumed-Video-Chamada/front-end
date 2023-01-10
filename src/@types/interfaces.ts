@@ -102,3 +102,8 @@ export interface LobbyProps {
   handleSubmit: any;
   connecting: any;
 }
+
+export interface PronturariosProps {
+	id?: string;
+  namePacient: string;
+}

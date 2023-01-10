@@ -1,7 +1,7 @@
 import { IonCard, IonCardContent, IonThumbnail, IonImg, IonButton, IonIcon, useIonAlert, useIonToast } from '@ionic/react'
 import { heartOutline, chatbubbleOutline, calendarOutline, heart } from 'ionicons/icons'
 import React, { useState } from 'react'
-import { Doctor } from '../../@types/interfaces';
+import { Doctor } from '../../../@types/interfaces';
 
 
 const slideOpts = {

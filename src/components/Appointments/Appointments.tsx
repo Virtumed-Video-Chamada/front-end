@@ -6,16 +6,39 @@ import {
   IonSlides,
   IonThumbnail,
 } from "@ionic/react";
+import { useEffect, useState } from "react";
+import { getStorage } from "../../services/adminStorage";
 
 const slideOpts = {
   initialSlide: 1,
   speed: 400,
 };
 
+
 const Appointments: React.FC = () => {
+
+  const [category, setCategory] = useState<string>('doctor');
+
+  // useEffect(() => {
+  //   getStorage('dadosLogin').then((response) => {
+  //     setCategory(response.accessToken);})
+  // }, [])
+
+const renderize = () => {
+  console.log(category)
+  if(category === 'pacient') {
+    return ( <h1 className="font-bold text-l pl-3">Consultas Agendadas</h1>)
+  } else if (category === 'doctor') {
+    return ( <h1 className="font-bold text-l pl-3">Próxima Consulta</h1>)
+  } else {
+    return ( <h1 className="font-bold text-l pl-3">Agendas do dia</h1>)
+  }
+}
+
+
   return (
     <div className="container">
-     <h1 className="font-bold text-l pl-3">Consultas Agendadas</h1>
+     {renderize()}
       <IonSlides className="h-[10rem]" pager={true} options={slideOpts}>
         <IonSlide>
           <IonCard className="bd-20 cardDoctor" routerLink="/webchat">

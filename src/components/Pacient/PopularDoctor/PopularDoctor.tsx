@@ -6,7 +6,7 @@ import {
 } from "@ionic/react";
 import { useState } from "react";
 import { mockedDoctors } from "../../../mocks/doctor";
-import DoctorCard from "../../Doctor/DoctorCard";
+import DoctorCard from "../DoctorCard/DoctorCard";
 import './style.css';
 
 const PopularDoctor: React.FC = () => {
