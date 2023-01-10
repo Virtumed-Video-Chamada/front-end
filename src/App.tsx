@@ -61,6 +61,8 @@ import SideMenu from './components/SideMenu/SideMenu';
 import Example from './components/SideMenu/SideMenu';
 import VideoChat from './components/Call/VideoChat';
 import Privacy from './pages/Privacy/Privacy';
+import RegisterAdmin from './components/Register/RegisterAdmin';
+import HomeAdmin from './pages/Admin/HomeAdmin/HomeAdmin';
 
 setupIonicReact();
 
@@ -73,6 +75,7 @@ const RoutingSystem: React.FC = () => {
           <Route path="/login" component={Login} exact />
           <Route path="/register-choice" component={CategoryChoice} exact />
           <Route path="/register" component={Register} exact />
+           
           <Route path="/patient-settings" component={PatientSettings} exact />
           <Route path="/agendamentos" component={SchedulesPacient} exact />
           {/* <Route path="/home" component={HomePacient} exact /> */}
@@ -87,6 +90,12 @@ const RoutingTabs: React.FC = () => {
     <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
+            <Route exact path="/register-admin">
+              <RegisterAdmin/>
+            </Route>
+            <Route exact path="/home-admin">
+            <HomeAdmin/>
+            </Route>
             <Route exact path="/">
             <HomePacient />
             </Route>
