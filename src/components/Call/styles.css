@@ -5,10 +5,6 @@
   justify-content: center;
   align-items: center;
   margin-top: -200px;
-<<<<<<< HEAD
-=======
-
->>>>>>> 2335d56961212d19e8a006aa5594e4a0fd2a5cd0
 }
 
 .lobby > h2 {
@@ -35,10 +31,6 @@
   font-size: 12px;
   color: #333;
   text-align: start;
-<<<<<<< HEAD
-=======
-
->>>>>>> 2335d56961212d19e8a006aa5594e4a0fd2a5cd0
 }
 
 .inputs > input {
@@ -100,11 +92,7 @@
   }
 }
 
-<<<<<<< HEAD
 .border {
-=======
-.border-lobby {
->>>>>>> 2335d56961212d19e8a006aa5594e4a0fd2a5cd0
   display: flex;
   justify-content: center;
   align-items: center;
@@ -187,7 +175,6 @@
 
 .btn {
   width: 150px;
-<<<<<<< HEAD
 }
 
 @media (max-width: 375px) {
@@ -259,6 +246,3 @@
     position: absolute;
     z-index: 1;
 }  */
-=======
-} 
->>>>>>> 2335d56961212d19e8a006aa5594e4a0fd2a5cd0
