@@ -23,12 +23,20 @@ import Identificador from "../../../components/Identificador/Identificador";
 import Schedules from "../../../components/Schedules/Schedules";
 import "./style.css";
 
-const MedicalSchedule: React.FC = () => {
+interface MedicalScheduleProps {
+  datepicker: Date;
+}
+
+const MedicalSchedule: React.FC = ({ datepicker }: MedicalScheduleProps) => {
   const [presentAlert] = useIonAlert();
   const [handlerMessage, setHandlerMessage] = useState("");
   const [roleMessage, setRoleMessage] = useState("");
   const [present] = useIonToast();
+  const [date, setDate] = useState("");
 
+  const onChange = date => {
+    setDate(date);
+  }
 
   const presentToast = () => {
     present({

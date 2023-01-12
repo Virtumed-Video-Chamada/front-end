@@ -9,7 +9,7 @@ import PreCall from '../../../components/PreCall/PreCall';
 
 const  FindDoctor: React.FC = () => {
   return (
-         <IonPage className="justify-start">
+    <IonPage className="justify-start">
       <Identificador/>
       <h1 className="font-bold">Encontre seu médico</h1>
       <IonItem className="mt-0 mb-0">

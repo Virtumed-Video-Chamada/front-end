@@ -18,8 +18,6 @@ const Register: React.FC = () => {
             {choice === "clinica" && <RegisterClinic /> }
             {choice === "doctor" && <RegisterMedic /> }
             {choice === "pacient" && <RegisterPacient/> }
-
-          
       </div>
     </IonPage>
   );
