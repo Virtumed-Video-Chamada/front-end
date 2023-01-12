@@ -60,12 +60,16 @@ const renderize = () => {
     })
   }
 
+  const demonster = () => {
+    history.replace("/webchat");
+  }
+
   return (
     <div className="container">
       {renderize()}
       <IonSlides className="h-[10rem]" pager={true} options={slideOpts}>
         <IonSlide>          
-          <IonCard className="bd-20 cardDoctor" onClick={() => validConsult()}>
+          <IonCard className="bd-20 cardDoctor" onClick={() => demonster()}>
             <IonCardContent className="flex">
               
               <IonThumbnail slot="start">
