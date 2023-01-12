@@ -5,26 +5,26 @@ import * as T from "../@types/interfaces";
 export const mockedRecords: T.PronturariosProps[] = [
   {
     id: "b329050a-e2a6-4603-988a-a0235e923a77111111111",
-    namePacient: "Alessandra Santos",
+    name: "Daniel Mota",
   },
   {
     id: "b11329050a-e2a6-4603-988a-a0235e923a775555ascs",
-    namePacient: "Amanda Mendes",
+    name: "Amanda Mendes",
   },
   {
     id: "b11329050a-e2a6-4603-988a-a0235e923a775555ascs",
-    namePacient: "Ana Lúcia Ribeiro",
+    name: "Ana Lúcia Ribeiro",
   },
   {
     id: "b11329050a-e2a6-4603-988a-a0235e923a775555ascs",
-    namePacient: "Bárbara Moreira",
+    name: "Bárbara Moreira",
   },
   {
     id: "b11329050a-e2a6-4603-988a-a0235e923a775555ascs",
-    namePacient: "Beatriz L. Melgaço",
+    name: "Beatriz L. Melgaço",
   }, 
   {
     id: "b11329050a-e2a6-4603-988a-a0235e923a775555ascs",
-    namePacient: "Celso Dantas",
+    name: "Celso Dantas",
   }
 ];

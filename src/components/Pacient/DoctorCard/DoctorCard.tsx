@@ -1,6 +1,6 @@
-import { IonCard, IonCardContent, IonThumbnail, IonImg, IonButton, IonIcon, useIonAlert, useIonToast } from '@ionic/react'
+import { IonCard, IonCardContent, IonThumbnail, IonButton, IonIcon, useIonAlert, useIonToast } from '@ionic/react'
 import { heartOutline, chatbubbleOutline, calendarOutline, heart } from 'ionicons/icons'
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { Doctor } from '../../../@types/interfaces';
 
 
@@ -47,6 +47,7 @@ function DoctorCard({ doctor }: DoctorCardProps) {
     setBusy(true);
     setIcons(heart);
     console.log('teste')
+    console.log(doctor)
   }
 
   return (

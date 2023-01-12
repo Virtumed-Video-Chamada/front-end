@@ -19,7 +19,7 @@ const HistoricalDoctor: React.FC = () => {
 
 useEffect(() => {
   mockedRecords.map((e: any) => (
-    setNamePacient([...namePacient, e.namePacient])
+    setNamePacient([...namePacient, e.name])
   ))
 }, []);
 

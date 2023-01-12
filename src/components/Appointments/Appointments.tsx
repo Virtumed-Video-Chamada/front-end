@@ -1,13 +1,14 @@
-
 import {
   IonCard,
   IonCardContent,
   IonSlide,
   IonSlides,
   IonThumbnail,
+  useIonAlert,
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { getStorage } from "../../services/adminStorage";
+import { useHistory } from 'react-router';
 
 const slideOpts = {
   initialSlide: 1,
@@ -18,6 +19,8 @@ const slideOpts = {
 const Appointments: React.FC = () => {
 
   const [category, setCategory] = useState<string>('doctor');
+  const history = useHistory();
+  const [busy, setBusy] = useState(false);
 
   // useEffect(() => {
   //   getStorage('dadosLogin').then((response) => {
@@ -25,7 +28,6 @@ const Appointments: React.FC = () => {
   // }, [])
 
 const renderize = () => {
-  console.log(category)
   if(category === 'pacient') {
     return ( <h1 className="font-bold text-l pl-3">Consultas Agendadas</h1>)
   } else if (category === 'doctor') {
@@ -33,16 +35,39 @@ const renderize = () => {
   } else {
     return ( <h1 className="font-bold text-l pl-3">Agendas do dia</h1>)
   }
-}
+  }
 
+  const dateNow = new Date();
+  const [dateCall, setDateCall] = useState();
+  const [presentAlert] = useIonAlert();
+  
+  const validConsult = () => {
+    if (dateCall == dateNow) {
+      history.replace("/webchat");
+    } else {
+      console.log(dateNow);
+      setBusy(true);
+      alert();
+    }
+  }
+
+  const alert = () => {
+    return presentAlert({
+      header: 'Aguarde!',
+      subHeader: 'Ainda não está na hora da sua consulta',
+      message: 'Você poderá entrar quando faltar 5min pra iniciar!',
+      buttons: ['OK'],
+    })
+  }
 
   return (
     <div className="container">
-     {renderize()}
+      {renderize()}
       <IonSlides className="h-[10rem]" pager={true} options={slideOpts}>
-        <IonSlide>
-          <IonCard className="bd-20 cardDoctor" routerLink="/webchat">
+        <IonSlide>          
+          <IonCard className="bd-20 cardDoctor" onClick={() => validConsult()}>
             <IonCardContent className="flex">
+              
               <IonThumbnail slot="start">
                 <img className="imgDoctor max-h-[130%] max-w-[130%]" alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />
               </IonThumbnail>
@@ -57,7 +82,7 @@ const renderize = () => {
         </IonSlide>
         <IonSlide>
 
-          <IonCard className="bd-20 cardDoctor" routerLink="/webchat">
+          <IonCard className="bd-20 cardDoctor" onClick={() => validConsult()}>
             <IonCardContent className="flex">
               <IonThumbnail slot="start">
                 <img className="imgDoctor max-h-[130%] max-w-[130%]" alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />

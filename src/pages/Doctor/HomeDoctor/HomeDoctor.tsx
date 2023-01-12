@@ -12,7 +12,7 @@ import {  useHistory } from "react-router";
 import Appointments from "../../../components/Appointments/Appointments";
 import CardMedicalRecords from "../../../components/Doctor/CardMedicalRecords/CardMedicalRecords";
 import Identificador from "../../../components/Identificador/Identificador";
-import PopularDoctor from "../../../components/Pacient/PopularDoctor/PopularDoctor";
+import PopularDoctor from "../../../components/Pacient/Favorites/PopularDoctor";
 import QuickAccess from "../../../components/Pacient/QuickAcess/QuickAccess";
 import SideMenu from "../../../components/SideMenu/SideMenu";
 import "./style.css";

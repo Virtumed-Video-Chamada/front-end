@@ -64,6 +64,7 @@ import Privacy from './pages/Privacy/Privacy';
 import { getStorage } from './services/adminStorage';
 import HomeDoctor from './pages/Doctor/HomeDoctor/HomeDoctor';
 import HistoricalDoctor from './pages/Doctor/HistoricalDoctor/HistoricalDoctor';
+import FavoriteDoctors from './pages/Pacient/FavoriteDoctors/FavoriteDoctors';
 
 
 setupIonicReact();
@@ -89,7 +90,7 @@ const RoutingSystem: React.FC = () => {
 };
 
 const RoutingTabs: React.FC = () => {
-  const [category, setCategory] = useState("/home-doctor");
+  const [category, setCategory] = useState("/home-pacient");
 
   // useEffect(() => {
   //   getStorage('dadosLogin').then((response) => {
@@ -114,6 +115,9 @@ const RoutingTabs: React.FC = () => {
             </Route>
             <Route exact path="/historical-doctor">
               <HistoricalDoctor />
+            </Route>
+            <Route exact path="/favorite-doctors">
+              <FavoriteDoctors />
             </Route>
             <Route exact path="/medical-schedules">
               <MedicalSchedule />

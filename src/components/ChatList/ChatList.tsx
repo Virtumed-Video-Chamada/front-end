@@ -1,24 +1,4 @@
-// interface ContainerProps {
-//   name: string;
-// }
-
-import {
-  IonAvatar,
-  IonBadge,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonImg,
-  IonInfiniteScroll,
-  IonInfiniteScrollContent,
-  IonLabel,
-  IonList,
-  IonSlide,
-  IonSlides,
-  IonThumbnail,
-} from "@ionic/react";
+import { IonAvatar, IonBadge, IonCard, IonCardContent, IonInfiniteScroll, IonInfiniteScrollContent, IonLabel, IonList } from "@ionic/react";
 import { useEffect, useState } from "react";
 
 const ChatList: React.FC = () => {
