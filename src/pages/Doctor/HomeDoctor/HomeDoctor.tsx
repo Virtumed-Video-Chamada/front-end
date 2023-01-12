@@ -10,6 +10,7 @@ import {
 
 import {  useHistory } from "react-router";
 import Appointments from "../../../components/Appointments/Appointments";
+import CardMedicalRecords from "../../../components/Doctor/CardMedicalRecords/CardMedicalRecords";
 import Identificador from "../../../components/Identificador/Identificador";
 import PopularDoctor from "../../../components/Pacient/Favorites/PopularDoctor";
 import QuickAccess from "../../../components/Pacient/QuickAcess/QuickAccess";
@@ -17,18 +18,13 @@ import SideMenu from "../../../components/SideMenu/SideMenu";
 import "./style.css";
 // import logo from "../../../assets/logo.png"
 
-const HomePaciente: React.FC = () => {
-  const history = useHistory();
-  const router = () => {
-    history.replace("/find-doctor");
-  };
+const HomeDoctor: React.FC = () => {
+
   return (
     <IonPage>
       <IonContent>
-        <IonImg src='./assets/logo.png' className='imgLogoSmall flex items-center mx-auto' />
+        <IonImg src='./assets/logo.png' className='imgLogoSmall flex items-center mx-auto -mb-7' />
         <Identificador/>
-        <h1 className="font-bold text-lg pl-8">Encontre seu médico</h1>
-        <IonSearchbar color="light" placeholder="Pesquise por médico ou especialidade" onClick={router}></IonSearchbar>     
         <IonItem className="mt-0 mb-0" lines="none">
           <Appointments />
         </IonItem>
@@ -36,7 +32,7 @@ const HomePaciente: React.FC = () => {
           <QuickAccess />
         </IonItem>
         <IonItem className="mt-0 mb-0" lines="none">
-          <PopularDoctor/>
+          <CardMedicalRecords />
         </IonItem>
      </IonContent> 
     </IonPage>
@@ -44,4 +40,4 @@ const HomePaciente: React.FC = () => {
   );
 };
 
-export default HomePaciente;
+export default HomeDoctor;
