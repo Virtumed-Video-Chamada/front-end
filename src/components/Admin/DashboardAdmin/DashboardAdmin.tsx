@@ -59,23 +59,24 @@ const DashboardAdmin: React.FC = () => {
             ></IonImg>
             <p className="text-center textCard">Cadastrar Paciente</p>
           </IonCard>
-          <IonCard className="mr-1 bd-20 quickCard">
+          <IonCard className="mr-1 bd-20 quickCard" routerLink="/patient-list">
             <IonImg
-              className="imgCard"
+              className="imgCard mx-auto"
               src="./assets/icon/users.svg"
             ></IonImg>
             <p className="text-center textCard">Pacientes Cadastrados</p>
           </IonCard>
           <IonCard
             className="mr-1 bd-20 quickCard"
-            routerLink="historical-clinic"
+            routerLink="/link-patient"
           >
             <IonImg
               className="imgCard mx-auto"
-              src="./assets/icon/historical.svg"
+              src="./assets/icon/link.svg"
             ></IonImg>
-            <p className="text-center textCard">Consultar Exames</p>
+            <p className="text-center textCard">Vincular Paciente</p>
           </IonCard>
+       
         </IonRow>
         <IonRow className="flex flex-nowrap mb-0">
           <IonCard className="mr-1 bd-20 quickCard" routerLink="/register-clinic">
@@ -98,10 +99,11 @@ const DashboardAdmin: React.FC = () => {
           >
             <IonImg
               className="imgCard mx-auto"
-              src="./assets/icon/link.svg"
+              src="./assets/icon/historical.svg"
             ></IonImg>
-            <p className="text-center textCard">Vincular Paciente</p>
+            <p className="text-center textCard">Consultar Exames</p>
           </IonCard>
+         
         </IonRow>
       </IonGrid>
     </div>
