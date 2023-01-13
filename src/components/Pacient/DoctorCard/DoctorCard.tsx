@@ -1,6 +1,6 @@
 import { IonCard, IonCardContent, IonThumbnail, IonButton, IonIcon, useIonAlert, useIonToast } from '@ionic/react'
 import { heartOutline, chatbubbleOutline, calendarOutline, heart } from 'ionicons/icons'
-import  { useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { Doctor } from '../../../@types/interfaces';
 
 
@@ -49,6 +49,10 @@ function DoctorCard({ doctor }: DoctorCardProps) {
     console.log('teste')
     console.log(doctor)
   }
+
+  useEffect(() =>
+  { console.log(doctor)}, []
+  )
 
   return (
     <div  onClick={showChat} >

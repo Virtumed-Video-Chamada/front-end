@@ -28,11 +28,11 @@ import Identificador from "../../../components/Identificador/Identificador";
 import DoctorCard from "../../../components/Pacient/DoctorCard/DoctorCard";
 import ListDoctor from "../../../components/Pacient/ListDoctor/ListDoctor";
 import PreCall from "../../../components/PreCall/PreCall";
-import { mockedDoctors } from "../../../mocks/doctor";
+import { favoriteDoctors } from "../../../mocks/favoritesDoctor";
 
 const FavoriteDoctors: React.FC = () => {
-  const [items, setItems] = useState<any>(mockedDoctors);
-  var listDoctors = mockedDoctors;
+  const [items, setItems] = useState<any>(favoriteDoctors);
+  var listDoctors = favoriteDoctors;
 
   const generateItems = () => {
     const newItems = [];

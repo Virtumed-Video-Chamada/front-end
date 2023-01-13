@@ -8,6 +8,8 @@ import { setStorage } from "../../services/adminStorage";
 import { alertaErro, alertaSucesso } from "../../utils/alertas";
 
 
+import axios from 'axios';
+
 
 
 const RegisterPacient: React.FC = () => {
@@ -44,7 +46,31 @@ const RegisterPacient: React.FC = () => {
     isAdmin: false,
   };
 
+interface ViaCep  {
+  cep: string,
+  logradouro: string,
+  complemento: string,
+  bairro: string,
+  localidade: string,
+  uf: string
+  }
 
+  const api = axios.create({
+    // https://h-apigateway.conectagov.estaleiro.serpro.gov.br/oauth2/jwt-token
+    baseURL: `https://viacep.com.br/ws/`,
+  });
+
+  const consultCep = () => {
+    if (cep.length == 8) {
+      api
+    .get<ViaCep>(`${cep}/json/`)
+        .then(({ data }: any) => {
+          setAddress(data.logradouro);
+          console.log(data)
+    } )
+    .catch((error: any) => console.log('ERRO NA CHAMADA:', error))
+    }   
+}
 
   const registerUser = async () => {
     const response = await registerService.registerValues(values);
@@ -85,7 +111,7 @@ const RegisterPacient: React.FC = () => {
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>CEP</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={cep} placeholder="Informe seu CEP" onIonChange={e => setCep(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={cep} placeholder="Informe seu CEP" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
