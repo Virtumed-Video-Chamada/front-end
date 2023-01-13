@@ -4,15 +4,17 @@ import {
   IonInfiniteScrollContent,
   IonItem,
   IonSearchbar,
-  IonList
+  IonList,
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { mockedDoctors } from "../../../mocks/doctor";
 import DoctorCard from "../../Doctor/DoctorCard";
 
+
 const ListDoctor: React.FC = () => {
   const [items, setItems] = useState<any>(mockedDoctors);
-  var listDoctors = mockedDoctors;
+  let listDoctors = mockedDoctors;
+  const [results, setResults] = useState([...listDoctors]);
 
   const generateItems = () => {
     const newItems = [];
@@ -22,44 +24,42 @@ const ListDoctor: React.FC = () => {
     setItems([...items, ...newItems]);
   };
 
+  const handleChange = (ev?: Event) => {
+    let query = "";
+    if (ev != null) {
+      const target = ev.target as HTMLIonSearchbarElement;
+      if (target) query = target.value!.toLowerCase();
+    }
+    // eslint-disable-next-line array-callback-return
+    setResults(
+      listDoctors.filter((doctor) => {
+        return (
+          doctor.nameDoctor!.toLowerCase().indexOf(query) > -1 || query === ""
+        );
+      })
+    );
+  };
+
   useEffect(() => {
     generateItems();
-    console.log(items);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    handleChange();
   }, []);
 
-  // const data = ['Amsterdam', 'Buenos Aires', 'Cairo', 'Geneva', 'Hong Kong', 'Istanbul', 'London', 'Madrid', 'New York', 'Panama City'];
-  const data = listDoctors;
-  let [results, setResults] = useState([...data]);
-
-  const handleChange = (ev: Event) => {
-    let query = "";
-    const target = ev.target as HTMLIonSearchbarElement;
-    console.log(data);
-    if (target) query = target.value!.toLowerCase();
-    let teste;
-    setResults(data.filter((d) => {
-      if(d.nameDoctor != undefined) {
-        teste = d.nameDoctor
-      } else {
-        teste = 'procurar'
-      }
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      teste.toLowerCase().indexOf(query) > -1
-    }))
-
-  }
+  const renderize = () => {
+    return results.map((element: any, index: any) => (
+      <IonItem key={index}>
+        <DoctorCard doctor={element} key={element.id} />
+      </IonItem>
+    ));
+  };
 
   return (
     <IonContent>
-      <IonSearchbar debounce={1000} onIonChange={(ev) => handleChange(ev)}></IonSearchbar>
-      <IonList>
-        {items.map((element: any, index: any) => (
-          <IonItem key={index}>
-            <DoctorCard doctor={element} key={element.id} />
-          </IonItem>
-        ))}
-      </IonList>
+      <IonSearchbar
+        debounce={1000}
+        onIonChange={(ev) => handleChange(ev)}
+      ></IonSearchbar>
+      <IonList>{renderize()}</IonList>
       <IonInfiniteScroll
         onIonInfinite={(ev) => {
           generateItems();
@@ -69,7 +69,6 @@ const ListDoctor: React.FC = () => {
         <IonInfiniteScrollContent></IonInfiniteScrollContent>
       </IonInfiniteScroll>
     </IonContent>
-
   );
 };
 

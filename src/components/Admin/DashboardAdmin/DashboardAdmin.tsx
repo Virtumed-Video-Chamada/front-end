@@ -35,6 +35,7 @@ const DashboardAdmin: React.FC = () => {
           </IonCard>
           <IonCard className="mr-1 bd-20 quickCard" routerLink="/find-doctor">
             <IonImg
+            color="primary"
               className="imgCard mx-auto"
               src="./assets/icon/medic.svg"
             ></IonImg>

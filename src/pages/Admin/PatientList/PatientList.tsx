@@ -5,6 +5,8 @@ import {
   IonContent,
   IonHeader,
   IonIcon,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonItem,
   IonLabel,
   IonList,
@@ -13,28 +15,63 @@ import {
   IonText,
   IonToolbar,
 } from "@ionic/react";
-import { pencilOutline, star, trashBin, trashBinOutline } from "ionicons/icons";
+import {
+  list,
+  pencilOutline,
+  star,
+  trashBin,
+  trashBinOutline,
+} from "ionicons/icons";
 import React, { useEffect, useState } from "react";
+import { userPacient } from "../../../@types/interfaces";
 import { mockedPatients } from "../../../mocks/patient";
 
-const PatientList: React.FC = () => {
-    const [items, setItems] = useState<any>(mockedPatients);
-    var listPatients = mockedPatients;
+const PatientList = () => {
+  const [items, setItems] = useState<any>(mockedPatients);
+  let listPatients = mockedPatients;
+  const [results, setResults] = useState([...listPatients]);
 
-    const generateItems = () => {
-        const newItems = [];
-        for (let i = 0; i < 5; i++) {
-          newItems.push(`Item ${1 + items.length + i}`);
-        }
-        setItems([...items, ...newItems]);
-      };
-    
-      useEffect(() => {
-        generateItems();
-        console.log(items);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, []);
+  const generateItems = () => {
+    const newItems = [];
+    for (let i = 0; i < 5; i++) {
+      newItems.push(`Item ${1 + items.lenght + i}`);
+    }
+    setItems([...items, ...newItems]);
+  };
 
+  const handleChange = (ev?: Event) => {
+    let query = "";
+    if (ev != null) {
+      const target = ev.target as HTMLIonSearchbarElement;
+      if (target) query = target.value!.toLowerCase();
+    }
+    setResults(
+      listPatients.filter((patient) => {
+        return patient.name!.toLowerCase().indexOf(query) > -1 || query === "";
+      })
+    );
+  };
+
+  useEffect(() => {
+    generateItems();
+    handleChange();
+  }, []);
+
+  const renderize = () => {
+    return results.map((element: any, index: any) => (
+      <IonItem lines="full" key={index}>
+        <IonLabel>{element.name}</IonLabel>
+        <IonButton slot="end" color="primary">
+          <IonIcon icon={pencilOutline} slot="end"></IonIcon>
+          Editar
+        </IonButton>
+        <IonButton slot="end" color="danger">
+          <IonIcon icon={trashBinOutline} slot="end"></IonIcon>
+          Deletar
+        </IonButton>
+      </IonItem>
+    ));
+  };
 
   return (
     <IonPage>
@@ -49,42 +86,17 @@ const PatientList: React.FC = () => {
         <IonText class=" flex justify-start p-3 text-black text-lg font-bold">
           Pacientes Cadastrados
         </IonText>
-        <IonSearchbar debounce={1000} ></IonSearchbar>
+        <IonSearchbar
+          debounce={1000}
+          onIonChange={(ev) => handleChange(ev)}
+        ></IonSearchbar>
         <IonItem color="primary" lines="none">
           <IonLabel>Nome</IonLabel>
         </IonItem>
         <IonItem color="tertiary" lines="none">
           <IonLabel>A</IonLabel>
         </IonItem>
-        <IonList>
-          <IonItem lines="full">
-            <IonLabel>Amanda Gonçalves</IonLabel>
-            <IonButton slot="end" color="primary">
-            <IonIcon icon={pencilOutline} slot="end"></IonIcon>
-            Editar
-          </IonButton>
-          <IonButton slot="end" color="danger">
-            <IonIcon icon={trashBinOutline} slot="end"></IonIcon>
-            Deletar
-          </IonButton>
-          </IonItem>
-        </IonList>
-        <IonItem color="tertiary" lines="none">
-          <IonLabel>B</IonLabel>
-        </IonItem>
-        <IonList>
-          <IonItem lines="full">
-            <IonLabel>Bianca Matos</IonLabel>
-            <IonButton slot="end" color="primary">
-            <IonIcon icon={pencilOutline} slot="end"></IonIcon>
-            Editar
-          </IonButton>
-          <IonButton slot="end" color="danger">
-            <IonIcon icon={trashBinOutline} slot="end"></IonIcon>
-            Deletar
-          </IonButton>
-          </IonItem>
-        </IonList>
+        <IonList>{renderize()}</IonList>
       </IonContent>
     </IonPage>
   );
