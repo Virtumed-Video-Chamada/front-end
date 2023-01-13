@@ -32,7 +32,7 @@ const DashboardAdmin: React.FC = () => {
             ></IonImg>
             <p className="text-center textCard">Cadastrar Médico</p>
           </IonCard>
-          <IonCard className="mr-1 bd-20 quickCard">
+          <IonCard className="mr-1 bd-20 quickCard" routerLink="/find-doctor">
             <IonImg
               className="imgCard"
               src="./assets/icon/appointment.svg"
@@ -47,11 +47,11 @@ const DashboardAdmin: React.FC = () => {
               className="imgCard mx-auto"
               src="./assets/icon/historical.svg"
             ></IonImg>
-            <p className="text-center textCard">Agenda</p>
+            <p className="text-center textCard">Vincular Médico</p>
           </IonCard>
         </IonRow>
         <IonRow className="flex flex-nowrap mb-0">
-          <IonCard className="mr-1 bd-20 quickCard" routerLink="/exam-results">
+          <IonCard className="mr-1 bd-20 quickCard" routerLink="/register-patient">
             <IonImg
               className="imgCard mx-auto"
               src="./assets/icon/microscope.svg"
@@ -63,7 +63,7 @@ const DashboardAdmin: React.FC = () => {
               className="imgCard"
               src="./assets/icon/appointment.svg"
             ></IonImg>
-            <p className="text-center textCard">Lançar exames</p>
+            <p className="text-center textCard">Pacientes Cadastrados</p>
           </IonCard>
           <IonCard
             className="mr-1 bd-20 quickCard"
@@ -77,7 +77,7 @@ const DashboardAdmin: React.FC = () => {
           </IonCard>
         </IonRow>
         <IonRow className="flex flex-nowrap mb-0">
-          <IonCard className="mr-1 bd-20 quickCard" routerLink="/exam-results">
+          <IonCard className="mr-1 bd-20 quickCard" routerLink="/register-clinic">
             <IonImg
               className="imgCard mx-auto"
               src="./assets/icon/microscope.svg"
@@ -89,7 +89,7 @@ const DashboardAdmin: React.FC = () => {
               className="imgCard"
               src="./assets/icon/appointment.svg"
             ></IonImg>
-            <p className="text-center textCard">Vincular Profissional</p>
+            <p className="text-center textCard">Clínicas Cadastradas</p>
           </IonCard>
           <IonCard
             className="mr-1 bd-20 quickCard"

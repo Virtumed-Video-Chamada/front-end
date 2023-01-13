@@ -2,8 +2,7 @@ import { IonCard, IonCardContent, IonThumbnail, IonImg, IonButton, IonIcon, useI
 import { heartOutline, chatbubbleOutline, calendarOutline, heart } from 'ionicons/icons'
 import React, { useState } from 'react'
 import { userClinic } from '../../../@types/interfaces';
-
-
+import logo from "../../../assets/icon/logo2.svg";
 
 
 
@@ -31,10 +30,15 @@ function ClinicCard({ clinic }: ClinicCardProps) {
             <p className="font-normal">{clinic.address}</p>
             {/* <span className="font-medium">98 Avaliações</span> */}
           </div>
-          {/* <IonButton fill="clear" >
-            <IonIcon slot="icon-only" className='text-red-900'></IonIcon>
-          </IonButton> */}
+          <div className='flex justify-center align-middle'>
+          <IonImg 
+          
+        
+          src='../../../assets/icon/logo2.svg'></IonImg>
+          </div>
+        
         </IonCardContent>
+        
       </IonCard>
     </div>
   );
