@@ -28,24 +28,25 @@ const DashboardAdmin: React.FC = () => {
           <IonCard className="mr-1 bd-20 quickCard" routerLink="/register-doctor">
             <IonImg
               className="imgCard mx-auto"
-              src="./assets/icon/microscope.svg"
+              
+              src="./assets/icon/medical-equipment.svg"
             ></IonImg>
             <p className="text-center textCard">Cadastrar Médico</p>
           </IonCard>
           <IonCard className="mr-1 bd-20 quickCard" routerLink="/find-doctor">
             <IonImg
-              className="imgCard"
-              src="./assets/icon/appointment.svg"
+              className="imgCard mx-auto"
+              src="./assets/icon/medic.svg"
             ></IonImg>
             <p className="text-center textCard">Médicos cadastrados</p>
           </IonCard>
           <IonCard
             className="mr-1 bd-20 quickCard"
-            routerLink="/historical-clinic"
+            routerLink="/link-doctor"
           >
             <IonImg
               className="imgCard mx-auto"
-              src="./assets/icon/historical.svg"
+              src="./assets/icon/link.svg"
             ></IonImg>
             <p className="text-center textCard">Vincular Médico</p>
           </IonCard>
@@ -54,14 +55,14 @@ const DashboardAdmin: React.FC = () => {
           <IonCard className="mr-1 bd-20 quickCard" routerLink="/register-patient">
             <IonImg
               className="imgCard mx-auto"
-              src="./assets/icon/microscope.svg"
+              src="./assets/icon/user.svg"
             ></IonImg>
             <p className="text-center textCard">Cadastrar Paciente</p>
           </IonCard>
           <IonCard className="mr-1 bd-20 quickCard">
             <IonImg
               className="imgCard"
-              src="./assets/icon/appointment.svg"
+              src="./assets/icon/users.svg"
             ></IonImg>
             <p className="text-center textCard">Pacientes Cadastrados</p>
           </IonCard>
@@ -80,14 +81,14 @@ const DashboardAdmin: React.FC = () => {
           <IonCard className="mr-1 bd-20 quickCard" routerLink="/register-clinic">
             <IonImg
               className="imgCard mx-auto"
-              src="./assets/icon/microscope.svg"
+              src="./assets/icon/hospital.svg"
             ></IonImg>
             <p className="text-center textCard ">Cadastrar Clínica</p>
           </IonCard>
           <IonCard className="mr-1 bd-20 quickCard">
             <IonImg
               className="imgCard"
-              src="./assets/icon/appointment.svg"
+              src="./assets/icon/health.svg"
             ></IonImg>
             <p className="text-center textCard">Clínicas Cadastradas</p>
           </IonCard>
@@ -97,7 +98,7 @@ const DashboardAdmin: React.FC = () => {
           >
             <IonImg
               className="imgCard mx-auto"
-              src="./assets/icon/historical.svg"
+              src="./assets/icon/link.svg"
             ></IonImg>
             <p className="text-center textCard">Vincular Paciente</p>
           </IonCard>

@@ -281,7 +281,7 @@ const RegisterDoctorAdmin: React.FC = () => {
        
       </IonList>
       <IonButton
-        className="btnDefault mt-5 mb-10"
+        className="btnDefault mt-5 mb-16"
         expand="block"
         onClick={registerUser}
       >

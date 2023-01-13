@@ -84,6 +84,57 @@ const RegisterClinicAdmin: React.FC = () => {
         </IonText>
         <IonList>
           <IonItem lines="inset" className="pr-2">
+            <IonText class=" mt-5 text-black text-lg font-medium">
+              Dados para acesso
+            </IonText>
+            <IonLabel position="floating" color="form">
+              <span className="flex items-center">
+                <span className="text-sm font-medium pl-2">E-mail</span>
+              </span>
+            </IonLabel>
+            <IonInput
+              className="inputSelsyn"
+              type="password"
+              value={email}
+              placeholder="Informe e-mail"
+              onIonChange={(e) => setEmail(e.detail.value!)}
+            ></IonInput>
+          </IonItem>
+          <IonItem lines="inset" className="pr-2">
+            <IonLabel position="floating" color="form">
+              <span className="flex items-center">
+                <span className="text-sm font-medium pl-2">Senha</span>
+              </span>
+            </IonLabel>
+            <IonInput
+              className="inputSelsyn"
+              type="password"
+              value={password}
+              placeholder="Informe senha"
+              onIonChange={(e) => setPassword(e.detail.value!)}
+            ></IonInput>
+          </IonItem>
+          <IonItem lines="inset" className="pr-2">
+            <IonLabel position="floating" color="form">
+              <span className="flex items-center">
+                <span className="text-sm font-medium pl-2">
+                  Confirmar Senha
+                </span>
+              </span>
+            </IonLabel>
+            <IonInput
+              className="inputSelsyn"
+              type="password"
+              value={passwordConf}
+              placeholder="Confirme sua senha"
+              onIonChange={(e) => setPasswordConf(e.detail.value!)}
+            ></IonInput>
+          </IonItem>
+
+          <IonItem lines="inset" className="pr-2">
+            <IonText class=" mt-5 text-black text-lg font-medium">
+              Dados cadastrais
+            </IonText>
             <IonLabel position="floating" color="form">
               <span className="flex items-center">
                 <span className="text-sm font-medium pl-2">Nome Fantasia</span>
@@ -209,60 +260,14 @@ const RegisterClinicAdmin: React.FC = () => {
               onIonChange={(e) => setState(e.detail.value!)}
             ></IonInput>
           </IonItem>
-
-          <IonItem lines="inset" className="pr-2">
-            <IonLabel position="floating" color="form">
-              <span className="flex items-center">
-                <span className="text-sm font-medium pl-2">E-mail</span>
-              </span>
-            </IonLabel>
-            <IonInput
-              className="inputSelsyn"
-              type="password"
-              value={email}
-              placeholder="Informe e-mail"
-              onIonChange={(e) => setEmail(e.detail.value!)}
-            ></IonInput>
-          </IonItem>
-          <IonItem lines="inset" className="pr-2">
-            <IonLabel position="floating" color="form">
-              <span className="flex items-center">
-                <span className="text-sm font-medium pl-2">Senha</span>
-              </span>
-            </IonLabel>
-            <IonInput
-              className="inputSelsyn"
-              type="password"
-              value={password}
-              placeholder="Informe senha"
-              onIonChange={(e) => setPassword(e.detail.value!)}
-            ></IonInput>
-          </IonItem>
-          <IonItem lines="inset" className="pr-2">
-            <IonLabel position="floating" color="form">
-              <span className="flex items-center">
-                <span className="text-sm font-medium pl-2">
-                  Confirmar Senha
-                </span>
-              </span>
-            </IonLabel>
-            <IonInput
-              className="inputSelsyn"
-              type="password"
-              value={passwordConf}
-              placeholder="Confirme sua senha"
-              onIonChange={(e) => setPasswordConf(e.detail.value!)}
-            ></IonInput>
-          </IonItem>
-
-          <IonButton
-            className="btnDefault mt-10"
-            expand="block"
-            onClick={registerUser}
-          >
-            REGISTRAR
-          </IonButton>
         </IonList>
+        <IonButton
+          className="btnDefault mt-5 mb-16"
+          expand="block"
+          onClick={registerUser}
+        >
+          REGISTRAR
+        </IonButton>
       </IonContent>
     </IonPage>
   );
