@@ -82,6 +82,7 @@ import RegisterPatientAdmin from "./pages/Admin/CRUDAdmin/RegisterPatientAdmin/R
 import LinkDoctor from "./pages/Admin/LinkDoctor/LinkDoctor";
 import LinkPatient from "./pages/Admin/LinkPatient/LinkPatient";
 import PatientList from "./pages/Admin/PatientList/PatientList";
+import { userPacient } from "./@types/interfaces";
 
 setupIonicReact();
 
@@ -102,6 +103,7 @@ const RoutingSystem: React.FC = () => {
     </IonReactRouter>
   );
 };
+
 
 const RoutingTabs: React.FC = () => {
   return (

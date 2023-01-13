@@ -34,20 +34,20 @@ export interface userLogin {
 
 export interface userPacient {
   id?: string;
-  name: string;
-  rg: string;
-  cpf: string;
-  cep: string;
-  address: string;
-  number: number | string;
-  city: string;
-  district: string;
-  state: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  role: string;
-  isAdmin: boolean;
+  name?: string;
+  rg?: string;
+  cpf?: string;
+  cep?: string;
+  address?: string;
+  number?: number | string;
+  city?: string;
+  district?: string;
+  state?: string;
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+  role?: string;
+  isAdmin?: boolean;
 }
 
 export interface userDoctor {
