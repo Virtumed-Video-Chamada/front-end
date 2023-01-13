@@ -7,9 +7,6 @@ import { registerService } from "../../services/registerService";
 import { setStorage } from "../../services/adminStorage";
 import { alertaErro, alertaSucesso } from "../../utils/alertas";
 
-
-
-
 const RegisterClinic: React.FC = () => {
   const history = useHistory();
 
