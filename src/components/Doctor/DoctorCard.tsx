@@ -62,6 +62,48 @@ function DoctorCard({ doctor }: DoctorCardProps) {
     console.log("teste");
   };
 
+
+  const [category, setCategory] = useState<string>('admin');
+
+  const renderize = () => {
+    if (category === 'pacient') {
+      return ( <div className="flex flex-row justify-center items-center">
+      <div className={_class}>
+        <IonButton className="text-xs w-max" routerLink="/conversation">
+          ABRIR CHAT
+          <IonIcon slot="start" icon={chatbubbleOutline}></IonIcon>
+        </IonButton>
+        <IonButton
+          className="text-xs"
+          color="tertiary"
+          routerLink="/medical-schedules"
+        >
+          AGENDAR
+          <IonIcon slot="start" icon={calendarOutline}></IonIcon>
+        </IonButton>
+      </div>
+    </div> )
+    } else if (category === 'admin') {
+        return (<div className="flex flex-row justify-center items-center">
+        <div className={_class}>
+          <IonButton className="text-xs w-max" color="success">
+            EDITAR
+            <IonIcon slot="start" icon={createOutline}></IonIcon>
+          </IonButton>
+          <IonButton className="text-xs w-max" color="success" routerLink="/link-doctor">
+            VINCULAR
+            <IonIcon slot="start" icon={createOutline}></IonIcon>
+          </IonButton>
+          <IonButton className="text-xs" color="danger">
+            DELETAR
+            <IonIcon slot="start" icon={trashOutline}></IonIcon>
+          </IonButton>
+        </div>
+      </div>)
+    }
+  }
+
+
   return (
     <div onClick={showChat}>
       <IonCard className="bd-20 cardDoctorWhite">
@@ -87,34 +129,8 @@ function DoctorCard({ doctor }: DoctorCardProps) {
             ></IonIcon>
           </IonButton>
         </IonCardContent>
-        {/*  <div className="flex flex-row justify-center items-center">
-          <div className={_class}>
-            <IonButton className="text-xs w-max" routerLink="/conversation">
-              ABRIR CHAT
-              <IonIcon slot="start" icon={chatbubbleOutline}></IonIcon>
-            </IonButton>
-            <IonButton
-              className="text-xs"
-              color="tertiary"
-              routerLink="/medical-schedules"
-            >
-              AGENDAR
-              <IonIcon slot="start" icon={calendarOutline}></IonIcon>
-            </IonButton>
-          </div>
-        </div> */}
-        <div className="flex flex-row justify-center items-center">
-          <div className={_class}>
-            <IonButton className="text-xs w-max" color="success">
-              EDITAR
-              <IonIcon slot="start" icon={createOutline}></IonIcon>
-            </IonButton>
-            <IonButton className="text-xs" color="danger">
-              DELETAR
-              <IonIcon slot="start" icon={trashOutline}></IonIcon>
-            </IonButton>
-          </div>
-        </div>
+      
+        {renderize()}
       </IonCard>
     </div>
   );
