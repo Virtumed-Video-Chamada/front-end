@@ -8,12 +8,9 @@ import {
 import moment from "moment";
 import { chevronDown } from "ionicons/icons";
 
-
-
-
 const DateTime: React.FC = () => {
   const [data, setData] = useState<any>(new Date());
-  const dataInicio = moment(data[0]).format('DD/MM/YYYY')
+  const dataInicio = moment(data).format('DD/MM/YYYY')
   const [change, setChange] = useState('hidden');
 
  
@@ -38,7 +35,7 @@ const DateTime: React.FC = () => {
 
   return (
     <div className='rounded-[10px] w-[173px] h-[37px] bg-white calendar-container align-center text-center py-2 my-5 z-50'>
-    <span className='bold border py-2' onClick={() => onBlock()}>{dataInicio}</span>
+    <div className='font-bold border py-2' onClick={() => onBlock()}>{dataInicio}</div>
     <IonIcon src={chevronDown}></IonIcon> 
      <IonDatetime
       showDefaultButtons={true}

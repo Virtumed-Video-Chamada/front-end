@@ -1,7 +1,7 @@
-import { IonCard, IonCardContent, IonThumbnail, IonImg, IonButton, IonIcon, useIonAlert, useIonToast } from '@ionic/react'
-import { heartOutline, chatbubbleOutline, calendarOutline } from 'ionicons/icons'
-import React, { useState } from 'react'
-import { Doctor } from '../../@types/interfaces';
+import { IonCard, IonCardContent, IonThumbnail, IonButton, IonIcon, useIonAlert, useIonToast } from '@ionic/react'
+import { heartOutline, chatbubbleOutline, calendarOutline, heart } from 'ionicons/icons'
+import  { useEffect, useState } from 'react'
+import { Doctor } from '../../../@types/interfaces';
 
 
 const slideOpts = {
@@ -38,6 +38,22 @@ function DoctorCard({ doctor }: DoctorCardProps) {
       setClass("flex hidden");
     }
   };
+
+  const [favorites, setFavorite] = useState<any[]>([]);
+  const [buzy, setBusy] = useState<boolean>(false);
+  const [icons, setIcons] = useState(heartOutline);
+
+  const addFavorites = () => {
+    setBusy(true);
+    setIcons(heart);
+    console.log('teste')
+    console.log(doctor)
+  }
+
+  useEffect(() =>
+  { console.log(doctor)}, []
+  )
+
   return (
     <div  onClick={showChat} >
       <IonCard className="bd-20 cardDoctorWhite" >
@@ -53,10 +69,10 @@ function DoctorCard({ doctor }: DoctorCardProps) {
           <div className="flex flex-col gap-1 ml-11">
             <span className="text-black font-bold">{doctor.nameDoctor}</span>
             <p className="font-normal">{doctor.speciality}</p>
-            <span className="font-medium">98 Avaliações</span>
+            {/* <span className="font-medium">98 Avaliações</span> */}
           </div>
-          <IonButton fill="clear">
-            <IonIcon slot="icon-only" icon={heartOutline}></IonIcon>
+          <IonButton fill="clear" onClick={() => addFavorites()}>
+            <IonIcon slot="icon-only" className='text-red-900' icon={icons}></IonIcon>
           </IonButton>
         </IonCardContent>
         <div className="flex flex-row justify-center items-center">

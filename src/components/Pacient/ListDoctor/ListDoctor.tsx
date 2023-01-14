@@ -3,11 +3,12 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonItem,
-  IonList,
+  IonSearchbar,
+  IonList
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { mockedDoctors } from "../../../mocks/doctor";
-import DoctorCard from "../../Doctor/DoctorCard";
+import DoctorCard from "../DoctorCard/DoctorCard";
 
 const ListDoctor: React.FC = () => {
   const [items, setItems] = useState<any>(mockedDoctors);
@@ -24,17 +25,56 @@ const ListDoctor: React.FC = () => {
   useEffect(() => {
     generateItems();
     console.log(items);
+    handleChange();
+    // setResults(data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // const data = ['Amsterdam', 'Buenos Aires', 'Cairo', 'Geneva', 'Hong Kong', 'Istanbul', 'London', 'Madrid', 'New York', 'Panama City'];
+  const data = listDoctors;
+  let [results, setResults] = useState([...data]);
+const [novalista, setNovalista] = useState('all');
+  const handleChange = (ev?: Event) => {
+    let query = "";
+    if (ev != null) {
+      const target = ev.target as HTMLIonSearchbarElement;
+      if (target) query = target.value!.toLowerCase();
+    }
+    
+    console.log(query);
+    let teste;
+    // eslint-disable-next-line array-callback-return
+    setResults(data.filter((doctor) => {
+      return doctor.nameDoctor!.toLowerCase().indexOf(query) > -1 || query === '';
+           // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      // teste.toLowerCase().indexOf(query) > -1;
+    }))
+  }
+
+const [novosItens, setNovosItens] = useState()
+
+  const teste = () => {
+    // if (novalista === 'all') {
+    // return  (items.map((element: any, index: any) => (
+    //   <IonItem key={index}>
+    //     <DoctorCard doctor={element} key={element.id} />
+    //   </IonItem>)
+    //   ))
+    // } else {
+      return  (results.map((element: any, index: any) => (
+        <IonItem key={index}>
+          <DoctorCard doctor={element} key={element.id} />
+        </IonItem>)
+        ))
+    // }
+  }
+
+
   return (
     <IonContent>
+      <IonSearchbar debounce={1000} onIonChange={(ev) => handleChange(ev)}></IonSearchbar>
       <IonList>
-        {items.map((element: any, index: any) => (
-          <IonItem key={index}>
-            <DoctorCard doctor={element} key={element.id} />
-          </IonItem>
-        ))}
+        {teste()}
       </IonList>
       <IonInfiniteScroll
         onIonInfinite={(ev) => {

@@ -19,12 +19,12 @@ export interface Doctor {
 
 export interface Pacient {
   id?: string;
-  name: string;
-  age: string;
-  email: string;
-  password: string;
-  cep: string;
-  cpf: string;
+  name?: string;
+  age?: string;
+  email?: string;
+  password?: string;
+  cep?: string;
+  cpf?: string;
 }
 
 export interface userLogin {
@@ -86,4 +86,24 @@ export interface userClinic {
 	confirmPassword: string;
 	role: string;
 	isAdmin: boolean;
+}
+
+export interface RoomProps {
+	roomName: any;
+  room: any,
+  handleLogout: any;
+}
+
+export interface LobbyProps {
+	username: string;
+  handleUsernameChange: any;
+  roomName: string;
+  handleRoomNameChange: any;
+  handleSubmit: any;
+  connecting: any;
+}
+
+export interface PronturariosProps {
+	id?: string;
+  name?: string;
 }

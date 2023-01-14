@@ -14,6 +14,7 @@ ion-row {
     min-width: 6.25rem;
     width: 6.25rem;
     height: 6.25rem;
+    padding: 1rem;
 }
 
 ion-img {
@@ -27,3 +28,8 @@ ion-img {
 .textCard {
     padding-top: 2rem;
 }
+
+/* .textCard {
+    padding-left: 0.25rem;
+    padding-left: 0.25rem;
+} */
