@@ -56,6 +56,7 @@ import FindDoctor from './pages/Pacient/FindDoctor/FindDoctor';
 import MedicalSchedule from './pages/Pacient/MedicalSchedule/MedicalSchedule';
 import CategoryChoice from './pages/Register/CategoryChoice';
 import './style.css'
+import HomeClinic from './pages/Clinic/HomeClinic/HomeClinic';
 import { useEffect, useState } from 'react';
 import SideMenu from './components/SideMenu/SideMenu';
 import Example from './components/SideMenu/SideMenu';
@@ -106,9 +107,12 @@ const RoutingTabs: React.FC = () => {
             </Route>
             <Route exact path="/home-pacient">
               <HomePacient />
-            </Route>
+              </Route>
             <Route exact path="/home-doctor">
               <HomeDoctor />
+            </Route>
+            <Route exact path="/home-clinic">
+            <HomeClinic />
             </Route>
             <Route exact path="/schedules">
               <SchedulesPacient />
