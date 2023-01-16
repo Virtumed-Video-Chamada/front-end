@@ -4,6 +4,7 @@ import "./styles.css";
 import Participant from "./Participant";
 import ParticipantRemote from "./ParticipantRemote";
 import ParticipantLocal from "./ParticipantLocal";
+import "./styles.css";
 
 const Room = ({ roomName, room, handleLogout }: RoomProps) => {
   const [participants, setParticipants] = useState<any[]>([]);
@@ -36,7 +37,11 @@ const Room = ({ roomName, room, handleLogout }: RoomProps) => {
   return (
     <div className="room">
       <h2>Room: {roomName}</h2>
-      <button onClick={handleLogout}>Log out</button>
+      <div className="btn-call-container">
+        <button>Botão 1</button>
+        <button onClick={handleLogout}>Log out</button>
+        <button>Botão 2</button>
+      </div>
       <div className="local-participant">
         {room ? (
           <ParticipantLocal
@@ -47,7 +52,6 @@ const Room = ({ roomName, room, handleLogout }: RoomProps) => {
           ""
         )}
       </div>
-      <h3>Remote Participants</h3>
       <div className="remote-participants">{remoteParticipants}</div>
     </div>
   );

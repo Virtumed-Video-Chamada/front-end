@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import "./styles.css"
 
 const Participant = ({ participant }: any) => {
   const [videoTracks, setVideoTracks] = useState<any[]>([]);

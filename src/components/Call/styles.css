@@ -204,45 +204,78 @@
     border: 10px solid #4b39b3;
   }
 }
-/* 
+
 .room {
   display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  /* justify-content: center;  */
+}
+
+.btn-call-container {
+  position: fixed;
+  bottom: 60px;
+  display: flex;
   width: 100%;
-  /* flex-direction: column;
-  justify-content: center; */
-/* } */
-
-/* .room > .local-participant {
-  height: 100vh;
-  position: relative;
+  justify-content: space-around;
+  align-items: center;  
 }
 
-.room > .remote-participant {
-    height: 150px;
-    width: 90px;
-    position: absolute;
-    z-index: 1;
-} */
-
-/* .participant01 video {
-  min-width: 50px;
-  min-height: 80vh;
-  display: inline;
+.btn-call-container > button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background-color: red;
+  color: #fff;
 }
 
-.participant02 video {
-  min-width: 50px;
-  min-height: 50vh;
-  display: block !important;
-} */
-
-/* .participantLocal {
-  height: 100vh;
+.local-participant {
+  height: 50vh;
+  min-width: 100%;
 }
 
-.participantRemote {
-    height: 150px;
-    width: 90px;
-    position: absolute;
-    z-index: 1;
-}  */
+.local-participant > h3 {
+  position: absolute;
+}
+
+.participantLocal {
+  height: 50vh;
+  min-width: 100%;
+}
+
+.participantLocal > h3{
+  position: fixed;
+  top: 50px;
+  left: 20px;
+  color: #fff;
+}
+
+.participantLocal > video {
+  height: 50vh;
+  min-width:100%;
+}
+
+.participantRemote > h3{
+  position: fixed;
+  top: 150px;
+  left: 20px;
+  color: #fff;
+}
+
+.remote-participants {
+  height: 50vh;
+  min-width: 100%;
+}
+
+.room > h2 {
+  position: fixed;
+  top: 100px;
+}
+
+.room > h3 {
+  position: fixed;
+  top: 50%;
+}
+
