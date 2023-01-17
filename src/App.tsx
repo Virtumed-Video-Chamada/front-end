@@ -67,6 +67,7 @@ import HistoricalDoctor from './pages/Doctor/HistoricalDoctor/HistoricalDoctor';
 import FavoriteDoctors from './pages/Pacient/FavoriteDoctors/FavoriteDoctors';
 
 
+
 setupIonicReact();
 
 

@@ -11,10 +11,8 @@ import {
   IonFooter,
   IonHeader,
   IonIcon,
-  IonInput,
   IonPage,
   IonRow,
-  IonTabBar,
   IonToolbar,
   IonContent,
   IonItem,
@@ -147,7 +145,6 @@ const Conversation: React.FC = () => {
           );
         })}
       </IonContent>
-
       <IonFooter className="mb-0">
         <IonToolbar>
           <IonRow className="items-center padding-0">
@@ -167,12 +164,14 @@ const Conversation: React.FC = () => {
                 ></input>
               </IonButton>
               {/* <TextareaAutosize
+
                       id="textarea"
                       value={newMsg}
                       className="message-input h-10"
                       onChange={(e) => setNewMsg(e.target.value)}
                       onKeyPress={(event) => handleKeyPress(event)}
                     /> */}
+
             </IonCol>
             <IonCol size="2">
               <IonButton
@@ -189,6 +188,7 @@ const Conversation: React.FC = () => {
           </IonRow>
         </IonToolbar>
       </IonFooter>
+
     </IonPage>
   );
 };

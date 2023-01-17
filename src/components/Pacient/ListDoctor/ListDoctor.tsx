@@ -46,6 +46,7 @@ const ListDoctor: React.FC = () => {
     handleChange();
   }, []);
 
+
   const renderize = () => {
     return results.map((element: any, index: any) => (
       <IonItem key={index}>
@@ -62,6 +63,7 @@ const ListDoctor: React.FC = () => {
         placeholder= "Pesquise por Nome ou Especialidade"
       ></IonSearchbar>
       <IonList>{renderize()}</IonList>
+
       <IonInfiniteScroll
         onIonInfinite={(ev) => {
           generateItems();

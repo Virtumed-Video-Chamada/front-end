@@ -402,8 +402,6 @@ ion-tab-button.tab-selected {
   overflow-y: auto !important;
   }
 
-
-
 @media screen and (max-height: 825px) {
   body {
     font-size: 80%;
