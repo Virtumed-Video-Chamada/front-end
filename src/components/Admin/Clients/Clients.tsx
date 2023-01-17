@@ -7,7 +7,7 @@ import {
   import { useState } from "react";
 import { mockedClinics } from "../../../mocks/clinic";
   import { mockedDoctors } from "../../../mocks/doctor";
-  import DoctorCard from "../../Doctor/DoctorCard";
+  import DoctorCard from "../../DoctorCard/DoctorCard";
 import ClinicCard from "../ClinicCard/ClinicCard";
   import './style.css';
 

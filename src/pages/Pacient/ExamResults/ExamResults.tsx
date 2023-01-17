@@ -37,7 +37,7 @@ import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 import QuickAccess from "../../../components/Pacient/QuickAcess/QuickAccess";
 
-import Schedules from "../../../components/Schedules/Schedules";
+import Schedules from "../../../components/SchedulePatient/SchedulePatient";
 
 const ExamResults: React.FC = () => {
   return (

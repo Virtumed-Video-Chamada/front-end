@@ -34,7 +34,7 @@ import { Redirect, Route } from "react-router";
 import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 import QuickAccess from "../../../components/Pacient/QuickAcess/QuickAccess";
-import Schedules from "../../../components/Schedules/Schedules";
+import Schedules from "../../../components/SchedulePatient/SchedulePatient";
 
 /* criar 3 classes para dividir por cor */
 

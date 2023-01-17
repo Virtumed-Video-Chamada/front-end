@@ -3,7 +3,7 @@ import { IonPage } from "@ionic/react";
 import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 
-import Schedules from "../../../components/Schedules/Schedules";
+import Schedules from "../../../components/SchedulePatient/SchedulePatient";
 
 const SchedulesPacient: React.FC = () => {
   return (

@@ -8,7 +8,7 @@ import {
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { mockedDoctors } from "../../../mocks/doctor";
-import DoctorCard from "../../Doctor/DoctorCard";
+import DoctorCard from "../../DoctorCard/DoctorCard";
 
 
 const ListDoctor: React.FC = () => {

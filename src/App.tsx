@@ -83,6 +83,9 @@ import LinkDoctor from "./pages/Admin/LinkDoctor/LinkDoctor";
 import LinkPatient from "./pages/Admin/LinkPatient/LinkPatient";
 import PatientList from "./pages/Admin/PatientList/PatientList";
 import { userPacient } from "./@types/interfaces";
+import SchedulePatient from "./components/SchedulePatient/SchedulePatient";
+import ScheduleDoctor from "./components/ScheduleDoctor/ScheduleDoctor";
+import ClinicList from "./pages/Admin/ClinicList/ClinicList";
 
 setupIonicReact();
 
@@ -134,16 +137,22 @@ const RoutingTabs: React.FC = () => {
           <Route exact path="/patient-list">
             <PatientList/>
           </Route>
+          <Route exact path="/clinic-list">
+            <ClinicList/>
+          </Route>
           <Route exact path="/">
             <HomePacient />
           </Route>
           <Route exact path="/home-pacient">
             <HomePacient />
           </Route>
-          <Route exact path="/schedules">
-            <SchedulesPacient />
+          <Route exact path="/schedule-patient">
+            <SchedulePatient />
           </Route>
-          <Route exact path="/medical-schedules">
+          <Route exact path="/schedule-doctor">
+            <ScheduleDoctor/>
+          </Route>
+          <Route exact path="/medical-schedule">
             <MedicalSchedule />
           </Route>
           <Route exact path="/chat">

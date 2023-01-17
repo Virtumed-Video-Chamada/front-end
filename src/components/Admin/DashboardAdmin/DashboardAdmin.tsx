@@ -87,9 +87,9 @@ const DashboardAdmin: React.FC = () => {
             ></IonImg>
             <p className="text-center textCard ">Cadastrar Clínica</p>
           </IonCard>
-          <IonCard className="mr-1 bd-20 quickCard">
+          <IonCard className="mr-1 bd-20 quickCard" routerLink="/clinic-list">
             <IonImg
-              className="imgCard"
+              className="imgCard mx-auto"
               src="./assets/icon/health.svg"
             ></IonImg>
             <p className="text-center textCard">Clínicas Cadastradas</p>

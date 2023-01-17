@@ -5,8 +5,6 @@ import {
   IonContent,
   IonHeader,
   IonIcon,
-  IonInfiniteScroll,
-  IonInfiniteScrollContent,
   IonItem,
   IonLabel,
   IonList,
@@ -17,21 +15,14 @@ import {
   useIonAlert,
   useIonToast,
 } from "@ionic/react";
-import {
-  list,
-  pencilOutline,
-  star,
-  trashBin,
-  trashBinOutline,
-} from "ionicons/icons";
+import { pencilOutline, trashBinOutline } from "ionicons/icons";
 import React, { useEffect, useState } from "react";
-import { userPacient } from "../../../@types/interfaces";
-import { mockedPatients } from "../../../mocks/patient";
+import { mockedClinics } from "../../../mocks/clinic";
 
-const PatientList = () => {
-  const [items, setItems] = useState<any>(mockedPatients);
-  let listPatients = mockedPatients;
-  const [results, setResults] = useState([...listPatients]);
+const ClinicList = () => {
+  const [items, setItems] = useState<any>(mockedClinics);
+  let listClinics = mockedClinics;
+  const [results, setResults] = useState([...listClinics]);
 
   const generateItems = () => {
     const newItems = [];
@@ -48,11 +39,11 @@ const PatientList = () => {
       if (target) query = target.value!.toLowerCase();
     }
     setResults(
-      listPatients.filter((patient) => {
+      listClinics.filter((clinic) => {
         return (
-          patient.name!.toLowerCase().indexOf(query) > -1 ||
+          clinic.name!.toLowerCase().indexOf(query) > -1 ||
           query === "" ||
-          patient.cpf!.indexOf(query) > -1 ||
+          clinic.cnpj!.indexOf(query) > -1 ||
           query === ""
         );
       })
@@ -65,6 +56,7 @@ const PatientList = () => {
   }, []);
 
   const [change, setChange] = useState<boolean>(false);
+  const [_class, setClass] = useState<string>("flex hidden");
   const [presentAlert] = useIonAlert();
   const [present] = useIonToast();
   const [handlerMessage, setHandlerMessage] = useState("");
@@ -73,7 +65,7 @@ const PatientList = () => {
 
   const presentToast = () => {
     present({
-      message: "Paciente deletado com sucesso!",
+      message: "Clínica deletada com sucesso!",
       duration: 1500,
       position: "top",
       icon: iconSucces
@@ -82,7 +74,7 @@ const PatientList = () => {
 
   const alert = () => {
     presentAlert({
-      header: "DESEJA APAGAR O PACIENTE DO SISTEMA?",
+      header: "DESEJA APAGAR A CLÍNICA DO SISTEMA?",
       cssClass: "custom-alert",
       buttons: [
         {
@@ -111,6 +103,7 @@ const PatientList = () => {
     return results.map((element: any, index: any) => (
       <IonItem lines="full" key={index}>
         <IonLabel>{element.name}</IonLabel>
+
         <IonButton slot="end" color="primary">
           <IonIcon icon={pencilOutline}></IonIcon>
         </IonButton>
@@ -132,18 +125,15 @@ const PatientList = () => {
       </IonHeader>
       <IonContent>
         <IonText class=" flex justify-start p-3 text-black text-lg font-bold">
-          Pacientes Cadastrados
+          Clínicas Cadastradas
         </IonText>
         <IonSearchbar
           debounce={1000}
-          placeholder="Pesquisar por Nome ou CPF"
+          placeholder="Pesquisar por Nome ou CNPJ"
           onIonChange={(ev) => handleChange(ev)}
         ></IonSearchbar>
         <IonItem color="primary" lines="none">
           <IonLabel>Nome</IonLabel>
-        </IonItem>
-        <IonItem color="tertiary" lines="none">
-          <IonLabel>A</IonLabel>
         </IonItem>
         <IonList>{renderize()}</IonList>
       </IonContent>
@@ -151,4 +141,4 @@ const PatientList = () => {
   );
 };
 
-export default PatientList;
+export default ClinicList;
