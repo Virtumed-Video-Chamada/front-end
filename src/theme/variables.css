@@ -398,7 +398,7 @@ ion-tab-button.tab-selected {
 }
 
 .ion-page {
-  min-height: 100vh;
+  min-height: 100%;
   overflow-y: auto !important;
   }
 

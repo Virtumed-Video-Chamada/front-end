@@ -5,6 +5,7 @@ import * as T from "../@types/interfaces";
 export const mockedRecords: T.PronturariosProps[] = [
   {
     id: "b329050a-e2a6-4603-988a-a0235e923a77111111111",
+    cpf: '0998254522',
     name: "Daniel Mota",
   },
   {
@@ -26,5 +27,9 @@ export const mockedRecords: T.PronturariosProps[] = [
   {
     id: "b11329050a-e2a6-4603-988a-a0235e923a775555ascs",
     name: "Celso Dantas",
+  },
+  {
+    id: "b11329050a-e2a6-4603-988a-a0235e923a775555ascs",
+    name: "Eduardo da Silva",
   }
 ];

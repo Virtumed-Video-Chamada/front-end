@@ -17,7 +17,7 @@ export interface Doctor {
   rank?: number;
 }
 
-export interface Pacient {
+export interface Patient {
   id?: string;
   name?: string;
   age?: string;
@@ -105,5 +105,6 @@ export interface LobbyProps {
 
 export interface PronturariosProps {
 	id?: string;
+	cpf?: string;
   name?: string;
 }

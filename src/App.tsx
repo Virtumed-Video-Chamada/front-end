@@ -41,7 +41,7 @@ import '@ionic/react/css/typography.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import HomePacient from './pages/Pacient/HomePaciente/HomePaciente';
+import HomePacient from './pages/Pacient/HomePatient/HomePatient';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import SchedulesPacient from './pages/Pacient/SchedulesPacient/SchedulesPacient';
@@ -183,7 +183,7 @@ const RoutingTabs: React.FC = () => {
   )
 }
 const App: React.FC = () => {
-   const [user, setUser] = useState(false);
+   const [user, setUser] = useState(true);
    
   return (
     <IonApp>

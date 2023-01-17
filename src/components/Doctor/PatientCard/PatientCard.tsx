@@ -5,13 +5,13 @@ import {
   useIonToast,
 } from "@ionic/react";
 import { useState } from "react";
-import { Pacient } from "../../../@types/interfaces";
+import { Patient } from "../../../@types/interfaces";
 
-interface PacientCardProps {
-  pacient: Pacient;
+interface PatientCardProps {
+  patient: Patient;
 }
 
-function PacientCard({ pacient }: PacientCardProps) {
+function PatientCard({ patient }: PatientCardProps) {
   const [change, setChange] = useState<boolean>(false);
   const [_class, setClass] = useState<string>("flex hidden");
   const [present] = useIonToast();
@@ -27,18 +27,18 @@ function PacientCard({ pacient }: PacientCardProps) {
 
   return (
     <div onClick={showChat}>
-      <IonCard className="bd-20 cardpacientWhite">
+      <IonCard className="bd-20 cardpatientWhite">
         <IonCardContent className="flex justify-start">
           <IonThumbnail slot="start">
             <img
-              className="imgpacient max-h-[130%] max-w-[130%] bd-20"
-              alt="Pic-pacient"
-              src="./assets/avatar/Pic-pacient.jpg"
+              className="imgpatient max-h-[130%] max-w-[130%] bd-20"
+              alt="Pic-patient"
+              src="https://ionicframework.com/docs/img/demos/avatar.svg"
             />
           </IonThumbnail>
 
           <div className="flex flex-col gap-1 ml-11">
-            <span className="text-black font-bold">{pacient.name}</span>
+            <span className="text-black font-bold">{patient.name}</span>
             {/* <span className="font-medium">98 Avaliações</span> */}
           </div>
         </IonCardContent>
@@ -47,4 +47,4 @@ function PacientCard({ pacient }: PacientCardProps) {
   );
 }
 
-export default PacientCard;
+export default PatientCard;

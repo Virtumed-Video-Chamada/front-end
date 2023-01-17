@@ -28,12 +28,14 @@ const ListDoctor: React.FC = () => {
     if (ev != null) {
       const target = ev.target as HTMLIonSearchbarElement;
       if (target) query = target.value!.toLowerCase();
+      console.log(query)
     }
     // eslint-disable-next-line array-callback-return
     setResults(
       listDoctors.filter((doctor) => {
+       if (query != "") query = query.charAt(0).toUpperCase() + query.slice(1);
         return (
-          doctor.nameDoctor!.toLowerCase().indexOf(query) > -1 || query === ""
+          (doctor.nameDoctor!.indexOf(query) > -1 || doctor.speciality!.indexOf(query) > -1 || query === "")
         );
       })
     );
@@ -57,6 +59,7 @@ const ListDoctor: React.FC = () => {
       <IonSearchbar
         debounce={1000}
         onIonChange={(ev) => handleChange(ev)}
+        placeholder= "Pesquise por Nome ou Especialidade"
       ></IonSearchbar>
       <IonList>{renderize()}</IonList>
       <IonInfiniteScroll
