@@ -402,7 +402,42 @@ ion-tab-button.tab-selected {
   overflow-y: auto !important;
   }
 
-@media screen and (max-height: 825px) {
+
+  ion-radio {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+  
+  ion-radio::part(container) {
+    border-radius: 10px;
+    border: 2px solid #ddd;
+  }
+  
+  ion-radio::part(mark) {
+    background: none;
+    transition: none;
+    transform: none;
+    border-radius: 0;
+  }
+  
+  ion-radio.radio-checked::part(container) {
+    background: #4B39B3;
+    border-color: transparent;
+
+  }
+  
+  ion-radio.radio-checked::part(mark) {
+    width: 6px;
+    height: 10px;
+  
+    border-width: 0px 2px 2px 0px;
+    border-style: solid;
+    border-color: #fff;
+  
+    transform: rotate(45deg);
+  }
+  
+  @media screen and (max-height: 825px) {
   body {
     font-size: 80%;
   }
