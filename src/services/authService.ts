@@ -5,8 +5,8 @@ import api from './api';
 const loginService = {
 	login: (values: userLogin) =>
 		api
-			.post('/login', values)
-			.then((response: any) => response)
+			.post('/sessions', values)
+			.then((response: any) => { return response })
 			.catch((error: any) => console.log('ERRO NA CHAMADA:', error)),
 };
 

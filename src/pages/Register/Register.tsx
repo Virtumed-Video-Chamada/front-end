@@ -16,7 +16,7 @@ const Register: React.FC = () => {
         <div className="splash-info"></div>
             <IonImg src='./assets/logo.png' className='imgLogo'/>
             {choice === "clinica" && <RegisterClinic /> }
-            {choice === "doctor" && <RegisterMedic /> }
+            {choice === "doctors" && <RegisterMedic /> }
             {choice === "pacient" && <RegisterPacient/> }
 
           

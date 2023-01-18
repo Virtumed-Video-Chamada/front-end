@@ -9,10 +9,15 @@ import {
 import { useEffect, useState } from "react";
 import { mockedDoctors } from "../../../mocks/doctor";
 import DoctorCard from "../DoctorCard/DoctorCard";
+import { findAllService } from "../../../services/findService";
+
 
 const ListDoctor: React.FC = () => {
   const [items, setItems] = useState<any>(mockedDoctors);
-  var listDoctors = mockedDoctors;
+  const listDoctors = mockedDoctors;
+  const data = listDoctors;
+  const [results, setResults] = useState([...data]);
+  const role: string = "doctors";
 
   const generateItems = () => {
     const newItems = [];
@@ -22,45 +27,48 @@ const ListDoctor: React.FC = () => {
     setItems([...items, ...newItems]);
   };
 
-  useEffect(() => {
+  const listAllDoctors = async () => {
+    await findAllService.findAllDoctors(role).then((response: any) => {
+      console.log(response);
+      setItems(response);
+      handleChange();
+    }).catch((err: any) => {
+      console.log(err);
+    });
+  }
+   
+   
+   useEffect(() => {
     generateItems();
-    console.log(items);
-    handleChange();
-    // setResults(data);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+     listAllDoctors();
+      }, []);
 
   // const data = ['Amsterdam', 'Buenos Aires', 'Cairo', 'Geneva', 'Hong Kong', 'Istanbul', 'London', 'Madrid', 'New York', 'Panama City'];
-  const data = listDoctors;
-  let [results, setResults] = useState([...data]);
-const [novalista, setNovalista] = useState('all');
-  const handleChange = (ev?: Event) => {
-    let query = "";
+ 
+  const handleChange = async (ev?: Event) => {
+    await findAllService.findAllDoctors(role).then((response: any) => {
+      console.log(response);
+      setItems(response);
+      let query = "";
     if (ev != null) {
       const target = ev.target as HTMLIonSearchbarElement;
       if (target) query = target.value!.toLowerCase();
     }
-    
-    console.log(query);
-    let teste;
     // eslint-disable-next-line array-callback-return
     setResults(data.filter((doctor) => {
       return doctor.nameDoctor!.toLowerCase().indexOf(query) > -1 || query === '';
            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       // teste.toLowerCase().indexOf(query) > -1;
     }))
+    }).catch((err: any) => {
+      console.log(err);
+    });
+    
   }
 
-const [novosItens, setNovosItens] = useState()
+
 
   const teste = () => {
-    // if (novalista === 'all') {
-    // return  (items.map((element: any, index: any) => (
-    //   <IonItem key={index}>
-    //     <DoctorCard doctor={element} key={element.id} />
-    //   </IonItem>)
-    //   ))
-    // } else {
       return  (results.map((element: any, index: any) => (
         <IonItem key={index}>
           <DoctorCard doctor={element} key={element.id} />
@@ -90,3 +98,7 @@ const [novosItens, setNovosItens] = useState()
 };
 
 export default ListDoctor;
+function findAllDoctors(role: string) {
+  throw new Error("Function not implemented.");
+}
+

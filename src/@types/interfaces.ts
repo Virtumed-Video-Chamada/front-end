@@ -45,9 +45,9 @@ export interface userPacient {
 	state: string;
 	email: string;
 	password: string;
-	confirmPassword: string;
-	role: string;
-	isAdmin: boolean;
+	confirmPassword?: string;
+	role?: string;
+	isAdmin?: boolean;
 }
 
 export interface userDoctor {
@@ -63,10 +63,10 @@ export interface userDoctor {
 	state: string;
 	email: string;
 	password: string;
-	confirmPassword: string;
+	confirmPassword?: string;
 	speciality: string;
-	role: string;
-	isAdmin: boolean;
+	role?: string;
+	isAdmin?: boolean;
 }
 
 
@@ -83,9 +83,9 @@ export interface userClinic {
 	state: string;
 	email: string;
 	password: string;
-	confirmPassword: string;
-	role: string;
-	isAdmin: boolean;
+	confirmPassword?: string;
+	role?: string;
+	isAdmin?: boolean;
 }
 
 export interface RoomProps {

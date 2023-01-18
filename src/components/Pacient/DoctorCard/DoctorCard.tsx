@@ -46,13 +46,9 @@ function DoctorCard({ doctor }: DoctorCardProps) {
   const addFavorites = () => {
     setBusy(true);
     setIcons(heart);
-    console.log('teste')
-    console.log(doctor)
   }
 
-  useEffect(() =>
-  { console.log(doctor)}, []
-  )
+
 
   return (
     <div  onClick={showChat} >

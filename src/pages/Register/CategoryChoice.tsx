@@ -27,12 +27,12 @@ const CategoryChoice: React.FC = () => {
             <IonRadioGroup allowEmptySelection={true} value="">
               <IonItem lines="none">
                 <IonLabel>Clínica</IonLabel>
-                <IonRadio slot="start" value="clinica" onClick={() => setChoice('clinica')}></IonRadio>
+                <IonRadio slot="start" value="clinica" onClick={() => setChoice('clinic')}></IonRadio>
               </IonItem>
 
               <IonItem lines="none">
                 <IonLabel>Médico</IonLabel>
-                <IonRadio slot="start" value="doctor" onClick={() => setChoice('doctor')}></IonRadio>
+                <IonRadio slot="start" value="doctor" onClick={() => setChoice('doctors')}></IonRadio>
               </IonItem>
 
               <IonItem lines="none">
