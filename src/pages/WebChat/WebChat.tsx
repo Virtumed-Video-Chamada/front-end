@@ -7,12 +7,11 @@ import './styles.css'
 const  WebChat: React.FC = () => {
   return (
     <IonPage className='align-page'>
-     <IonHeader>
+      <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton text="" className="text-white"/>
+            <IonBackButton />
           </IonButtons>
-          <IonTitle className="text-white">Em Consulta</IonTitle>
         </IonToolbar>
       </IonHeader>
           <VideoChat />

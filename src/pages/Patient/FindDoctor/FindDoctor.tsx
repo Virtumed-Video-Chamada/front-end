@@ -22,7 +22,8 @@ import { IonReactRouter } from "@ionic/react-router";
 import { ellipse, heart, square, triangle } from "ionicons/icons";
 import { Redirect, Route } from "react-router";
 import Identificador from "../../../components/Identificador/Identificador";
-import ListDoctor from "../../../components/Pacient/ListDoctor/ListDoctor";
+import ListDoctor from "../../../components/Patient/ListDoctor/ListDoctor";
+
 import PreCall from "../../../components/PreCall/PreCall";
 
 const FindDoctor: React.FC = () => {
@@ -35,15 +36,18 @@ const FindDoctor: React.FC = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonImg
+
+      <IonContent>
+        <IonImg
           src="./assets/logo.png"
           className="imgLogoSmall flex items-center mx-auto"
         />
-      <IonText class=" flex justify-center mt-5 text-black text-xl font-bold">
-        Médicos Cadastrados
-      </IonText>
+        <IonText class=" flex justify-center mt-5 text-black text-xl font-bold">
+          Médicos Cadastrados
+        </IonText>
 
-      <ListDoctor />
+        <ListDoctor />
+      </IonContent>
     </IonPage>
   );
 };

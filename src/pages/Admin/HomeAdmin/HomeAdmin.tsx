@@ -11,11 +11,6 @@ import { useHistory } from "react-router";
 import Clients from "../../../components/Admin/Clients/Clients";
 import DashboardAdmin from "../../../components/Admin/DashboardAdmin/DashboardAdmin";
 import IdentificadorAdmin from "../../../components/Admin/IdentificadorAdmin/IdentificadorAdmin";
-import Appointments from "../../../components/Appointments/Appointments";
-import Identificador from "../../../components/Identificador/Identificador";
-import PopularDoctor from "../../../components/Pacient/PopularDoctor/PopularDoctor";
-import QuickAccess from "../../../components/Pacient/QuickAcess/QuickAccess";
-import SideMenu from "../../../components/SideMenu/SideMenu";
 import "./style.css";
 // import logo from "../../../assets/logo.png"
 
@@ -38,9 +33,7 @@ const HomeAdmin: React.FC = () => {
         <IonItem className="mt-0 mb-0" lines="none">
           <DashboardAdmin />
         </IonItem>
-        <IonItem className="mt-0 mb-0" lines="none">
-          <Clients />
-        </IonItem>
+       
       </IonContent>
     </IonPage>
   );

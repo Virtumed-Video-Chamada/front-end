@@ -40,8 +40,6 @@ function DoctorCard({ doctor }: DoctorCardProps) {
     }
   };
 
-
-
   const [presentAlert] = useIonAlert();
   const [present] = useIonToast();
   const [handlerMessage, setHandlerMessage] = useState("");
@@ -53,7 +51,7 @@ function DoctorCard({ doctor }: DoctorCardProps) {
       message: "Médico deletado com sucesso!",
       duration: 1500,
       position: "top",
-      icon: iconSucces
+      icon: iconSucces,
     });
   };
 
@@ -83,8 +81,6 @@ function DoctorCard({ doctor }: DoctorCardProps) {
         setRoleMessage(`Dismissed with role: ${e.detail.role}`),
     });
   };
-
-
 
   const [favorites, setFavorite] = useState<any[]>([]);
   const [buzy, setBusy] = useState<boolean>(false);
@@ -136,15 +132,13 @@ function DoctorCard({ doctor }: DoctorCardProps) {
             </IonButton>
             <IonButton className="text-xs" color="danger" onClick={alert}>
               DELETAR
-              <IonIcon slot="start" icon={trashOutline} ></IonIcon>
+              <IonIcon slot="start" icon={trashOutline}></IonIcon>
             </IonButton>
           </div>
         </div>
       );
     }
   };
-
-  
 
   return (
     <div onClick={showChat}>
@@ -160,6 +154,7 @@ function DoctorCard({ doctor }: DoctorCardProps) {
           <div className="flex flex-col gap-1 ml-11">
             <span className="text-black font-bold">{doctor.nameDoctor}</span>
             <p className="font-normal">{doctor.speciality}</p>
+            <p className="font-normal">{doctor.crm}</p>
             {/* <span className="font-medium">98 Avaliações</span> */}
           </div>
           <IonButton fill="clear" onClick={() => addFavorites()}>
@@ -172,6 +167,7 @@ function DoctorCard({ doctor }: DoctorCardProps) {
         </IonCardContent>
         {renderize()}
       </IonCard>
+    
     </div>
   );
 }

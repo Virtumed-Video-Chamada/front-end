@@ -1,7 +1,8 @@
 import { IonImg, IonPage } from '@ionic/react';
 import RegisterClinic from '../../components/Register/RegisterClinic';
 import RegisterMedic from '../../components/Register/RegisterDoctor';
-import RegisterPacient from '../../components/Register/RegisterPacient';
+import RegisterPacient from '../../components/Register/RegisterPatient';
+
 
 
 const Register: React.FC = () => {

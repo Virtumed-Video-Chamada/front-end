@@ -53,20 +53,16 @@ import "@ionic/react/css/typography.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import HomePacient from "./pages/Pacient/HomePaciente/HomePaciente";
+
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Principal from "./pages/Principal/Principal";
-import SchedulesPacient from "./pages/Pacient/SchedulesPacient/SchedulesPacient";
+
 import Chat from "./pages/Chat/Chat";
 import WebChat from "./pages/WebChat/WebChat";
 import PatientSettings from "./pages/PatientSettings/PatientSettings";
 import Conversation from "./pages/Conversation/Conversation";
-import MyHealth from "./pages/Pacient/MyHealth/MyHealth";
-import HistoricalClinic from "./pages/Pacient/HistoricalClinic/HistoricalClinic";
-import ExamResults from "./pages/Pacient/ExamResults/ExamResults";
-import FindDoctor from "./pages/Pacient/FindDoctor/FindDoctor";
-import MedicalSchedule from "./pages/Pacient/MedicalSchedule/MedicalSchedule";
+
 import CategoryChoice from "./pages/Register/CategoryChoice";
 import "./style.css";
 import { useState } from "react";
@@ -78,14 +74,19 @@ import RegisterAdmin from "./components/Register/RegisterAdmin";
 import HomeAdmin from "./pages/Admin/HomeAdmin/HomeAdmin";
 import RegisterDoctorAdmin from "./pages/Admin/CRUDAdmin/RegisterDoctorAdmin/RegisterDoctorAdmin";
 import RegisterClinicAdmin from "./pages/Admin/CRUDAdmin/RegisterClinicAdmin/RegisterClinicAdmin";
-import RegisterPatientAdmin from "./pages/Admin/CRUDAdmin/RegisterPatientAdmin/RegisterPacient";
 import LinkDoctor from "./pages/Admin/LinkDoctor/LinkDoctor";
 import LinkPatient from "./pages/Admin/LinkPatient/LinkPatient";
 import PatientList from "./pages/Admin/PatientList/PatientList";
-import { userPacient } from "./@types/interfaces";
 import SchedulePatient from "./components/SchedulePatient/SchedulePatient";
 import ScheduleDoctor from "./components/ScheduleDoctor/ScheduleDoctor";
 import ClinicList from "./pages/Admin/ClinicList/ClinicList";
+import ExamResults from "./pages/Patient/ExamResults/ExamResults";
+import FindDoctor from "./pages/Patient/FindDoctor/FindDoctor";
+import HistoricalClinic from "./pages/Patient/HistoricalClinic/HistoricalClinic";
+import HomePatient from "./pages/Patient/HomePatient/HomePatient";
+import MedicalSchedule from "./pages/Patient/MedicalSchedule/MedicalSchedule";
+import MyHealth from "./pages/Patient/MyHealth/MyHealth";
+import RegisterPatientAdmin from "./pages/Admin/CRUDAdmin/RegisterPatientAdmin/RegisterPatient";
 
 setupIonicReact();
 
@@ -99,8 +100,8 @@ const RoutingSystem: React.FC = () => {
           <Route path="/register-choice" component={CategoryChoice} exact />
           <Route path="/register" component={Register} exact />
           <Route path="/patient-settings" component={PatientSettings} exact />
-          <Route path="/agendamentos" component={SchedulesPacient} exact />
-          {/* <Route path="/home" component={HomePacient} exact /> */}
+          <Route path="/agendamentos" component={SchedulePatient} exact />
+          {/* <Route path="/home" component={HomePatient} exact /> */}
         </IonRouterOutlet>
       </IonSplitPane>
     </IonReactRouter>
@@ -141,10 +142,10 @@ const RoutingTabs: React.FC = () => {
             <ClinicList/>
           </Route>
           <Route exact path="/">
-            <HomePacient />
+            <HomePatient />
           </Route>
-          <Route exact path="/home-pacient">
-            <HomePacient />
+          <Route exact path="/home-patient">
+            <HomePatient />
           </Route>
           <Route exact path="/schedule-patient">
             <SchedulePatient />
@@ -180,7 +181,7 @@ const RoutingTabs: React.FC = () => {
             <PatientSettings />
           </Route>
           <Route exact path="/agendamentos">
-            <SchedulesPacient />
+            <SchedulePatient />
           </Route>
           <Route exact path="/call">
             <VideoChat />
@@ -193,7 +194,7 @@ const RoutingTabs: React.FC = () => {
           </Route>
         </IonRouterOutlet>
         <IonTabBar className="menuTab" slot="bottom">
-          <IonTabButton tab="home" href="/home-pacient">
+          <IonTabButton tab="home" href="/home-patient">
             <IonIcon icon={homeOutline} className="w-6 h-6" color="primary" />
           </IonTabButton>
           <IonTabButton tab="tab2" href="/schedules">

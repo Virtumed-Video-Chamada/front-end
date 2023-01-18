@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
 import { mockedDoctors } from "../../../mocks/doctor";
 import DoctorCard from "../../DoctorCard/DoctorCard";
 
-
 const ListDoctor: React.FC = () => {
   const [items, setItems] = useState<any>(mockedDoctors);
   let listDoctors = mockedDoctors;
@@ -34,7 +33,10 @@ const ListDoctor: React.FC = () => {
     setResults(
       listDoctors.filter((doctor) => {
         return (
-          doctor.nameDoctor!.toLowerCase().indexOf(query) > -1 || query === ""
+          doctor.nameDoctor!.toLowerCase().indexOf(query) > -1 ||
+          query === "" ||
+          doctor.crm!.indexOf(query) > -1 ||
+          query === ""
         );
       })
     );
@@ -47,7 +49,7 @@ const ListDoctor: React.FC = () => {
 
   const renderize = () => {
     return results.map((element: any, index: any) => (
-      <IonItem key={index}>
+      <IonItem key={index} lines="none">
         <DoctorCard doctor={element} key={element.id} />
       </IonItem>
     ));
@@ -58,6 +60,7 @@ const ListDoctor: React.FC = () => {
       <IonSearchbar
         debounce={1000}
         onIonChange={(ev) => handleChange(ev)}
+        placeholder="Pesquisar por Nome ou CRM"
       ></IonSearchbar>
       <IonList>{renderize()}</IonList>
       <IonInfiniteScroll
