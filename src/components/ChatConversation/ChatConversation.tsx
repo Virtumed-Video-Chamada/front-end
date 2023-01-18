@@ -11,7 +11,7 @@ export function ChatConversation(props: ChatConversationProps) {
 
   return (
   <IonGrid>
-    <IonRow>
+    <IonRow className="roll-paper">
       {currentUser !== props.user ? 
        <IonCol size="9" className="message other-message">
         {/* <b>{props.user}</b><br></br> */}

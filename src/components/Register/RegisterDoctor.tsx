@@ -28,24 +28,32 @@ const RegisterDoctor: React.FC = () => {
   const [speciality, setSpeciality] = useState<string>("");
 
 
-  const values: userDoctor= {
-    name: name,
-    cpf: cpf,
-    crm: crm,
-    cep: cep,
-    address: address,
-    number: number,
-    city: city,
-    district: district,
-    state: state,
-    email: email,
-    password: password,
-    confirmPassword: passwordConf,
-    speciality: speciality,
-    role: "doctor",
-    isAdmin: false,
-  };
+  // const values: userDoctor= {
+  //   name: name,
+  //   cpf: cpf,
+  //   crm: crm,
+  //   cep: cep,
+  //   address: address,
+  //   number: number,
+  //   city: city,
+  //   district: district,
+  //   state: state,
+  //   email: email,
+  //   password: password,
+  //   confirmPassword: passwordConf,
+  //   speciality: speciality,
+  //   role: "doctor",
+  //   isAdmin: false,
+  // };
 
+  
+  const values = {
+    name: name,
+    email: email,
+    password: password
+    // role: "doctor",
+    // isAdmin: false,
+  };
 
 
   const registerUser = async () => {

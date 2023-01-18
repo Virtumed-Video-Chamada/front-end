@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { mockedRecords } from "../../../mocks/records";
-import PacientCard from "../PacientCard/PacientCard";
+import PatientCard from "../PatientCard/PatientCard";
 
 const CardMedicalRecords: React.FC = () => {
   const history = useHistory();
@@ -21,11 +21,11 @@ const CardMedicalRecords: React.FC = () => {
     <div className="container">
       <div className="titlePopular">
         <h1 className="font-bold text-l pl-3">Meus Prontuários</h1>
-        <span className="font-bold text-xs text-colored" onClick={() => seeAll()}>
+        <span className="font-bold text-xs text-colored cursor-pointer" onClick={() => seeAll()}>
           Ver todos...
         </span>
       </div>
-        <PacientCard pacient={listFavorites} key={listFavorites.id} />
+        <PatientCard patient={listFavorites} key={listFavorites.id} />
     </div>
   );
 };

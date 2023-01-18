@@ -30,13 +30,20 @@ function Example() {
   }, []);
 
   function dismiss() {
+    console.log('teste');
     modal.current?.dismiss();
   }
+
+  window.addEventListener('click', function(e: any) {
+    if (document.getElementById('element-modal')!.contains(e.target)) {
+      dismiss()
+    }
+});
 
 
   return (
     <>
-      <IonModal ref={modal} trigger="open-modal" presentingElement={presentingElement!} className="mb-14">
+      <IonModal id="element-modal" ref={modal} trigger="open-modal" presentingElement={presentingElement!} className="mb-14">
         <IonHeader>
             <IonToolbar>
               <IonTitle>Minha Conta</IonTitle>

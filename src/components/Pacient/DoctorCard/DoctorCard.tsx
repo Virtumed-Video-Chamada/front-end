@@ -50,9 +50,6 @@ function DoctorCard({ doctor }: DoctorCardProps) {
     console.log(doctor)
   }
 
-  useEffect(() =>
-  { console.log(doctor)}, []
-  )
 
   return (
     <div  onClick={showChat} >
@@ -69,6 +66,7 @@ function DoctorCard({ doctor }: DoctorCardProps) {
           <div className="flex flex-col gap-1 ml-11">
             <span className="text-black font-bold">{doctor.nameDoctor}</span>
             <p className="font-normal">{doctor.speciality}</p>
+            <p className="font-normal">{doctor.crm}</p>
             {/* <span className="font-medium">98 Avaliações</span> */}
           </div>
           <IonButton fill="clear" onClick={() => addFavorites()}>

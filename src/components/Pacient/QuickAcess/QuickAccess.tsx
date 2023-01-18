@@ -10,7 +10,7 @@ const QuickAccess: React.FC = () => {
   //     setCategory(response.accessToken);})
   // }, [])
 
-  const renderizePacient = () => {
+  const renderizePatient = () => {
     return (
       <IonRow className="flex overflow-x-auto flex-nowrap  mb-0">
         <IonCard className="mr-1 bd-20 quickCard" routerLink="/exam-results">
@@ -33,6 +33,16 @@ const QuickAccess: React.FC = () => {
             src="./assets/icon/historical.svg"
           ></IonImg>
           <p className="text-center textCard">Histórico Clínico</p>
+        </IonCard>
+        <IonCard
+          className="mr-1 bd-20 quickCard"
+          routerLink="/chat"
+        >
+          <IonImg
+            className="imgCard mx-auto"
+            src="./assets/icon/historical.svg"
+          ></IonImg>
+          <p className="text-center textCard">Últimos Chats</p>
         </IonCard>
       </IonRow>
     );
@@ -83,7 +93,7 @@ const QuickAccess: React.FC = () => {
   return (
     <div className="container">
       <h1 className="font-bold text-l pl-3">Acesso Rápido</h1>
-      {category === "paciente" ? renderizePacient() : ""}
+      {category === "patient" ? renderizePatient() : ""}
       {category === "doctor" ? renderizeDoctor() : ""}
       {category === "clinic" ? renderizeClinic() : ""}
     </div>

@@ -41,7 +41,7 @@ import '@ionic/react/css/typography.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import HomePacient from './pages/Pacient/HomePaciente/HomePaciente';
+import HomePacient from './pages/Pacient/HomePatient/HomePatient';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import SchedulesPacient from './pages/Pacient/SchedulesPacient/SchedulesPacient';
@@ -66,6 +66,7 @@ import { getStorage } from './services/adminStorage';
 import HomeDoctor from './pages/Doctor/HomeDoctor/HomeDoctor';
 import HistoricalDoctor from './pages/Doctor/HistoricalDoctor/HistoricalDoctor';
 import FavoriteDoctors from './pages/Pacient/FavoriteDoctors/FavoriteDoctors';
+
 
 
 setupIonicReact();

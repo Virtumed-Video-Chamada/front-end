@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { getStorage } from "../../services/adminStorage";
 import { useHistory } from 'react-router';
 
+
 const slideOpts = {
   initialSlide: 1,
   speed: 400,
@@ -75,8 +76,7 @@ const renderize = () => {
               <IonThumbnail slot="start">
                 <img className="imgDoctor max-h-[130%] max-w-[130%]" alt="Pic-Doctor" src="./assets/avatar/Pic-Doctor.png" />
               </IonThumbnail>
-              <div className="text-neutral-50 text-left ml-8">
-
+              <div className="text-neutral-50 text-left ml-8 span">
                 <span>Dra. Maria Renata</span>
                 <p>Psicóloga</p>
                 <span>Hoje, 14:00</span>
