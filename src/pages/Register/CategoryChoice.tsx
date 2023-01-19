@@ -21,18 +21,18 @@ const CategoryChoice: React.FC = () => {
   return (
     <IonPage>
         <div className="splash-info"></div>
-        <IonImg src="./assets/logo.png" className='imgLogo flex items-center mx-auto pt-0 mb-2' />
+        <IonImg src="./assets/logo.png" className='imgLogo flex items-center mx-auto md:mx-auto pt-0 mb-2' />
           <h1 className="font-semibold text-base pl-8 py-0">Escolha uma opção:</h1>
           <IonList>
             <IonRadioGroup allowEmptySelection={true} value="">
               <IonItem lines="none">
                 <IonLabel>Clínica</IonLabel>
-                <IonRadio slot="start" value="clinica" onClick={() => setChoice('clinica')}></IonRadio>
+                <IonRadio slot="start" value="clinica" onClick={() => setChoice('clinic')}></IonRadio>
               </IonItem>
 
               <IonItem lines="none">
                 <IonLabel>Médico</IonLabel>
-                <IonRadio slot="start" value="doctor" onClick={() => setChoice('doctor')}></IonRadio>
+                <IonRadio slot="start" value="doctor" onClick={() => setChoice('doctors')}></IonRadio>
               </IonItem>
 
               <IonItem lines="none">
@@ -43,11 +43,7 @@ const CategoryChoice: React.FC = () => {
           </IonList>
           <IonButton className='btnDefault tracking-normal mt-8 mx-8' routerLink={paramDate(choice)}>CONTINUAR</IonButton>
           <div className="my-10">
-            <IonButton
-              fill="clear"
-              className="text-center text-xs font-semibold"
-              routerLink="/login"
-            >
+          <IonButton fill="clear" className="flex justify-center mx-auto text-xs" routerLink="/login">
               <p>Voltar para login</p>
             </IonButton>
           </div>

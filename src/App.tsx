@@ -91,19 +91,20 @@ const RoutingSystem: React.FC = () => {
 };
 
 const RoutingTabs: React.FC = () => {
-  const [category, setCategory] = useState("/home-pacient");
+  const [category, setCategory] = useState("/");
 
-  // useEffect(() => {
-  //   getStorage('dadosLogin').then((response) => {
-  //     setCategory(`/home-${response.accessToken}`);})
-  // }, [])
+  useEffect(() => {
+    getStorage('token').then((response) => {
+      const role = (response.data.user.role).toLowerCase();
+      setCategory(`/home-${role}`);})
+  }, [])
 
   return (
     <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route exact path="/">
-            <HomePacient />
+          <Route exact path="/">
+            {(category == "/home-pacient" ? <HomePacient /> : (category == "/home-doctor" ? <HomeDoctor /> : (category == "/home-clinic" ? <HomeClinic /> : <HomeClinic />))   )   }
             </Route>
             <Route exact path="/home-pacient">
               <HomePacient />
@@ -186,13 +187,24 @@ const RoutingTabs: React.FC = () => {
       </IonReactRouter>
   )
 }
+
+
+
 const App: React.FC = () => {
-   const [user, setUser] = useState(true);
+  const [user, setUser] = useState<any>(null);
+     
+  useEffect(() => {
+    console.log(user)
+    getStorage('token').then((response: any) => {
+      console.log(response);
+      setUser(response);
+    })
+  }, [])
    
   return (
     <IonApp>
       <div className="ion-padding">
-        {user ?  <RoutingTabs /> :  <RoutingSystem/> }
+        {user != null ?  <RoutingTabs /> :  <RoutingSystem/> }
       </div>
     </IonApp>
   );

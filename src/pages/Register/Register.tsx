@@ -12,11 +12,11 @@ const Register: React.FC = () => {
   
   return (
     <IonPage>
-      <div className="container px-8 py-3 font-semibold overflow-y-auto">
+      <div className="container px-8 py-3 font-semibold ">
         <div className="splash-info"></div>
-            <IonImg src='./assets/logo.png' className='imgLogo'/>
+            <IonImg src='./assets/logo.png' className='imgLogo md:mx-auto mx-auto'/>
             {choice === "clinica" && <RegisterClinic /> }
-            {choice === "doctor" && <RegisterMedic /> }
+            {choice === "doctors" && <RegisterMedic /> }
             {choice === "pacient" && <RegisterPacient/> }
 
           

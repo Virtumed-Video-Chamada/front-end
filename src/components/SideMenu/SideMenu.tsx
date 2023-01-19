@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import  { useEffect, useRef, useState } from 'react';
 import { 
   IonButton,
   IonButtons,
@@ -7,21 +7,31 @@ import {
   IonIcon,
   IonItem,
   IonLabel,
-  IonMenu,
-  IonMenuToggle,
   IonModal,
-  IonPage,
   IonTitle,
   IonToolbar
 } from '@ionic/react';
 import { closeOutline, informationCircleOutline, logOutOutline, notificationsOutline, settingsOutline, shieldCheckmarkOutline } from 'ionicons/icons';
-function Example() {
-  const logout = () => {
+import { removeStorage } from '../../services/adminStorage';
+import { useHistory } from 'react-router';
 
-  }
-  
+function SideMenu() {
+  const history = useHistory();
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
+
+  const logout = () => {
+    removeStorage('nameStorage');
+    removeStorage('jwt');
+    removeStorage('token');
+    removeStorage('role');
+    removeStorage('userIdStorage');
+    removeStorage('userAdminStorage');
+    history.replace("/login");
+    window.location.reload();
+  }
+  
+ 
 
   const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
 
@@ -33,10 +43,18 @@ function Example() {
     modal.current?.dismiss();
   }
 
+  window.addEventListener('click', function(e: any) {
+    if (document.getElementById('element-modal')!.contains(e.target)) {
+      dismiss()
+    } else {
+      dismiss()
+    }
+});
+
 
   return (
     <>
-      <IonModal ref={modal} trigger="open-modal" presentingElement={presentingElement!} className="mb-14">
+      <IonModal id="element-modal" ref={modal} trigger="open-modal" presentingElement={presentingElement!} className="mb-14">
         <IonHeader>
             <IonToolbar>
               <IonTitle>Minha Conta</IonTitle>
@@ -86,4 +104,4 @@ function Example() {
     </>
   );
 }
-export default Example;
+export default SideMenu;

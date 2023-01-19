@@ -44,7 +44,7 @@ const PopularDoctor: React.FC = () => {
       <div className="titlePopular">
         <h1 className="font-bold text-l pl-3">Médicos Favoritos</h1>
         {listFavorites.length > 0 ? <span
-          className="font-bold text-xs text-colored"
+          className="font-bold text-xs text-colored cursor-pointer"
           onClick={() => seeAll()}
         >
           Ver todos...
