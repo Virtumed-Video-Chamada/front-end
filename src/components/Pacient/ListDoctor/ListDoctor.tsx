@@ -8,7 +8,7 @@ import {
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { mockedDoctors } from "../../../mocks/doctor";
-import DoctorCard from "../DoctorCard/DoctorCard";
+import DoctorCard from "../../Patient/DoctorCard/DoctorCard";
 import { findAllService } from "../../../services/findService";
 
 

@@ -101,6 +101,9 @@ const LinkDoctor: React.FC = () => {
                 <IonCardSubtitle>
                         Clínica Inovar
                 </IonCardSubtitle>
+                <IonCardSubtitle>
+                        CRM - 1100
+                </IonCardSubtitle>
                 
             </IonCardHeader>
         </IonCard>

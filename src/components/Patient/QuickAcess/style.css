@@ -7,15 +7,6 @@ ion-row {
     justify-content: space-evenly;
 }
 
-.quickCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 6.25rem;
-    width: 6.25rem;
-    height: 6.25rem;
-    padding: 1rem;
-}
 
 ion-img {
     align-self: center;
@@ -25,9 +16,6 @@ ion-img {
     height: 40px;
 }
 
-.textCard {
-    padding-top: 2rem;
-}
 
 /* .textCard {
     padding-left: 0.25rem;

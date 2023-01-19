@@ -2,7 +2,7 @@ import { IonCard, IonCardContent } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { favoriteDoctors } from "../../../mocks/favoritesDoctor";
-import DoctorCard from "../DoctorCard/DoctorCard";
+import DoctorCard from "../../Patient/DoctorCard/DoctorCard";
 import "./style.css";
 
 const PopularDoctor: React.FC = () => {

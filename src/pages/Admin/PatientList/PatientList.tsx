@@ -136,14 +136,11 @@ const PatientList = () => {
         </IonText>
         <IonSearchbar
           debounce={1000}
-          placeholder="Pesquisar por Nome ou CPF"
+          placeholder="Pesquise por Nome ou CPF"
           onIonChange={(ev) => handleChange(ev)}
         ></IonSearchbar>
         <IonItem color="primary" lines="none">
           <IonLabel>Nome</IonLabel>
-        </IonItem>
-        <IonItem color="tertiary" lines="none">
-          <IonLabel>A</IonLabel>
         </IonItem>
         <IonList>{renderize()}</IonList>
       </IonContent>

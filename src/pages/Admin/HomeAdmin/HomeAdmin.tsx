@@ -29,11 +29,9 @@ const HomeAdmin: React.FC = () => {
         />
         <IdentificadorAdmin />
         <h1 className="font-bold text-lg pl-8">Bem-vindo</h1>
-
         <IonItem className="mt-0 mb-0" lines="none">
           <DashboardAdmin />
         </IonItem>
-       
       </IonContent>
     </IonPage>
   );

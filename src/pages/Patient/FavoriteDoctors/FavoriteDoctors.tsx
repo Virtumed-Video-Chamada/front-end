@@ -25,7 +25,7 @@ import { ellipse, heart, square, triangle } from "ionicons/icons";
 import { useState } from "react";
 import { Redirect, Route } from "react-router";
 import Identificador from "../../../components/Identificador/Identificador";
-import DoctorCard from "../../../components/Pacient/DoctorCard/DoctorCard";
+import DoctorCard from "../../../components/Patient/DoctorCard/DoctorCard";
 import ListDoctor from "../../../components/Pacient/ListDoctor/ListDoctor";
 import PreCall from "../../../components/PreCall/PreCall";
 import { favoriteDoctors } from "../../../mocks/favoritesDoctor";
