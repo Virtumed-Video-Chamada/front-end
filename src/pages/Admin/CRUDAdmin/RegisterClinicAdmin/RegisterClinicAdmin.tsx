@@ -52,7 +52,7 @@ const RegisterClinicAdmin: React.FC = () => {
     isAdmin: false,
   };
 
-  const registerUser = async () => {
+/*   const registerUser = async () => {
     const response = await registerService.registerValues(values);
     const jwt = response.data.id;
     if (jwt) {
@@ -63,7 +63,7 @@ const RegisterClinicAdmin: React.FC = () => {
       alertaErro.alerta(`${response.data.message}`);
     }
   };
-
+ */
   return (
     <IonPage>
       <IonHeader>
@@ -264,7 +264,7 @@ const RegisterClinicAdmin: React.FC = () => {
         <IonButton
           className="btnDefault mt-5 mb-16"
           expand="block"
-          onClick={registerUser}
+         /*  onClick={registerUser} */
         >
           REGISTRAR
         </IonButton>

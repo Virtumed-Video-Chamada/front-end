@@ -16,7 +16,7 @@ const Register: React.FC = () => {
       <div className="container px-8 py-3 font-semibold overflow-y-auto">
         <div className="splash-info"></div>
             <IonImg src='./assets/logo.png' className='imgLogo'/>
-            {choice === "clinica" && <RegisterClinic /> }
+            {choice === "clinic" && <RegisterClinic /> }
             {choice === "doctors" && <RegisterMedic /> }
             {choice === "pacient" && <RegisterPacient/> }
       </div>

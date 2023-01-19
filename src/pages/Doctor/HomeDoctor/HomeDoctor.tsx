@@ -13,7 +13,8 @@ import Appointments from "../../../components/Appointments/Appointments";
 import CardMedicalRecords from "../../../components/Doctor/CardMedicalRecords/CardMedicalRecords";
 import Identificador from "../../../components/Identificador/Identificador";
 import PopularDoctor from "../../../components/Pacient/Favorites/PopularDoctor";
-import QuickAccess from "../../../components/Pacient/QuickAcess/QuickAccess";
+import QuickAccess from "../../../components/Patient/QuickAcess/QuickAccess";
+
 import SideMenu from "../../../components/SideMenu/SideMenu";
 import "./style.css";
 // import logo from "../../../assets/logo.png"

@@ -44,7 +44,7 @@ import "./theme/variables.css";
 
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
-import Principal from "./pages/Principal/Principal";
+
 
 import Chat from "./pages/Chat/Chat";
 import WebChat from "./pages/WebChat/WebChat";
@@ -53,7 +53,7 @@ import Conversation from "./pages/Conversation/Conversation";
 
 import CategoryChoice from "./pages/Register/CategoryChoice";
 import "./style.css";
-import { useState } from "react";
+
 import SideMenu from "./components/SideMenu/SideMenu";
 import Example from "./components/SideMenu/SideMenu";
 import VideoChat from "./components/Call/VideoChat";
@@ -68,39 +68,27 @@ import PatientList from "./pages/Admin/PatientList/PatientList";
 import SchedulePatient from "./components/SchedulePatient/SchedulePatient";
 import ScheduleDoctor from "./components/ScheduleDoctor/ScheduleDoctor";
 import ClinicList from "./pages/Admin/ClinicList/ClinicList";
-import ExamResults from "./pages/Patient/ExamResults/ExamResults";
-import FindDoctor from "./pages/Patient/FindDoctor/FindDoctor";
-import HistoricalClinic from "./pages/Patient/HistoricalClinic/HistoricalClinic";
+
 import HomePatient from "./pages/Patient/HomePatient/HomePatient";
 import MedicalSchedule from "./pages/Patient/MedicalSchedule/MedicalSchedule";
 import MyHealth from "./pages/Patient/MyHealth/MyHealth";
 import RegisterPatientAdmin from "./pages/Admin/CRUDAdmin/RegisterPatientAdmin/RegisterPatient";
 import './theme/variables.css';
 import HomePacient from './pages/Pacient/HomePaciente/HomePaciente';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
-import SchedulesPacient from './pages/Pacient/SchedulesPacient/SchedulesPacient';
-import Chat from './pages/Chat/Chat';
-import WebChat from './pages/WebChat/WebChat';
-import PatientSettings from './pages/PatientSettings/PatientSettings';
-import Conversation from './pages/Conversation/Conversation';
-import MyHealth from './pages/Pacient/MyHealth/MyHealth';
-import HistoricalClinic from './pages/Pacient/HistoricalClinic/HistoricalClinic';
-import ExamResults from './pages/Pacient/ExamResults/ExamResults';
-import FindDoctor from './pages/Pacient/FindDoctor/FindDoctor';
-import MedicalSchedule from './pages/Pacient/MedicalSchedule/MedicalSchedule';
-import CategoryChoice from './pages/Register/CategoryChoice';
+
+
 import './style.css'
 import HomeClinic from './pages/Clinic/HomeClinic/HomeClinic';
 import { useEffect, useState } from 'react';
-import SideMenu from './components/SideMenu/SideMenu';
-import Example from './components/SideMenu/SideMenu';
-import VideoChat from './components/Call/VideoChat';
-import Privacy from './pages/Privacy/Privacy';
+
 import { getStorage } from './services/adminStorage';
 import HomeDoctor from './pages/Doctor/HomeDoctor/HomeDoctor';
 import HistoricalDoctor from './pages/Doctor/HistoricalDoctor/HistoricalDoctor';
 import FavoriteDoctors from './pages/Pacient/FavoriteDoctors/FavoriteDoctors';
+import ExamResults from "./pages/Patient/ExamResults/ExamResults";
+import FindDoctor from "./pages/Patient/FindDoctor/FindDoctor";
+import HistoricalClinic from "./pages/Patient/HistoricalClinic/HistoricalClinic";
+import SchedulesPacient from "./pages/Patient/SchedulesPatient/SchedulesPacient";
 
 
 setupIonicReact();
@@ -137,123 +125,7 @@ const RoutingTabs: React.FC = () => {
 
   return (
     <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/register-admin">
-            <RegisterAdmin />
-          </Route>
-          <Route exact path="/home-admin">
-            <HomeAdmin />
-          </Route>
-          <Route exact path="/register-doctor">
-            <RegisterDoctorAdmin />
-          </Route>
-          <Route exact path="/register-clinic">
-            <RegisterClinicAdmin />
-          </Route>
-          <Route exact path="/register-patient">
-            <RegisterPatientAdmin/>
-          </Route>
-          <Route exact path="/link-doctor">
-            <LinkDoctor/>
-          </Route>
-          <Route exact path="/link-patient">
-            <LinkPatient/>
-          </Route>
-          <Route exact path="/patient-list">
-            <PatientList/>
-          </Route>
-          <Route exact path="/clinic-list">
-            <ClinicList/>
-          </Route>
-          <Route exact path="/">
-            <HomePatient />
-          </Route>
-          <Route exact path="/home-patient">
-            <HomePatient />
-          </Route>
-          <Route exact path="/schedule-patient">
-            <SchedulePatient />
-          </Route>
-          <Route exact path="/schedule-doctor">
-            <ScheduleDoctor/>
-          </Route>
-          <Route exact path="/medical-schedule">
-            <MedicalSchedule />
-          </Route>
-          <Route exact path="/chat">
-            <Chat />
-          </Route>
-          <Route exact path="/webchat">
-            <WebChat />
-          </Route>
-          <Route exact path="/conversation">
-            <Conversation />
-          </Route>
-          <Route exact path="/health">
-            <MyHealth />
-          </Route>
-          <Route exact path="/historical-clinic">
-            <HistoricalClinic />
-          </Route>
-          <Route exact path="/exam-results">
-            <ExamResults />
-          </Route>
-          <Route exact path="/find-doctor">
-            <FindDoctor />
-          </Route>
-          <Route exact path="/patient-settings">
-            <PatientSettings />
-          </Route>
-          <Route exact path="/agendamentos">
-            <SchedulePatient />
-          </Route>
-          <Route exact path="/call">
-            <VideoChat />
-          </Route>
-          <Route exact path="/side-menu">
-            <SideMenu />
-          </Route>
-          <Route exact path="/privacy">
-            <Privacy />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar className="menuTab" slot="bottom">
-          <IonTabButton tab="home" href="/home-patient">
-            <IonIcon icon={homeOutline} className="w-6 h-6" color="primary" />
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/schedules">
-            <IonIcon
-              icon={calendarOutline}
-              className="w-6 h-6"
-              color="primary"
-            />
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/chat">
-            <IonIcon
-              icon={chatbubblesOutline}
-              className="w-6 h-6"
-              color="primary"
-            />
-          </IonTabButton>
-          <IonTabButton tab="tab4" href="/health">
-            <IonIcon icon={medkitOutline} className="w-6 h-6" color="primary" />
-          </IonTabButton>
-          <IonTabButton tab="tab5">
-            <IonIcon
-              icon={personOutline}
-              className="w-6 h-6 z-50"
-              color="primary"
-              id="open-modal"
-            />
-            <SideMenu />
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  );
-};
-        <IonTabs>
+         <IonTabs>
           <IonRouterOutlet>
           <Route exact path="/">
             {(category == "/home-pacient" ? <HomePacient /> : (category == "/home-doctor" ? <HomeDoctor /> : (category == "/home-clinic" ? <HomeClinic /> : <HomeClinic />))   )   }
@@ -268,7 +140,7 @@ const RoutingTabs: React.FC = () => {
             <HomeClinic />
             </Route>
             <Route exact path="/schedules">
-              <SchedulesPacient />
+              <SchedulePatient />
             </Route>
             <Route exact path="/historical-doctor">
               <HistoricalDoctor />
@@ -336,11 +208,10 @@ const RoutingTabs: React.FC = () => {
             </IonTabButton>                       
           </IonTabBar>
         </IonTabs>
-      </IonReactRouter>
-  )
-}
-
-
+    </IonReactRouter>
+  );
+};
+     
 
 const App: React.FC = () => {
   const [user, setUser] = useState<any>(null);

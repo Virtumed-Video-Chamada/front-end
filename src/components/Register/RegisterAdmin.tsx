@@ -48,7 +48,7 @@ const RegisterAdmin: React.FC = () => {
 
 
 
-  const registerUser = async () => {
+/*   const registerUser = async () => {
     const response = await registerService.registerValues(values);
     const jwt = response.data.id;
     if (jwt) {
@@ -59,7 +59,7 @@ const RegisterAdmin: React.FC = () => {
       alertaErro.alerta(`${response.data.message}`);
     }
   };
-
+ */
 
   return (
     <div>
@@ -100,7 +100,7 @@ const RegisterAdmin: React.FC = () => {
             <IonInput className='inputSelsyn' type="password" value={passwordConf} placeholder="confirme sua senha" onIonChange={e => setPasswordConf(e.detail.value!)}></IonInput>
           </IonItem>
           
-          <IonButton className='btnDefault mt-10' expand="block"  onClick={registerUser}>REGISTRE-SE</IonButton>
+          <IonButton className='btnDefault mt-10' expand="block"  /* onClick={registerUser} */>REGISTRE-SE</IonButton>
           
           <div className='my-8'>
             <IonButton fill="clear" className="flex justify-center mx-auto text-xl font-bold" routerLink="/login">
