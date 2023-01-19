@@ -1,17 +1,5 @@
+import { IonButton, useIonAlert } from "@ionic/react";
 import { useState } from "react";
-import {
-  IonAvatar,
-  IonButton,
-  IonCard,
-  IonCardContent,
-  IonIcon,
-  IonImg,
-  IonItem,
-  IonLabel,
-  IonText,
-  IonThumbnail,
-  useIonAlert,
-} from "@ionic/react";
 
 const ModalAlert: React.FC = () => {
   const [presentAlert] = useIonAlert();
@@ -54,10 +42,3 @@ const ModalAlert: React.FC = () => {
 };
 
 export default ModalAlert;
-function presentAlert(arg0: {
-  header: string;
-  buttons: { text: string; role: string; handler: () => void }[];
-  onDidDismiss: (e: CustomEvent) => any;
-}): void {
-  throw new Error("Function not implemented.");
-}

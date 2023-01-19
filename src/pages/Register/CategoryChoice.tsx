@@ -21,27 +21,27 @@ const CategoryChoice: React.FC = () => {
   return (
     <IonPage>
         <div className="splash-info"></div>
-        <IonImg src="./assets/logo.png" className='imgLogo flex items-center mx-auto' />
-          <IonText>Escolha uma opção:</IonText>
+        <IonImg src="./assets/logo.png" className='imgLogo flex items-center mx-auto pt-0 mb-2' />
+          <h1 className="font-semibold text-base pl-8 py-0">Escolha uma opção:</h1>
           <IonList>
             <IonRadioGroup allowEmptySelection={true} value="">
-              <IonItem>
+              <IonItem lines="none">
                 <IonLabel>Clínica</IonLabel>
-                <IonRadio slot="start" value="clinica" onClick={() => setChoice('clinica')}></IonRadio>
+                <IonRadio slot="start" value="clinica" onClick={() => setChoice('clinic')}></IonRadio>
               </IonItem>
 
-              <IonItem>
+              <IonItem lines="none">
                 <IonLabel>Médico</IonLabel>
-                <IonRadio slot="start" value="doctor" onClick={() => setChoice('doctor')}></IonRadio>
+                <IonRadio slot="start" value="doctor" onClick={() => setChoice('doctors')}></IonRadio>
               </IonItem>
 
-              <IonItem>
+              <IonItem lines="none">
                 <IonLabel>Paciente</IonLabel>
                 <IonRadio slot="start" value="pacient" onClick={() => setChoice('pacient')}></IonRadio>
               </IonItem>
             </IonRadioGroup>
           </IonList>
-          <IonButton  routerLink={paramDate(choice)}>CONTINUAR</IonButton>
+          <IonButton className='btnDefault tracking-normal mt-8 mx-8' routerLink={paramDate(choice)}>CONTINUAR</IonButton>
           <div className="my-10">
             <IonButton
               fill="clear"

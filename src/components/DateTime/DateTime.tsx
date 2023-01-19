@@ -8,9 +8,6 @@ import {
 import moment from "moment";
 import { chevronDown } from "ionicons/icons";
 
-
-
-
 const DateTime: React.FC = () => {
   const [data, setData] = useState<any>(new Date());
   const dataInicio = moment(data).format('DD/MM/YYYY')

@@ -1,28 +1,4 @@
-import {
-  IonAvatar,
-  IonBadge,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonCol,
-  IonGrid,
-  IonIcon,
-  IonImg,
-  IonInfiniteScroll,
-  IonInfiniteScrollContent,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonRow,
-  IonSlide,
-  IonSlides,
-  IonThumbnail,
-} from "@ionic/react";
-import { checkmark, checkmarkOutline } from "ionicons/icons";
-import { useEffect, useState } from "react";
+import { IonCol, IonGrid, IonRow } from '@ionic/react';
 import moment from 'moment';
 import { ChatConversationProps } from "../../@types/interfaces";
 import './ChatConversation.css';

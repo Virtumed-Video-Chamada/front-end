@@ -1,11 +1,12 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from '../../assets/icons/logo.png'
 import { userLogin } from '../../@types/interfaces';
-import { setStorage } from '../../services/adminStorage';
+import { getStorage, setStorage } from '../../services/adminStorage';
 import * as service from '../../services/authService';
-import { alertaErro } from '../../utils/alertas';
+import { alertaErro, alertaSucesso } from '../../utils/alertas';
 import { IonButton, IonImg, IonInput, IonItem, IonLabel, IonList, IonPage, IonText } from '@ionic/react';
+import { useHistory } from "react-router";
 // import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -15,6 +16,7 @@ const Login: React.FC = () => {
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const history = useHistory();
 
 const values: userLogin = {
   email: email,
@@ -23,20 +25,34 @@ const values: userLogin = {
 
 const executeLogin = async () => {
   await service.loginService.login(values)
-   .then((response) => {
+    .then((response) => {
+     console.log(response)
     const jwt = response.data.token;
     const user = response.data.user.id;
     const admin = response.data.user.isAdmin;
     const name = response.data.user.name;
-    setStorage('jwtLocalStorage', jwt);
+    setStorage('jwt', jwt);
     setStorage('userIdStorage', user);
     setStorage('userAdminStorage', admin);
-    setStorage('nameStorage', name);
+      setStorage('nameStorage', name);
+      setStorage('token', response);
+      history.replace("/");
+      window.location.reload();
    })
    .catch ((err) => {
     alertaErro.alerta(`Usuario ou Senha Invalidos`);
   })
   }
+
+  const [user, setUser] = useState<any>(null);
+     
+  useEffect(() => {
+    getStorage('token').then((response: any) => {
+      setUser(response);
+      setEmail(response.data.email);
+      setPassword(response.data.password);
+    })
+  }, [])
 
   return (
     <IonPage>

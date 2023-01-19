@@ -1,35 +1,15 @@
 import api from './api';
 
 const findAllService = {
-	allGames: () =>
+		findAllDoctors: (value: string) =>
 		api
-			.get('/game')
-			.then((response: any) => {
-				return response;
-			})
-			.catch((error: any) => console.log(error)),
-	allProfiles: () =>
-		api
-			.get('/profile')
-			.then((response: any) => {
-				return response;
-			})
-			.catch((error: any) => console.log(error)),
-	allGenres: () =>
-		api
-			.get('/genre')
-			.then((response: any) => {
-				return response;
-			})
-			.catch((error: any) => console.log(error)),
-	allUsers: () =>
-		api
-			.get('/user')
-			.then((response: any) => {
-				return response;
-			})
-			.catch((error: any) => console.log(error)),
+			.get(`${value}`)
+			.then((response: any) => { return response })
+			.catch((error: any) => error.response),
 };
+
+
+
 
 const findByIdService = {
 	findProfileById: (id: string) =>
@@ -62,3 +42,4 @@ const findByIdService = {
 };
 
 export { findAllService, findByIdService };
+
