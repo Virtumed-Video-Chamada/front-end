@@ -63,7 +63,7 @@ function DoctorCard({ doctor }: DoctorCardProps) {
           </IonThumbnail>
 
           <div className="flex flex-col gap-1 ml-11">
-            <span className="text-black font-bold">{doctor.nameDoctor}</span>
+            <span className="text-black font-bold">{doctor.name}</span>
             <p className="font-normal">{doctor.speciality}</p>
             {/* <span className="font-medium">98 Avaliações</span> */}
           </div>

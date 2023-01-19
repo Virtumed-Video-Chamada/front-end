@@ -14,7 +14,6 @@ const Identificador: React.FC = () => {
 
   useEffect(() => {
     getStorage('token').then((response) => {
-      console.log(response.data.user);
       setUser(response.data.user);
     })
   }, [])
