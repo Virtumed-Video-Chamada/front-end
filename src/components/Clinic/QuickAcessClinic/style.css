@@ -2,10 +2,7 @@
     margin-top: 1.8rem;
 }
 
-ion-row {
-    padding-right: 1rem;
-    justify-content: space-evenly;
-}
+
 
 ion-img {
     align-self: center;
@@ -15,6 +12,3 @@ ion-img {
     height: 40px;
 }
 
-.textCard {
-    padding-top: 2rem;
-}
