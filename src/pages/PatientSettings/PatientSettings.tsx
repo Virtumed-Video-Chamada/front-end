@@ -27,22 +27,26 @@ const PatientSettings: React.FC = () => {
   const [rg, setRg] = useState<string>();
   const [cpf, setCpf] = useState<string>();
   const [cep, setCep] = useState<string>();
-  const [cep, setCep] = useState<string>();
+  const [address, setAddress] = useState<string>();
+  const [number, setNumber] = useState<string>();
+  const [city, setCity] = useState<string>();
+  const [district, setDistrict] = useState<string>();
+  const [state, setState] = useState<string>();
 
 
   useEffect(() => {
     getStorage('token').then((storage) => {
-      storage.data.user.avatar;
-      storage.data.user.rg;
-      storage.data.user.cpf
-      storage.data.user.cep
-      storage.data.user.address
-      storage.data.user.number
-      storage.data.user.city
-      storage.data.user.district
-      storage.data.user.state
-  }
-    })
+      setAvatar(storage.data.user.avatar);
+      setRg(storage.data.user.rg);
+      setCpf(storage.data.user.cpf);
+      setCep(storage.data.user.cep);
+      setAddress(storage.data.user.address);
+      setNumber(storage.data.user.number)
+      // storage.data.user.city
+      // storage.data.user.district
+      // storage.data.user.state
+  })
+    
   }, [])
 
 
