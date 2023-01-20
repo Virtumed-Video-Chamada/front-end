@@ -1,10 +1,7 @@
 import {
   IonButton,
-  IonButtons,
   IonCard,
   IonCardContent,
-  IonContent,
-  IonDatetime,
   IonHeader,
   IonIcon,
   IonImg,
@@ -12,23 +9,11 @@ import {
   IonItem,
   IonLabel,
   IonPage,
-  IonRouterOutlet,
   IonSelect,
-  IonSelectOption,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  IonTitle,
-  IonToolbar,
+  IonSelectOption
 } from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
 import {
-  chevronDown,
-  ellipse,
-  heart,
-  medkitOutline,
-  square,
-  triangle,
+  medkitOutline
 } from "ionicons/icons";
 import { useRef, useState } from "react";
 import { Redirect, Route } from "react-router";
@@ -36,12 +21,8 @@ import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 import QuickAccess from "../../../components/Patient/QuickAcess/QuickAccess";
 
-import Schedules from "../../../components/SchedulePatient/SchedulePatient";
-
-
-
 const MyHealth: React.FC = () => {
-  const teste: any = "none"
+
   return (
     <IonPage >
       <IonHeader className="flex flex-col justify-center items-center">

@@ -9,7 +9,9 @@ export interface Doctor {
   id?: string;
   name?: string;
   crm?: string;
-  speciality?: string;
+	doctor?: {
+		speciality?: string;
+	}
   email?: string;
   password?: string;
   cep?: string;

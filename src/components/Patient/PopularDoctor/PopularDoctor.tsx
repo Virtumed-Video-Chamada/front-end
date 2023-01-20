@@ -1,53 +1,57 @@
-import {
-  IonList,
-  IonSlide,
-  IonSlides,
-  useIonToast,
-} from "@ionic/react";
-import { useState } from "react";
-import { mockedDoctors } from "../../../mocks/doctor";
-import DoctorCard from "../../DoctorCard/DoctorCard";
-import './style.css';
+import { IonCard, IonCardContent } from "@ionic/react";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import { favoriteDoctors } from "../../../mocks/favoritesDoctor";
+import DoctorCard from "../DoctorCard/DoctorCard";
+import "./style.css";
 
 const PopularDoctor: React.FC = () => {
-  const [change, setChange] = useState<boolean>(false);
-  const [_class, setClass] = useState<string>("flex hidden");
-  const [present] = useIonToast();
-  
-  const presentToast = () => {
-    present({
-      message: "Consulta cancelada com sucesso",
-      duration: 1500,
-      position: "top",
-    });
+  const history = useHistory();
+  const [listFavorites, setFavorites] = useState<any>([]);
+  const doctor = listFavorites[0] || "";
+
+  useEffect(() => {
+    console.log(favoriteDoctors);
+    setFavorites(favoriteDoctors);
+  }, []);
+
+  const seeAll = () => {
+    history.replace("/favorite-doctors");
+    window.location.reload();
   };
 
-  const showChat = () => {
-    setChange(!change);
-    if (change === true) {
-      setClass("flex");
+  const renderize = () => {
+    console.log(listFavorites.length);
+    if (listFavorites.length == 0) {
+      return (
+        <IonCard className="bd-20 cardDoctorWhite flex flex-col justify-center">
+          <IonCardContent className="mt-32">
+            <div className="text-black font-bold ">
+              Você ainda não possui Favoritos!
+            </div>
+          </IonCardContent>
+        </IonCard>
+      );
     } else {
-      setClass("flex hidden");
+      return <DoctorCard props={doctor} key={doctor.id} />;
     }
   };
-  const slideOpts = {
-    initialSlide: 1,
-    speed: 400,
-  };
+
+
 
   return (
     <div className="container">
       <div className="titlePopular">
-      <h1 className="font-bold text-l pl-3">Médicos Populares</h1>
-      <span className="font-bold text-xs text-colored">Ver todos...</span>
+        <h1 className="font-bold text-l pl-3">Médicos Favoritos</h1>
+        {listFavorites.length > 0 ? <span
+          className="font-bold text-xs text-colored cursor-pointer"
+          onClick={() => seeAll()}
+        >
+          Ver todos...
+        </span> : ''}
+        
       </div>
-        <IonSlides pager={true} options={slideOpts} >
-          {mockedDoctors.map((element: any) => (
-            <IonSlide className="mb-10">
-              <DoctorCard doctor={element} key={element.id} />
-            </IonSlide>
-          ))}
-        </IonSlides>
+      {renderize()}
     </div>
   );
 };

@@ -17,7 +17,7 @@ import {
 import {
   checkmarkOutline
 } from "ionicons/icons";
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 import Schedules from "../../../components/SchedulePatient/SchedulePatient";
@@ -30,7 +30,13 @@ const MedicalSchedule: React.FC = () => {
   const [roleMessage, setRoleMessage] = useState("");
   const [present] = useIonToast();
   const [date, setDate] = useState("");
+  const urlParams = new URLSearchParams(window.location.search);
+  const userId = urlParams.get("id");
 
+  useEffect(() => {
+
+   }, []
+  )
 
   const presentToast = () => {
     present({
