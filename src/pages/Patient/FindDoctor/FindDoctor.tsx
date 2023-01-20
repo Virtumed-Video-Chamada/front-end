@@ -2,29 +2,15 @@ import {
   IonBackButton,
   IonButtons,
   IonContent,
-  IonFooter,
   IonHeader,
-  IonIcon,
   IonImg,
-  IonItem,
-  IonLabel,
   IonPage,
-  IonRouterOutlet,
-  IonSearchbar,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
   IonText,
-  IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, heart, square, triangle } from "ionicons/icons";
-import { Redirect, Route } from "react-router";
-import Identificador from "../../../components/Identificador/Identificador";
 import ListDoctor from "../../../components/Patient/ListDoctor/ListDoctor";
 
-import PreCall from "../../../components/PreCall/PreCall";
+
 
 const FindDoctor: React.FC = () => {
   return (

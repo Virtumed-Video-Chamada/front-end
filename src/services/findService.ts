@@ -1,8 +1,8 @@
 import api from './api';
 
 const findAllService = {
-		findAllDoctors: (value: string) =>
-		api
+		findAllDoctors: async (value: string) =>
+		await api
 			.get(`${value}`)
 			.then((response: any) => { return response })
 			.catch((error: any) => error.response),
