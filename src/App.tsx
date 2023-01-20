@@ -45,19 +45,11 @@ import Conversation from "./pages/Conversation/Conversation";
 import CategoryChoice from "./pages/Register/CategoryChoice";
 import "./style.css";
 import SideMenu from "./components/SideMenu/SideMenu";
-
 import VideoChat from "./components/Call/VideoChat";
 import Privacy from "./pages/Privacy/Privacy";
-import RegisterAdmin from "./components/Register/RegisterAdmin";
 import HomeAdmin from "./pages/Admin/HomeAdmin/HomeAdmin";
-import RegisterDoctorAdmin from "./pages/Admin/CRUDAdmin/RegisterDoctorAdmin/RegisterDoctorAdmin";
-import RegisterClinicAdmin from "./pages/Admin/CRUDAdmin/RegisterClinicAdmin/RegisterClinicAdmin";
 import LinkDoctor from "./pages/Admin/LinkDoctor/LinkDoctor";
-import LinkPatient from "./pages/Admin/LinkPatient/LinkPatient";
 import PatientList from "./pages/Admin/PatientList/PatientList";
-import SchedulePatient from "./components/SchedulePatient/SchedulePatient";
-import ScheduleDoctor from "./components/ScheduleDoctor/ScheduleDoctor";
-import ClinicList from "./pages/Admin/ClinicList/ClinicList";
 import HomePatient from "./pages/Patient/HomePatient/HomePatient";
 import MedicalSchedule from "./pages/Patient/MedicalSchedule/MedicalSchedule";
 import MyHealth from "./pages/Patient/MyHealth/MyHealth";
@@ -69,12 +61,16 @@ import { useEffect, useState } from "react";
 import { getStorage } from "./services/adminStorage";
 import HomeDoctor from "./pages/Doctor/HomeDoctor/HomeDoctor";
 import HistoricalDoctor from "./pages/Doctor/HistoricalDoctor/HistoricalDoctor";
-
-import ExamResults from "./pages/Patient/ExamResults/ExamResults";
 import FindDoctor from "./pages/Patient/FindDoctor/FindDoctor";
 import HistoricalClinic from "./pages/Patient/HistoricalClinic/HistoricalClinic";
-import SchedulesPacient from "./pages/Patient/SchedulesPatient/SchedulesPacient";
+import SchedulePatient from "./components/SchedulePatient/SchedulePatient";
+import RegisterDoctorAdmin from "./pages/Admin/CRUDAdmin/RegisterDoctorAdmin/RegisterDoctorAdmin";
+import RegisterClinicAdmin from "./pages/Admin/CRUDAdmin/RegisterClinicAdmin/RegisterClinicAdmin";
+import ClinicList from "./pages/Admin/ClinicList/ClinicList";
+import ScheduleDoctor from "./components/ScheduleDoctor/ScheduleDoctor";
 import FavoriteDoctors from "./pages/Patient/FavoriteDoctors/FavoriteDoctors";
+import ExamResults from "./pages/Patient/ExamResults/ExamResults";
+import SchedulesPacient from "./pages/Patient/SchedulesPatient/SchedulesPacient";
 
 setupIonicReact();
 
@@ -103,6 +99,7 @@ const RoutingTabs: React.FC = () => {
     getStorage("token").then((response) => {
       const role = response.data.user.role.toLowerCase();
       setCategory(`/home-${role}`);
+      console.log(role)
     });
   }, []);
 
@@ -111,7 +108,7 @@ const RoutingTabs: React.FC = () => {
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/">
-            {category == "/home-patient" ? (
+            {category == "/home-pacient" ? (
               <HomePatient />
             ) : category == "/home-doctor" ? (
               <HomeDoctor />
@@ -124,7 +121,7 @@ const RoutingTabs: React.FC = () => {
           <Route exact path="/register-doctor">
             <RegisterDoctorAdmin />
           </Route>
-          <Route exact path="/home-patient">
+          <Route exact path="/home-pacient">
             <HomePatient />
           </Route>
           <Route exact path="/home-doctor">
@@ -151,7 +148,7 @@ const RoutingTabs: React.FC = () => {
           <Route exact path="/clinic-list">
             <ClinicList/>
           </Route>
-          <Route exact path="/schedule-patient">
+          <Route exact path="/schedules">
             <SchedulePatient />
           </Route>
           <Route exact path="/schedule-doctor">

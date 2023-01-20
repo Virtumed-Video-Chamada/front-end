@@ -1,6 +1,5 @@
 import {
   IonButton,
-  IonCard,
   IonContent,
   IonIcon,
   IonImg,
@@ -9,16 +8,22 @@ import {
   IonSearchbar,
 } from "@ionic/react";
 import { searchOutline } from "ionicons/icons";
-import { useHistory } from "react-router";
+
+import {  useHistory } from "react-router";
 import Appointments from "../../../components/Appointments/Appointments";
 import Identificador from "../../../components/Identificador/Identificador";
 import PopularDoctor from "../../../components/Patient/PopularDoctor/PopularDoctor";
+
 import QuickAccess from "../../../components/Patient/QuickAcess/QuickAccess";
-import SideMenu from "../../../components/SideMenu/SideMenu";
+
 import "./style.css";
 // import logo from "../../../assets/logo.png"
 
-const HomePatient: React.FC = () => {
+const  HomePatient: React.FC = () => {
+  const history = useHistory();
+  const router = () => {
+    history.replace("/find-doctor");
+  };
   return (
     <IonPage>
       <IonContent>
@@ -47,6 +52,7 @@ const HomePatient: React.FC = () => {
         </div>
       </IonContent>
     </IonPage>
+    
   );
 };
 

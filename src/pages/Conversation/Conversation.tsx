@@ -8,6 +8,10 @@ import { attach, send } from "ionicons/icons";
 import { createRef, useEffect, useState } from "react";
 
 const Conversation: React.FC = () => {
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const userId = urlParams.get("id");
+
  let messagesMock: any[] = [
     {
       user: "simon",

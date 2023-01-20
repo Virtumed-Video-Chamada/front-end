@@ -7,9 +7,11 @@ export interface ChatConversationProps {
 
 export interface Doctor {
   id?: string;
-  nameDoctor?: string;
+  name?: string;
   crm?: string;
-  speciality?: string;
+	doctor?: {
+		speciality?: string;
+	}
   email?: string;
   password?: string;
   cep?: string;

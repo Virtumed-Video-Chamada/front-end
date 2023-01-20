@@ -15,13 +15,39 @@ import {
   useIonToast,
 } from "@ionic/react";
 import { camera } from "ionicons/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getStorage } from "../../services/adminStorage";
 import "./main.css";
 
 const PatientSettings: React.FC = () => {
   //validação ionic ----
   const [isTouched, setIsTouched] = useState(false);
   const [isValid, setIsValid] = useState<boolean>();
+  const [avatar, setAvatar] = useState<string>();
+  const [rg, setRg] = useState<string>();
+  const [cpf, setCpf] = useState<string>();
+  const [cep, setCep] = useState<string>();
+  const [cep, setCep] = useState<string>();
+
+
+  useEffect(() => {
+    getStorage('token').then((storage) => {
+      storage.data.user.avatar;
+      storage.data.user.rg;
+      storage.data.user.cpf
+      storage.data.user.cep
+      storage.data.user.address
+      storage.data.user.number
+      storage.data.user.city
+      storage.data.user.district
+      storage.data.user.state
+  }
+    })
+  }, [])
+
+
+
+
 
   const validateEmail = (email: string) => {
     return email.match(

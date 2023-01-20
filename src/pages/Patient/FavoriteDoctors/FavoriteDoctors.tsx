@@ -1,33 +1,14 @@
 import {
-  IonBackButton,
-  IonButtons,
   IonContent,
-  IonFooter,
-  IonHeader,
-  IonIcon,
-  IonImg,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonItem,
-  IonLabel,
   IonList,
-  IonPage,
-  IonRouterOutlet,
-  IonSearchbar,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  IonTitle,
-  IonToolbar,
+  IonPage
 } from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, heart, square, triangle } from "ionicons/icons";
 import { useState } from "react";
-import { Redirect, Route } from "react-router";
 import Identificador from "../../../components/Identificador/Identificador";
 import DoctorCard from "../../../components/Patient/DoctorCard/DoctorCard";
-import ListDoctor from "../../../components/Pacient/ListDoctor/ListDoctor";
-import PreCall from "../../../components/PreCall/PreCall";
 import { favoriteDoctors } from "../../../mocks/favoritesDoctor";
 
 const FavoriteDoctors: React.FC = () => {
@@ -51,7 +32,7 @@ const FavoriteDoctors: React.FC = () => {
         <IonList>
           {items.map((element: any, index: any) => (
             <IonItem key={index}>
-              <DoctorCard doctor={element} key={element.id} />
+              <DoctorCard props={element} key={element.id} />
             </IonItem>
           ))}
         </IonList>
