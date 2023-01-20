@@ -29,7 +29,7 @@ const HomePatient: React.FC = () => {
         <Identificador />
         <div className="container">
           <h1 className="font-bold text-lg pl-8">Encontre seu médico</h1>
-          <IonItem className="mt-0 mb-0" lines="none">
+          <IonItem className="p-4" lines="none">
             <IonButton routerLink="/find-doctor">
               <IonIcon slot="start" icon={searchOutline}></IonIcon>
               Pesquise por médico ou por especialidade
