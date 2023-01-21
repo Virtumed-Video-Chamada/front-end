@@ -23,6 +23,10 @@ const PatientSettings: React.FC = () => {
   //validação ionic ----
   const [isTouched, setIsTouched] = useState(false);
   const [isValid, setIsValid] = useState<boolean>();
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('')
   const [avatar, setAvatar] = useState<string>();
   const [rg, setRg] = useState<string>();
   const [cpf, setCpf] = useState<string>();
@@ -36,38 +40,17 @@ const PatientSettings: React.FC = () => {
 
   useEffect(() => {
     getStorage('token').then((storage) => {
+      setName(storage.data.user.avatar);
       setAvatar(storage.data.user.avatar);
-      setRg(storage.data.user.rg);
-      setCpf(storage.data.user.cpf);
-      setCep(storage.data.user.cep);
-      setAddress(storage.data.user.address);
-      setNumber(storage.data.user.number)
-      // storage.data.user.city
-      // storage.data.user.district
-      // storage.data.user.state
+      setEmail(storage.data.user.avatar);
   })
     
   }, [])
 
+  const updateUser = () => {
+  console.log(name, email, password, cpf)
+}
 
-
-
-
-  const validateEmail = (email: string) => {
-    return email.match(
-      /^(?=.{1,254}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
-    );
-  };
-
-  const validate = (ev: Event) => {
-    const value = (ev.target as HTMLInputElement).value;
-
-    setIsValid(undefined);
-
-    if (value === "") return;
-
-    validateEmail(value) !== null ? setIsValid(true) : setIsValid(false);
-  };
 
   const markTouched = () => {
     setIsTouched(true);
@@ -94,29 +77,47 @@ const PatientSettings: React.FC = () => {
             </IonAvatar>
             <IonIcon icon={camera} className="w-5 h-5"></IonIcon>
           </div>
-
           <IonItem
             fill="solid"
-            className={`${isValid && "ion-valid"} ${
-              isValid === false && "ion-invalid"
-            } ${isTouched && "ion-touched"}`}
+            className="ion-valid"
+          >
+            <IonLabel position="floating">Nome</IonLabel>
+            <IonInput
+              type="text"
+              onIonBlur={() => markTouched()}
+              value={name}
+              onIonChange={e => setName(e.detail.value!)}
+
+            ></IonInput>
+            <IonNote slot="helper">Enter a valid email</IonNote>
+            <IonNote slot="error">Invalid email</IonNote>
+          </IonItem>
+          <IonItem
+            fill="solid"
           >
             <IonLabel position="floating">Email</IonLabel>
             <IonInput
               type="email"
-              onIonInput={(event) => validate(event)}
               onIonBlur={() => markTouched()}
+              value={email}
+              onIonChange={e => setEmail(e.detail.value!)}
             ></IonInput>
             <IonNote slot="helper">Enter a valid email</IonNote>
             <IonNote slot="error">Invalid email</IonNote>
           </IonItem>
           <IonItem>
+            <IonLabel position="floating">CPF</IonLabel>
+            <IonInput value={cpf} onIonChange={e => setCpf(e.detail.value!)} type="text"></IonInput>
+          </IonItem>
+          <IonItem>
             <IonLabel position="floating">Senha</IonLabel>
-            <IonInput type="password"></IonInput>
+            <IonInput   value={password} onIonChange={e => setPassword(e.detail.value!)}
+               type="password"></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="floating">Confirme sua senha</IonLabel>
-            <IonInput type="password"></IonInput>
+            <IonInput value={confirmPassword} onIonChange={e => setConfirmPassword(e.detail.value!)}
+             type="password"></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="floating">Endereço</IonLabel>
@@ -131,7 +132,7 @@ const PatientSettings: React.FC = () => {
             <IonInput type="number" placeholder="000000-000"></IonInput>
           </IonItem>
         </IonList>
-        <IonButton className="btnDefault mt-4" expand="block" color="tertiary">
+        <IonButton className="btnDefault mt-4" expand="block" color="tertiary" onClick={() => updateUser()}>
           Atualizar dados
         </IonButton>
       </IonContent>
