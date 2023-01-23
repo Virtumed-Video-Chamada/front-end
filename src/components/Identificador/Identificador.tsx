@@ -14,6 +14,7 @@ const Identificador: React.FC = () => {
 
   useEffect(() => {
     getStorage('token').then((response) => {
+
       setUser(response.data.user);
     })
   }, [])
@@ -29,8 +30,8 @@ const Identificador: React.FC = () => {
   
   return (
     <div >
-     <IonItem lines="none" className="mb-2 identificador">
-        <IonThumbnail className="pt-3" slot="end">
+     <IonItem lines="none" className="identificador">
+        <IonThumbnail slot="end">
           <IonAvatar className="border-primary">
             <img
               alt="Silhouette of a person's head"

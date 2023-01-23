@@ -21,7 +21,7 @@ const CardMedicalRecords: React.FC = () => {
     <div className="container">
       <div className="titlePopular">
         <h1 className="font-bold text-l pl-3">Meus Prontuários</h1>
-        <span className="font-bold text-xs text-colored" onClick={() => seeAll()}>
+        <span className="font-bold text-xs text-colored cursor-pointer" onClick={() => seeAll()}>
           Ver todos...
         </span>
       </div>

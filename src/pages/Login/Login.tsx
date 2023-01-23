@@ -56,7 +56,7 @@ const executeLogin = async () => {
 
   return (
     <IonPage>
-      <div className="container px-8 py-3 font-semibold">
+      <div className="px-8 py-3 font-semibold mx-auto">
         <div className="splash-info"></div>
         <IonList>
           <IonImg src='./assets/logo.png' className='imgLogo flex items-center mx-auto'/>

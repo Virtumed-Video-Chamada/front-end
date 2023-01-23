@@ -120,6 +120,7 @@ const RegisterClinic: React.FC = () => {
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>CEP</span></span>
             </IonLabel>
+            <IonInput className='inputSelsyn' type="text" value={cep} placeholder="Informe seu CEP" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
             <IonInput className='inputSelsyn' type="text" maxlength={8} minlength={8} value={cep} required placeholder="Informe seu CEP (Apenas números)" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
@@ -157,6 +158,7 @@ const RegisterClinic: React.FC = () => {
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>E-mail</span></span>
             </IonLabel>
+            <IonInput className='inputSelsyn' type="text" value={email} placeholder="Informe e-mail" onIonChange={e => setEmail(e.detail.value!)}></IonInput>
             <IonInput className='inputSelsyn' type="text" value={email} required placeholder="Informe e-mail" onIonChange={e => setEmail(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
