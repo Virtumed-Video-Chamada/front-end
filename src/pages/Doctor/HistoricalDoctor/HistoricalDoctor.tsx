@@ -12,11 +12,12 @@ import {
 } from "@ionic/react";
 import Identificador from "../../../components/Identificador/Identificador";
 import { documentTextOutline } from "ionicons/icons";
-import { mockedRecords } from "../../../mocks/records";
+import { mockedPatients } from "../../../mocks/patient";
+import { findAllService } from "../../../services/findService";
 
 const HistoricalDoctor: React.FC = () => {
-  const [namePacient, setNamePacient] = useState<any>(mockedRecords);
-  const [results, setResults] = useState(['']);
+  const [namePacient, setNamePacient] = useState<any>(mockedPatients);
+  const [results, setResults] = useState([...namePacient]);
   const [busy, setBusy] = useState(false);
   const [listA, setListA] = useState([]);
   const [listB, setListB] = useState([]);
@@ -44,7 +45,23 @@ const HistoricalDoctor: React.FC = () => {
   const [listX, setListX] = useState([]);
   const [listY, setListY] = useState([]);
   const [listZ, setListZ] = useState([]);
-
+  // const handleChange = async (ev?: Event) => {
+  //   await findAllService.findAllUsers("pacient").then((response: any) => {
+  //     console.log(response.data);
+  //     setNamePacient(response.data);
+  //     let query = "";
+  //   if (ev != null) {
+  //     const target = ev.target as HTMLIonSearchbarElement;
+  //     if (target) query = target.value!.toLowerCase();
+  //   }
+  //   // eslint-disable-next-line array-callback-return
+  //     setResults(response.data.filter((patient: any) => {
+  //     return patient.name!.toLowerCase().indexOf(query) > -1 || patient.cpf!.toLowerCase().indexOf(query) > -1 || query === '';
+  //   }))
+  //   }).catch((err: any) => {
+  //     console.log(err);
+  //   });
+  // }
   const newList = () => {
     setListA(
       namePacient.filter((item: any) => {
@@ -175,26 +192,31 @@ const HistoricalDoctor: React.FC = () => {
     );
   };
 
-  const handleChange = (ev?: Event) => {
-    let query = "";
-    setBusy(true);
-    if (ev != null) {
-      const target = ev.target as HTMLIonSearchbarElement;
-      if (target) query = target.value!.toLowerCase();
-      if (query === "") {
+  const handleChange = async (ev?: Event) => {
+    await findAllService.findAllUsers("pacient").then((response: any) => {
+
+      setNamePacient(response.data);
+
+      let query = "";
+      setBusy(true);
+      if (ev != null) {
+        const target = ev.target as HTMLIonSearchbarElement;
+        if (target) query = target.value!.toLowerCase();
+        if (query === "") {
+          setBusy(false);
+        }
+      } else {
         setBusy(false);
       }
-    } else {
-      setBusy(false);
-    }
-    // eslint-disable-next-line array-callback-return
-    setResults(
-      namePacient.filter((patient: any) => {
-        return (
-          (patient.name!.toLowerCase().indexOf(query) > -1) 
-        );
-      })
-    );
+      // eslint-disable-next-line array-callback-return
+      setResults(
+        namePacient.filter((patient: any) => {
+          return (
+            (patient.name!.toLowerCase().indexOf(query) > -1)
+          );
+        })
+      )
+    });
   };
   
   const renderize = () => {

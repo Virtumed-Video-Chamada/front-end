@@ -362,14 +362,34 @@ h1 {
 
 .cardDoctor {
   background-color: #4b39b3;
-  width: 85vw;
+
+  width: 75vw;
+
   height: 6rem;
 }
 
 .cardDoctorWhite {
   background-color: #ffffff;
-  width: 85vw;
-  height: 10rem;
+  width: 75vw;
+  height: 6rem;
+  padding-bottom: 8rem;
+
+}
+
+@media (min-width: 1250px) {
+  .cardDoctor {
+    width: 40vw;
+  }
+
+  .cardDoctor {
+    width: 40vw;
+  }
+  
+  .cardDoctorWhite {
+    width: 40vw;
+  }
+
+
 }
 
 .imgDoctor {
@@ -396,7 +416,30 @@ ion-tab-button.tab-selected {
 .ion-page {
   max-height: 100vh;
   overflow-y: auto !important;
+  max-width: 1120px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  justify-content: space-around;
 }
+
+.ion-page::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+.ion-page::-webkit-scrollbar-track {
+  background: transparent; /* color of the tracking area */
+}
+
+.ion-page::-webkit-scrollbar-thumb {
+  background-color: transparent; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+}
+
+
 
 ion-radio {
   width: 1.3rem;
@@ -459,4 +502,3 @@ ion-radio.radio-checked::part(mark) {
   font-weight: bold;
   color: #000;
 }
-

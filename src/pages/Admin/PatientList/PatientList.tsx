@@ -60,7 +60,6 @@ const PatientList = () => {
     }).catch((err: any) => {
       console.log(err);
     });
-    
   }
 
   useEffect(() => {

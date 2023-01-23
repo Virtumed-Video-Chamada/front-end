@@ -18,7 +18,7 @@ const Identificador: React.FC = () => {
       setUser(response.data.user);
     })
   }, [])
-    ;
+    
   
   const renderize = () => {
     if (user.avatar_url === '' || user.avatar_url === null) {

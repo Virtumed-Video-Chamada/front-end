@@ -21,7 +21,6 @@ const PopularDoctor: React.FC = () => {
   };
 
   const renderize = () => {
-    console.log(listFavorites.length);
     if (listFavorites.length == 0) {
       return (
         <IonCard className="bd-20 cardDoctorWhite flex flex-col justify-center">

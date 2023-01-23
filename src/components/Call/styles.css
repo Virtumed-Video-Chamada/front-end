@@ -52,6 +52,12 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .extra-border {

@@ -67,7 +67,7 @@ const SchedulePatient: React.FC = () => {
           text: "SIM",
           role: "confirm",
           cssClass: "alert-button-confirm",
-          handler: () => {
+          handler: () => {       
             presentToast();
           },
         },
@@ -76,6 +76,22 @@ const SchedulePatient: React.FC = () => {
         setRoleMessage(`Dismissed with role: ${e.detail.role}`),
     });
   };
+
+  function getPassword() {
+    var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJLMNOPQRSTUVWXYZ";
+    var passwordLength = 5;
+    var password = "";
+
+    for (var i = 0; i < passwordLength; i++) {
+      var randomNumber = Math.floor(Math.random() * chars.length);
+      password += chars.substring(randomNumber, randomNumber + 1);
+    }
+      presentAlert({
+        header: 'Consulta Confirmada com Sucesso',
+        subHeader: `Código da Sala: ${password}`,
+        buttons: ['OK'],
+      })
+  }
 
   return (
     <IonPage>
@@ -115,21 +131,21 @@ const SchedulePatient: React.FC = () => {
                   >
                     CANCELAR
                   </IonButton>
-                  <IonButton className="text-xs" color="primary">
+                  <IonButton className="text-xs" color="primary" onClick={() => getPassword()}>
                     CONFIRMAR
                   </IonButton>
                 </div>
               </div>
             </IonCardContent>
 
-            <div className="flex flex-row justify-center items-center">
+            {/* <div className="flex flex-row justify-center items-center">
               <div className={_class}>
                 <IonButton className="text-xs w-max" expand="block">
                   ABRIR CHAT
                   <IonIcon slot="start" icon={chatbubbleOutline}></IonIcon>
                 </IonButton>
               </div>
-            </div>
+            </div> */}
           </IonCard>
         </div>
       </IonContent>
