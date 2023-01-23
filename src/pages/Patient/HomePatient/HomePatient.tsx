@@ -31,7 +31,7 @@ const  HomePatient: React.FC = () => {
         <IonItem className="mt-0 mb-0" lines="none">
           <Appointments />
         </IonItem>
-        <IonItem className="mt-0 mb-0" lines="none">
+        <IonItem className="mt-0 mb-0 px-0" lines="none">
           <QuickAccess />
         </IonItem>
         <IonItem className="mt-0 mb-0" lines="none">

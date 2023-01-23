@@ -46,6 +46,8 @@ function SideMenu() {
   window.addEventListener('click', function(e: any) {
     if (document.getElementById('element-modal')!.contains(e.target)) {
       dismiss()
+    } else {
+      dismiss()
     }
 });
 

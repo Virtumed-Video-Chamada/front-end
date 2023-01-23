@@ -15,7 +15,7 @@ const Register: React.FC = () => {
     <IonPage>
       <div className="container px-8 py-3 font-semibold overflow-y-auto">
         <div className="splash-info"></div>
-            <IonImg src='./assets/logo.png' className='imgLogo'/>
+            <IonImg src='./assets/logo.png' className='imgLogo mx-auto'/>
             {choice === "clinic" && <RegisterClinic /> }
             {choice === "doctors" && <RegisterMedic /> }
             {choice === "pacient" && <RegisterPacient/> }
