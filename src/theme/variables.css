@@ -394,7 +394,7 @@ ion-tab-button.tab-selected {
 }
 
 .ion-page {
-  min-height: 100vh;
+  max-height: 100vh;
   overflow-y: auto !important;
 }
 
@@ -436,7 +436,16 @@ ion-radio.radio-checked::part(mark) {
   flex-direction: column;
   justify-content: center;
   min-width: 6.25rem;
-  height: 6.25rem;
+  min-height: 6.25rem;
+  max-width: 6.25rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.quickCardClinic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-weight: bold;
   color: #000;
 }
@@ -450,3 +459,4 @@ ion-radio.radio-checked::part(mark) {
   font-weight: bold;
   color: #000;
 }
+

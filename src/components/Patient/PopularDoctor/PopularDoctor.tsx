@@ -1,4 +1,4 @@
-import { IonCard, IonCardContent } from "@ionic/react";
+import { IonCard, IonCardContent, IonItem } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { favoriteDoctors } from "../../../mocks/favoritesDoctor";
@@ -51,7 +51,10 @@ const PopularDoctor: React.FC = () => {
         </span> : ''}
         
       </div>
+      <div className=" flex mx-auto items-center justify-center">
       {renderize()}
+      </div>
+    
     </div>
   );
 };

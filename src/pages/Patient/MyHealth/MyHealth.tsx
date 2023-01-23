@@ -2,7 +2,6 @@ import {
   IonButton,
   IonCard,
   IonCardContent,
-  IonHeader,
   IonIcon,
   IonImg,
   IonInput,
@@ -10,8 +9,9 @@ import {
   IonLabel,
   IonPage,
   IonSelect,
-  IonSelectOption
+  IonSelectOption,
 } from "@ionic/react";
+import { IonReactRouter } from "@ionic/react-router";
 import {
   medkitOutline
 } from "ionicons/icons";
@@ -21,15 +21,13 @@ import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 import QuickAccess from "../../../components/Patient/QuickAcess/QuickAccess";
 
+
 const MyHealth: React.FC = () => {
 
   return (
-    <IonPage >
-      <IonHeader className="flex flex-col justify-center items-center">
-      <IonImg src='./assets/logo.png' className="w-44"/>
+    <IonPage>
+      <IonImg src="./assets/logo.png" className="imgLogoSmall" />
       <Identificador />
-      
-     
       <div>
         <form>
           <IonItem>
@@ -61,19 +59,21 @@ const MyHealth: React.FC = () => {
           </IonItem>
         </form>
         <div className="flex flex-col justify-center mt-4">
-          <IonButton className='mt-8' color="tertiary">
+          <IonButton className="mt-8" color="tertiary">
             Salvar
           </IonButton>
-            <QuickAccess />
-          <IonCard color="tertiary" className="bd-20" >
+          <QuickAccess />
+          <IonCard color="tertiary" className="bd-20">
             <IonCardContent className="flex justify-center align-middle">
-            <span className="font-bold text-2xl text-center"> AGENDA DE MEDICAMENTOS</span>
-            <IonIcon icon={medkitOutline} className="w-20 h-20"></IonIcon>
+              <span className="font-bold text-2xl text-center">
+                {" "}
+                AGENDA DE MEDICAMENTOS
+              </span>
+              <IonIcon icon={medkitOutline} className="w-20 h-20"></IonIcon>
             </IonCardContent>
           </IonCard>
         </div>
       </div>
-      </IonHeader>
     </IonPage>
   );
 };

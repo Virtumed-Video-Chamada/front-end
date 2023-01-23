@@ -36,7 +36,7 @@ const ListDoctor: React.FC = () => {
   // const data = ['Amsterdam', 'Buenos Aires', 'Cairo', 'Geneva', 'Hong Kong', 'Istanbul', 'London', 'Madrid', 'New York', 'Panama City'];
  
   const handleChange = async (ev?: Event) => {
-    await findAllService.findAllDoctors(role).then((response: any) => {
+    await findAllService.findAllUsers(role).then((response: any) => {
       console.log(response.data);
       setItems(response.data);
       let query = "";
@@ -45,10 +45,8 @@ const ListDoctor: React.FC = () => {
       if (target) query = target.value!.toLowerCase();
     }
     // eslint-disable-next-line array-callback-return
-    setResults(response.data.filter((doctor: any) => {
-      return doctor.name!.toLowerCase().indexOf(query) > -1 || query === '';
-           // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      // teste.toLowerCase().indexOf(query) > -1;
+      setResults(response.data.filter((doctor: any) => {
+      return doctor.name!.toLowerCase().indexOf(query) > -1 || doctor.doctor.speciality!.toLowerCase().indexOf(query) > -1 || query === '';
     }))
     }).catch((err: any) => {
       console.log(err);

@@ -29,7 +29,7 @@ const QuickAccess: React.FC = () => {
           Médico
         </IonText>
         <IonCard
-            className="bd-20 quickCard"
+            className="bd-20 quickCardClinic"
             routerLink="/register-doctor"
           >
             <IonImg
@@ -38,7 +38,7 @@ const QuickAccess: React.FC = () => {
             ></IonImg>
             <p className="text-center">Cadastrar Médico</p>
           </IonCard>
-          <IonCard className="bd-20 quickCard" routerLink="/find-doctor">
+          <IonCard className="bd-20 quickCardClinic" routerLink="/find-doctor">
             <IonImg
             color="primary"
               className="imgCard mx-auto"
@@ -46,7 +46,7 @@ const QuickAccess: React.FC = () => {
             ></IonImg>
             <p className="text-center">Médicos cadastrados</p>
           </IonCard>
-         {/*  <IonCard className=" bd-20 quickCard">
+         {/*  <IonCard className=" bd-20 quickCardClinic">
             <IonImg
               className="imgCard"
               src="./assets/icon/appointment.svg"
@@ -54,7 +54,7 @@ const QuickAccess: React.FC = () => {
             <p className="text-center ">Consultas do dia</p>
           </IonCard> */}
             <IonCard
-            className=" bd-20 quickCard"
+            className=" bd-20 quickCardClinic"
             routerLink="historical-clinic"
           >
             <IonImg
@@ -63,9 +63,9 @@ const QuickAccess: React.FC = () => {
             ></IonImg>
             <p className="text-center">Sistema de Teleconsulta</p>
           </IonCard> 
-          <IonCard className=" bd-20 quickCard">
+          <IonCard className=" bd-20 quickCardClinic">
             <IonImg
-              className="imgCard"
+              className="imgCard  mx-auto"
               src="./assets/icon/calendarNumber.svg"
             ></IonImg>
             <p className="text-center">Agenda Médica</p>
@@ -75,14 +75,16 @@ const QuickAccess: React.FC = () => {
        <IonText class=" flex justify-center text-black text-xl font-bold">
           Paciente
         </IonText>
-       <IonCard className=" bd-20 quickCard" routerLink="/register-patient">
+
+       <IonCard className="bd-20 quickCardClinic " routerLink="/register-patient">
+
             <IonImg
               className="imgCard mx-auto"
               src="./assets/icon/user.svg"
             ></IonImg>
             <p className="text-center ">Cadastrar Paciente</p>
           </IonCard>
-          <IonCard className="bd-20 quickCard" routerLink="/patient-list">
+          <IonCard className="bd-20 quickCardClinic" routerLink="/patient-list">
             <IonImg
               className="imgCard mx-auto"
               src="./assets/icon/users.svg"
@@ -90,7 +92,7 @@ const QuickAccess: React.FC = () => {
             <p className="text-center ">Pacientes Cadastrados</p>
           </IonCard>
          {/*  <IonCard
-            className=" bd-20 quickCard"
+            className=" bd-20 quickCardClinic"
             routerLink="historical-clinic"
           >
             <IonImg
@@ -100,8 +102,8 @@ const QuickAccess: React.FC = () => {
             <p className="text-center ">Lançar Exames</p>
           </IonCard> */}
           <IonCard
-            className=" bd-20 quickCard"
-            routerLink="historical-clinic"
+            className=" bd-20 quickCardClinic"
+            routerLink="exam-results"
           >
             <IonImg
               className="imgCard mx-auto"

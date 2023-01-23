@@ -166,7 +166,7 @@ function DoctorCard({ props }: DoctorCardProps) {
             <img
               className="imgDoctor max-h-[130%] max-w-[130%] bd-20"
               alt="Pic-Doctor"
-              src="./assets/avatar/Pic-Doctor.png"
+              src={props.avatar == null ? "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" : props.avatar}
             />
           </IonThumbnail>
           <div className="flex flex-col gap-1 ml-11">
