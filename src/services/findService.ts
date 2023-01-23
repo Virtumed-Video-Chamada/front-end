@@ -8,14 +8,11 @@ const findAllService = {
 			.catch((error: any) => error.response),
 };
 
-
-
-
 const findByIdService = {
-	findProfileById: (id: string) =>
+	findProfileByIdDoctor: (id: any) =>
 		api
-			.get(`/profile/${id}`)
-			.then((response: any) => response)
+			.post('/profile/findDoctor', id)
+			.then((response: any) => { return response })
 			.catch((error: any) => console.log(error)),
 
 };

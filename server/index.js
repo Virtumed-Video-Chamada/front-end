@@ -9,19 +9,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
 
-const sendTokenResponse = (token, res) => {
+const sendTokenResponse = async (token, res) => {
   res.set('Content-Type', 'application/json');
-  res.send(
+ await res.send(
     JSON.stringify({
       token: token.toJwt()
     })
   );
 };
 
-app.get('/api/greeting', (req, res) => {
+app.get('/api/greeting', async (req, res) => {
   const name = req.query.name || 'World';
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
+ await res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
 });
 
 app.get('/video/token', (req, res) => {

@@ -110,7 +110,6 @@ function DoctorCard({ props }: DoctorCardProps) {
   // }, []);
 
   const renderize = () => {
-    console.log(category)
     if (category === "pacient") {
       return (
         <div className="flex flex-row justify-center items-center">
