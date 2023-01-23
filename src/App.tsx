@@ -207,23 +207,24 @@ const RoutingTabs: React.FC = () => {
           <IonTabButton tab="home" href={category}>
             <IonIcon icon={homeOutline} className="w-6 h-6" color="primary" />
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/schedules">
+        <IonTabButton tab="tab2" href="/schedules">
             <IonIcon
               icon={calendarOutline}
               className="w-6 h-6"
               color="primary"
             />
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/chat">
+          {(category === "/home-clinic" || category === "/home-admin") ? '' : <IonTabButton tab="tab3" href="/chat">
             <IonIcon
               icon={chatbubblesOutline}
               className="w-6 h-6"
               color="primary"
             />
-          </IonTabButton>
-          <IonTabButton tab="tab4" href="/health">
+          </IonTabButton> }
+          
+          {(category === "/home-clinic" || category === "/home-admin") ? '' : <IonTabButton tab="tab4" href="/health">
             <IonIcon icon={medkitOutline} className="w-6 h-6" color="primary" />
-          </IonTabButton>
+          </IonTabButton>}
           <IonTabButton tab="tab5">
             <IonIcon
               icon={personOutline}

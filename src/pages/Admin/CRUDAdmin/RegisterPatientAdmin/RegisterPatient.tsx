@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   IonBackButton,
   IonButton,
@@ -22,6 +22,8 @@ import { alertaSucesso, alertaErro } from "../../../../utils/alertas";
 
 const RegisterPatientAdmin: React.FC = () => {
   const history = useHistory();
+  const urlParams = new URLSearchParams(window.location.search);
+  const userId = urlParams.get("id");
 
   const [name, setName] = useState<string>("");
   const [cpf, setCpf] = useState<string>("");
@@ -65,6 +67,10 @@ const RegisterPatientAdmin: React.FC = () => {
     }
   }; */
 
+  useEffect(() => {
+    console.log(userId)
+  }, [])
+
   return (
     <IonPage>
       <IonHeader>
@@ -81,7 +87,7 @@ const RegisterPatientAdmin: React.FC = () => {
           className="imgLogoSmall flex items-center mx-auto"
         />
         <IonText class=" flex justify-center mt-5 text-black text-xl font-bold">
-          Registrar Paciente
+          {userId == null ? 'Registrar Paciente' : 'Editar Paciente'}
         </IonText>
         <IonList>
           <IonItem lines="inset" className="pr-2">

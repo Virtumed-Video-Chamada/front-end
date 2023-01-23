@@ -101,7 +101,7 @@ const QuickAccess: React.FC = () => {
           </IonCard> */}
           <IonCard
             className=" bd-20 quickCard"
-            routerLink="historical-clinic"
+            routerLink="exam-results"
           >
             <IonImg
               className="imgCard mx-auto"

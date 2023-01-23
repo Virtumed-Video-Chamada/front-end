@@ -8,7 +8,8 @@ export interface ChatConversationProps {
 export interface Doctor {
   id?: string;
   name?: string;
-  crm?: string;
+	crm?: string;
+	avatar?: string;
 	doctor?: {
 		speciality?: string;
 	}

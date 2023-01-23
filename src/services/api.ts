@@ -3,6 +3,7 @@ import { getStorage } from './adminStorage';
 
 const api = axios.create({
 	baseURL: 'http://159.223.106.132/',
+	// baseURL: 'http://https://humberto.online/',
 });
 
 api.interceptors.request.use(async (config: any) => {
