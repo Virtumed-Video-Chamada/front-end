@@ -1,12 +1,23 @@
-import { userLogin } from '../@types/interfaces';
 import api from './api';
 
 const updateService = {
-	updateUser: (id: string, values: userLogin) =>
+	updateUser: ( values: any, role: string) =>
 		api
-			.patch(`/user/${id}`, values)
-			.then((response: any) => response)
-			.catch((error: any) => error.response)
+			.put(`/${role}`, values)
+			.then((response: any) => { return response })
+			.catch((error: any) => error.response),
+	
+	updatePassword: (values: any) =>
+		api
+		.put(`/password/reset`, values)
+		.then((response: any) => { return response })
+			.catch((error: any) => error.response),
+	
+	updateAvatar: (values: any) =>
+		api
+		.patch(`/users/avatar`, values)
+		.then((response: any) => { return response })
+		.catch((error: any) => error.response),
 }
 
 export { updateService };

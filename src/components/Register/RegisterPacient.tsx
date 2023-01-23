@@ -112,7 +112,7 @@ const registerUser = async () => {
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>CPF</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={cpf} placeholder="Informe seu CPF" onIonChange={e => setCpf(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={cpf} maxlength={9} minlength={9} placeholder="Informe seu CPF(Apenas Números)" onIonChange={e => setCpf(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
@@ -124,7 +124,7 @@ const registerUser = async () => {
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>CEP</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={cep} placeholder="Informe seu CEP" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={cep} maxlength={8} minlength={8} placeholder="Informe seu CEP (Apenas Números)" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">

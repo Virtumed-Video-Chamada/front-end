@@ -7,9 +7,12 @@ export interface ChatConversationProps {
 
 export interface Doctor {
   id?: string;
-  nameDoctor?: string;
-  crm?: string;
-  speciality?: string;
+  name?: string;
+	crm?: string;
+	avatar?: string;
+	doctor?: {
+		speciality?: string;
+	}
   email?: string;
   password?: string;
   cep?: string;
@@ -28,8 +31,8 @@ export interface Pacient {
 }
 
 export interface userLogin {
-	email: string;
-	password: string;
+  email: string;
+  password: string;
 }
 
 export interface userPacient {
@@ -69,7 +72,6 @@ export interface userDoctor {
 	isAdmin?: boolean;
 }
 
-
 export interface userClinic {
 	id?: string;
 	name: string;
@@ -89,13 +91,13 @@ export interface userClinic {
 }
 
 export interface RoomProps {
-	roomName: any;
-  room: any,
+  roomName: any;
+  room: any;
   handleLogout: any;
 }
 
 export interface LobbyProps {
-	username: string;
+  username: string;
   handleUsernameChange: any;
   roomName: string;
   handleRoomNameChange: any;

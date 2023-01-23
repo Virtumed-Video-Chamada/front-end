@@ -6,25 +6,31 @@ export const favoriteDoctors: T.Doctor[] = [
   {
     id: "b329050a-e2a6-4603-988a-a0235e923a77111111111",
     email: "user@email.com",
-    nameDoctor: "Jorge",
+    name: "Jorge",
     crm: "CRM/SP 123456",
     cpf: "13954075938",
-    speciality: "Nutricionista",
+    doctor: {
+      speciality: "Nutricionista"
+    },
   },
   {
     id: "b11329050a-e2a6-4603-988a-a0235e923a775555ascs",
     email: "daniel@email.com",
-    nameDoctor: "Daniel",
+    name: "Daniel",
     crm: "CRM/SP 4444",
     cpf: "45996262633",
-    speciality: "Pediatra",
+    doctor: {
+      speciality: "Nutricionista"
+    },
   },
   {
     id: "b111329050a-e2a6-4603-988a-a0235e923a77000000000z",
     email: "daniel@email.com",
-    nameDoctor: "Daniel",
+    name: "Daniel",
     crm: "CRM/SP 4444",
     cpf: "45996262633",
-    speciality: "Pediatra",
+    doctor: {
+      speciality: "Nutricionista"
+    },
   },
 ];
