@@ -180,3 +180,104 @@
 .btn {
   width: 150px;
 } 
+@media (max-width: 375px) {
+  .lobby {
+    margin-top: -250px;
+  }
+
+  .extra-border {
+    margin: 50px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .border {
+    /* padding-top: -200px; */
+    width: 160px;
+    height: 160px;
+  }
+
+  .img-container {
+    /* padding-top: -200px; */
+    width: 140px;
+    height: 140px;
+  }
+
+  .img-container > img {
+    border: 10px solid #4b39b3;
+  }
+}
+
+.room {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  /* justify-content: center;  */
+}
+
+.btn-call-container {
+  position: fixed;
+  bottom: 60px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;  
+}
+
+.btn-call-container > button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background-color: red;
+  color: #fff;
+}
+
+.local-participant {
+  height: 50vh;
+  min-width: 100%;
+}
+
+.local-participant > h3 {
+  position: absolute;
+}
+
+.participantLocal {
+  height: 50vh;
+  min-width: 100%;
+}
+
+.participantLocal > h3{
+  position: fixed;
+  top: 50px;
+  left: 20px;
+  color: #fff;
+}
+
+.participantLocal > video {
+  height: 50vh;
+  min-width:100%;
+}
+
+.participantRemote > h3{
+  position: fixed;
+  top: 150px;
+  left: 20px;
+  color: #fff;
+}
+
+.remote-participants {
+  height: 50vh;
+  min-width: 100%;
+}
+
+.room > h2 {
+  position: fixed;
+  top: 100px;
+}
+
+.room > h3 {
+  position: fixed;
+  top: 50%;
+}

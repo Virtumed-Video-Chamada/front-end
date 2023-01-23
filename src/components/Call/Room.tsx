@@ -4,6 +4,9 @@ import "./styles.css";
 import Participant from "./Participant";
 import ParticipantRemote from "./ParticipantRemote";
 import ParticipantLocal from "./ParticipantLocal";
+import "./styles.css";
+import { IonButton, IonIcon } from "@ionic/react";
+import { chatbubbleOutline, exitOutline, micOffOutline, videocamOffOutline } from "ionicons/icons";
 
 const Room = ({ roomName, room, handleLogout }: RoomProps) => {
   const [participants, setParticipants] = useState<any[]>([]);
@@ -36,7 +39,18 @@ const Room = ({ roomName, room, handleLogout }: RoomProps) => {
   return (
     <div className="room">
       <h2>Room: {roomName}</h2>
-      <button onClick={handleLogout}>Log out</button>
+      <div className="btn-call-container">
+        
+      <IonButton className="text-xs w-max" >
+              <IonIcon  icon={micOffOutline}></IonIcon>
+        </IonButton>
+        <IonButton className="text-xs w-max" color="danger" onClick={handleLogout}>
+              <IonIcon  icon={exitOutline}></IonIcon>
+        </IonButton>
+        <IonButton className="text-xs w-max" >
+              <IonIcon  icon={videocamOffOutline}></IonIcon>
+        </IonButton>
+      </div>
       <div className="local-participant">
         {room ? (
           <ParticipantLocal
@@ -47,7 +61,6 @@ const Room = ({ roomName, room, handleLogout }: RoomProps) => {
           ""
         )}
       </div>
-      <h3>Remote Participants</h3>
       <div className="remote-participants">{remoteParticipants}</div>
     </div>
   );
