@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@capacitor/android": "^4.6.2",
     "@capacitor/app": "4.1.1",
-    "@capacitor/core": "4.5.0",
+    "@capacitor/core": "^4.5.0",
     "@capacitor/haptics": "4.1.0",
     "@capacitor/keyboard": "4.1.0",
     "@capacitor/preferences": "^4.0.2",
@@ -59,7 +60,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
+    "test": "react-scripts test --transformIgnorePatterns",
     "eject": "react-scripts eject",
     "server": "node-env-run server --exec nodemon | pino-colada",
     "dev": "run-p server start"
@@ -68,7 +69,6 @@
   "resolutions": {
     "styled-components": "^5"
   },
- 
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -88,7 +88,7 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "4.5.0",
+    "@capacitor/cli": "^4.5.0",
     "@ionic/lab": "3.2.15",
     "autoprefixer": "^10.4.13",
     "node-env-run": "^4.0.2",

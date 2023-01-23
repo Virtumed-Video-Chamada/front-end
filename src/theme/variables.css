@@ -362,7 +362,9 @@ h1 {
 
 .cardDoctor {
   background-color: #4b39b3;
+
   width: 75vw;
+
   height: 6rem;
 }
 
@@ -371,6 +373,7 @@ h1 {
   width: 75vw;
   height: 6rem;
   padding-bottom: 8rem;
+
 }
 
 @media (min-width: 1250px) {
@@ -437,6 +440,7 @@ ion-tab-button.tab-selected {
 }
 
 
+
 ion-radio {
   width: 1.3rem;
   height: 1.3rem;
@@ -469,3 +473,24 @@ ion-radio.radio-checked::part(mark) {
 
   transform: rotate(45deg);
 }
+
+.quickCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 6.25rem;
+  height: 6.25rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.buttonCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 6.25rem;
+  height: 6.25rem;
+  font-weight: bold;
+  color: #000;
+}
+

@@ -1,7 +1,8 @@
 import { IonImg, IonPage } from '@ionic/react';
 import RegisterClinic from '../../components/Register/RegisterClinic';
 import RegisterMedic from '../../components/Register/RegisterDoctor';
-import RegisterPacient from '../../components/Register/RegisterPacient';
+import RegisterPacient from '../../components/Register/RegisterPatient';
+
 
 
 const Register: React.FC = () => {
@@ -16,10 +17,10 @@ const Register: React.FC = () => {
         <div className="splash-info"></div>
             <IonImg src='./assets/logo.png' className='imgLogo md:mx-auto mx-auto'/>
             {choice === "clinica" && <RegisterClinic /> }
+            <IonImg src='./assets/logo.png' className='imgLogo'/>
+            {choice === "clinic" && <RegisterClinic /> }
             {choice === "doctors" && <RegisterMedic /> }
             {choice === "pacient" && <RegisterPacient/> }
-
-          
       </div>
     </IonPage>
   );

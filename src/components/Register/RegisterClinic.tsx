@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { IonButton, IonInput, IonItem, IonLabel, IonList, IonText } from "@ionic/react";
-import ModalAlert from "../ModalAlert/ModalAlert";
 import { useHistory } from "react-router";
 import { userClinic } from "../../@types/interfaces";
 import { registerService } from "../../services/registerService";
@@ -103,55 +102,56 @@ const RegisterClinic: React.FC = () => {
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Nome Fantasia</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={nameFantasy} placeholder="Informe nome fantasia" onIonChange={e => setNameFantasy(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={nameFantasy} required placeholder="Informe nome fantasia" onIonChange={e => setNameFantasy(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Razão Social</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={razaoSocial} placeholder="Informe razão social" onIonChange={e => setRazaoSocial(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={razaoSocial} required placeholder="Informe razão social" onIonChange={e => setRazaoSocial(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>CNPJ</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={cnpj} placeholder="Informe CNPJ" onIonChange={e => setCnpj(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" maxlength={14} minlength={14} value={cnpj} required placeholder="Informe CNPJ (Apenas números)" onIonChange={e => setCnpj(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>CEP</span></span>
             </IonLabel>
             <IonInput className='inputSelsyn' type="text" value={cep} placeholder="Informe seu CEP" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
+            <IonInput className='inputSelsyn' type="text" maxlength={8} minlength={8} value={cep} required placeholder="Informe seu CEP (Apenas números)" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Endereço</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={address} placeholder="Informe endereço" onIonChange={e => setAddress(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={address} required placeholder="Informe endereço" onIonChange={e => setAddress(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Número</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={number} placeholder="Informe número ou s/n" onIonChange={e => setNumber(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={number} required placeholder="Informe número ou s/n" onIonChange={e => setNumber(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Bairro</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={district} placeholder="Informe bairro" onIonChange={e => setDistrict(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={district} required placeholder="Informe bairro" onIonChange={e => setDistrict(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Cidade</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={city} placeholder="Informe cidade" onIonChange={e => setCity(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={city} required placeholder="Informe cidade" onIonChange={e => setCity(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Estado</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={state} placeholder="Informe estado" onIonChange={e => setState(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={state} required placeholder="Informe estado" onIonChange={e => setState(e.detail.value!)}></IonInput>
           </IonItem>
 
           <IonItem lines="inset" className="pr-2">
@@ -159,18 +159,19 @@ const RegisterClinic: React.FC = () => {
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>E-mail</span></span>
             </IonLabel>
             <IonInput className='inputSelsyn' type="text" value={email} placeholder="Informe e-mail" onIonChange={e => setEmail(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={email} required placeholder="Informe e-mail" onIonChange={e => setEmail(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Senha</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="password" value={password} placeholder="Informe senha" onIonChange={e => setPassword(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="password" value={password} required placeholder="Informe senha" onIonChange={e => setPassword(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Confirmar Senha</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="password" value={passwordConf} placeholder="Confirme sua senha" onIonChange={e => setPasswordConf(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="password" value={passwordConf} required placeholder="Confirme sua senha" onIonChange={e => setPasswordConf(e.detail.value!)}></IonInput>
           </IonItem>
           
           <IonButton className='btnDefault mt-10' expand="block"  onClick={registerUser}>REGISTRE-SE</IonButton>

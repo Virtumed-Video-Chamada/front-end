@@ -21,7 +21,7 @@ import { IonReactRouter } from "@ionic/react-router";
 import { ellipse, square, triangle } from "ionicons/icons";
 import { Redirect, Route, useHistory } from "react-router";
 import Identificador from "../../../components/Identificador/Identificador";
-import QuickAccess from "../../../components/Clinic/QuickAcess/QuickAccess";
+import QuickAccess from "../../../components/Clinic/QuickAcessClinic/QuickAccessClinic";
 import './style.css';
 // import logo from "../../../assets/logo.png"
 
