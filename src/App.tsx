@@ -111,6 +111,7 @@ const RoutingTabs: React.FC = () => {
             {category == "/home-pacient" ? (
               <HomePatient />
             ) : category == "/home-doctor" ? (
+
               <HomeDoctor />
             ) : category == "/home-clinic" ? (
               <HomeClinic />
@@ -239,6 +240,7 @@ const RoutingTabs: React.FC = () => {
     </IonReactRouter>
   );
 };
+
 
 const App: React.FC = () => {
   const [user, setUser] = useState<any>(null);

@@ -1,5 +1,5 @@
 
-import { IonPage } from "@ionic/react";
+import { IonImg, IonPage } from "@ionic/react";
 import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 
@@ -8,6 +8,10 @@ import Schedules from "../../../components/SchedulePatient/SchedulePatient";
 const SchedulesPacient: React.FC = () => {
   return (
     <IonPage className="justify-start">
+      <IonImg
+          src="./assets/logo.png"
+          className="imgLogoSmall flex items-center mx-auto -mb-7"
+        />
       <Identificador />
        <DateTime /> 
       <div>
