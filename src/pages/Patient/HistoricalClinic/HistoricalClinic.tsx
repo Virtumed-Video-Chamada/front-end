@@ -32,8 +32,6 @@ import {
 import Identificador from "../../../components/Identificador/Identificador";
 
 
-/* criar 3 classes para dividir por cor */
-
 const HistoricalClinic: React.FC = () => {
   return (
     <IonPage className="justify-start">

@@ -22,7 +22,8 @@ import {
   IonCardContent,
 } from "@ionic/react";
 import { checkmarkOutline } from "ionicons/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { findAllService } from "../../../services/findService";
 import "./style.css";
 
 
@@ -32,8 +33,18 @@ const LinkDoctor: React.FC = () => {
     const [handlerMessage, setHandlerMessage] = useState("");
     const [roleMessage, setRoleMessage] = useState("");
     const [present] = useIonToast();
-    const [date, setDate] = useState("");
+  const [date, setDate] = useState("");
+  const [listClinic, setListClinic] = useState(['']);
   
+  useEffect(() => {
+    handler();
+   }, [])
+  
+  const handler = async () => {
+    await findAllService.findAllUsers("clinic").then((response: any) => {
+      setListClinic(response.data)
+    });
+  }
   
     const presentToast = () => {
       present({
@@ -69,7 +80,16 @@ const LinkDoctor: React.FC = () => {
         onDidDismiss: (e: CustomEvent) =>
           setRoleMessage(`Dismissed with role: ${e.detail.role}`),
       });
-    };
+  };
+  
+  const renderize = () => { 
+    return listClinic.map((element: any, index: any) => (
+      <IonSelectOption key={index} value={element.name}>{element.name}</IonSelectOption>
+  ))
+  }
+
+
+
   return (
     <IonPage>
       <IonHeader>
@@ -124,11 +144,7 @@ const LinkDoctor: React.FC = () => {
                   placeholder="SELECIONAR"
                   className="placeholder"
                 >
-                  <IonSelectOption value="CLIVIVE">CLIVIVE</IonSelectOption>
-                  <IonSelectOption value="CLIVIVE">CLIVIVE</IonSelectOption>
-                  <IonSelectOption value="CLIVIVE">CLIVIVE</IonSelectOption>
-                  <IonSelectOption value="CLIVIVE">CLIVIVE</IonSelectOption>
-                  <IonSelectOption value="CLIVIVE">CLIVIVE</IonSelectOption>
+                  {renderize()}
 
                   
                 </IonSelect>

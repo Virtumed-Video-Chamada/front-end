@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { LobbyProps } from "../../@types/interfaces";
-import { IonButton } from '@ionic/react';
+import { IonButton, } from '@ionic/react';
 import "./styles.css"
 import { getStorage } from "../../services/adminStorage";
+import {  useEffect,  useState } from "react";
 
-interface User {
-  name: string;
-  avatar_url: string;
-}
 
 const Lobby = ({
   username,
@@ -17,30 +14,36 @@ const Lobby = ({
   handleSubmit,
   connecting,
 }: LobbyProps) => {
-  
-  const [user, setUser] = useState<User>({ name: '', avatar_url: '' });
+
+  const [ avatar, setAvatar ] = useState<string>("https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y")
+
+  const handle = async () => {
+    getStorage("token").then((response) => {
+     
+      setAvatar(response.data.user.avatar_url);
+    })
+  }
 
   useEffect(() => {
-    getStorage('token').then((response) => {
-
-      setUser(response.data.user);
-    })
+    handle()
   }, [])
-    
-  
+
   const renderize = () => {
-    if (user.avatar_url === '' || user.avatar_url === null) {
-      return 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y';
+    if (avatar == null || avatar == ' ') {
+      console.log('teste');
+      return 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'
     } else {
-      return user.avatar_url;
+      return avatar
     }
   }
+
+
   return (
     <div className="lobby-container">
       <div className="extra-border">
         <div className="border-lobby ">
           <div className="img-container">
-            <img className="min-w-[13rem]" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" alt="User Photo Avatar" />
+            <img className="min-w-[13rem] min-h-[13rem]" src={renderize()} alt="User Photo Avatar" />
           </div>
         </div>
       </div>
@@ -51,10 +54,10 @@ const Lobby = ({
         <input
           type="text"
           id="field"
-          value={user.name}
+          value={username}
           onChange={handleUsernameChange}
           readOnly={connecting}
-          disabled />
+          required />
       </div>
 
       <div className="inputs">

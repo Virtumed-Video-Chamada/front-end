@@ -20,6 +20,7 @@ import {
 import { useEffect, useState } from "react";
 import { Doctor } from "../../../@types/interfaces";
 import { getStorage } from "../../../services/adminStorage";
+import { deleteService } from "../../../services/deleteService";
 
 
 interface DoctorCardProps {
@@ -58,7 +59,7 @@ function DoctorCard({ props }: DoctorCardProps) {
     });
   };
 
-  const alert = () => {
+  const alert = (id: any) => {
     presentAlert({
       header: "DESEJA APAGAR O MÉDICO DO SISTEMA?",
       cssClass: "custom-alert",
@@ -75,8 +76,10 @@ function DoctorCard({ props }: DoctorCardProps) {
           text: "SIM",
           role: "confirm",
           cssClass: "alert-button-confirm",
-          handler: () => {
-            presentToast();
+          handler: async () => {
+            await deleteService.deleteUser(id).then((response: any) => {
+              presentToast()
+            });
           },
         },
       ],
@@ -91,15 +94,23 @@ function DoctorCard({ props }: DoctorCardProps) {
     setIcons(heart);
   };
 
-  useEffect(() => {
-    getStorage("token").then((response) => {
-      const role = response.data.user.role.toLowerCase();
-      setCategory(role);
-      console.log(role)
-    });
-  }, []);
+  const redirect = (id: any) => {
+    history.replace(`/register-doctor?id=${id}`)
+  }
+
+  const redirectLink = (id: any) => {
+    history.replace(`/link-doctor?id=${id}`)
+  }
+
+  // useEffect(() => {
+  //   getStorage("token").then((response) => {
+  //     const role = response.data.user.role.toLowerCase();
+  //     setCategory(role);
+  //   });
+  // }, []);
 
   const renderize = () => {
+    console.log(category)
     if (category === "pacient") {
       return (
         <div className="flex flex-row justify-center items-center">
@@ -123,19 +134,19 @@ function DoctorCard({ props }: DoctorCardProps) {
       return (
         <div className="flex flex-row justify-center items-center">
           <div className={_class}>
-            <IonButton className="text-xs w-max" color="success">
+            <IonButton className="text-xs w-max" color="success" onClick={() => redirect(props.id)}>
               EDITAR
               <IonIcon slot="start" icon={createOutline}></IonIcon>
             </IonButton>
             <IonButton
               className="text-xs w-max"
               color="success"
-              routerLink="/link-doctor"
+              onClick={() => redirectLink(props.id)}
             >
               VINCULAR
               <IonIcon slot="start" icon={createOutline}></IonIcon>
             </IonButton>
-            <IonButton className="text-xs" color="danger" onClick={alert}>
+            <IonButton className="text-xs" color="danger" onClick={() => alert(props.id)}>
               DELETAR
               <IonIcon slot="start" icon={trashOutline}></IonIcon>
             </IonButton>

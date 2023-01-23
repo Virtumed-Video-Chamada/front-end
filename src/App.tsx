@@ -25,6 +25,7 @@ import "@ionic/react/css/core.css";
 import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
 import "@ionic/react/css/typography.css";
+import { SplashScreen } from '@capacitor/splash-screen';
 
 /* Optional CSS utils that can be commented out */
 // import '@ionic/react/css/padding.css';
@@ -74,6 +75,11 @@ import SchedulesPacient from "./pages/Patient/SchedulesPatient/SchedulesPacient"
 
 setupIonicReact();
 
+SplashScreen.show({
+  showDuration: 2000,
+  autoHide: true,
+});
+
 const RoutingSystem: React.FC = () => {
   return (
     <IonReactRouter>
@@ -116,7 +122,7 @@ const RoutingTabs: React.FC = () => {
             ) : category == "/home-clinic" ? (
               <HomeClinic />
             ) : (
-              <HomeClinic />
+              <HomeAdmin />
             )}
           </Route>
           <Route exact path="/register-doctor">

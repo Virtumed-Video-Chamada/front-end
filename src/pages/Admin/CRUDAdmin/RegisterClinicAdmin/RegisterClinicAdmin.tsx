@@ -19,9 +19,12 @@ import { userClinic } from "../../../../@types/interfaces";
 import { setStorage } from "../../../../services/adminStorage";
 import { registerService } from "../../../../services/registerService";
 import { alertaSucesso, alertaErro } from "../../../../utils/alertas";
+import axios from 'axios';
 
 const RegisterClinicAdmin: React.FC = () => {
   const history = useHistory();
+  const urlParams = new URLSearchParams(window.location.search);
+  const userId = urlParams.get("id");
   const [nameFantasy, setNameFantasy] = useState<string>("");
   const [razaoSocial, setRazaoSocial] = useState<string>("");
   const [cnpj, setCnpj] = useState<string>("");
@@ -35,7 +38,7 @@ const RegisterClinicAdmin: React.FC = () => {
   const [district, setDistrict] = useState<string>("");
   const [state, setState] = useState<string>("");
 
-  const values: userClinic = {
+  const values: userClinic= {
     name: nameFantasy,
     razao: razaoSocial,
     cnpj: cnpj,
@@ -47,23 +50,57 @@ const RegisterClinicAdmin: React.FC = () => {
     state: state,
     email: email,
     password: password,
-    confirmPassword: passwordConf,
-    role: "clinic",
-    isAdmin: false,
+    // confirmPassword: passwordConf,
+    // role: "clinic",
+    // isAdmin: false,
   };
 
-/*   const registerUser = async () => {
-    const response = await registerService.registerValues(values);
-    const jwt = response.data.id;
-    if (jwt) {
-      setStorage("jwt", jwt);
-      alertaSucesso.alerta("Clínica cadastrada com sucesso !");
-      history.replace("/home-admin");
-    } else {
-      alertaErro.alerta(`${response.data.message}`);
+  interface ViaCep  {
+    cep: string,
+    logradouro: string,
+    complemento: string,
+    bairro: string,
+    localidade: string,
+    uf: string
     }
-  };
- */
+  
+    const api = axios.create({
+      // https://h-apigateway.conectagov.estaleiro.serpro.gov.br/oauth2/jwt-token
+      baseURL: `https://viacep.com.br/ws/`,
+    });
+  
+    const consultCep = () => {
+      if (cep.length == 8) {
+        api
+      .get<ViaCep>(`${cep}/json/`)
+          .then(({ data }: any) => {
+            setAddress(data.logradouro);
+            setDistrict(data.bairro);
+            setState(data.uf);
+            setCity(data.localidade);
+            console.log(data)
+      } )
+      .catch((error: any) => console.log('ERRO NA CHAMADA:', error))
+      }   
+  }
+  
+
+  const registerUser = async () => {
+    if (password == passwordConf) {
+      const response = await registerService.registerValues(values, 'clinic');
+      const jwt = response.data.id;
+      if (jwt) {
+        alertaSucesso.alerta("Clinica registrada com sucesso !");
+        history.replace("/");
+      } else {
+        alertaErro.alerta(`${response.data.message}`);
+      }
+    } else {
+      alertaErro.alerta(`Senhas não Conferem`);
+    }
+  }; 
+
+
   return (
     <IonPage>
       <IonHeader>
@@ -80,7 +117,7 @@ const RegisterClinicAdmin: React.FC = () => {
           className="imgLogoSmall flex items-center mx-auto"
         />
         <IonText class=" flex justify-center mt-5 text-black text-xl font-bold">
-          Registrar Clínica
+        {userId == null ? 'Registrar Clínica' : 'Editar Clínica'}
         </IonText>
         <IonList>
           <IonItem lines="inset" className="pr-2">
@@ -94,7 +131,7 @@ const RegisterClinicAdmin: React.FC = () => {
             </IonLabel>
             <IonInput
               className="inputSelsyn"
-              type="password"
+              type="email"
               value={email}
               placeholder="Informe e-mail"
               onIonChange={(e) => setEmail(e.detail.value!)}
@@ -171,6 +208,7 @@ const RegisterClinicAdmin: React.FC = () => {
             <IonInput
               className="inputSelsyn"
               type="text"
+              maxlength={14} minlength={14}
               value={cnpj}
               placeholder="Informe CNPJ"
               onIonChange={(e) => setCnpj(e.detail.value!)}
@@ -182,13 +220,7 @@ const RegisterClinicAdmin: React.FC = () => {
                 <span className="text-sm font-medium pl-2">CEP</span>
               </span>
             </IonLabel>
-            <IonInput
-              className="inputSelsyn"
-              type="text"
-              value={cep}
-              placeholder="Informe cep"
-              onIonChange={(e) => setCep(e.detail.value!)}
-            ></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={cep} placeholder="Informe seu CEP" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
@@ -264,7 +296,7 @@ const RegisterClinicAdmin: React.FC = () => {
         <IonButton
           className="btnDefault mt-5 mb-16"
           expand="block"
-         /*  onClick={registerUser} */
+       onClick={registerUser} 
         >
           REGISTRAR
         </IonButton>

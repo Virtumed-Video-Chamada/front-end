@@ -194,7 +194,6 @@ const HistoricalDoctor: React.FC = () => {
 
   const handleChange = async (ev?: Event) => {
     await findAllService.findAllUsers("pacient").then((response: any) => {
-
       setNamePacient(response.data);
 
       let query = "";
