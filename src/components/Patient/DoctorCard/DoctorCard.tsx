@@ -129,7 +129,7 @@ function DoctorCard({ props }: DoctorCardProps) {
           </div>
         </div>
       );
-    } else if (category === "admin") {
+    } else if (category === "admin" || category === "clinic") {
       return (
         <div className="flex flex-row justify-center items-center">
           <div className={_class}>
