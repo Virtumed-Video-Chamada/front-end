@@ -13,7 +13,7 @@ const Identificador: React.FC = () => {
   const [user, setUser] = useState<User>({ name: '', avatar_url: '' });
 
   useEffect(() => {
-    getStorage('token').then((response) => {
+    getStorage('tokenJwt').then((response) => {
 
       setUser(response.data.user);
     })

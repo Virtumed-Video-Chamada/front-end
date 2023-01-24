@@ -10,10 +10,13 @@ app.use(bodyParser.json());
 app.use(pino);
 
 const sendTokenResponse = async (token, res) => {
+  console.log(token);
+  console.log(res);
   res.set('Content-Type', 'application/json');
- await res.send(
+  const tokenSigned = await token.toJwt()
+  res.send(
     JSON.stringify({
-      token: token.toJwt()
+      token: tokenSigned
     })
   );
 };
@@ -21,7 +24,7 @@ const sendTokenResponse = async (token, res) => {
 app.get('/api/greeting', async (req, res) => {
   const name = req.query.name || 'World';
   res.setHeader('Content-Type', 'application/json');
- await res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
+  await res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
 });
 
 app.get('/video/token', (req, res) => {

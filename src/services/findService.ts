@@ -14,7 +14,16 @@ const findByIdService = {
 			.post('/profile/findDoctor', id)
 			.then((response: any) => { return response })
 			.catch((error: any) => console.log(error)),
-
+	findProfileByIdClinic: (id: any) =>
+			api
+				.post('/profile/findClinic', id)
+				.then((response: any) => { return response })
+			.catch((error: any) => console.log(error)),
+	findProfileByIdPacient: (id: any) =>
+			api
+				.post('/profile/findPacient', id)
+				.then((response: any) => { return response })
+				.catch((error: any) => console.log(error)),
 };
 
 export { findAllService, findByIdService };

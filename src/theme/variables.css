@@ -439,6 +439,18 @@ ion-tab-button.tab-selected {
   border-radius: 20px; /* roundness of the scroll thumb */
 }
 
+#background-content::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+#background-content::-webkit-scrollbar-track {
+  background: transparent; /* color of the tracking area */
+}
+
+#background-content::-webkit-scrollbar-thumb {
+  background-color: transparent; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+}
 
 
 ion-radio {

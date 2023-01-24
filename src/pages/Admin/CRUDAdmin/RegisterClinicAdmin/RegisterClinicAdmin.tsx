@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   IonBackButton,
   IonButton,
@@ -20,6 +20,8 @@ import { setStorage } from "../../../../services/adminStorage";
 import { registerService } from "../../../../services/registerService";
 import { alertaSucesso, alertaErro } from "../../../../utils/alertas";
 import axios from 'axios';
+import { findByIdService } from "../../../../services/findService";
+import { updateService } from "../../../../services/updateService";
 
 const RegisterClinicAdmin: React.FC = () => {
   const history = useHistory();
@@ -83,11 +85,35 @@ const RegisterClinicAdmin: React.FC = () => {
       .catch((error: any) => console.log('ERRO NA CHAMADA:', error))
       }   
   }
-  
+
+  const id: any = {
+    id: userId,
+  }
+  const findUser = async () => {
+    await findByIdService.findProfileByIdClinic(id).then((resp) => {
+      setNameFantasy(resp.data.name);
+      setRazaoSocial(resp.data.name);
+      setCnpj(resp.data.clinic.cnpj);
+      setEmail(resp.data.email);
+      setAddress(resp.data.clinic.address);
+      setCep(resp.data.clinic.cep);
+      setNumber(resp.data.clinic.number);
+      setCity(resp.data.clinic.city);
+      setDistrict(resp.data.clinic.district);
+      setState(resp.data.clinic.state);
+    }).catch((err) => {
+       console.log(err);
+     })
+  }
 
   const registerUser = async () => {
     if (password == passwordConf) {
-      const response = await registerService.registerValues(values, 'clinic');
+      let response;
+      if(userId == null) {
+        response = await registerService.registerValues(values, 'clinic')
+      } else {
+        response = await updateService.updateUser(values, 'clinic')
+      }
       const jwt = response.data.id;
       if (jwt) {
         alertaSucesso.alerta("Clinica registrada com sucesso !");
@@ -100,6 +126,9 @@ const RegisterClinicAdmin: React.FC = () => {
     }
   }; 
 
+  useEffect(() => {
+    findUser()
+  }, [])
 
   return (
     <IonPage>
@@ -298,7 +327,7 @@ const RegisterClinicAdmin: React.FC = () => {
           expand="block"
        onClick={registerUser} 
         >
-          REGISTRAR
+          {userId == null ? ' REGISTRAR' : 'SALVAR'}
         </IonButton>
       </IonContent>
     </IonPage>

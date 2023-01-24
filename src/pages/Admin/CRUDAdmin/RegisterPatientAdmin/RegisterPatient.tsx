@@ -20,6 +20,8 @@ import { setStorage } from "../../../../services/adminStorage";
 import { registerService } from "../../../../services/registerService";
 import { alertaSucesso, alertaErro } from "../../../../utils/alertas";
 import axios from 'axios';
+import { findByIdService } from "../../../../services/findService";
+import { updateService } from "../../../../services/updateService";
 
 const RegisterPatientAdmin: React.FC = () => {
   const history = useHistory();
@@ -51,9 +53,6 @@ const RegisterPatientAdmin: React.FC = () => {
     state: state,
     email: email,
     password: password,
-    // confirmPassword: passwordConf,
-    // role: "doctor",
-    // isAdmin: false,
   };
 
   interface ViaCep  {
@@ -85,10 +84,34 @@ const RegisterPatientAdmin: React.FC = () => {
       }   
   }
   
+  const id: any = {
+    id: userId,
+  }
+  const findUser = async () => {
+    await findByIdService.findProfileByIdPacient(id).then((resp) => {
+      setName(resp.data.name);
+      setCpf(resp.data.pacient.cpf);
+      setRg(resp.data.pacient.rg);
+      setEmail(resp.data.email);
+      setAddress(resp.data.pacient.address);
+      setCep(resp.data.pacient.cep);
+      setNumber(resp.data.pacient.number);
+      setCity(resp.data.pacient.city);
+      setDistrict(resp.data.pacient.district);
+      setState(resp.data.pacient.state);
+    }).catch((err) => {
+       console.log(err);
+     })
+  }
 
   const registerUser = async () => {
     if (password == passwordConf) {
-      const response = await registerService.registerValues(values, 'pacient');
+      let response;
+      if(userId == null) {
+        response = await registerService.registerValues(values, 'pacient')
+      } else {
+        response = await updateService.updateUser(values, 'pacient')
+      }
       const jwt = response.data.id;
       if (jwt) {
         alertaSucesso.alerta("Paciente registrado com sucesso !");
@@ -101,6 +124,9 @@ const RegisterPatientAdmin: React.FC = () => {
     }
   }; 
 
+  useEffect(() => {
+    findUser()
+  }, [])
 
   return (
     <IonPage>
@@ -297,7 +323,7 @@ const RegisterPatientAdmin: React.FC = () => {
           expand="block"
          onClick={registerUser}
         >
-          REGISTRAR
+          {userId == null ? ' REGISTRAR' : 'SALVAR'}
         </IonButton>
       </IonContent>
     </IonPage>

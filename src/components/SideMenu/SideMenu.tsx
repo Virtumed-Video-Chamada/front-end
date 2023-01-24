@@ -23,7 +23,7 @@ function SideMenu() {
   const logout = () => {
     removeStorage('nameStorage');
     removeStorage('jwt');
-    removeStorage('token');
+    removeStorage('tokenJwt');
     removeStorage('role');
     removeStorage('userIdStorage');
     removeStorage('userAdminStorage');

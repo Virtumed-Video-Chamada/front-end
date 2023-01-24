@@ -14,7 +14,7 @@ import ListDoctor from "../../../components/Patient/ListDoctor/ListDoctor";
 
 const FindDoctor: React.FC = () => {
   return (
-    <IonPage className="justify-start">
+    <IonPage className="justify-start overflow-y-hidden">
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">

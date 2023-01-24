@@ -35,7 +35,7 @@ function DoctorCard({ props }: DoctorCardProps) {
   const [handlerMessage, setHandlerMessage] = useState("");
   const [roleMessage, setRoleMessage] = useState("");
   const iconSucces = "./assets/icon/success.svg";
-  const [category, setCategory] = useState<string>("pacient");
+  const [category, setCategory] = useState<string>("");
   const [favorites, setFavorite] = useState<any[]>([]);
   const [buzy, setBusy] = useState<boolean>(false);
   const [icons, setIcons] = useState(heartOutline);
@@ -102,12 +102,12 @@ function DoctorCard({ props }: DoctorCardProps) {
     history.replace(`/link-doctor?id=${id}`)
   }
 
-  // useEffect(() => {
-  //   getStorage("token").then((response) => {
-  //     const role = response.data.user.role.toLowerCase();
-  //     setCategory(role);
-  //   });
-  // }, []);
+  useEffect(() => {
+    getStorage("tokenJwt").then((response) => {
+      const role = response.data.user.role.toLowerCase();
+      setCategory(role)
+    });
+  }, []);
 
   const renderize = () => {
     if (category === "pacient") {

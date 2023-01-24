@@ -102,7 +102,7 @@ const RoutingTabs: React.FC = () => {
   const [category, setCategory] = useState("/");
 
   useEffect(() => {
-    getStorage("token").then((response) => {
+    getStorage("tokenJwt").then((response) => {
       const role = response.data.user.role.toLowerCase();
       setCategory(`/home-${role}`);
       console.log(role)
@@ -114,16 +114,7 @@ const RoutingTabs: React.FC = () => {
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/">
-            {category == "/home-pacient" ? (
-              <HomePatient />
-            ) : category == "/home-doctor" ? (
-
-              <HomeDoctor />
-            ) : category == "/home-clinic" ? (
-              <HomeClinic />
-            ) : (
-              <HomeAdmin />
-            )}
+            {category == "/home-pacient" ? ( <HomePatient /> ) : category == "/home-doctor" ? ( <HomeDoctor />) : category == "/home-clinic" ? (<HomeClinic />) : category == "/home-admin" ? (<HomeAdmin /> ) : (<Login />)}
           </Route>
           <Route exact path="/register-doctor">
             <RegisterDoctorAdmin />
@@ -253,7 +244,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     console.log(user);
-    getStorage("token").then((response: any) => {
+    getStorage("tokenJwt").then((response: any) => {
       console.log(response);
       setUser(response);
     });

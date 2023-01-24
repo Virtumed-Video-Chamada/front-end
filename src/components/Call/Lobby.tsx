@@ -18,7 +18,7 @@ const Lobby = ({
   const [ avatar, setAvatar ] = useState<string>("https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y")
 
   const handle = async () => {
-    getStorage("token").then((response) => {
+    getStorage("tokenJwt").then((response) => {
      
       setAvatar(response.data.user.avatar_url);
     })

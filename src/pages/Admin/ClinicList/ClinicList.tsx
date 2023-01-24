@@ -25,8 +25,8 @@ import { findAllService } from "../../../services/findService";
 const ClinicList = () => {
   const history = useHistory();
   const [items, setItems] = useState<any>('');
-  let listClinics = items;
-  const [results, setResults] = useState([...listClinics]);
+  
+  const [results, setResults] = useState([...items]);
   const [_class, setClass] = useState<string>("flex hidden");
   const [presentAlert] = useIonAlert();
   const [present] = useIonToast();
@@ -44,13 +44,15 @@ const ClinicList = () => {
 
   const handleChange = async (ev?: Event) => {
     await findAllService.findAllUsers("clinic").then((response: any) => {
+      console.log(response);
       setItems(response.data);
     
     let query = "";
     if (ev != null) {
       const target = ev.target as HTMLIonSearchbarElement;
       if (target) query = target.value!.toLowerCase();
-    }
+      }
+    let listClinics = response.data;
     setResults(
       listClinics.filter((clinic: any) => {
         return (
@@ -65,6 +67,7 @@ const ClinicList = () => {
 
   useEffect(() => {
     findAllService.findAllUsers("clinic").then((response: any) => {
+      
       setItems(response.data)
     })
     generateItems();
