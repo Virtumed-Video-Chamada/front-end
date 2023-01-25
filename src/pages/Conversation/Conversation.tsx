@@ -124,20 +124,20 @@ const convertBase64 = (file: any) => {
           <IonToolbar>
             <IonRow className="items-center padding-0">
               <IonCol size="10" className="flex">
-                  <IonButton expand="block" fill="clear" color="primary" className="msg-btn" onClick={(e) => startUpload(e)}>
+                  {/* <IonButton expand="block" fill="clear" color="primary" className="msg-btn" onClick={(e) => startUpload(e)}>
                     <IonIcon icon={attach} slot="icon-only">
                     
                     </IonIcon>
                     <input type="file" id="file-input"
                         accept="image/png, image/jpeg" ></input>
-                   </IonButton>
-                    {/* <TextareaAutosize
+                   </IonButton> */}
+                    <TextareaAutosize
                       id="textarea"
                       value={newMsg}
                       className="message-input h-10"
                       onChange={(e) => setNewMsg(e.target.value)}
                       onKeyPress={(event) => handleKeyPress(event)}
-                    /> */}
+                    />
                
               </IonCol>
               <IonCol size="2">

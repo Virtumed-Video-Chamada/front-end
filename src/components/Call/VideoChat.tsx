@@ -3,6 +3,8 @@ import Video from "twilio-video";
 import { alertaErro } from "../../utils/alertas";
 import Lobby from "./Lobby";
 import Room from "./Room";
+import { removeStorage, setStorage } from "../../services/adminStorage";
+import { hideTabs, showTabs } from "../../App";
 
 
 const VideoChat = () => {
@@ -10,6 +12,7 @@ const VideoChat = () => {
   const [roomName, setRoomName] = useState<string>("");
   const [room, setRoom] = useState<any>(null);
   const [connecting, setConnecting] = useState<boolean>(false);
+
 
   const handleUsernameChange = useCallback((event: any) => {
     setUsername(event.target.value);
@@ -19,9 +22,12 @@ const VideoChat = () => {
     setRoomName(event.target.value);
   }, []);
 
-  const handleSubmit = useCallback(
+  const handleSubmit =
+  
+    useCallback(
     async (event: any) => {
-      event.preventDefault();
+        event.preventDefault();
+        hideTabs();
       setConnecting(true);
       const data = await fetch("/video/token", {
         method: "POST",
@@ -39,6 +45,8 @@ const VideoChat = () => {
         .then((room: any) => {
           setConnecting(false);
           setRoom(room);
+          setStorage("room", room);
+          
         })
         .catch((err: any) => {
           if (err === "DOMException: Requested device not found") {
@@ -52,12 +60,14 @@ const VideoChat = () => {
   );
   
   const handleLogout = useCallback(() => {
+    showTabs();
     setRoom((prevRoom: any) => {
       if (prevRoom) {
         prevRoom.localParticipant.tracks.forEach((trackPub: any) => {
           trackPub.track.stop();
         });
         prevRoom.disconnect();
+        removeStorage('room');
       }
       return null;
     });

@@ -165,10 +165,10 @@ const MedicalSchedule: React.FC = () => {
                   className="placeholder"
                 >
                   <IonSelectOption value="08:00">08:00</IonSelectOption>
-                  <IonSelectOption value="08:00">08:00</IonSelectOption>
-                  <IonSelectOption value="08:00">08:00</IonSelectOption>
-                  <IonSelectOption value="08:00">08:00</IonSelectOption>
-                  <IonSelectOption value="08:00">08:00</IonSelectOption>
+                  <IonSelectOption value="11:00">11:00</IonSelectOption>
+                  <IonSelectOption value="15:00">15:00</IonSelectOption>
+                  <IonSelectOption value="16:30">16:30</IonSelectOption>
+                  <IonSelectOption value="18:00">18:00</IonSelectOption>
                 </IonSelect>
               </div>
             </IonList>

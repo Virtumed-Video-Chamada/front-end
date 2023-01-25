@@ -8,6 +8,7 @@ import {
   IonTabButton,
   IonTabs,
   setupIonicReact,
+  useIonViewDidEnter,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import {
@@ -72,6 +73,7 @@ import ScheduleDoctor from "./components/ScheduleDoctor/ScheduleDoctor";
 import FavoriteDoctors from "./pages/Patient/FavoriteDoctors/FavoriteDoctors";
 import ExamResults from "./pages/Patient/ExamResults/ExamResults";
 import SchedulesPacient from "./pages/Patient/SchedulesPatient/SchedulesPacient";
+import { useSelector } from "react-redux";
 
 setupIonicReact();
 
@@ -79,6 +81,20 @@ SplashScreen.show({
   showDuration: 2000,
   autoHide: true,
 });
+
+export function hideTabs() {
+  const tabsEl = document.querySelector('ion-tab-bar');
+  if (tabsEl) {
+    tabsEl.hidden = true;
+  }
+}
+
+export function showTabs() {
+  const tabsEl = document.querySelector('ion-tab-bar');
+  if (tabsEl) {
+    tabsEl.hidden = false;
+  }
+} 
 
 const RoutingSystem: React.FC = () => {
   return (
@@ -100,13 +116,32 @@ const RoutingSystem: React.FC = () => {
 
 const RoutingTabs: React.FC = () => {
   const [category, setCategory] = useState("/");
+  const [busyRoom, setBusyRoom] = useState<any>(null);
+  let newClass = 'menuTab';
+
+  useIonViewDidEnter(() => {
+    getStorage("room").then((response) => {
+      setBusyRoom(response);
+      if (response) {
+        newClass = 'menuTab hidden'
+      }
+    });  
+  })
+
 
   useEffect(() => {
     getStorage("tokenJwt").then((response) => {
       const role = response.data.user.role.toLowerCase();
       setCategory(`/home-${role}`);
-      console.log(role)
     });
+    getStorage("room").then((response) => {
+      setBusyRoom(response);
+      if (response) {
+        newClass = 'menuTab hidden'
+      }
+    });
+    
+    console.log(busyRoom);
   }, []);
 
   return (
@@ -201,7 +236,8 @@ const RoutingTabs: React.FC = () => {
             <Privacy />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar className="menuTab" slot="bottom">
+
+        <IonTabBar className={newClass} slot="bottom">
           <IonTabButton tab="home" href={category}>
             <IonIcon icon={homeOutline} className="w-6 h-6" color="primary" />
           </IonTabButton>
@@ -233,6 +269,7 @@ const RoutingTabs: React.FC = () => {
             <SideMenu />
           </IonTabButton>
         </IonTabBar>
+   
       </IonTabs>
     </IonReactRouter>
   );

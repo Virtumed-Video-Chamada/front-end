@@ -64,7 +64,7 @@ const ParticipantRemote = ({ participant }: any) => {
 
   return (
     <div className="participantRemote">
-      {/* <h3>{participant.identity}</h3> */}
+      <h3 className="font-bold justify-end text-end z-50 bg-purple-500 rounded"></h3>
       <video ref={videoRef} autoPlay={true}/>
       <audio ref={audioRef} autoPlay={true} muted={true} />
     </div>
