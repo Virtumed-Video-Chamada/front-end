@@ -5,6 +5,7 @@ import Lobby from "./Lobby";
 import Room from "./Room";
 import { removeStorage, setStorage } from "../../services/adminStorage";
 import { hideTabs, showTabs } from "../../App";
+import axios from 'axios';
 
 
 const VideoChat = () => {
@@ -12,6 +13,8 @@ const VideoChat = () => {
   const [roomName, setRoomName] = useState<string>("");
   const [room, setRoom] = useState<any>(null);
   const [connecting, setConnecting] = useState<boolean>(false);
+  // eslint-disable-next-line no-restricted-globals
+  const TWILIO_DOMAIN = location.host; 
 
 
   const handleUsernameChange = useCallback((event: any) => {
@@ -23,41 +26,35 @@ const VideoChat = () => {
   }, []);
 
   const handleSubmit =
-  
     useCallback(
-    async (event: any) => {
+      async (event: any) => {
         event.preventDefault();
         hideTabs();
-      setConnecting(true);
-      const data = await fetch("/video/token", {
-        method: "POST",
-        body: JSON.stringify({
-          identity: username,
-          room: roomName,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).then((res) => res.json());
-      Video.connect(data.token, {
-        name: roomName,
-      })
-        .then((room: any) => {
-          setConnecting(false);
-          setRoom(room);
-          setStorage("room", room);
+        setConnecting(true);
+        await axios.get(`http://${TWILIO_DOMAIN}/generatetoken`).then(async (body) => {
+          const token = body.data.token;
+          Video.connect(token, {
+            name: roomName,
+            video: true,
+            audio: true
+          })
+        }).then(async (room: any) => {
+          console.log(room)
+            setConnecting(false);
+            setRoom(room);
+            setStorage("room", room);
           
-        })
-        .catch((err: any) => {
-          if (err === "DOMException: Requested device not found") {
-            alertaErro.alerta(`Dispositivos de Vídeo ou Áudio indisponíveis`);
-          }
-          console.error(err);
-          setConnecting(false);
-        });
-    },
-    [roomName, username]
-  );
+          })
+            .catch((err: any) => {
+              if (err === "DOMException: Requested device not found") {
+                alertaErro.alerta(`Dispositivos de Vídeo ou Áudio indisponíveis`);
+              }
+              console.error(err);
+              setConnecting(false);
+            });
+        },
+        [roomName, username]
+    );
   
   const handleLogout = useCallback(() => {
     showTabs();
@@ -74,6 +71,7 @@ const VideoChat = () => {
   }, []);
 
   useEffect(() => {
+    console.log(room);
     if (room) {
       const tidyUp = (event: any) => {
         if (event.persisted) {

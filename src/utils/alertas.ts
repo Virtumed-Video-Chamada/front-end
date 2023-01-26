@@ -9,7 +9,7 @@ const exibeAlerta = (text: string, icon: string, title: string) => {
 	});
 };
 
-const alertaSucesso = {
+const alertaSucesso: any = {
 	alerta: (texto: string) => exibeAlerta(texto, 'success', 'Sucesso!'),
 };
 

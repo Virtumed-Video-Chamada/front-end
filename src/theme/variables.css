@@ -8,12 +8,13 @@ http://ionicframework.com/docs/theming/ */
 
 :root {
   --ion-font-family: "Poppins", sans-serif;
-  --ion-background-color: #ffffff;
-  --ion-item-background: transparent;
-  --ion-toolbar-background: #ffffff;
-  --ion-tab-bar-background: #ffffff;
-  --ion-card-background: #ffffff;
-  --ion-searchbar-background: #f5f5f5;
+    --ion-background-color: #ffffff;
+    --ion-item-background: transparent;
+    --ion-toolbar-background: #ffffff;
+    --ion-input-background: #ffffff;
+    --ion-tab-bar-background: #ffffff;
+    --ion-card-background: #ffffff;
+    --ion-searchbar-background: #f5f5f5;
 
   /** primary **/
   --ion-color-primary: #4b39b3;
