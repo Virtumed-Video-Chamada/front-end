@@ -32,8 +32,8 @@ import { findAllService } from "../../../services/findService";
 import { Redirect, useHistory } from 'react-router-dom';
 
 const PatientList = () => {
-  const [items, setItems] = useState<any>(mockedPatients);
-  let listPatients = mockedPatients;
+  const [items, setItems] = useState<any>('');
+  let listPatients = items;
   const [results, setResults] = useState([...listPatients]);
   const history = useHistory();
   
@@ -60,7 +60,6 @@ const PatientList = () => {
     }).catch((err: any) => {
       console.log(err);
     });
-    
   }
 
   useEffect(() => {

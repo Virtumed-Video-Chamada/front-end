@@ -9,15 +9,17 @@ import {
   IonLabel,
   IonPage,
   IonSearchbar,
+  useIonLoading,
 } from "@ionic/react";
 import Identificador from "../../../components/Identificador/Identificador";
 import { documentTextOutline } from "ionicons/icons";
-import { mockedRecords } from "../../../mocks/records";
+import { mockedPatients } from "../../../mocks/patient";
+import { findAllService } from "../../../services/findService";
 
 const HistoricalDoctor: React.FC = () => {
-  const [namePacient, setNamePacient] = useState<any>(mockedRecords);
-  const [results, setResults] = useState(['']);
-  const [busy, setBusy] = useState(false);
+  const [namePacient, setNamePacient] = useState<any>([]);
+  const [results, setResults] = useState([...namePacient]);
+  const [busy, setBusy] = useState(true);
   const [listA, setListA] = useState([]);
   const [listB, setListB] = useState([]);
   const [listC, setListC] = useState([]);
@@ -175,26 +177,26 @@ const HistoricalDoctor: React.FC = () => {
     );
   };
 
-  const handleChange = (ev?: Event) => {
+  const [present, dismiss] = useIonLoading();
+  const handleChange = async (ev?: Event) => {
+    await findAllService.findAllUsers("pacient").then((response: any) => {
+      console.log(response);
+      setNamePacient(response.data);
+    
     let query = "";
-    setBusy(true);
     if (ev != null) {
       const target = ev.target as HTMLIonSearchbarElement;
       if (target) query = target.value!.toLowerCase();
-      if (query === "") {
-        setBusy(false);
       }
-    } else {
-      setBusy(false);
-    }
-    // eslint-disable-next-line array-callback-return
+    let listPacients = response.data;
     setResults(
-      namePacient.filter((patient: any) => {
+      listPacients.filter((pacient: any) => {
         return (
-          (patient.name!.toLowerCase().indexOf(query) > -1) 
+          pacient.name!.toLowerCase().indexOf(query) > -1 ||
+          query === ""
         );
       })
-    );
+    )});
   };
   
   const renderize = () => {
@@ -230,7 +232,7 @@ const HistoricalDoctor: React.FC = () => {
           onIonChange={(ev) => handleChange(ev)}
         ></IonSearchbar>
         {busy == true && renderize()}
-        {(listA.length > 0 && !busy)&& (
+        {/* {(listA.length > 0 && !busy)&& (
           <IonItemGroup>
             <IonItemDivider className="bg-primary">
               <IonLabel className="text-white">A</IonLabel>
@@ -567,7 +569,7 @@ const HistoricalDoctor: React.FC = () => {
               </IonItem>
             ))}
           </IonItemGroup>
-        )}
+        )} */}
       </IonContent>
     </IonPage>
   );

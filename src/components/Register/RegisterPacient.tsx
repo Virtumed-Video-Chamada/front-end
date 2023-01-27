@@ -6,15 +6,11 @@ import { userClinic, userDoctor, userPacient } from "../../@types/interfaces";
 import { registerService } from "../../services/registerService";
 import { setStorage } from "../../services/adminStorage";
 import { alertaErro, alertaSucesso } from "../../utils/alertas";
-
-
 import axios from 'axios';
-
 
 
 const RegisterPacient: React.FC = () => {
   const history = useHistory();
-
   const [name, setName] = useState<string>("");
   const [cpf, setCpf] = useState<string>("");
   const [rg, setRg] = useState<string>("");
@@ -83,7 +79,7 @@ const registerUser = async () => {
       if (jwt) {
         setStorage("jwt", jwt);
         setStorage("role", response.data.role);
-        setStorage("token", response);
+        setStorage("tokenJwt", response);
         alertaSucesso.alerta("Usuário cadastrado com sucesso !");
         history.replace("/login");
       } else {

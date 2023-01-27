@@ -42,7 +42,7 @@ const PatientSettings: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getStorage('token').then((storage) => {
+    getStorage('tokenJwt').then((storage) => {
       setName(storage.data.user.name);
       setAvatar(storage.data.user.avatar_url);
       setEmail(storage.data.user.email);

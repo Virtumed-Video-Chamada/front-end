@@ -1,11 +1,18 @@
-.lobby {
+/* Início estilização Lobby */
+.lobby-container {
   display: flex;
   height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: -200px;
+  /* margin-top: -100px; */
+}
 
+.lobby {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .lobby > h2 {
@@ -18,6 +25,7 @@
 
 .inputs {
   margin-bottom: 20px;
+  max-width: 1120px;
   width: 90vw;
   display: flex;
   flex-direction: column;
@@ -32,7 +40,6 @@
   font-size: 12px;
   color: #333;
   text-align: start;
-
 }
 
 .inputs > input {
@@ -47,12 +54,18 @@
   color: #999;
 }
 
-.lobby-container {
+/* .lobby-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+} */
 
 .extra-border {
   display: flex;
@@ -177,4 +190,116 @@
 
 .btn {
   width: 150px;
-} 
+}
+
+@media (max-width: 375px) {
+  /* .lobby-container {
+    margin-top: -100px;
+  } */
+
+  .extra-border {
+    /* margin: 50px; */
+    width: 180px;
+    height: 180px;
+  }
+
+  .border-lobby {
+    /* padding-top: -200px; */
+    width: 160px;
+    height: 160px;
+  }
+
+  .img-container {
+    /* padding-top: -200px; */
+    width: 140px;
+    height: 140px;
+  }
+
+  .img-container > img {
+    width: 140px;
+    height: 140px;
+    border: 10px solid #4b39b3;
+    object-fit: cover;
+  }
+}
+
+.room {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  /* justify-content: center;  */
+}
+
+.btn-call-container {
+  position: fixed;
+  bottom: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* .btn-call-container > button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background-color: red;
+  color: #fff;
+} */
+
+.local-participant {
+  height: 50vh;
+  min-width: 100%;
+}
+
+.local-participant > h3 {
+  position: absolute;
+}
+
+.participantLocal {
+  height: 50vh;
+  min-width: 100%;
+}
+
+.participantLocal > h3 {
+  position: fixed;
+  top: 50px;
+  left: 20px;
+  color: #fff;
+}
+
+.participantLocal > video {
+  height: 50vh;
+  min-width: 100%;
+  object-fit: cover;
+}
+
+.participantRemote > video {
+  height: 50vh;
+  min-width: 100%;
+  object-fit: cover;
+}
+
+.participantRemote > h3 {
+  position: fixed;
+  top: 150px;
+  left: 20px;
+  color: #fff;
+}
+
+.remote-participants {
+  height: 50vh;
+  min-width: 100%;
+}
+
+.room > h2 {
+  position: fixed;
+  top: 100px;
+}
+
+.room > h3 {
+  position: fixed;
+  top: 50%;
+}

@@ -25,6 +25,7 @@ import "@ionic/react/css/core.css";
 import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
 import "@ionic/react/css/typography.css";
+import { SplashScreen } from '@capacitor/splash-screen';
 
 /* Optional CSS utils that can be commented out */
 // import '@ionic/react/css/padding.css';
@@ -74,6 +75,11 @@ import SchedulesPacient from "./pages/Patient/SchedulesPatient/SchedulesPacient"
 
 setupIonicReact();
 
+SplashScreen.show({
+  showDuration: 2000,
+  autoHide: true,
+});
+
 const RoutingSystem: React.FC = () => {
   return (
     <IonReactRouter>
@@ -96,7 +102,7 @@ const RoutingTabs: React.FC = () => {
   const [category, setCategory] = useState("/");
 
   useEffect(() => {
-    getStorage("token").then((response) => {
+    getStorage("tokenJwt").then((response) => {
       const role = response.data.user.role.toLowerCase();
       setCategory(`/home-${role}`);
       console.log(role)
@@ -108,16 +114,7 @@ const RoutingTabs: React.FC = () => {
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/">
-            {category == "/home-pacient" ? (
-              <HomePatient />
-            ) : category == "/home-doctor" ? (
-
-              <HomeDoctor />
-            ) : category == "/home-clinic" ? (
-              <HomeClinic />
-            ) : (
-              <HomeClinic />
-            )}
+            {category == "/home-pacient" ? ( <HomePatient /> ) : category == "/home-doctor" ? ( <HomeDoctor />) : category == "/home-clinic" ? (<HomeClinic />) : category == "/home-admin" ? (<HomeAdmin /> ) : (<Login />)}
           </Route>
           <Route exact path="/register-doctor">
             <RegisterDoctorAdmin />
@@ -223,7 +220,7 @@ const RoutingTabs: React.FC = () => {
             />
           </IonTabButton> }
           
-          {(category === "/home-clinic" || category === "/home-admin") ? '' : <IonTabButton tab="tab4" href="/health">
+          {(category === "/home-clinic" || category === "/home-admin" || category === "/home-doctor") ? '' : <IonTabButton tab="tab4" href="/health">
             <IonIcon icon={medkitOutline} className="w-6 h-6" color="primary" />
           </IonTabButton>}
           <IonTabButton tab="tab5">
@@ -247,7 +244,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     console.log(user);
-    getStorage("token").then((response: any) => {
+    getStorage("tokenJwt").then((response: any) => {
       console.log(response);
       setUser(response);
     });

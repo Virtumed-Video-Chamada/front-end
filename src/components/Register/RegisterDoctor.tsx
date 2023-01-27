@@ -69,7 +69,7 @@ const RegisterDoctor: React.FC = () => {
             setAddress(data.logradouro);
             setDistrict(data.bairro);
             setState(data.uf);
-            console.log(data)
+            setCity(data.localidade);
       } )
       .catch((error: any) => console.log('ERRO NA CHAMADA:', error))
       }   
@@ -131,7 +131,6 @@ const RegisterDoctor: React.FC = () => {
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>CEP</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={cep} placeholder="Informe seu CEP" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
             <IonInput className='inputSelsyn' type="text" value={cep} required  maxlength={8} minlength={8} placeholder="Informe seu CEP (Apenas Números)" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
@@ -170,7 +169,6 @@ const RegisterDoctor: React.FC = () => {
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>E-mail</span></span>
             </IonLabel>
             <IonInput className='inputSelsyn' type="text" value={email} placeholder="Informe e-mail" onIonChange={e => setEmail(e.detail.value!)}></IonInput>
-            <IonInput className='inputSelsyn' type="text" value={email} required placeholder="Informe e-mail" onIonChange={e => setEmail(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">

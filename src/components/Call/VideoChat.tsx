@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Video from "twilio-video";
+import { alertaErro } from "../../utils/alertas";
 import Lobby from "./Lobby";
 import Room from "./Room";
 
@@ -40,13 +41,16 @@ const VideoChat = () => {
           setRoom(room);
         })
         .catch((err: any) => {
+          if (err === "DOMException: Requested device not found") {
+            alertaErro.alerta(`Dispositivos de Vídeo ou Áudio indisponíveis`);
+          }
           console.error(err);
           setConnecting(false);
         });
     },
     [roomName, username]
   );
-
+  
   const handleLogout = useCallback(() => {
     setRoom((prevRoom: any) => {
       if (prevRoom) {

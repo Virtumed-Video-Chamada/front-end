@@ -19,6 +19,7 @@ const ListDoctor: React.FC = () => {
   const data = items;
   const [results, setResults] = useState([...data]);
   const role: string = "doctors";
+ 
 
   const generateItems = () => {
     const newItems = [];
@@ -32,8 +33,6 @@ const ListDoctor: React.FC = () => {
     generateItems();
     handleChange();
       }, []);
-
-  // const data = ['Amsterdam', 'Buenos Aires', 'Cairo', 'Geneva', 'Hong Kong', 'Istanbul', 'London', 'Madrid', 'New York', 'Panama City'];
  
   const handleChange = async (ev?: Event) => {
     await findAllService.findAllUsers(role).then((response: any) => {
@@ -67,9 +66,9 @@ const ListDoctor: React.FC = () => {
 
 
   return (
-    <IonContent>
+    <div>
       <IonSearchbar debounce={1000} onIonChange={(ev) => handleChange(ev)}></IonSearchbar>
-      <IonList>
+      <IonList className="md:flex md:flex-col md:justify-center md:items-center">
         {renderize()}
       </IonList>
       <IonInfiniteScroll
@@ -80,7 +79,7 @@ const ListDoctor: React.FC = () => {
       >
         <IonInfiniteScrollContent></IonInfiniteScrollContent>
       </IonInfiniteScroll>
-    </IonContent>
+    </div>
 
   );
 };

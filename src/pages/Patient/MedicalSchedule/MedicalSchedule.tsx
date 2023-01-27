@@ -21,6 +21,8 @@ import {  useEffect, useState } from "react";
 import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 import Schedules from "../../../components/SchedulePatient/SchedulePatient";
+import { appointmentService } from "../../../services/appointmentService";
+import { findByIdService } from "../../../services/findService";
 import "./style.css";
 
 
@@ -31,12 +33,48 @@ const MedicalSchedule: React.FC = () => {
   const [present] = useIonToast();
   const [date, setDate] = useState("");
   const urlParams = new URLSearchParams(window.location.search);
-  const userId = urlParams.get("id");
+  const userId: any = urlParams.get("id");
+  const [nameDoctor, setNameDoctor] = useState("");
+  const [avatarDoctor, setAvatarDoctor] = useState("")
 
   useEffect(() => {
+    findDotor();
+    findDateAppointment()
+  }, [])
+  
+  const id: any = {
+    id: userId,
+  }
 
-   }, []
-  )
+  const findDateAppointment = async () => {
+    await appointmentService.appointmentDisponibleDay(userId).then((resp) => {
+      console.log(userId)
+      console.log(resp)
+    });
+    await appointmentService.appointmentDisponibleHour(userId).then((resp) => {
+      console.log(userId)
+      console.log(resp)
+    })
+
+  }
+  const findDotor = async () => {
+    console.log('teste');
+    await findByIdService.findProfileByIdDoctor(id).then((resp) => {
+      setNameDoctor(resp.data.name);
+      setAvatarDoctor(resp.data.avatar_url);
+    }).catch((err) => {
+       console.log(err);
+     })
+  }
+
+  const renderizeAvatar = () => {
+    if (avatarDoctor == null || avatarDoctor == "") {
+      return 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'
+    } else {
+      return avatarDoctor
+    }
+  }
+
 
   const presentToast = () => {
     present({
@@ -48,6 +86,7 @@ const MedicalSchedule: React.FC = () => {
   };
 
   const alert = () => {
+    findDateAppointment()
     presentAlert({
       header: "DESEJA MARCAR SUA CONSULTA?",
       cssClass: "custom-alert",
@@ -84,11 +123,11 @@ const MedicalSchedule: React.FC = () => {
             <img
               alt="Silhouette of mountains"
               className="rounded-xl"
-              src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+              src={renderizeAvatar()}
             />
           </IonThumbnail>
           <div className="flex flex-col">
-            <IonLabel className="text-bold">Dra. Meredithy Grey</IonLabel>
+            <IonLabel className="text-bold">Dr(a) {nameDoctor}</IonLabel>
             <IonLabel>Neurologista</IonLabel>
           </div>
         </IonItem>

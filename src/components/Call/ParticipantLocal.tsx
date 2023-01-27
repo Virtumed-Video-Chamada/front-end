@@ -64,7 +64,7 @@ const Participant = ({ participant }: any) => {
 
   return (
     <div className="participantLocal">
-      <h3>{participant.identity}</h3>
+      {/* <h3>{participant.identity}</h3> */}
       <video ref={videoRef} autoPlay={true}/>
       <audio ref={audioRef} autoPlay={true} muted={true} />
     </div>

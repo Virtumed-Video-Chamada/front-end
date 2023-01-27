@@ -35,7 +35,7 @@ const executeLogin = async () => {
     setStorage('userIdStorage', user);
     setStorage('userAdminStorage', admin);
       setStorage('nameStorage', name);
-      setStorage('token', response);
+      setStorage('tokenJwt', response);
       history.replace("/");
       window.location.reload();
    })
@@ -47,7 +47,7 @@ const executeLogin = async () => {
   const [user, setUser] = useState<any>(null);
      
   useEffect(() => {
-    getStorage('token').then((response: any) => {
+    getStorage('tokenJwt').then((response: any) => {
       setUser(response);
       setEmail(response.data.email);
       setPassword(response.data.password);
