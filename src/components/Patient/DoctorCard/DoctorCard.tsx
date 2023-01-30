@@ -8,7 +8,7 @@ import {
   useIonToast,
 } from "@ionic/react";
 
-import {  useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   heartOutline,
   chatbubbleOutline,
@@ -21,7 +21,6 @@ import { useEffect, useState } from "react";
 import { Doctor } from "../../../@types/interfaces";
 import { getStorage } from "../../../services/adminStorage";
 import { deleteService } from "../../../services/deleteService";
-
 
 interface DoctorCardProps {
   props: Doctor;
@@ -78,7 +77,7 @@ function DoctorCard({ props }: DoctorCardProps) {
           cssClass: "alert-button-confirm",
           handler: async () => {
             await deleteService.deleteUser(id).then((response: any) => {
-              presentToast()
+              presentToast();
             });
           },
         },
@@ -88,24 +87,23 @@ function DoctorCard({ props }: DoctorCardProps) {
     });
   };
 
-
   const addFavorites = () => {
     setBusy(true);
     setIcons(heart);
   };
 
   const redirect = (id: any) => {
-    history.replace(`/register-doctor?id=${id}`)
-  }
+    history.replace(`/register-doctor?id=${id}`);
+  };
 
   const redirectLink = (id: any) => {
-    history.replace(`/link-doctor?id=${id}`)
-  }
+    history.replace(`/link-doctor?id=${id}`);
+  };
 
   useEffect(() => {
     getStorage("tokenJwt").then((response) => {
       const role = response.data.user.role.toLowerCase();
-      setCategory(role)
+      setCategory(role);
     });
   }, []);
 
@@ -114,7 +112,10 @@ function DoctorCard({ props }: DoctorCardProps) {
       return (
         <div className="flex flex-row justify-center items-center">
           <div className={_class}>
-            <IonButton className="text-xs w-max" onClick={() => parentConversation()}>
+            <IonButton
+              className="text-xs w-max"
+              onClick={() => parentConversation()}
+            >
               ABRIR CHAT
               <IonIcon slot="start" icon={chatbubbleOutline}></IonIcon>
             </IonButton>
@@ -133,7 +134,11 @@ function DoctorCard({ props }: DoctorCardProps) {
       return (
         <div className="flex flex-row justify-center items-center">
           <div className={_class}>
-            <IonButton className="text-xs w-max" color="success" onClick={() => redirect(props.id)}>
+            <IonButton
+              className="text-xs w-max"
+              color="success"
+              onClick={() => redirect(props.id)}
+            >
               EDITAR
               <IonIcon slot="start" icon={createOutline}></IonIcon>
             </IonButton>
@@ -145,7 +150,11 @@ function DoctorCard({ props }: DoctorCardProps) {
               VINCULAR
               <IonIcon slot="start" icon={createOutline}></IonIcon>
             </IonButton>
-            <IonButton className="text-xs" color="danger" onClick={() => alert(props.id)}>
+            <IonButton
+              className="text-xs"
+              color="danger"
+              onClick={() => alert(props.id)}
+            >
               DELETAR
               <IonIcon slot="start" icon={trashOutline}></IonIcon>
             </IonButton>
@@ -155,19 +164,16 @@ function DoctorCard({ props }: DoctorCardProps) {
     }
   };
 
-  
-
   const parentConversation = () => {
-    const doctorId: string =  props.id || '';
-    history.replace(`/conversation?id=${doctorId}`)
-    };
-    
-    const parentAgenda = () => {
-      const doctorId: string =  props.id || '';
-      history.replace(`/medical-schedules?id=${doctorId}`)
-      };
-    
-  
+    const doctorId: string = props.id || "";
+    history.replace(`/conversation?id=${doctorId}`);
+  };
+
+  const parentAgenda = () => {
+    const doctorId: string = props.id || "";
+    history.replace(`/medical-schedules?id=${doctorId}`);
+  };
+
   return (
     <div onClick={showChat}>
       <IonCard className="bd-20 cardDoctorWhite">
@@ -176,13 +182,17 @@ function DoctorCard({ props }: DoctorCardProps) {
             <img
               className="imgDoctor max-h-[130%] max-w-[130%] bd-20"
               alt="Pic-Doctor"
-              src={props.avatar == null ? "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" : props.avatar}
+              src={
+                props.avatar == null
+                  ? "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+                  : props.avatar
+              }
             />
           </IonThumbnail>
           <div className="flex flex-col gap-1 ml-11">
-            <span className="text-black font-bold">{ props.name}</span>
-            <p className="font-normal">{ props.doctor?.speciality}</p>
-            <p className="font-normal">{ props.crm}</p>
+            <span className="text-black font-bold">{props.name}</span>
+            <p className="font-normal">{props.doctor?.speciality}</p>
+            <p className="font-normal">{props.crm}</p>
             {/* <span className="font-medium">98 Avaliações</span> */}
           </div>
           <IonButton fill="clear" onClick={() => addFavorites()}>

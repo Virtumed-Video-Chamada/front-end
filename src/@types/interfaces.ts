@@ -53,6 +53,14 @@ export interface userPacient {
 	isAdmin?: boolean;
 }
 
+export interface patientInfo {
+	id?: string;
+	age: string;
+	height: string;
+	gender: string;
+	weight: string;
+}
+
 export interface userDoctor {
 	id?: string;
 	name: string;
