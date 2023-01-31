@@ -74,6 +74,8 @@ import FavoriteDoctors from "./pages/Patient/FavoriteDoctors/FavoriteDoctors";
 import ExamResults from "./pages/Patient/ExamResults/ExamResults";
 import SchedulesPacient from "./pages/Patient/SchedulesPatient/SchedulesPacient";
 import { useSelector } from "react-redux";
+import ScheduleClinic from "./pages/Clinic/ScheduleClinic/ScheduleClinic";
+import ScheduleControl from "./pages/Clinic/ScheduleControl/ScheduleControl";
 
 setupIonicReact();
 
@@ -186,6 +188,12 @@ const RoutingTabs: React.FC = () => {
           </Route>
           <Route exact path="/schedule-doctor">
               <ScheduleDoctor/>
+          </Route>
+          <Route exact path="/schedule-clinic">
+              <ScheduleClinic/>
+          </Route>
+          <Route exact path="/schedule-control">
+              <ScheduleControl/>
           </Route>
           <Route exact path="/link-doctor">
             <LinkDoctor/>

@@ -63,7 +63,7 @@ const QuickAccess: React.FC = () => {
             ></IonImg>
             <p className="text-center">Sistema de Teleconsulta</p>
           </IonCard> 
-          <IonCard className=" bd-20 quickCardClinic">
+          <IonCard className=" bd-20 quickCardClinic" routerLink="schedule-clinic">
             <IonImg
               className="imgCard  mx-auto"
               src="./assets/icon/calendarNumber.svg"

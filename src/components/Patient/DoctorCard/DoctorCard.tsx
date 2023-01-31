@@ -145,10 +145,10 @@ function DoctorCard({ props }: DoctorCardProps) {
               VINCULAR
               <IonIcon slot="start" icon={createOutline}></IonIcon>
             </IonButton>
-            <IonButton className="text-xs" color="danger" onClick={() => alert(props.id)}>
+            {category == "admin" ? <IonButton className="text-xs" color="danger" onClick={() => alert(props.id)}>
               DELETAR
               <IonIcon slot="start" icon={trashOutline}></IonIcon>
-            </IonButton>
+            </IonButton> : ''}
           </div>
         </div>
       );
