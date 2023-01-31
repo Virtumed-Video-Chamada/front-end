@@ -31,7 +31,7 @@ const Identificador: React.FC = () => {
   return (
     <div >
      <IonItem lines="none" className="mb-2 identificador">
-        <IonThumbnail className="pt-3 mb-3" slot="end">
+        <IonThumbnail className="pt-3 thumbnail" slot="end">
           <IonAvatar className="border-primary">
             <img
               alt="Silhouette of a person's head"
