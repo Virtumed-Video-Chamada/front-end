@@ -5,20 +5,10 @@ import { useState } from 'react';
 import { Redirect, Route } from 'react-router';
 import ChatList from '../../components/ChatList/ChatList';
 import Identificador from '../../components/Identificador/Identificador';
-import { getStorage } from '../../services/adminStorage';
-import { findAllConversationsByIdService } from '../../services/chatService';
 
 
 
 const Chat: React.FC = () => {
-  const [ userId, setUserId] = useState();
-
-  useIonViewDidEnter(() => {
-    getStorage("userIdStorage").then((response) => {
-     setUserId(response);
-
-    });  
-  })
 
   return (
     <IonPage className="justify-start">

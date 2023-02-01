@@ -12,10 +12,17 @@ import {
 import { useEffect, useState } from "react";
 import { getStorage } from "../../services/adminStorage";
 import api from "../../services/api";
-import { findAllConversationsByIdService } from "../../services/chatService";
+import {
+  findAllConversationsByIdService,
+  findByIdService,
+} from "../../services/chatService";
 
 const ChatList = () => {
   const [items, setItems] = useState<string[]>([]);
+  const [chatList, setSetList] = useState([]);
+  const [senderId, setsenderId] = useState();
+  const [role, setRole] = useState();
+  const [receiverId, setreceiverId] = useState();
 
   const generateItems = () => {
     const newItems = [];
@@ -25,24 +32,51 @@ const ChatList = () => {
     setItems([...items, ...newItems]);
   };
 
-  /* const [userId, setUserId] = useState<any>(); */
-  const userId = "9d695b9a-f96b-4385-9ec1-18103f61a0e1";
-  useIonViewDidEnter(() => {
-    getStorage("userIdStorage").then(async (response) => {
-     /*  setUserId(response); */
+  const findChatList = async () => {
+    getStorage("userIdStorage").then(async (storage) => {
       await findAllConversationsByIdService
-        .findAllConversations(userId)
-        .then((resp: any) => {
-          setSetList(resp);
+        .findAllConversations(storage)
+        .then((resp) => {
+          console.log(resp);
+          setSetList(resp.data);
+          setreceiverId(resp.data[0].members[1]);
+          setsenderId(storage);
+          findMeChat(resp.data[0].members[1]);
         });
     });
-  });
+  };
 
-  const [chatList, setSetList] = useState([]);
+  const findDoctor = async (receiverId: any) => {
+    const userId = {
+      id: receiverId,
+    }
+    await findByIdService.findProfileByIdDoctor(userId).then((resp) => {
+    })
+  }
+
+  const findPatient = async (receiverId: any) => {
+    const userId = {
+      id: receiverId,
+    }
+    await findByIdService.findProfileByIdPacient(userId).then((resp) => {
+      console.log(resp);
+    })
+  }
+  
+  const findMeChat = async (id: any) => {
+    await findByIdService.findProfileByIdMe().then((resp) => {
+      setRole(resp.data.role);
+      if (resp.data.role !== 'DOCTOR') {
+        findDoctor(id);
+      } else {
+        findPatient(id);
+      }
+    });
+  };
 
   useEffect(() => {
     generateItems();
-
+    findChatList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -50,7 +84,7 @@ const ChatList = () => {
     if (chatList.length == 0) {
       return "";
     } else {
-      return (chatList.map((element: any, index: any) => (
+      return chatList.map((element: any, index: any) => (
         <IonCard
           key={index}
           className="mx-0 mt-10 mb-1 h-32"
@@ -65,7 +99,7 @@ const ChatList = () => {
               />
             </IonAvatar>
             <IonLabel>
-              <h2 className="font-bold">{element}</h2>
+              <h2 className="font-bold">dr jão</h2>
               <p>Dipirona de 4 em 4 horas</p>
             </IonLabel>
             <IonBadge className="badge">1</IonBadge>
@@ -74,7 +108,7 @@ const ChatList = () => {
             </div>
           </IonCardContent>
         </IonCard>
-      )))
+      ));
     }
   };
 
