@@ -27,7 +27,8 @@ export interface Pacient {
   email?: string;
   password?: string;
   cep?: string;
-  cpf?: string;
+	cpf?: string;
+	avatar_url?: string;
 }
 
 export interface userLogin {

@@ -23,6 +23,13 @@ const findByIdService = {
 			api
 				.post('/profile/findPacient', id)
 				.then((response: any) => { return response })
+			.catch((error: any) => console.log(error)),
+	findProfileByIdMe: () =>
+			api
+				.get("/profile")
+				.then((response: any) => {
+					return response;
+				})
 				.catch((error: any) => console.log(error)),
 };
 

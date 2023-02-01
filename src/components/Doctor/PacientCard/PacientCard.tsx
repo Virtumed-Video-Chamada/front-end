@@ -4,17 +4,20 @@ import {
   IonThumbnail,
   useIonToast,
 } from "@ionic/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import { Pacient } from "../../../@types/interfaces";
 
 interface PacientCardProps {
-  pacient: Pacient;
+  pacient: Pacient | any;
 }
 
 function PacientCard({ pacient }: PacientCardProps) {
   const [change, setChange] = useState<boolean>(false);
   const [_class, setClass] = useState<string>("flex hidden");
   const [present] = useIonToast();
+  const history = useHistory();
+
 
   const showChat = () => {
     setChange(!change);
@@ -25,24 +28,19 @@ function PacientCard({ pacient }: PacientCardProps) {
     }
   };
 
+  useEffect(() => {
+  console.log(pacient)
+})
+
+  const redirect = (id: any) => {
+    history.replace(`/add-historical-doctor?id=${id}`)
+  }
+
+
   return (
     <div onClick={showChat}>
-      <IonCard className="bd-20 cardpacientWhite">
-        <IonCardContent className="flex justify-start">
-          <IonThumbnail slot="start">
-            <img
-              className="imgpacient max-h-[130%] max-w-[130%] bd-20"
-              alt="Pic-pacient"
-              src="./assets/avatar/Pic-pacient.jpg"
-            />
-          </IonThumbnail>
 
-          <div className="flex flex-col gap-1 ml-11">
-            <span className="text-black font-bold">{pacient.name}</span>
-            {/* <span className="font-medium">98 Avaliações</span> */}
-          </div>
-        </IonCardContent>
-      </IonCard>
+     
     </div>
   );
 }

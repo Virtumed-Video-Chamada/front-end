@@ -32,7 +32,7 @@ const QuickAccessDoctor: React.FC = () => {
             <IonImg className="imgCard mx-auto" src="./assets/icon/appointment.svg"></IonImg>
             <p className="text-center ">Minhas consultas</p>
           </IonCard>
-          <IonCard className="bd-20 quickCard" routerLink="/historical-clinic">
+          <IonCard className="bd-20 quickCard" routerLink="/historical-doctor">
             <IonImg className="imgCard mx-auto" src="./assets/icon/historical.svg"></IonImg>
             <p className="text-center ">Histórico Clínico</p>
           </IonCard>
