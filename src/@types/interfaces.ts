@@ -117,3 +117,13 @@ export interface PronturariosProps {
 	id?: string;
   name?: string;
 }
+
+export interface Conversations {
+	id?: string;
+	members?: [];
+}
+
+export interface Message {
+	senderId: string;
+	receiverId: string;
+}
