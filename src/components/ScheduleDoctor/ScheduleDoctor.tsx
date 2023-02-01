@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   IonAvatar,
   IonBackButton,
@@ -22,8 +22,11 @@ import {
 import ModalAlert from "../ModalAlert/ModalAlert";
 import { chatbubbleOutline } from "ionicons/icons";
 import Identificador from "../Identificador/Identificador";
+import { findByIdService } from "../../services/findService";
 
 const ScheduleDoctor: React.FC = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const userId = urlParams.get("id");
   const [change, setChange] = useState<boolean>(false);
   const [_class, setClass] = useState<string>("flex hidden");
   const [presentAlert] = useIonAlert();
@@ -31,6 +34,8 @@ const ScheduleDoctor: React.FC = () => {
   const [roleMessage, setRoleMessage] = useState("");
   const [present] = useIonToast();
   const iconSucces = "./assets/icon/success.svg";
+  const [nameDoctor, setNameDoctor] = useState("");
+  const [avatarDoctor, setAvatarDoctor] = useState("")
 
   const presentToast = () => {
     present({
@@ -48,6 +53,37 @@ const ScheduleDoctor: React.FC = () => {
       setClass("flex hidden");
     }
   };
+
+  useEffect(() => {
+    findDotor();
+    // findDateAppointment()
+  }, [])
+  
+  const id: any = {
+    id: userId,
+  }
+
+  // const findDateAppointment = async () => {
+  //   await appointmentService.appointmentDisponibleDay(userId).then((resp) => {
+  //     console.log(userId)
+  //     console.log(resp)
+  //   });
+  //   await appointmentService.appointmentDisponibleHour(userId).then((resp) => {
+  //     console.log(userId)
+  //     console.log(resp)
+  //   })
+  // }
+
+  const findDotor = async () => {
+    await findByIdService.findProfileByIdDoctor(id).then((resp) => {
+      setNameDoctor(resp.data.name);
+      setAvatarDoctor(resp.data.avatar_url);
+    }).catch((err) => {
+       console.log(err);
+     })
+  }
+
+
 
   const alert = () => {
     presentAlert({
@@ -90,8 +126,9 @@ const ScheduleDoctor: React.FC = () => {
             src="./assets/logo.png"
             className="imgLogoSmall flex items-center mx-auto"
           />
-          <IonText class=" flex p-4 text-black text-xl font-bold">
-            Suas consultas
+        <IonText class=" flex p-4 text-black text-xl font-bold">
+        {userId == null ? ' Suas consultas' : 'Agenda Dr (a): ' + nameDoctor }
+           
           </IonText>
           <div className="container" onClick={showChat}>
           <IonCard className="bd-20 card">

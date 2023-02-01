@@ -89,7 +89,7 @@ const ScheduleClinic: React.FC = () => {
 
 
   const redirect = (id: string) => {
-    history.replace(`/schedule-control?id=${id}`)
+    history.replace(`/schedule-doctor?id=${id}`)
   }
 
   const renderize = () => {
@@ -98,7 +98,7 @@ const ScheduleClinic: React.FC = () => {
         <IonLabel>{element.name}</IonLabel>
         <IonButton slot="end" color="danger" onClick={() => redirect(element.id)}>
           <IonIcon icon={calendarOutline} className="mr-2"></IonIcon>
-          Editar Agenda
+          Ver Agenda
         </IonButton>
       </IonItem>
     ));
