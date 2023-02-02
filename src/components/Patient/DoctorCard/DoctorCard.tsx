@@ -110,7 +110,7 @@ function DoctorCard({ props }: DoctorCardProps) {
   const renderize = () => {
     if (category === "pacient") {
       return (
-        <div className="flex flex-row justify-center items-center">
+        <div className="cardDoctorWhite flex flex-row justify-center items-center">
           <div className={_class}>
             <IonButton
               className="text-xs w-max"

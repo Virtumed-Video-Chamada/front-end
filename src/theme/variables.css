@@ -375,6 +375,10 @@ h1 {
   padding-bottom: 8rem;
 }
 
+.cardDoctorWhite:active {
+  height: 10rem !important;
+}
+
 @media (min-width: 1250px) {
   .cardDoctor {
     width: 40vw;
