@@ -2,15 +2,15 @@ import { IonAvatar, IonBadge, IonCard, IonCardContent, IonInfiniteScroll, IonInf
 import { useEffect, useState } from "react";
 import { getStorage } from "../../services/adminStorage";
 import { findAllConversationsByIdService } from "../../services/chatService";
-import { findByIdService } from "../../services/findService";
+import {  useHistory } from "react-router-dom";
+import moment from 'moment';
 
 
 const ChatList = () => {
   const [items, setItems] = useState<string[]>([]);
   const [chatList, setChatList] = useState([]);
-  const [senderId, setsenderId] = useState();
-  const [receiverId, setreceiverId] = useState();
-
+  const [id, setId] = useState('');
+  const history = useHistory();
 
   const generateItems = () => {
     const newItems = [];
@@ -23,99 +23,55 @@ const ChatList = () => {
   useEffect(() => {
     generateItems();
     findChatList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
     
   const findChatList = async () => {
     getStorage("userIdStorage").then(async (storage) => {
+      setId(storage);
       await findAllConversationsByIdService
         .findAllConversations(storage)
         .then((resp) => {
           setChatList(resp.data);
-          // setreceiverId(resp.data[0].members[1]);
-          // setsenderId(storage);
-          // findMeChat(resp.data[0].members[1]);
         });
     });
   };
 
-  const findDoctor = async (receiverId: any) => {
-    const id: any = {
-      id: receiverId,
-    }
-   await findByIdService.findProfileByIdDoctor(id).then((resp) => {
-      const dadosUser = {
-        nameUser: resp.data.name,
-        avatarUser: resp.data.avatar_url
-      }
-      return dadosUser;
-    })
+  const dateEdit = (item: any) => {
+    return moment(item.date).format('HH:mm')
   }
 
-  const findPatient = async (receiverId: any) => {
-    const id: any = {
-      id: receiverId,
-    }
-    return await findByIdService.findProfileByIdPacient(id).then((resp) => {
-      const dadosUser = {
-        nameUser: resp.data.name,
-        avatarUser: resp.data.avatar_url
-      }
-    })
+  const redirectChatList = () => {
+    history.replace(`/conversation?id=${id}`)
   }
-  
-  const findMeChat = async (id: any) => {
-     await findByIdService.findProfileByIdMe().then((resp) => {
-      if (resp.data.role !== 'DOCTOR') {
-        return findDoctor(id);
-      } else {
-        return findPatient(id).then((resp) => {
-          console.log(resp)
-        });
-      }
-    });
-  };
 
   const renderize = () => {
-    
     if (chatList.length == 0) {
       return "";
     } else {
-      let userName;
-      let userAvatar;
-      chatList.map((element: any, index: any) => (
-        findMeChat(element.members[1]).then((resp: any) => {
-          console.log(resp)
-          // userName = resp.data.user.name;
-          // userAvatar = resp.data.user.avatar;
-        })
-        
-      ))
-      // return chatList.map((element: any, index: any) => (
-      //   <IonCard
-      //     key={index}
-      //     className="mx-0 mt-10 mb-1 h-32"
-      //     routerLink="./conversation"
-      //   >
-      //     <IonCardContent className="flex justify-start w-full">
-      //       <IonAvatar slot="start">
-      //         <img
-      //           className="max-w-[51px] w-full"
-      //           alt="Pic-Doctor"
-      //           src="./assets/avatar/dra-maria.jpg"
-      //         />
-      //       </IonAvatar>
-      //       <IonLabel>
-      //         <h2 className="font-bold">{findMeChat(element.members[1])}</h2>
-      //         <p>Dipirona de 4 em 4 horas</p>
-      //       </IonLabel>
-      //       <IonBadge className="badge">1</IonBadge>
-      //       <div className="info-div">
-      //         <p>16:40</p>
-      //       </div>
-      //     </IonCardContent>
-      //   </IonCard>
-      // ));
+     return chatList.map((element: any, index: any) => (
+        <IonCard
+          key={index}
+          className="mx-0 mt-10 mb-1 h-32"
+         onClick={() => {redirectChatList()}}
+        >
+          <IonCardContent className="flex justify-start w-full">
+            <IonAvatar slot="start">
+              <img
+                className="max-w-[51px] w-full"
+                alt="Pic-Doctor"
+                src={element.avatar_url == null ? "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" : element.data.members.send.avatar_url}
+              />
+            </IonAvatar>
+            <IonLabel>
+             <h2 className="font-bold">{element.data.members.send.name}</h2>
+            </IonLabel>
+            <IonBadge className="badge">1</IonBadge>
+            <div className="info-div">
+             <p>{dateEdit(element.data.created_at)}</p>
+            </div>
+          </IonCardContent>
+        </IonCard>
+      ));
     }
   };
   

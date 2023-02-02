@@ -10,11 +10,13 @@ import axios from 'axios';
 
 const VideoChat = () => {
   const [username, setUsername] = useState<string>("");
-  const [roomName, setRoomName] = useState<string>("");
+  const [roomName, setRoomName] = useState<string>('myfirstvideoapp');
   const [room, setRoom] = useState<any>(null);
   const [connecting, setConnecting] = useState<boolean>(false);
   // eslint-disable-next-line no-restricted-globals
-  const TWILIO_DOMAIN = location.host; 
+  // const TWILIO_DOMAIN = location.host; 
+  const TWILIO_DOMAIN = 'videobeginner-5556-dev.twil.io'; 
+
 
 
   const handleUsernameChange = useCallback((event: any) => {
@@ -25,33 +27,48 @@ const VideoChat = () => {
     setRoomName(event.target.value);
   }, []);
 
+  const config = {
+    headers:{
+      "Access-Control-Allow-Origin":  "*",
+      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+    }
+  };
+
   const handleSubmit =
     useCallback(
       async (event: any) => {
         event.preventDefault();
         hideTabs();
         setConnecting(true);
-        await axios.get(`http://${TWILIO_DOMAIN}/generatetoken`).then(async (body) => {
+        await axios.get(`http://${TWILIO_DOMAIN}/generatetoken`, config).then(async (body: any) => {
           const token = body.data.token;
-          Video.connect(token, {
+          // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTSzA1NWE3Zjk1YTQ0Yzg4ODI5NjI2MmJiZDlmYzEyZThjLTE2NzUzMDExMzAiLCJncmFudHMiOnsiaWRlbnRpdHkiOiI2czJvZGowYnFsMyIsInZpZGVvIjp7InJvb20iOiJteWZpcnN0dmlkZW9hcHAifX0sImlhdCI6MTY3NTMwMTEzMCwiZXhwIjoxNjc1MzA0NzMwLCJpc3MiOiJTSzA1NWE3Zjk1YTQ0Yzg4ODI5NjI2MmJiZDlmYzEyZThjIiwic3ViIjoiQUNhN2QyNmZkZjliZDNhZDY1ZDdlMmJmZjMzNWM2OThhOSJ9.V1txOquG7tz0HteTfrTR9iB85qblP57V4I2i_IfySmg'
+          console.log(token);
+          const videoChamada = await Video.connect(token, {
             name: roomName,
             video: true,
             audio: true
           })
-        }).then(async (room: any) => {
-          console.log(room)
-            setConnecting(false);
-            setRoom(room);
-            setStorage("room", room);
+
+          setConnecting(false);
+          setRoom(videoChamada);
+          setStorage("room", videoChamada);
+        })
+   
+        // }).then((room: any) => {
+        //   console.log(room)
+        //     setConnecting(false);
+        //     setRoom(room);
+        //     setStorage("room", room);
           
-          })
-            .catch((err: any) => {
-              if (err === "DOMException: Requested device not found") {
-                alertaErro.alerta(`Dispositivos de Vídeo ou Áudio indisponíveis`);
-              }
-              console.error(err);
-              setConnecting(false);
-            });
+        //   })
+        //     .catch((err: any) => {
+        //       if (err === "DOMException: Requested device not found") {
+        //         alertaErro.alerta(`Dispositivos de Vídeo ou Áudio indisponíveis`);
+        //       }
+        //       console.error(err);
+        //       setConnecting(false);
+        //     });
         },
         [roomName, username]
     );
@@ -92,6 +109,7 @@ const VideoChat = () => {
 
   let render;
   if (room) {
+    console.log(room)
     render = (
       <Room roomName={roomName} room={room} handleLogout={handleLogout} />
     );

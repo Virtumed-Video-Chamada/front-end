@@ -12,6 +12,7 @@ import {
   IonImg,
   IonItem,
   IonLabel,
+  IonList,
   IonPage,
   IonText,
   IonThumbnail,
@@ -20,9 +21,10 @@ import {
   useIonToast,
 } from "@ionic/react";
 import ModalAlert from "../ModalAlert/ModalAlert";
-import { chatbubbleOutline } from "ionicons/icons";
+import { calendarOutline, chatbubbleOutline } from "ionicons/icons";
 import Identificador from "../Identificador/Identificador";
 import { findByIdService } from "../../services/findService";
+import { appointmentService } from "../../services/appointmentService";
 
 const ScheduleDoctor: React.FC = () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -36,6 +38,7 @@ const ScheduleDoctor: React.FC = () => {
   const iconSucces = "./assets/icon/success.svg";
   const [nameDoctor, setNameDoctor] = useState("");
   const [avatarDoctor, setAvatarDoctor] = useState("")
+  const [listAppointment, setListAppointment] = useState([])
 
   const presentToast = () => {
     present({
@@ -55,34 +58,20 @@ const ScheduleDoctor: React.FC = () => {
   };
 
   useEffect(() => {
-    findDotor();
-    // findDateAppointment()
+    findDateAppointment();
   }, [])
   
   const id: any = {
     id: userId,
   }
 
-  // const findDateAppointment = async () => {
-  //   await appointmentService.appointmentDisponibleDay(userId).then((resp) => {
-  //     console.log(userId)
-  //     console.log(resp)
-  //   });
-  //   await appointmentService.appointmentDisponibleHour(userId).then((resp) => {
-  //     console.log(userId)
-  //     console.log(resp)
-  //   })
-  // }
-
-  const findDotor = async () => {
-    await findByIdService.findProfileByIdDoctor(id).then((resp) => {
-      setNameDoctor(resp.data.name);
-      setAvatarDoctor(resp.data.avatar_url);
+  const findDateAppointment = async () => {
+    await appointmentService.appointmentList().then((resp) => {
+      setListAppointment(resp.data);
     }).catch((err) => {
-       console.log(err);
-     })
+      console.log(err)
+    });
   }
-
 
 
   const alert = () => {
@@ -112,25 +101,20 @@ const ScheduleDoctor: React.FC = () => {
     });
   };
 
-  return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton />
-          </IonButtons>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent>
-          <IonImg
-            src="./assets/logo.png"
-            className="imgLogoSmall flex items-center mx-auto"
-          />
-        <IonText class=" flex p-4 text-black text-xl font-bold">
-        {userId == null ? ' Suas consultas' : 'Agenda Dr (a): ' + nameDoctor }
-           
+  const renderize = () => {
+    if (listAppointment.length === 0) {
+      return (
+        <div className="flex flex-col gap-10 justify-center items-center w-48 mx-auto">
+          <IonIcon color="primary" size="large" className="w-48 h-48" src={calendarOutline}>
+          </IonIcon>
+          <IonText className="font-bold text-2xl text-center">
+            Você ainda não possui agendamentos!
           </IonText>
-          <div className="container" onClick={showChat}>
+        </div>
+      )
+    } else {
+      return (listAppointment.map((item: any) => 
+        <div className="container" onClick={showChat}>
           <IonCard className="bd-20 card">
             <IonCardContent className="flex justify-around w-auto">
               <IonThumbnail slot="start">
@@ -157,7 +141,6 @@ const ScheduleDoctor: React.FC = () => {
                 </div>
               </div>
             </IonCardContent>
-
             <div className="flex flex-row justify-center items-center">
               <div className={_class}>
                 <IonButton className="text-xs w-max" expand="block">
@@ -168,6 +151,33 @@ const ScheduleDoctor: React.FC = () => {
             </div>
           </IonCard>
         </div>
+      )
+      )
+    }
+  }
+
+  return (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton />
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+          <IonImg
+            src="./assets/logo.png"
+            className="imgLogoSmall flex items-center mx-auto"
+          />
+        <IonText class=" flex p-4 text-black text-xl font-bold">
+        {userId == null ? ' Suas consultas' : 'Agenda Dr (a): ' + nameDoctor }
+           
+        </IonText>
+        <IonList>
+          {renderize()}
+        </IonList>
+          
       </IonContent>
     </IonPage>
   );

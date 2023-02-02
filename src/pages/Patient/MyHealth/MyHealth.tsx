@@ -20,9 +20,30 @@ import { Redirect, Route } from "react-router";
 import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 import QuickAccess from "../../../components/Patient/QuickAcess/QuickAccess";
+import { healthService } from "../../../services/healthService";
 
 
 const MyHealth: React.FC = () => {
+  const [id, setId] = useState<string>();
+  const [age, setAge] = useState<string>();
+  const [height, setHeight] = useState<string>();
+  const [ gender, setGender] = useState<string>();
+
+  // const value = {
+  //   id: id,
+  //   age: age,
+  //   height: height,
+  //   gender: gender,
+  //   weight: weight
+  // }
+
+  // const updateHealth = async () => {
+  //   await healthService.updateHealth(value).then((resp) => {
+      
+  //   }).catch((err) => {
+  //    console.log(err)
+  //  })
+  // }
 
   return (
     <IonPage>
@@ -62,8 +83,8 @@ const MyHealth: React.FC = () => {
           <IonButton className="mt-8" color="tertiary">
             Salvar
           </IonButton>
-          <QuickAccess />
-          <IonCard color="tertiary" className="bd-20">
+          {/* <QuickAccess /> */}
+          {/* <IonCard color="tertiary" className="bd-20">
             <IonCardContent className="flex justify-center align-middle">
               <span className="font-bold text-2xl text-center">
                 {" "}
@@ -71,7 +92,7 @@ const MyHealth: React.FC = () => {
               </span>
               <IonIcon icon={medkitOutline} className="w-20 h-20"></IonIcon>
             </IonCardContent>
-          </IonCard>
+          </IonCard> */}
         </div>
       </div>
     </IonPage>

@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { getStorage } from "../../services/adminStorage";
 import { useHistory } from 'react-router';
+import { appointmentService } from "../../services/appointmentService";
 
 const slideOpts = {
   initialSlide: 1,
@@ -21,11 +22,19 @@ const Appointments: React.FC = () => {
   const [category, setCategory] = useState<string>('doctor');
   const history = useHistory();
   const [busy, setBusy] = useState(false);
+  const [listAppointment, setListAppointment] = useState([]);
 
-  // useEffect(() => {
-  //   getStorage('dadosLogin').then((response) => {
-  //     setCategory(response.accessToken);})
-  // }, [])
+  useEffect(() => {
+    findDateAppointment()
+    console.log(listAppointment);
+  }, [])
+
+  const findDateAppointment = async () => {
+    await appointmentService.appointmentList().then((resp) => {
+      console.log(resp);
+      setListAppointment(resp.data);
+    });
+  }
 
 const renderize = () => {
   if(category === 'pacient') {
@@ -68,47 +77,40 @@ const renderize = () => {
     <div className="container">
       {renderize()}
       <IonSlides className="h-[10rem]" pager={true} options={slideOpts}>
-        <IonSlide>          
-          <IonCard className="bd-20 cardDoctor" onClick={() => demonster()}>
-            <IonCardContent className="flex">
-              
-              <IonThumbnail slot="start">
-                <img
-                  className="imgDoctor max-h-[130%] max-w-[130%]"
-                  alt="Pic-Doctor"
-                  src="./assets/avatar/Pic-Doctor.png"
-                />
-              </IonThumbnail>
-              <div className="text-neutral-50 text-left ml-8">
-                <span>Dra. Maria Renata</span>
-                <p>Psicóloga</p>
-                <span>Hoje, 14:00</span>
-              </div>
-            </IonCardContent>
-          </IonCard>
-        </IonSlide>
-        <IonSlide>
-
-          <IonCard className="bd-20 cardDoctor" onClick={() => validConsult()}>
-            <IonCardContent className="flex">
-              <IonThumbnail slot="start">
-                <img
-                  className="imgDoctor max-h-[130%] max-w-[130%]"
-                  alt="Pic-Doctor"
-                  src="./assets/avatar/Pic-Doctor.png"
-                />
-              </IonThumbnail>
-              <div className="text-neutral-50 text-left ml-8">
-                <span>Dra. Maria Renata</span>
-                <p>Psicóloga</p>
-                <span>Hoje, 14:00</span>
-              </div>
-            </IonCardContent>
-          </IonCard>
-        </IonSlide>
+        {(listAppointment.length !== 0) ?
+          <IonSlide>
+            <IonCard className="bd-20 cardDoctor">
+              <IonCardContent className="flex">
+                <div className="text-neutral-50 mx-auto items-center my-auto">
+                  Você ainda não possui Agendamentos!
+                </div>
+              </IonCardContent>
+            </IonCard>
+          </IonSlide>
+          :
+          <IonSlide>
+            <IonCard className="bd-20 cardDoctor" onClick={() => demonster()}>
+              <IonCardContent className="flex">
+                <IonThumbnail slot="start">
+                  <img
+                    className="imgDoctor max-h-[130%] max-w-[130%]"
+                    alt="Pic-Doctor"
+                    src="./assets/avatar/Pic-Doctor.png"
+                  />
+                </IonThumbnail>
+                <div className="text-neutral-50 text-left ml-8">
+                  <span>Dra. Maria Renata</span>
+                  <p>Psicóloga</p>
+                  <span>Hoje, 14:00</span>
+                </div>
+              </IonCardContent>
+            </IonCard>
+          </IonSlide>}
       </IonSlides>
+        
     </div>
   );
 };
 
 export default Appointments;
+

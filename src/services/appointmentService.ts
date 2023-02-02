@@ -13,7 +13,13 @@ const appointmentService = {
       api
         .get(`providers/${id}/day-availability`)
         .then((response: any) => { return response })
-        .catch((error: any) => console.log('ERRO NA CHAMADA:', error)),
+      .catch((error: any) => console.log('ERRO NA CHAMADA:', error)),
+    appointmentList: () =>
+      api
+        .get(`appointments/me`)
+        .then((response: any) => { return response })
+      .catch((error: any) => console.log('ERRO NA CHAMADA:', error)),
+    
 };
 
 
