@@ -21,8 +21,14 @@ import { updateService } from "../../services/updateService";
 import { alertaErro, alertaSucesso } from "../../utils/alertas";
 import "./main.css";
 
+interface User {
+  name: string;
+  avatar_url: string;
+}
+
 const PatientSettings: React.FC = () => {
   //validação ionic ----
+  const [user, setUser] = useState<User>({ name: '', avatar_url: '' });
   const [isTouched, setIsTouched] = useState(false);
   const [isValid, setIsValid] = useState<boolean>();
   const [name, setName] = useState<string>('');
@@ -140,6 +146,26 @@ const PatientSettings: React.FC = () => {
     })
 }
 
+
+
+  useEffect(() => {
+    getStorage('tokenJwt').then((response) => {
+
+      setUser(response.data.user);
+    })
+  }, [])
+    
+  
+
+const renderize = () => {
+  if (user.avatar_url === '' || user.avatar_url === null) {
+    return 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y';
+  } else {
+    return user.avatar_url;
+  }
+}
+
+
   return (
     <>
       <IonHeader>
@@ -156,12 +182,12 @@ const PatientSettings: React.FC = () => {
 
           <div className="flex flex-col justify-center items-center mt-2">
             <div>
-            <IonAvatar className=" w-32 h-32" >
-              <img
-                alt="Silhouette of a person's head"
-                src={avatar}
-              />
-            </IonAvatar>
+            <IonAvatar className="border-primary">
+            <img
+              alt="Silhouette of a person's head"
+              src={renderize()}
+            />
+          </IonAvatar>
             </div>
             <div className="mt-5 flex w-[140px]" onClick={(e) =>updateAvatar(e)}>
            <input type="file" id="file-input"
@@ -184,8 +210,7 @@ const PatientSettings: React.FC = () => {
               onIonChange={e => setName(e.detail.value!)}
 
             ></IonInput>
-            <IonNote slot="helper">Enter a valid email</IonNote>
-            <IonNote slot="error">Invalid email</IonNote>
+           
           </IonItem>
           <IonItem
             fill="solid"
@@ -197,8 +222,7 @@ const PatientSettings: React.FC = () => {
               value={email}
               onIonChange={e => setEmail(e.detail.value!)}
             ></IonInput>
-            <IonNote slot="helper">Enter a valid email</IonNote>
-            <IonNote slot="error">Invalid email</IonNote>
+       
           </IonItem>
           <IonItem>
             <IonLabel position="floating">CPF</IonLabel>
