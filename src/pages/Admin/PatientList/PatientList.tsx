@@ -19,17 +19,16 @@ import {
 } from "@ionic/react";
 import {
   list,
+  medkitOutline,
   pencilOutline,
   star,
   trashBin,
   trashBinOutline,
 } from "ionicons/icons";
 import React, { useEffect, useState } from "react";
-import { userPacient } from "../../../@types/interfaces";
-import { mockedPatients } from "../../../mocks/patient";
 import { deleteService } from "../../../services/deleteService";
 import { findAllService } from "../../../services/findService";
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const PatientList = () => {
   const [items, setItems] = useState<any>('');
@@ -116,6 +115,9 @@ const PatientList = () => {
   const redirect = (id: string) => {
     history.replace(`/register-patient?id=${id}`)
   }
+  const getPatientData = (id: string) => {
+    history.replace(`/info-patient?id=${id}`)
+  }
 
   const renderize = () => {
     return results.map((element: any, index: any) => (
@@ -123,6 +125,9 @@ const PatientList = () => {
         <IonLabel>{element.name}</IonLabel>
         <IonButton slot="end" color="primary" onClick={() => redirect(element.id)}>
           <IonIcon icon={pencilOutline}></IonIcon>
+        </IonButton>
+        <IonButton slot="end" color="secondary" onClick={() => getPatientData(element.id)}>
+          <IonIcon icon={medkitOutline}></IonIcon>
         </IonButton>
         <IonButton slot="end" color="danger" onClick={() => alert(element.id)}>
           <IonIcon icon={trashBinOutline}></IonIcon>

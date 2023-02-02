@@ -7,7 +7,6 @@ import {
   IonList
 } from "@ionic/react";
 import { useEffect, useState } from "react";
-import { mockedDoctors } from "../../../mocks/doctor";
 import DoctorCard from "../../Patient/DoctorCard/DoctorCard";
 import { findAllService } from "../../../services/findService";
 
@@ -52,8 +51,6 @@ const ListDoctor: React.FC = () => {
     });
     
   }
-
-
 
   const renderize = () => {
       return  (results.map((element: any, index: any) => (

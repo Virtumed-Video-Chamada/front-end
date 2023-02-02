@@ -75,7 +75,9 @@ const QuickAccess: React.FC = () => {
        <IonText class=" flex justify-center text-black text-xl font-bold">
           Paciente
         </IonText>
+
        <IonCard className="bd-20 quickCardClinic " routerLink="/register-patient">
+
             <IonImg
               className="imgCard mx-auto"
               src="./assets/icon/user.svg"
