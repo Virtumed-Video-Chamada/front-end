@@ -21,6 +21,7 @@ import { useEffect, useState } from "react";
 import { Doctor } from "../../../@types/interfaces";
 import { getStorage } from "../../../services/adminStorage";
 import { deleteService } from "../../../services/deleteService";
+import { favoriteService } from "../../../services/favoriteService";
 
 
 interface DoctorCardProps {
@@ -90,8 +91,13 @@ function DoctorCard({ props }: DoctorCardProps) {
 
 
   const addFavorites = () => {
-    setBusy(true);
-    setIcons(heart);
+    const idDoctor: string | any = {
+      doctor_id: props.id
+    }  
+    favoriteService.addFavoriteDoctor(idDoctor).then(response => {
+      setBusy(true);
+      setIcons(heart);
+    })
   };
 
   const redirect = (id: any) => {

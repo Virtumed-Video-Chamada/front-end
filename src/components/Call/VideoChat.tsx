@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const VideoChat = () => {
   const [username, setUsername] = useState<string>("");
-  const [roomName, setRoomName] = useState<string>('myfirstvideoapp');
+  const [roomName, setRoomName] = useState<string>('');
   const [room, setRoom] = useState<any>(null);
   const [connecting, setConnecting] = useState<boolean>(false);
   // eslint-disable-next-line no-restricted-globals
@@ -42,8 +42,6 @@ const VideoChat = () => {
         setConnecting(true);
         await axios.get(`http://${TWILIO_DOMAIN}/generatetoken`, config).then(async (body: any) => {
           const token = body.data.token;
-          // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTSzA1NWE3Zjk1YTQ0Yzg4ODI5NjI2MmJiZDlmYzEyZThjLTE2NzUzMDExMzAiLCJncmFudHMiOnsiaWRlbnRpdHkiOiI2czJvZGowYnFsMyIsInZpZGVvIjp7InJvb20iOiJteWZpcnN0dmlkZW9hcHAifX0sImlhdCI6MTY3NTMwMTEzMCwiZXhwIjoxNjc1MzA0NzMwLCJpc3MiOiJTSzA1NWE3Zjk1YTQ0Yzg4ODI5NjI2MmJiZDlmYzEyZThjIiwic3ViIjoiQUNhN2QyNmZkZjliZDNhZDY1ZDdlMmJmZjMzNWM2OThhOSJ9.V1txOquG7tz0HteTfrTR9iB85qblP57V4I2i_IfySmg'
-          console.log(token);
           const videoChamada = await Video.connect(token, {
             name: roomName,
             video: true,
@@ -54,21 +52,6 @@ const VideoChat = () => {
           setRoom(videoChamada);
           setStorage("room", videoChamada);
         })
-   
-        // }).then((room: any) => {
-        //   console.log(room)
-        //     setConnecting(false);
-        //     setRoom(room);
-        //     setStorage("room", room);
-          
-        //   })
-        //     .catch((err: any) => {
-        //       if (err === "DOMException: Requested device not found") {
-        //         alertaErro.alerta(`Dispositivos de Vídeo ou Áudio indisponíveis`);
-        //       }
-        //       console.error(err);
-        //       setConnecting(false);
-        //     });
         },
         [roomName, username]
     );

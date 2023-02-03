@@ -6,49 +6,51 @@ import './Conversation.css'
 import { IonBackButton, IonButton, IonButtons, IonCol, IonFooter, IonHeader, IonIcon, IonInput, IonPage, IonRow, IonTabBar, IonToolbar, IonContent  } from "@ionic/react";
 import { attach, send } from "ionicons/icons";
 import { createRef, useEffect, useState } from "react";
+import { createMessageService, findAllConversationsByIdService } from "../../services/chatService";
+import { getStorage } from "../../services/adminStorage";
+
 
 const Conversation: React.FC = () => {
-
   const urlParams = new URLSearchParams(window.location.search);
-  const userId = urlParams.get("id");
-
- let messagesMock: any[] = [
-    {
-      user: "simon",
-      createdAt: 1554090856000,
-      msg: "Olá, tudo bem?",
-    },
-    {
-      user: "max",
-      createdAt: 1554090956000,
-      msg: "Olá, tudo bem?",
-    },
-    {
-      user: "simon",
-      createdAt: 1554090856000,
-      msg: "Olá, tudo bem?",
-    },
-    {
-      user: "max",
-      createdAt: 46800000000000,
-      msg: "Olá, tudo bem?",
-    },
-  ];
-
+  const IdChat: any = urlParams.get("id");
+  const [chatConversation, setChatConversation] = useState([{}]);
   const [newMsg, setNewMsg] = useState('');
-  const [messages, setMessages] = useState<any>(messagesMock);
+  const [idMe, setIdMe] = useState()
 
-  const sendMessage = () => {
-    console.log('teste');
-    const novaMsg: any = 
-    {
-      user: 'simon',
-      createdAt: new Date().getTime(),
-      msg: newMsg
-    }
-    setMessages([...messages, novaMsg] );
-    setNewMsg('');
-    scrollToBottom();
+  useEffect(() => {
+    findConversation();
+    findIdMe();
+    scrollToBottom()
+  }, []);
+
+  const findIdMe = () => {
+    getStorage('userIdStorage').then((resp) => {
+      setIdMe(resp)
+    })
+  }
+
+  const findConversation = async () => {
+      await findAllConversationsByIdService
+        .findConversationById(IdChat)
+        .then((resp) => {
+          console.log(resp.data);
+          setChatConversation(resp.data)
+        });
+  };
+
+
+  const value = {
+    conversationId: IdChat,
+	  sender: idMe,
+	  text: newMsg
+  }
+
+  const sendMessage = async () => {
+    await createMessageService.createNewMessage(value).then((msg) => {
+      findConversation()
+      console.log(msg)
+      setNewMsg('')
+    })
   }
   
   function handleKeyPress(event: any) {
@@ -62,39 +64,11 @@ const Conversation: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
   
   function scrollToBottom() {
-    console.log('scroll')
       var height = contentRef.current?.scrollHeight;
       contentRef.current?.scrollToBottom(height);
   }
   const [imagem, setImagem] = useState<any>('https://ionicframework.com/docs/img/demos/avatar.svg');
   
-  const startUpload = async (e: any) => {
-    const file = e.target.files[0];
-    const base64 = await convertBase64(file);
-    setImagem(base64);
-    const response = await fetch(file.data);
-    const blob = await response.blob();
-    const formData = new FormData();
-    formData.append('file', blob, file.name);
-}
-
-
-const convertBase64 = (file: any) => {
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file)
-    fileReader.onload = () => {
-      resolve(fileReader.result);
-    }
-    fileReader.onerror = (error) => {
-      reject(error);
-    }
-  })
-}
-
-  useEffect(() => {
-    scrollToBottom()
-  },[]);
 
 
   return (
@@ -106,15 +80,14 @@ const convertBase64 = (file: any) => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <Identificador />
       <IonContent ref={contentRef}>
-        {messages.map((message: any, index: any) => {
+        {chatConversation.map((message: any, index: any) => {
           return (
             <ChatConversation
               key={index}
-              user={message.user}
-              createdAt={message.createdAt}
-              msg={message.msg}
+              user={message.sender}
+              createdAt={message.created_at}
+              msg={message.text}
             />
           );
         })}

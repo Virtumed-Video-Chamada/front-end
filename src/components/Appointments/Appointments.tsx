@@ -26,12 +26,12 @@ const Appointments: React.FC = () => {
 
   useEffect(() => {
     findDateAppointment()
-    console.log(listAppointment);
+    // console.log(listAppointment);
   }, [])
 
   const findDateAppointment = async () => {
     await appointmentService.appointmentList().then((resp) => {
-      console.log(resp);
+      // console.log(resp);
       setListAppointment(resp.data);
     });
   }

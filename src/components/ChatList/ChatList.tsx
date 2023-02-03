@@ -4,6 +4,7 @@ import { getStorage } from "../../services/adminStorage";
 import { findAllConversationsByIdService } from "../../services/chatService";
 import {  useHistory } from "react-router-dom";
 import moment from 'moment';
+import { findByIdService } from "../../services/findService";
 
 
 const ChatList = () => {
@@ -40,8 +41,22 @@ const ChatList = () => {
     return moment(item.date).format('HH:mm')
   }
 
-  const redirectChatList = () => {
-    history.replace(`/conversation?id=${id}`)
+  const avatarEdit = (item: any) => {
+    let avatar = 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y';
+    if (item.role == 'DOCTOR') {
+      findByIdService.findProfileByIdDoctor(item.id).then((resp) => {
+        avatar = resp.data.avatar_url
+      })
+    } else {
+      findByIdService.findProfileByIdPacient(item.id).then((resp) => {
+        avatar = resp.data.avatar_url
+      })
+    }
+    return avatar;
+  }
+
+  const redirectChatList = (idConversation: any) => {
+    history.replace(`/conversation?id=${idConversation}`)
   }
 
   const renderize = () => {
@@ -52,22 +67,22 @@ const ChatList = () => {
         <IonCard
           key={index}
           className="mx-0 mt-10 mb-1 h-32"
-         onClick={() => {redirectChatList()}}
+         onClick={() => {redirectChatList(element.members[0].receive.id)}}
         >
           <IonCardContent className="flex justify-start w-full">
             <IonAvatar slot="start">
               <img
                 className="max-w-[51px] w-full"
                 alt="Pic-Doctor"
-                src={element.avatar_url == null ? "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" : element.data.members.send.avatar_url}
+                src={avatarEdit(element.members[0].send.id)}
               />
-            </IonAvatar>
+            </IonAvatar> 
             <IonLabel>
-             <h2 className="font-bold">{element.data.members.send.name}</h2>
+             <h2 className="font-bold">{element.members[0].send.name}</h2>
             </IonLabel>
             <IonBadge className="badge">1</IonBadge>
             <div className="info-div">
-             <p>{dateEdit(element.data.created_at)}</p>
+             <p>{dateEdit(element.created_at)}</p>
             </div>
           </IonCardContent>
         </IonCard>

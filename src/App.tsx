@@ -135,6 +135,7 @@ const RoutingTabs: React.FC = () => {
   useEffect(() => {
     getStorage("tokenJwt").then((response) => {
       const role = response.data.user.role.toLowerCase();
+      console.log(response);
       setCategory(`/home-${role}`);
     });
     getStorage("room").then((response) => {
@@ -143,8 +144,6 @@ const RoutingTabs: React.FC = () => {
         newClass = 'menuTab hidden'
       }
     });
-    
-    console.log(busyRoom);
   }, []);
 
   return (
@@ -292,9 +291,7 @@ const App: React.FC = () => {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    console.log(user);
     getStorage("tokenJwt").then((response: any) => {
-      console.log(response);
       setUser(response);
     });
   }, []);

@@ -6,14 +6,19 @@ import {
   IonList,
   IonPage
 } from "@ionic/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Identificador from "../../../components/Identificador/Identificador";
 import DoctorCard from "../../../components/Patient/DoctorCard/DoctorCard";
 import { favoriteDoctors } from "../../../mocks/favoritesDoctor";
+import { getStorage } from "../../../services/adminStorage";
 
 const FavoriteDoctors: React.FC = () => {
-  const [items, setItems] = useState<any>(favoriteDoctors);
-  var listDoctors = favoriteDoctors;
+  const [items, setItems] = useState<any>([]);
+  // var listDoctors = favoriteDoctors;
+
+  useEffect(() => {
+    getStorage('favoritesDoctor').then(response => setItems(response));
+  }, [])
 
   const generateItems = () => {
     const newItems = [];

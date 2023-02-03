@@ -18,9 +18,9 @@ const Chat: React.FC = () => {
           className="imgLogoSmall flex items-center mx-auto -mb-7"
         />
     <Identificador/>
-      <IonItem className="mt-0 mb-3">
+      {/* <IonItem className="mt-0 mb-3">
         <IonSearchbar placeholder="Pesquisar no chat"></IonSearchbar>
-      </IonItem>
+      </IonItem> */}
       <ChatList />
     </IonPage>
   );
