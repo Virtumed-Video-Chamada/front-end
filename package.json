@@ -65,7 +65,7 @@
     "server": "node-env-run server --exec nodemon | pino-colada",
     "dev": "run-p server start"
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "https://videobeginner-5556-dev.twil.io/",
   "resolutions": {
     "styled-components": "^5"
   },

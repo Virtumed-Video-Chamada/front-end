@@ -31,12 +31,17 @@ import {
   square,
   triangle,
 } from "ionicons/icons";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Redirect, Route } from "react-router";
 import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 
 const ExamResults: React.FC = () => {
+
+  useEffect(() => {
+
+  }, [])
+  
   return (
     <IonPage className="justify-start">
       <IonHeader>

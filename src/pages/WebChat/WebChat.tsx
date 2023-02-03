@@ -6,14 +6,14 @@ import './styles.css'
 
 const  WebChat: React.FC = () => {
   return (
-    <IonPage className='align-page'>
-      <IonHeader>
+    <IonPage className='p-0 m-0'>
+      {/* <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
             <IonBackButton />
           </IonButtons>
         </IonToolbar>
-      </IonHeader>
+      </IonHeader> */}
           <VideoChat />
     </IonPage>
   );

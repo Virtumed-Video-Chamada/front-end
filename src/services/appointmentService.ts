@@ -13,7 +13,31 @@ const appointmentService = {
       api
         .get(`providers/${id}/day-availability`)
         .then((response: any) => { return response })
-        .catch((error: any) => console.log('ERRO NA CHAMADA:', error)),
+      .catch((error: any) => console.log('ERRO NA CHAMADA:', error)),
+    appointmentListPatient: (id: any) =>
+      api
+        .get(`appointments/forPatient`, id)
+        .then((response: any) => {
+          console.log(id);
+          console.log(response)
+          return (
+            response) })
+      .catch((error: any) => console.log('ERRO NA CHAMADA:', error)),
+    appointmentListDoctor: (id: any) =>
+      api
+        .get(`appointments/forDoctor`, id)
+        .then((response: any) => { return response })
+      .catch((error: any) => console.log('ERRO NA CHAMADA:', error)),
+    appointmentDelete: (id: any) =>
+      api
+        .delete(`appointments/delete`, id)
+        .then((response: any) => {
+          console.log(id);
+          console.log(response)
+          return (
+            response) })
+      .catch((error: any) => console.log('ERRO NA CHAMADA:', error)),
+    
 };
 
 

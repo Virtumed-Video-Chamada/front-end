@@ -11,18 +11,18 @@ import {
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { getStorage } from "../../services/adminStorage";
-import api from "../../services/api";
-import {
-  findAllConversationsByIdService,
-  findByIdService,
-} from "../../services/chatService";
+import { findAllConversationsByIdService } from "../../services/chatService";
+import {  useHistory } from "react-router-dom";
+import moment from 'moment';
+import { findByIdService } from "../../services/findService";
+
 
 const ChatList = () => {
   const [items, setItems] = useState<string[]>([]);
-  const [chatList, setSetList] = useState([]);
-  const [senderId, setsenderId] = useState();
-  const [role, setRole] = useState();
-  const [receiverId, setreceiverId] = useState();
+  const [chatList, setChatList] = useState([]);
+  const [id, setId] = useState('');
+  const history = useHistory();
+
 
   const generateItems = () => {
     const newItems = [];
@@ -77,34 +77,72 @@ const ChatList = () => {
   useEffect(() => {
     generateItems();
     findChatList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
+    
+  const findChatList = async () => {
+    getStorage("userIdStorage").then(async (storage) => {
+      setId(storage);
+      await findAllConversationsByIdService
+        .findAllConversations(storage)
+        .then((resp) => {
+          console.log(resp);
+          setChatList(resp.data);
+        });
+    });
+  };
+
+  const dateEdit = (item: any) => {
+    return moment(item.date).format('HH:mm')
+  }
+
+  const avatarEdit = (item: any) => {
+    let avatar = 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y';
+    if (item.role == 'DOCTOR') {
+      findByIdService.findProfileByIdDoctor(item.id).then((resp) => {
+        avatar = resp.data.avatar_url
+      })
+    } else {
+      findByIdService.findProfileByIdPacient(item.id).then((resp) => {
+        avatar = resp.data.avatar_url
+      })
+    }
+    return avatar;
+  }
+
+  const redirectChatList = (idConversation: any) => {
+    history.replace(`/conversation?id=${idConversation}`)
+  }
+
 
   const renderize = () => {
     if (chatList.length == 0) {
       return "";
     } else {
-      return chatList.map((element: any, index: any) => (
+
+     return chatList.map((element: any, index: any) => (
         <IonCard
           key={index}
           className="mx-0 mt-10 mb-1 h-32"
-          routerLink="./conversation"
+         onClick={() => {redirectChatList(element.members[0].receive.id)}}
+
         >
           <IonCardContent className="flex justify-start w-full">
             <IonAvatar slot="start">
               <img
                 className="max-w-[51px] w-full"
                 alt="Pic-Doctor"
-                src="./assets/avatar/dra-maria.jpg"
+                src={avatarEdit(element.members[0].send.id)}
               />
-            </IonAvatar>
+            </IonAvatar> 
             <IonLabel>
-              <h2 className="font-bold">dr jão</h2>
-              <p>Dipirona de 4 em 4 horas</p>
+
+             <h2 className="font-bold">{element.members[0].send.name}</h2>
+
             </IonLabel>
             <IonBadge className="badge">1</IonBadge>
             <div className="info-div">
-              <p>16:40</p>
+             <p>{dateEdit(element.created_at)}</p>
             </div>
           </IonCardContent>
         </IonCard>

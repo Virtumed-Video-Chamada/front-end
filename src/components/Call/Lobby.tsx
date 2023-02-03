@@ -30,7 +30,6 @@ const Lobby = ({
 
   const renderize = () => {
     if (avatar == null || avatar == ' ') {
-      console.log('teste');
       return 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'
     } else {
       return avatar

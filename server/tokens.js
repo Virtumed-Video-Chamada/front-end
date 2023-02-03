@@ -23,4 +23,5 @@ const videoToken = (identity, room, config) => {
   return token;
 };
 
+
 module.exports = { videoToken };

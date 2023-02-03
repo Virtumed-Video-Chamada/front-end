@@ -1,6 +1,7 @@
 import {
   IonButton,
   IonCard,
+  IonCheckbox,
   IonDatetime,
   IonIcon,
   IonItem,
@@ -23,10 +24,10 @@ import Identificador from "../../../components/Identificador/Identificador";
 import Schedules from "../../../components/SchedulePatient/SchedulePatient";
 import { appointmentService } from "../../../services/appointmentService";
 import { findByIdService } from "../../../services/findService";
-import "./style.css";
 
 
-const MedicalSchedule: React.FC = () => {
+
+const ScheduleControl: React.FC = () => {
   const [presentAlert] = useIonAlert();
   const [handlerMessage, setHandlerMessage] = useState("");
   const [roleMessage, setRoleMessage] = useState("");
@@ -58,8 +59,6 @@ const MedicalSchedule: React.FC = () => {
   // }
 
   const findDotor = async () => {
-    console.log('teste');
-    console.log(id);
     await findByIdService.findProfileByIdDoctor(id).then((resp) => {
       console.log(resp);
       setNameDoctor(resp.data.name);
@@ -115,6 +114,27 @@ const MedicalSchedule: React.FC = () => {
     });
   };
 
+  const schedulesOptions = [
+    { scheduleId: 0, scheduleName: '08 hr', checked: false },
+    { scheduleId: 1, scheduleName: '09 hr', checked: false },
+    { scheduleId: 2, scheduleName: '10 hr', checked: false },
+    { scheduleId: 3, scheduleName: '11 hr', checked: false },
+    { scheduleId: 4, scheduleName: '13 hr', checked: false },
+    { scheduleId: 5, scheduleName: '14 hr', checked: false },
+    { scheduleId: 6, scheduleName: '15 hr', checked: false },
+    { scheduleId: 7, scheduleName: '16 hr', checked: false },
+    { scheduleId: 8, scheduleName: '17 hr', checked: false },
+    { scheduleId: 9, scheduleName: '18 hr', checked: false },
+  ]
+
+  let schedules: any[] = []
+
+  const handleChanges = (e: any, value: boolean) => {
+    schedulesOptions[e].checked = !value;
+    schedules.push(schedulesOptions[e])
+    schedules =  schedules.filter( schedules =>  schedules.checked == true);
+  }
+
   return (
     <IonPage className="justify-start">
       <Identificador />
@@ -139,13 +159,14 @@ const MedicalSchedule: React.FC = () => {
             presentation="date"
             min="2022-12-01T00:00:00"
             size="cover"
+            multiple={true}
           >
             <IonText
               color="tertiary"
               className="font-bold text-lg flex justify-center"
               slot="title"
             >
-              <span>ESCOLHA UMA DATA</span>
+              <span>DATAS DISPONÍVEIS</span>
             </IonText>
           </IonDatetime>
         </IonItem>
@@ -155,24 +176,18 @@ const MedicalSchedule: React.FC = () => {
             color="tertiary"
             className="font-bold text-lg flex justify-center mt-10"
           >
-            <span>ESCOLHA UM HORÁRIO</span>
+            <span>HORÁRIOS DISPONÍVEIS</span>
           </IonText>
 
-          <div className="mx-auto flex-col mb-10">
-            <IonList>
-              <div className="hourSelector">
-                <IonSelect
-                  interface="action-sheet"
-                  placeholder="08:00"
-                  className="placeholder"
-                >
-                  <IonSelectOption value="08:00">08:00</IonSelectOption>
-                  <IonSelectOption value="11:00">11:00</IonSelectOption>
-                  <IonSelectOption value="15:00">15:00</IonSelectOption>
-                  <IonSelectOption value="16:30">16:30</IonSelectOption>
-                  <IonSelectOption value="18:00">18:00</IonSelectOption>
-                </IonSelect>
-              </div>
+          <div className="flex flex-row">
+            <IonList className="flex flex-row flex-wrap">
+              {schedulesOptions.map((item: any) => (
+                <IonItem key={item.scheduleId}>
+                  <IonCheckbox slot="start" value={item.checked!} onClick={() => handleChanges(item.scheduleId, item.checked)}></IonCheckbox>
+                  <IonLabel>{item.scheduleName}</IonLabel>
+                </IonItem>
+              )
+              )}
             </IonList>
           </div>
         </IonCard>
@@ -188,4 +203,4 @@ const MedicalSchedule: React.FC = () => {
   );
 };
 
-export default MedicalSchedule;
+export default ScheduleControl;

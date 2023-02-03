@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RoomProps } from "../../@types/interfaces";
 import "./styles.css";
-import Participant from "./Participant";
+
 import ParticipantRemote from "./ParticipantRemote";
 import ParticipantLocal from "./ParticipantLocal";
 import "./styles.css";
@@ -15,6 +15,7 @@ import {
 
 const Room = ({ roomName, room, handleLogout }: RoomProps) => {
   const [participants, setParticipants] = useState<any[]>([]);
+  
 
   useEffect(() => {
     const participantConnected = (participant: any) => {
@@ -44,7 +45,7 @@ const Room = ({ roomName, room, handleLogout }: RoomProps) => {
   return (
     <div className="room">
       {/* <h2>Room: {roomName}</h2> */}
-      <div className="btn-call-container">
+      <div className="btn-call-container z-50">
         <IonButton className="text-xs w-max">
           <IonIcon icon={micOffOutline}></IonIcon>
         </IonButton>
@@ -69,7 +70,9 @@ const Room = ({ roomName, room, handleLogout }: RoomProps) => {
           ""
         )}
       </div>
-      <div className="remote-participants">{remoteParticipants}</div>
+      <div className="remote-participants">
+        {remoteParticipants}
+      </div>
     </div>
   );
 };

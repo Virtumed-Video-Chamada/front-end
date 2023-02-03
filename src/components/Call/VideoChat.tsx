@@ -3,13 +3,21 @@ import Video from "twilio-video";
 import { alertaErro } from "../../utils/alertas";
 import Lobby from "./Lobby";
 import Room from "./Room";
+import { removeStorage, setStorage } from "../../services/adminStorage";
+import { hideTabs, showTabs } from "../../App";
+import axios from 'axios';
 
 
 const VideoChat = () => {
   const [username, setUsername] = useState<string>("");
-  const [roomName, setRoomName] = useState<string>("");
+  const [roomName, setRoomName] = useState<string>('');
   const [room, setRoom] = useState<any>(null);
   const [connecting, setConnecting] = useState<boolean>(false);
+  // eslint-disable-next-line no-restricted-globals
+  // const TWILIO_DOMAIN = location.host; 
+  const TWILIO_DOMAIN = 'videobeginner-5556-dev.twil.io'; 
+
+
 
   const handleUsernameChange = useCallback((event: any) => {
     setUsername(event.target.value);
@@ -19,51 +27,51 @@ const VideoChat = () => {
     setRoomName(event.target.value);
   }, []);
 
-  const handleSubmit = useCallback(
-    async (event: any) => {
-      event.preventDefault();
-      setConnecting(true);
-      const data = await fetch("/video/token", {
-        method: "POST",
-        body: JSON.stringify({
-          identity: username,
-          room: roomName,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).then((res) => res.json());
-      Video.connect(data.token, {
-        name: roomName,
-      })
-        .then((room: any) => {
+  const config = {
+    headers:{
+      "Access-Control-Allow-Origin":  "*",
+      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+    }
+  };
+
+  const handleSubmit =
+    useCallback(
+      async (event: any) => {
+        event.preventDefault();
+        hideTabs();
+        setConnecting(true);
+        await axios.get(`http://${TWILIO_DOMAIN}/generatetoken`, config).then(async (body: any) => {
+          const token = body.data.token;
+          const videoChamada = await Video.connect(token, {
+            name: roomName,
+            video: true,
+            audio: true
+          })
+
           setConnecting(false);
-          setRoom(room);
+          setRoom(videoChamada);
+          setStorage("room", videoChamada);
         })
-        .catch((err: any) => {
-          if (err === "DOMException: Requested device not found") {
-            alertaErro.alerta(`Dispositivos de Vídeo ou Áudio indisponíveis`);
-          }
-          console.error(err);
-          setConnecting(false);
-        });
-    },
-    [roomName, username]
-  );
+        },
+        [roomName, username]
+    );
   
   const handleLogout = useCallback(() => {
+    showTabs();
     setRoom((prevRoom: any) => {
       if (prevRoom) {
         prevRoom.localParticipant.tracks.forEach((trackPub: any) => {
           trackPub.track.stop();
         });
         prevRoom.disconnect();
+        removeStorage('room');
       }
       return null;
     });
   }, []);
 
   useEffect(() => {
+    console.log(room);
     if (room) {
       const tidyUp = (event: any) => {
         if (event.persisted) {
@@ -84,6 +92,7 @@ const VideoChat = () => {
 
   let render;
   if (room) {
+    console.log(room)
     render = (
       <Room roomName={roomName} room={room} handleLogout={handleLogout} />
     );
