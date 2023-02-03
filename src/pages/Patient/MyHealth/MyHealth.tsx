@@ -1,7 +1,11 @@
 import {
+  IonBackButton,
   IonButton,
+  IonButtons,
   IonCard,
   IonCardContent,
+  IonContent,
+  IonHeader,
   IonIcon,
   IonImg,
   IonInput,
@@ -10,19 +14,39 @@ import {
   IonPage,
   IonSelect,
   IonSelectOption,
+  IonToolbar,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
+
 import {
   medkitOutline
 } from "ionicons/icons";
+
 import { useEffect, useRef, useState } from "react";
 import { Redirect, Route } from "react-router";
+import { patientInfo } from "../../../@types/interfaces";
 import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 import QuickAccess from "../../../components/Patient/QuickAcess/QuickAccess";
+
 import { getStorage } from "../../../services/adminStorage";
 import { healthService } from "../../../services/healthService";
 import { alertaSucesso } from "../../../utils/alertas";
+
+
+  const findPatientInfo = async () => {
+    await findByIdService
+      .findProfileByIdPacient(id)
+      .then((resp) => {
+        setAge(resp.data.age);
+        setHeight(resp.data.height);
+        setWeight(resp.data.weight);
+        setGender(resp.data.gender);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
 
 const MyHealth: React.FC = () => {
@@ -71,9 +95,18 @@ const MyHealth: React.FC = () => {
    })
   }
 
+
   return (
     <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton />
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
       <IonImg src="./assets/logo.png" className="imgLogoSmall" />
+
       <Identificador />
       <div>
         <form>
@@ -120,10 +153,11 @@ const MyHealth: React.FC = () => {
               <IonIcon icon={medkitOutline} className="w-20 h-20"></IonIcon>
             </IonCardContent>
           </IonCard> */}
+
         </div>
-      </div>
+      </IonContent>
     </IonPage>
   );
 };
 
-export default MyHealth;
+export default InfoPatient;

@@ -78,6 +78,7 @@ import ScheduleClinic from "./pages/Clinic/ScheduleClinic/ScheduleClinic";
 import ScheduleControl from "./pages/Clinic/ScheduleControl/ScheduleControl";
 import AddHistoricalDoctor from "./pages/Doctor/AddHistoricalDoctor/AddHistoricalDoctor";
 
+
 setupIonicReact();
 
 SplashScreen.show({
@@ -180,6 +181,7 @@ const RoutingTabs: React.FC = () => {
           <Route exact path="/register-clinic">
             <RegisterClinicAdmin/>
           </Route>
+
           <Route exact path="/clinic-list">
             <ClinicList/>
           </Route>
@@ -219,8 +221,8 @@ const RoutingTabs: React.FC = () => {
           <Route exact path="/conversation">
             <Conversation />
           </Route>
-          <Route exact path="/health">
-            <MyHealth />
+          <Route exact path="/info-patient">
+            <InfoPatient />
           </Route>
           <Route exact path="/historical-clinic">
             <HistoricalClinic />

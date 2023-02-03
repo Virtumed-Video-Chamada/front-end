@@ -13,7 +13,6 @@ import axios from 'axios';
 
 const RegisterDoctor: React.FC = () => {
   const history = useHistory();
-
   const [name, setName] = useState<string>("");
   const [cpf, setCpf] = useState<string>("");
   const [crm, setCrm] = useState<string>("");

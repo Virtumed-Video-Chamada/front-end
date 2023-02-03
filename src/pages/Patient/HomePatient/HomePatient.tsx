@@ -1,11 +1,15 @@
 import {
+  IonButton,
   IonContent,
+  IonIcon,
   IonImg,
   IonItem,
   IonPage,
   IonSearchbar,
 } from "@ionic/react";
+
 import { useEffect, useState } from "react";
+
 
 import {  useHistory } from "react-router";
 import Appointments from "../../../components/Appointments/Appointments";
@@ -34,6 +38,7 @@ const  HomePatient: React.FC = () => {
   return (
     <IonPage>
       <IonContent>
+
         <IonImg src='./assets/logo.png' className='imgLogoSmall flex items-center mx-auto' />
         <Identificador/>
         <h1 className="font-bold text-lg pl-8">Encontre seu médico</h1>
@@ -48,6 +53,7 @@ const  HomePatient: React.FC = () => {
           <PopularDoctor/>
         </IonItem>
      </IonContent> 
+
     </IonPage>
     
   );

@@ -8,6 +8,7 @@ const findAllConversationsByIdService = {
         return response;
       })
       .catch((error: any) => error.response),
+
   findConversationById: async (id: string) =>
       await api
         .get(`/messages/${id}`)
@@ -29,3 +30,4 @@ const createMessageService = {
 
 
 export { findAllConversationsByIdService, createMessageService };
+

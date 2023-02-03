@@ -1,4 +1,14 @@
-import { IonAvatar, IonBadge, IonCard, IonCardContent, IonInfiniteScroll, IonInfiniteScrollContent, IonLabel, IonList } from "@ionic/react";
+import {
+  IonAvatar,
+  IonBadge,
+  IonCard,
+  IonCardContent,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
+  IonLabel,
+  IonList,
+  useIonViewDidEnter,
+} from "@ionic/react";
 import { useEffect, useState } from "react";
 import { getStorage } from "../../services/adminStorage";
 import { findAllConversationsByIdService } from "../../services/chatService";
@@ -13,6 +23,7 @@ const ChatList = () => {
   const [id, setId] = useState('');
   const history = useHistory();
 
+
   const generateItems = () => {
     const newItems = [];
     for (let i = 0; i < 50; i++) {
@@ -21,9 +32,52 @@ const ChatList = () => {
     setItems([...items, ...newItems]);
   };
 
+  const findChatList = async () => {
+    getStorage("userIdStorage").then(async (storage) => {
+      await findAllConversationsByIdService
+        .findAllConversations(storage)
+        .then((resp) => {
+          console.log(resp);
+          setSetList(resp.data);
+          setreceiverId(resp.data[0].members[1]);
+          setsenderId(storage);
+          findMeChat(resp.data[0].members[1]);
+        });
+    });
+  };
+
+  const findDoctor = async (receiverId: any) => {
+    const userId = {
+      id: receiverId,
+    }
+    await findByIdService.findProfileByIdDoctor(userId).then((resp) => {
+    })
+  }
+
+  const findPatient = async (receiverId: any) => {
+    const userId = {
+      id: receiverId,
+    }
+    await findByIdService.findProfileByIdPacient(userId).then((resp) => {
+      console.log(resp);
+    })
+  }
+  
+  const findMeChat = async (id: any) => {
+    await findByIdService.findProfileByIdMe().then((resp) => {
+      setRole(resp.data.role);
+      if (resp.data.role !== 'DOCTOR') {
+        findDoctor(id);
+      } else {
+        findPatient(id);
+      }
+    });
+  };
+
   useEffect(() => {
     generateItems();
     findChatList();
+
   }, []);
     
   const findChatList = async () => {
@@ -60,15 +114,18 @@ const ChatList = () => {
     history.replace(`/conversation?id=${idConversation}`)
   }
 
+
   const renderize = () => {
     if (chatList.length == 0) {
       return "";
     } else {
+
      return chatList.map((element: any, index: any) => (
         <IonCard
           key={index}
           className="mx-0 mt-10 mb-1 h-32"
          onClick={() => {redirectChatList(element.members[0].receive.id)}}
+
         >
           <IonCardContent className="flex justify-start w-full">
             <IonAvatar slot="start">
@@ -79,7 +136,9 @@ const ChatList = () => {
               />
             </IonAvatar> 
             <IonLabel>
+
              <h2 className="font-bold">{element.members[0].send.name}</h2>
+
             </IonLabel>
             <IonBadge className="badge">1</IonBadge>
             <div className="info-div">
@@ -90,23 +149,22 @@ const ChatList = () => {
       ));
     }
   };
-  
+
   return (
     <div className="container">
       <IonList>
         {renderize()}
         <IonInfiniteScroll
-        onIonInfinite={(ev) => {
-          generateItems();
-          setTimeout(() => ev.target.complete(), 500);
-        }}
-      >
-        <IonInfiniteScrollContent></IonInfiniteScrollContent>
-      </IonInfiniteScroll>
+          onIonInfinite={(ev) => {
+            generateItems();
+            setTimeout(() => ev.target.complete(), 500);
+          }}
+        >
+          <IonInfiniteScrollContent></IonInfiniteScrollContent>
+        </IonInfiniteScroll>
       </IonList>
     </div>
   );
 };
 
 export default ChatList;
-

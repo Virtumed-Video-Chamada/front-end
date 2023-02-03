@@ -54,6 +54,14 @@ export interface userPacient {
 	isAdmin?: boolean;
 }
 
+export interface patientInfo {
+	id?: string;
+	age: string;
+	height: string;
+	gender: string;
+	weight: string;
+}
+
 export interface userDoctor {
 	id?: string;
 	name: string;
@@ -109,4 +117,14 @@ export interface LobbyProps {
 export interface PronturariosProps {
 	id?: string;
   name?: string;
+}
+
+export interface Conversations {
+	id?: string;
+	members?: [];
+}
+
+export interface Message {
+	senderId: string;
+	receiverId: string;
 }
