@@ -32,6 +32,7 @@ const ChatList = () => {
       await findAllConversationsByIdService
         .findAllConversations(storage)
         .then((resp) => {
+          console.log(resp);
           setChatList(resp.data);
         });
     });

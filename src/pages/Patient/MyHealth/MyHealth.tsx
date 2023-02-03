@@ -15,35 +15,61 @@ import { IonReactRouter } from "@ionic/react-router";
 import {
   medkitOutline
 } from "ionicons/icons";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Redirect, Route } from "react-router";
 import DateTime from "../../../components/DateTime/DateTime";
 import Identificador from "../../../components/Identificador/Identificador";
 import QuickAccess from "../../../components/Patient/QuickAcess/QuickAccess";
+import { getStorage } from "../../../services/adminStorage";
 import { healthService } from "../../../services/healthService";
+import { alertaSucesso } from "../../../utils/alertas";
 
 
 const MyHealth: React.FC = () => {
   const [id, setId] = useState<string>();
   const [age, setAge] = useState<string>();
   const [height, setHeight] = useState<string>();
-  const [ gender, setGender] = useState<string>();
+  const [gender, setGender] = useState<string>();
+  const [weight, setWeight] = useState<string>();
+  const [meId, setMeId] = useState()
 
-  // const value = {
-  //   id: id,
-  //   age: age,
-  //   height: height,
-  //   gender: gender,
-  //   weight: weight
-  // }
 
-  // const updateHealth = async () => {
-  //   await healthService.updateHealth(value).then((resp) => {
-      
-  //   }).catch((err) => {
-  //    console.log(err)
-  //  })
-  // }
+  useEffect(() => {
+    getStorage("userIdStorage").then((storage) => {
+      setMeId(storage)
+    });
+    findData()
+   },
+    [])
+  
+  const findData = async () => {
+    await healthService.findHealth().then((resp) => {
+      setAge(resp.data.age);
+      setHeight(resp.data.height);
+      setGender(resp.data.gender);
+      setWeight(resp.data.weight);
+
+    }).catch((err) => {
+       console.log(err);
+     })
+  }
+
+  const value = {
+    id: meId,
+    age: age,
+    height: height,
+    gender: gender,
+    weight: weight
+  }
+
+  const updateHealth = async () => {
+    await healthService.updateHealth(value).then((resp) => {
+      console.log(resp)
+      alertaSucesso.alerta("Dados atualizados com sucesso !");
+    }).catch((err) => {
+     console.log(err)
+   })
+  }
 
   return (
     <IonPage>
@@ -54,7 +80,7 @@ const MyHealth: React.FC = () => {
           <IonItem>
             <h1 className="font-semibold text-2xl">Sobre você</h1>
             <IonLabel position="floating">Idade</IonLabel>
-            <IonInput></IonInput>
+            <IonInput value={age} placeholder="Informe seu Idade" onIonChange={e => setAge(e.detail.value!)}></IonInput>
           </IonItem>
 
           <IonItem className="mt-5">
@@ -63,6 +89,7 @@ const MyHealth: React.FC = () => {
               interface="action-sheet"
               placeholder="Gênero"
               className="font-bold"
+              value={gender}
             >
               <IonSelectOption value="Masculino">Masculino</IonSelectOption>
               <IonSelectOption value="Feminino">Feminino</IonSelectOption>
@@ -71,16 +98,16 @@ const MyHealth: React.FC = () => {
 
           <IonItem>
             <IonLabel position="floating">Peso</IonLabel>
-            <IonInput></IonInput>
+            <IonInput value={weight} placeholder="Informe seu Peso (kg)" onIonChange={e => setWeight(e.detail.value!)}></IonInput>
           </IonItem>
 
           <IonItem>
             <IonLabel position="floating">Altura</IonLabel>
-            <IonInput></IonInput>
+            <IonInput value={height} placeholder="Informe seu Altura (cm)" onIonChange={e => setHeight(e.detail.value!)}></IonInput>
           </IonItem>
         </form>
         <div className="flex flex-col justify-center mt-4">
-          <IonButton className="mt-8" color="tertiary">
+          <IonButton className="mt-8" color="tertiary" onClick={() => updateHealth()}>
             Salvar
           </IonButton>
           {/* <QuickAccess /> */}

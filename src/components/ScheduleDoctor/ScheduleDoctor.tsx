@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  IonAvatar,
   IonBackButton,
   IonButton,
   IonButtons,
@@ -10,8 +9,6 @@ import {
   IonHeader,
   IonIcon,
   IonImg,
-  IonItem,
-  IonLabel,
   IonList,
   IonPage,
   IonText,
@@ -22,8 +19,7 @@ import {
 } from "@ionic/react";
 import ModalAlert from "../ModalAlert/ModalAlert";
 import { calendarOutline, chatbubbleOutline } from "ionicons/icons";
-import Identificador from "../Identificador/Identificador";
-import { findByIdService } from "../../services/findService";
+
 import { appointmentService } from "../../services/appointmentService";
 
 const ScheduleDoctor: React.FC = () => {
@@ -66,7 +62,7 @@ const ScheduleDoctor: React.FC = () => {
   }
 
   const findDateAppointment = async () => {
-    await appointmentService.appointmentList().then((resp) => {
+    await appointmentService.appointmentListDoctor(id).then((resp) => {
       setListAppointment(resp.data);
     }).catch((err) => {
       console.log(err)
