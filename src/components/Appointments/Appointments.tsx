@@ -75,14 +75,18 @@ const renderize = () => {
   }
 
     const validConsult = (item: any) => {
-      const dateNow: any = new Date();
-      const dateCall: any = new Date(item);
-      const difDate = (dateCall - dateNow)/(1000*60);
-      if (difDate <= 5) {
-        history.replace("/webchat");
-      } else {
-        alert()
-      }
+      console.log(item);
+      const idRoom = item.idRoom;
+      // const dateNow: any = new Date();
+      // const dateCall: any = new Date(item.date);
+      // const difDate = (dateCall - dateNow)/(1000*60);
+      // if (difDate <= 5) {
+      //   history.replace("/webchat");
+      // } else {
+      //   alert()
+      // }
+      // history.replace("/webchat");
+      history.replace(`/webchat?id=${idRoom}`)
   }
 
   const dateEdit = (item: any) => {
@@ -106,7 +110,7 @@ const renderize = () => {
     const renderizeCards = () => {
       return listAppointment.map((item: any, index: any) => {
       return <IonSlide>
-        <IonCard className="bd-20 cardDoctor" onClick={() => validConsult(item.date)}>
+        <IonCard className="bd-20 cardDoctor" onClick={() => validConsult(item)}>
           <IonCardContent className="flex">
             <IonThumbnail slot="start">
               <img

@@ -77,6 +77,7 @@ import { useSelector } from "react-redux";
 import ScheduleClinic from "./pages/Clinic/ScheduleClinic/ScheduleClinic";
 import ScheduleControl from "./pages/Clinic/ScheduleControl/ScheduleControl";
 import AddHistoricalDoctor from "./pages/Doctor/AddHistoricalDoctor/AddHistoricalDoctor";
+import InfoPatient from "./pages/Patient/MyHealth/MyHealth";
 
 
 setupIonicReact();
@@ -221,7 +222,7 @@ const RoutingTabs: React.FC = () => {
           <Route exact path="/conversation">
             <Conversation />
           </Route>
-          <Route exact path="/info-patient">
+          <Route exact path="/health">
             <InfoPatient />
           </Route>
           <Route exact path="/historical-clinic">

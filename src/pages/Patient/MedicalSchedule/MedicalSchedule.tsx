@@ -35,7 +35,8 @@ const MedicalSchedule: React.FC = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const userId: any = urlParams.get("id");
   const [nameDoctor, setNameDoctor] = useState("");
-  const [avatarDoctor, setAvatarDoctor] = useState("")
+  const [avatarDoctor, setAvatarDoctor] = useState("");
+  const [idRoom, setIdRoom] = useState("");
 
   useEffect(() => {
     findDotor();
@@ -56,6 +57,32 @@ const MedicalSchedule: React.FC = () => {
   //     console.log(resp)
   //   })
   // }
+
+  const values = {
+    provider_id: userId,
+    date: date,
+    idRoom: idRoom
+  }
+
+  const createRoom = () => {
+    var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJLMNOPQRSTUVWXYZ";
+    var passwordLength = 6;
+    var room = "";
+
+    for (var i = 0; i < passwordLength; i++) {
+      var randomNumber = Math.floor(Math.random() * chars.length);
+      room += chars.substring(randomNumber, randomNumber + 1);
+    }
+    console.log(room)
+    setIdRoom(room)
+    presentToast();
+  }
+
+  const createAppointment = async () => {
+    await appointmentService.appointmentCreate(values).then((resp) => {
+      presentToast();
+    })
+  }
 
   const findDotor = async () => {
     console.log('teste');
@@ -106,7 +133,7 @@ const MedicalSchedule: React.FC = () => {
           role: "confirm",
           cssClass: "alert-button-confirm",
           handler: () => {
-            presentToast();
+            createRoom();
           },
         },
       ],
@@ -130,7 +157,7 @@ const MedicalSchedule: React.FC = () => {
           </IonThumbnail>
           <div className="flex flex-col">
             <IonLabel className="text-bold">Dr(a) {nameDoctor}</IonLabel>
-            <IonLabel>Neurologista</IonLabel>
+            {/* <IonLabel>Neurologista</IonLabel> */}
           </div>
         </IonItem>
         <IonItem className="mt-5" lines="none">

@@ -66,7 +66,7 @@ const Participant = ({ participant }: any) => {
     <div className="participantLocal">
       <h3 className="font-bold justify-end text-end z-50 bg-purple-500 rounded">{participant.identity}</h3>
       <video ref={videoRef} autoPlay={true}/>
-      <audio ref={audioRef} autoPlay={true} muted={true} />
+      <audio ref={audioRef} autoPlay={true} muted={false} />
     </div>
   );
 };

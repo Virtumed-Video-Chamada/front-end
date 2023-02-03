@@ -34,23 +34,9 @@ import { healthService } from "../../../services/healthService";
 import { alertaSucesso } from "../../../utils/alertas";
 
 
-  const findPatientInfo = async () => {
-    await findByIdService
-      .findProfileByIdPacient(id)
-      .then((resp) => {
-        setAge(resp.data.age);
-        setHeight(resp.data.height);
-        setWeight(resp.data.weight);
-        setGender(resp.data.gender);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
 
-const MyHealth: React.FC = () => {
-  const [id, setId] = useState<string>();
+const InfoPatient: React.FC = () => {
   const [age, setAge] = useState<string>();
   const [height, setHeight] = useState<string>();
   const [gender, setGender] = useState<string>();
@@ -155,7 +141,8 @@ const MyHealth: React.FC = () => {
           </IonCard> */}
 
         </div>
-      </IonContent>
+        </div>
+
     </IonPage>
   );
 };

@@ -32,19 +32,19 @@ const ChatList = () => {
     setItems([...items, ...newItems]);
   };
 
-  const findChatList = async () => {
-    getStorage("userIdStorage").then(async (storage) => {
-      await findAllConversationsByIdService
-        .findAllConversations(storage)
-        .then((resp) => {
-          console.log(resp);
-          setSetList(resp.data);
-          setreceiverId(resp.data[0].members[1]);
-          setsenderId(storage);
-          findMeChat(resp.data[0].members[1]);
-        });
-    });
-  };
+  // const findChatList = async () => {
+  //   getStorage("userIdStorage").then(async (storage) => {
+  //     await findAllConversationsByIdService
+  //       .findAllConversations(storage)
+  //       .then((resp) => {
+  //         console.log(resp);
+  //         setSetList(resp.data);
+  //         setreceiverId(resp.data[0].members[1]);
+  //         setsenderId(storage);
+  //         findMeChat(resp.data[0].members[1]);
+  //       });
+  //   });
+  // };
 
   const findDoctor = async (receiverId: any) => {
     const userId = {
@@ -63,16 +63,16 @@ const ChatList = () => {
     })
   }
   
-  const findMeChat = async (id: any) => {
-    await findByIdService.findProfileByIdMe().then((resp) => {
-      setRole(resp.data.role);
-      if (resp.data.role !== 'DOCTOR') {
-        findDoctor(id);
-      } else {
-        findPatient(id);
-      }
-    });
-  };
+  // const findMeChat = async (id: any) => {
+  //   await findByIdService.findProfileByIdMe().then((resp) => {
+  //     // setRole(resp.data.role);
+  //     if (resp.data.role !== 'DOCTOR') {
+  //       findDoctor(id);
+  //     } else {
+  //       findPatient(id);
+  //     }
+  //   });
+  // };
 
   useEffect(() => {
     generateItems();
@@ -124,7 +124,7 @@ const ChatList = () => {
         <IonCard
           key={index}
           className="mx-0 mt-10 mb-1 h-32"
-         onClick={() => {redirectChatList(element.members[0].receive.id)}}
+         onClick={() => {redirectChatList(element._id)}}
 
         >
           <IonCardContent className="flex justify-start w-full">
@@ -132,12 +132,12 @@ const ChatList = () => {
               <img
                 className="max-w-[51px] w-full"
                 alt="Pic-Doctor"
-                src={avatarEdit(element.members[0].send.id)}
+                src={avatarEdit(element.members[0].receive.id)}
               />
             </IonAvatar> 
             <IonLabel>
 
-             <h2 className="font-bold">{element.members[0].send.name}</h2>
+             <h2 className="font-bold">{element.members[0].receive.name}</h2>
 
             </IonLabel>
             <IonBadge className="badge">1</IonBadge>

@@ -37,6 +37,14 @@ const appointmentService = {
           return (
             response) })
       .catch((error: any) => console.log('ERRO NA CHAMADA:', error)),
+    appointmentCreate: (values: any) =>
+      api
+        .post(`appointments`, values)
+        .then((response: any) => {
+          console.log(response)
+          return (
+            response) })
+      .catch((error: any) => console.log('ERRO NA CHAMADA:', error)),
     
 };
 

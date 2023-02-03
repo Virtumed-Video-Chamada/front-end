@@ -3,12 +3,12 @@ import Video from "twilio-video";
 import { alertaErro } from "../../utils/alertas";
 import Lobby from "./Lobby";
 import Room from "./Room";
-import { removeStorage, setStorage } from "../../services/adminStorage";
+import { getStorage, removeStorage, setStorage } from "../../services/adminStorage";
 import { hideTabs, showTabs } from "../../App";
 import axios from 'axios';
 
 
-const VideoChat = () => {
+const VideoChat = (props: any) => {
   const [username, setUsername] = useState<string>("");
   const [roomName, setRoomName] = useState<string>('');
   const [room, setRoom] = useState<any>(null);
@@ -18,6 +18,20 @@ const VideoChat = () => {
   const TWILIO_DOMAIN = 'videobeginner-5556-dev.twil.io'; 
 
 
+
+  useEffect(() => {
+    getStorage("tokenJwt").then((response) => {
+      const nameResponse = response.data.user.name;
+      const nameEdit = nameResponse.split(" ")[0];
+      const name = nameEdit.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+      setUsername(name);
+      setRoomName(props.idRoom);
+    })
+  }, [])
+
+  const findRoom = (idUser: any) => {
+
+  }
 
   const handleUsernameChange = useCallback((event: any) => {
     setUsername(event.target.value);
@@ -92,7 +106,6 @@ const VideoChat = () => {
 
   let render;
   if (room) {
-    console.log(room)
     render = (
       <Room roomName={roomName} room={room} handleLogout={handleLogout} />
     );

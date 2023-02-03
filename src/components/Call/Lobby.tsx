@@ -19,7 +19,6 @@ const Lobby = ({
 
   const handle = async () => {
     getStorage("tokenJwt").then((response) => {
-     
       setAvatar(response.data.user.avatar_url);
     })
   }
@@ -55,7 +54,8 @@ const Lobby = ({
           id="field"
           value={username}
           onChange={handleUsernameChange}
-          readOnly={connecting}
+            readOnly={connecting}
+            disabled
           required />
       </div>
 
@@ -66,7 +66,8 @@ const Lobby = ({
           id="room"
           value={roomName}
           onChange={handleRoomNameChange}
-          readOnly={connecting}
+            readOnly={connecting}
+            disabled
           required />
       </div>
 
