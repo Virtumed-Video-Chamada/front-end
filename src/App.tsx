@@ -255,13 +255,19 @@ const RoutingTabs: React.FC = () => {
           <IonTabButton tab="home" href={category}>
             <IonIcon icon={homeOutline} className="w-6 h-6" color="primary" />
           </IonTabButton>
-        <IonTabButton tab="tab2" href="/schedules">
-            <IonIcon
-              icon={calendarOutline}
-              className="w-6 h-6"
-              color="primary"
-            />
-          </IonTabButton>
+
+          {/* {(category === "/home-clinic" || category === "/home-admin" || category === "/home-doctor") ? '' : <IonTabButton tab="tab4" href="/schedules">
+            <IonIcon icon={calendarOutline} className="w-6 h-6" color="primary" />
+          </IonTabButton>} */}
+
+          {(category === "/home-pacient" ) ?  <IonTabButton tab="tab4" href="/schedules">
+            <IonIcon icon={calendarOutline} className="w-6 h-6" color="primary" />
+          </IonTabButton> : ''}
+
+          {(category === "/home-doctor" ) ?  <IonTabButton tab="tab4" href="/schedule-doctor">
+            <IonIcon icon={calendarOutline} className="w-6 h-6" color="primary" />
+          </IonTabButton> : ''}
+
           {(category === "/home-clinic" || category === "/home-admin") ? '' : <IonTabButton tab="tab3" href="/chat">
             <IonIcon
               icon={chatbubblesOutline}
@@ -270,9 +276,11 @@ const RoutingTabs: React.FC = () => {
             />
           </IonTabButton> }
           
-          {(category === "/home-clinic" || category === "/home-admin" || category === "/home-doctor") ? '' : <IonTabButton tab="tab4" href="/health">
+          {/* { (category === "/home-clinic" || category === "/home-admin" || category === "/home-doctor") ? '' : <IonTabButton tab="tab4" href="/health">
             <IonIcon icon={medkitOutline} className="w-6 h-6" color="primary" />
-          </IonTabButton>}
+          </IonTabButton>} */}
+          
+
           <IonTabButton tab="tab5">
             <IonIcon
               icon={personOutline}

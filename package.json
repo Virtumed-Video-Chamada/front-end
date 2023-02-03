@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@capacitor/android": "^4.6.3",
     "@capacitor/app": "4.1.1",
-    "@capacitor/core": "4.5.0",
+    "@capacitor/core": "^4.5.0",
     "@capacitor/haptics": "4.1.0",
     "@capacitor/keyboard": "4.1.0",
     "@capacitor/preferences": "^4.0.2",
@@ -88,7 +89,7 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "4.5.0",
+    "@capacitor/cli": "^4.6.3",
     "@ionic/lab": "3.2.15",
     "autoprefixer": "^10.4.13",
     "node-env-run": "^4.0.2",

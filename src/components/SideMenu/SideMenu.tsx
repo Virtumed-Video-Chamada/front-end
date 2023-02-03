@@ -27,6 +27,7 @@ function SideMenu() {
     removeStorage('role');
     removeStorage('userIdStorage');
     removeStorage('userAdminStorage');
+    removeStorage('appointments');
     history.replace("/login");
     window.location.reload();
   }

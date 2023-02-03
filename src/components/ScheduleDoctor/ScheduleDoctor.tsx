@@ -19,12 +19,17 @@ import {
 } from "@ionic/react";
 import ModalAlert from "../ModalAlert/ModalAlert";
 import { calendarOutline, chatbubbleOutline } from "ionicons/icons";
-
+import Identificador from "../Identificador/Identificador";
+import { findByIdService } from "../../services/findService";
 import { appointmentService } from "../../services/appointmentService";
+import moment from 'moment';
+import { getStorage, setStorage } from "../../services/adminStorage";
+import { useHistory } from "react-router";
+moment.locale('pt');
 
 const ScheduleDoctor: React.FC = () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const userId = urlParams.get("id");
+  const history = useHistory();
+  const [userId, setUserId] = useState("");
   const [change, setChange] = useState<boolean>(false);
   const [_class, setClass] = useState<string>("flex hidden");
   const [presentAlert] = useIonAlert();
@@ -62,15 +67,30 @@ const ScheduleDoctor: React.FC = () => {
   }
 
   const findDateAppointment = async () => {
-    await appointmentService.appointmentListDoctor(id).then((resp) => {
-      setListAppointment(resp.data);
+    getStorage("userIdStorage").then(async (storage) => {
+      setUserId(storage);
+      await appointmentService.appointmentListDoctor({provider_id: storage}).then((resp) => {
+        setListAppointment(resp.data);
+        console.log(resp.data);
+        setStorage('appointments', resp.data);
+        console.log(resp.data);
+      }).catch((err) => {
+        console.log(err)
+      });
+    })
+  }
+
+  const cancelAppointment = async (idAppointment: any) => {
+    await appointmentService.appointmentDelete({appointment_id: idAppointment}).then((resp) => {
+      presentToast();
+      setListAppointment([]);
+      findDateAppointment();
     }).catch((err) => {
       console.log(err)
     });
   }
 
-
-  const alert = () => {
+  const alert = (idAppointment: any) => {
     presentAlert({
       header: "DESEJA CANCELAR A CONSULTA?",
       cssClass: "custom-alert",
@@ -88,7 +108,8 @@ const ScheduleDoctor: React.FC = () => {
           role: "confirm",
           cssClass: "alert-button-confirm",
           handler: () => {
-            presentToast();
+            cancelAppointment(idAppointment);
+            
           },
         },
       ],
@@ -96,6 +117,14 @@ const ScheduleDoctor: React.FC = () => {
         setRoleMessage(`Dismissed with role: ${e.detail.role}`),
     });
   };
+
+  const dateEdit = (item: any) => {
+    return moment(item).format('DD/MM  HH:mm')
+  }
+
+  const parentConversation = (itemId: any) => {
+    history.replace(`/conversation?id=${itemId}`)
+    };
 
   const renderize = () => {
     if (listAppointment.length === 0) {
@@ -117,34 +146,28 @@ const ScheduleDoctor: React.FC = () => {
                 <img
                   className="min-w-[80px] min-h-[80px]"
                   alt="Pic-Doctor"
-                  src="./assets/avatar/Pic-Doctor.png"
+                  src={item.user?.avatar_url == null ? 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y' : item.user?.avatar_url }
                 />
               </IonThumbnail>
-              <div className="flex flex-col gap-1 ml-11 font-bold text-black">
-                <span>Maria Renata</span>
-                <span>Hoje, 14:00</span>
+              <div className="flex flex-col gap-1 ml-11 font-bold text-black flex flex-col">
+              <span>{item.user?.name}</span>
+                  {/* <p>Psicóloga</p> */}
+                   <span>{dateEdit(item.date)}</span>
                 <div className="flex">
                   <IonButton
                     className="text-xs"
                     color="secondary"
-                    onClick={alert}
+                    onClick={() => alert(item.id)}
                   >
                     CANCELAR
                   </IonButton>
-                  <IonButton className="text-xs" color="primary">
-                    CONFIRMAR
+                  <IonButton className="text-xs" color="primary" onClick={() => parentConversation(item.id)}>
+                    ABRIR CHAT
+                    <IonIcon slot="start" icon={chatbubbleOutline}></IonIcon>
                   </IonButton>
                 </div>
               </div>
             </IonCardContent>
-            <div className="flex flex-row justify-center items-center">
-              <div className={_class}>
-                <IonButton className="text-xs w-max" expand="block">
-                  ABRIR CHAT
-                  <IonIcon slot="start" icon={chatbubbleOutline}></IonIcon>
-                </IonButton>
-              </div>
-            </div>
           </IonCard>
         </div>
       )

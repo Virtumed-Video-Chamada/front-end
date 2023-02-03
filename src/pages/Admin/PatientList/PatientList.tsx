@@ -29,11 +29,13 @@ import React, { useEffect, useState } from "react";
 import { deleteService } from "../../../services/deleteService";
 import { findAllService } from "../../../services/findService";
 import { useHistory } from 'react-router-dom';
+import { getStorage } from "../../../services/adminStorage";
 
 const PatientList = () => {
   const [items, setItems] = useState<any>('');
   let listPatients = items;
   const [results, setResults] = useState([...listPatients]);
+  const [category, setCategory] = useState('')
   const history = useHistory();
   
   const generateItems = () => {
@@ -45,6 +47,9 @@ const PatientList = () => {
   };
 
   const handleChange = async (ev?: Event) => {
+    getStorage('role').then((role) => {
+      setCategory(role)
+    })
     await findAllService.findAllUsers("pacient").then((response: any) => {
       setItems(response.data);
       let query = "";
@@ -116,22 +121,27 @@ const PatientList = () => {
     history.replace(`/register-patient?id=${id}`)
   }
   const getPatientData = (id: string) => {
-    history.replace(`/info-patient?id=${id}`)
+    history.replace(`/health?id=${id}`)
   }
 
   const renderize = () => {
     return results.map((element: any, index: any) => (
       <IonItem lines="full" key={index}>
         <IonLabel>{element.name}</IonLabel>
-        <IonButton slot="end" color="primary" onClick={() => redirect(element.id)}>
+        {category == "doctor" ? '' : 
+          <IonButton slot="end" color="primary" onClick={() => redirect(element.id)}>
           <IonIcon icon={pencilOutline}></IonIcon>
         </IonButton>
+        }
         <IonButton slot="end" color="secondary" onClick={() => getPatientData(element.id)}>
           <IonIcon icon={medkitOutline}></IonIcon>
         </IonButton>
-        <IonButton slot="end" color="danger" onClick={() => alert(element.id)}>
+        {category == "doctor" ? '' :
+          <IonButton slot="end" color="danger" onClick={() => alert(element.id)}>
           <IonIcon icon={trashBinOutline}></IonIcon>
         </IonButton>
+         }
+        
       </IonItem>
     ));
   };

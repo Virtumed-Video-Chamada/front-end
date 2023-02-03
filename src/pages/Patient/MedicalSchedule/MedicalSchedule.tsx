@@ -23,6 +23,7 @@ import Identificador from "../../../components/Identificador/Identificador";
 import Schedules from "../../../components/SchedulePatient/SchedulePatient";
 import { appointmentService } from "../../../services/appointmentService";
 import { findByIdService } from "../../../services/findService";
+import moment from "moment";
 import "./style.css";
 
 
@@ -37,6 +38,8 @@ const MedicalSchedule: React.FC = () => {
   const [nameDoctor, setNameDoctor] = useState("");
   const [avatarDoctor, setAvatarDoctor] = useState("");
   const [idRoom, setIdRoom] = useState("");
+  const [dateDay, setdateDay] = useState<any>()
+  const [hour, sethour] = useState()
 
   useEffect(() => {
     findDotor();
@@ -60,7 +63,7 @@ const MedicalSchedule: React.FC = () => {
 
   const values = {
     provider_id: userId,
-    date: date,
+    date: dateDay,
     idRoom: idRoom
   }
 
@@ -73,13 +76,14 @@ const MedicalSchedule: React.FC = () => {
       var randomNumber = Math.floor(Math.random() * chars.length);
       room += chars.substring(randomNumber, randomNumber + 1);
     }
-    console.log(room)
     setIdRoom(room)
-    presentToast();
+    createAppointment()
   }
 
   const createAppointment = async () => {
+    console.log(values);
     await appointmentService.appointmentCreate(values).then((resp) => {
+      console.log(resp);
       presentToast();
     })
   }
@@ -142,6 +146,17 @@ const MedicalSchedule: React.FC = () => {
     });
   };
 
+  const newDate = (event: any) => {
+    const day = event.target.value;
+    const teste = new Date(day)
+    console.log(day);
+    console.log(hour)
+    setdateDay(day);
+
+  }
+
+  const dateFormat = moment(dateDay).toISOString();
+
   return (
     <IonPage className="justify-start">
       <Identificador />
@@ -164,8 +179,11 @@ const MedicalSchedule: React.FC = () => {
           <IonDatetime
             color="black"
             presentation="date"
+            locale="pt-BR"
             min="2022-12-01T00:00:00"
             size="cover"
+            value={dateFormat}
+             onClick={newDate}
           >
             <IonText
               color="tertiary"
@@ -192,12 +210,13 @@ const MedicalSchedule: React.FC = () => {
                   interface="action-sheet"
                   placeholder="08:00"
                   className="placeholder"
+                  onIonChange={(e) => sethour(e.detail.value)}
                 >
-                  <IonSelectOption value="08:00">08:00</IonSelectOption>
-                  <IonSelectOption value="11:00">11:00</IonSelectOption>
-                  <IonSelectOption value="15:00">15:00</IonSelectOption>
-                  <IonSelectOption value="16:30">16:30</IonSelectOption>
-                  <IonSelectOption value="18:00">18:00</IonSelectOption>
+                  <IonSelectOption value="08">08:00</IonSelectOption>
+                  <IonSelectOption value="11">11:00</IonSelectOption>
+                  <IonSelectOption value="15">15:00</IonSelectOption>
+                  <IonSelectOption value="16">16:00</IonSelectOption>
+                  <IonSelectOption value="18">18:00</IonSelectOption>
                 </IonSelect>
               </div>
             </IonList>

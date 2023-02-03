@@ -100,11 +100,11 @@ const executeLogin = async () => {
           <IonButton className='btnDefault tracking-normal mt-8' expand="block" onClick={executeLogin}>ENTRAR</IonButton>
           <IonButton className='btnDefault tracking-normal mt-8' expand="block" routerLink="/register-choice">REGISTRE-SE</IonButton>
           
-          <div className='my-10'>
+          {/* <div className='my-10'>
             <IonText className="text-center text-sm text-colored font-semibold hover:font-bold">
               <p>Esqueci minha senha</p>
             </IonText>
-          </div>
+          </div> */}
 
           {/* <IonItem className='bgTransparentCinza lembrar'>
             <IonLabel><IonText>SALVAR USUARIO/SENHA</IonText></IonLabel>
