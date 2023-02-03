@@ -83,7 +83,7 @@ const registerUser = async () => {
       if (jwt) {
         setStorage("jwt", jwt);
         setStorage("role", response.data.role);
-        setStorage("token", response);
+        setStorage("tokenJwt", response);
         alertaSucesso.alerta("Usuário cadastrado com sucesso !");
         history.replace("/login");
       } else {

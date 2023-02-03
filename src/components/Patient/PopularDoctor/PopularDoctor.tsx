@@ -1,7 +1,9 @@
-import { IonCard, IonCardContent } from "@ionic/react";
+import { IonCard, IonCardContent, IonItem } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { favoriteDoctors } from "../../../mocks/favoritesDoctor";
+import { setStorage } from "../../../services/adminStorage";
+import { favoriteService } from "../../../services/favoriteService";
 import DoctorCard from "../DoctorCard/DoctorCard";
 import "./style.css";
 
@@ -10,18 +12,26 @@ const PopularDoctor: React.FC = () => {
   const [listFavorites, setFavorites] = useState<any>([]);
   const doctor = listFavorites[0] || "";
 
-  useEffect(() => {
-    console.log(favoriteDoctors);
-    setFavorites(favoriteDoctors);
-  }, []);
-
   const seeAll = () => {
     history.replace("/favorite-doctors");
     window.location.reload();
   };
 
+  useEffect(() => {
+    findFavoritList();
+  }, []);
+    
+  const findFavoritList = async () => {
+      await favoriteService
+        .findAllFavoriteDoctor()
+        .then((resp) => {
+          setFavorites(resp.data);
+          setStorage('favoritesDoctor', resp.data);
+        });
+    };
+ 
+
   const renderize = () => {
-    console.log(listFavorites.length);
     if (listFavorites.length == 0) {
       return (
         <IonCard className="bd-20 cardDoctorWhite flex flex-col justify-center">
@@ -51,7 +61,10 @@ const PopularDoctor: React.FC = () => {
         </span> : ''}
         
       </div>
+      <div className=" flex mx-auto items-center justify-center">
       {renderize()}
+      </div>
+    
     </div>
   );
 };

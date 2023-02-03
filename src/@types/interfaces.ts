@@ -8,7 +8,8 @@ export interface ChatConversationProps {
 export interface Doctor {
   id?: string;
   name?: string;
-  crm?: string;
+	crm?: string;
+	avatar?: string;
 	doctor?: {
 		speciality?: string;
 	}
@@ -26,7 +27,8 @@ export interface Pacient {
   email?: string;
   password?: string;
   cep?: string;
-  cpf?: string;
+	cpf?: string;
+	avatar_url?: string;
 }
 
 export interface userLogin {
@@ -50,6 +52,14 @@ export interface userPacient {
 	confirmPassword?: string;
 	role?: string;
 	isAdmin?: boolean;
+}
+
+export interface patientInfo {
+	id?: string;
+	age: string;
+	height: string;
+	gender: string;
+	weight: string;
 }
 
 export interface userDoctor {
@@ -107,4 +117,14 @@ export interface LobbyProps {
 export interface PronturariosProps {
 	id?: string;
   name?: string;
+}
+
+export interface Conversations {
+	id?: string;
+	members?: [];
+}
+
+export interface Message {
+	senderId: string;
+	receiverId: string;
 }

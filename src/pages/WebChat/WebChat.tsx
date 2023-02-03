@@ -4,17 +4,21 @@ import './styles.css'
 
 
 
-const  WebChat: React.FC = () => {
+const WebChat: React.FC = () => {
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const idRoom: any = urlParams.get("id");
+
   return (
-    <IonPage className='align-page'>
-      <IonHeader>
+    <IonPage className='p-0 m-0'>
+      {/* <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
             <IonBackButton />
           </IonButtons>
         </IonToolbar>
-      </IonHeader>
-          <VideoChat />
+      </IonHeader> */}
+          <VideoChat idRoom={idRoom} />
     </IonPage>
   );
 };

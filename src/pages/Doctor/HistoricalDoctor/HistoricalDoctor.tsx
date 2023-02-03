@@ -9,15 +9,19 @@ import {
   IonLabel,
   IonPage,
   IonSearchbar,
+  useIonLoading,
 } from "@ionic/react";
 import Identificador from "../../../components/Identificador/Identificador";
 import { documentTextOutline } from "ionicons/icons";
-import { mockedRecords } from "../../../mocks/records";
+import { mockedPatients } from "../../../mocks/patient";
+import { findAllService } from "../../../services/findService";
+import { useHistory } from "react-router";
 
 const HistoricalDoctor: React.FC = () => {
-  const [namePacient, setNamePacient] = useState<any>(mockedRecords);
-  const [results, setResults] = useState(['']);
-  const [busy, setBusy] = useState(false);
+  const [namePacient, setNamePacient] = useState<any>([]);
+  const [results, setResults] = useState([...namePacient]);
+  const history = useHistory();
+  const [busy, setBusy] = useState(true);
   const [listA, setListA] = useState([]);
   const [listB, setListB] = useState([]);
   const [listC, setListC] = useState([]);
@@ -175,38 +179,41 @@ const HistoricalDoctor: React.FC = () => {
     );
   };
 
-  const handleChange = (ev?: Event) => {
+  const [present, dismiss] = useIonLoading();
+  const handleChange = async (ev?: Event) => {
+    await findAllService.findAllUsers("pacient").then((response: any) => {
+      setNamePacient(response.data);
+    
     let query = "";
-    setBusy(true);
     if (ev != null) {
       const target = ev.target as HTMLIonSearchbarElement;
       if (target) query = target.value!.toLowerCase();
-      if (query === "") {
-        setBusy(false);
       }
-    } else {
-      setBusy(false);
-    }
-    // eslint-disable-next-line array-callback-return
+    let listPacients = response.data;
     setResults(
-      namePacient.filter((patient: any) => {
+      listPacients.filter((pacient: any) => {
         return (
-          (patient.name!.toLowerCase().indexOf(query) > -1) 
+          pacient.name!.toLowerCase().indexOf(query) > -1 ||
+          query === ""
         );
       })
-    );
+    )});
   };
   
   const renderize = () => {
     return results.map((element: any, index: any) => (
       <IonItem key={index}>
-         <IonItem key={index}>
+         <IonItem key={index} onClick={() => redirect(element.id)}>
                 <IonIcon src={documentTextOutline} color="primary"></IonIcon>
                 <IonLabel className="ml-2">{element.name}</IonLabel>
           </IonItem>
       </IonItem>
     ));
   };
+
+  const redirect = (id: any) => {
+    history.replace(`/add-historical-doctor?id=${id}`)
+  }
 
   useEffect(() => {
     newList();
@@ -230,344 +237,6 @@ const HistoricalDoctor: React.FC = () => {
           onIonChange={(ev) => handleChange(ev)}
         ></IonSearchbar>
         {busy == true && renderize()}
-        {(listA.length > 0 && !busy)&& (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">A</IonLabel>
-            </IonItemDivider>
-            {listA.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-        {(listB.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">B</IonLabel>
-            </IonItemDivider>
-            {listB.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-        {(listC.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">C</IonLabel>
-            </IonItemDivider>
-            {listC.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-        {(listD.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">D</IonLabel>
-            </IonItemDivider>
-            {listD.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-            {(listE.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">E</IonLabel>
-            </IonItemDivider>
-            {listE.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-            {(listF.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">F</IonLabel>
-            </IonItemDivider>
-            {listF.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-            {(listG.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">G</IonLabel>
-            </IonItemDivider>
-            {listG.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-         {(listH.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">H</IonLabel>
-            </IonItemDivider>
-            {listH.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listI.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">I</IonLabel>
-            </IonItemDivider>
-            {listI.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listJ.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">J</IonLabel>
-            </IonItemDivider>
-            {listJ.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listK.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">K</IonLabel>
-            </IonItemDivider>
-            {listK.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listL.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">L</IonLabel>
-            </IonItemDivider>
-            {listL.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listM.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">M</IonLabel>
-            </IonItemDivider>
-            {listM.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listN.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">N</IonLabel>
-            </IonItemDivider>
-            {listN.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listO.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">O</IonLabel>
-            </IonItemDivider>
-            {listO.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listP.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">P</IonLabel>
-            </IonItemDivider>
-            {listP.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listQ.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">Q</IonLabel>
-            </IonItemDivider>
-            {listQ.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listR.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">R</IonLabel>
-            </IonItemDivider>
-            {listR.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listS.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">S</IonLabel>
-            </IonItemDivider>
-            {listS.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listT.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">T</IonLabel>
-            </IonItemDivider>
-            {listT.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listU.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">U</IonLabel>
-            </IonItemDivider>
-            {listU.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listV.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">V</IonLabel>
-            </IonItemDivider>
-            {listV.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-           {(listW.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">W</IonLabel>
-            </IonItemDivider>
-            {listW.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listX.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">X</IonLabel>
-            </IonItemDivider>
-            {listX.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listY.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">Y</IonLabel>
-            </IonItemDivider>
-            {listY.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
-          {(listZ.length > 0 && !busy) && (
-          <IonItemGroup>
-            <IonItemDivider className="bg-primary">
-              <IonLabel className="text-white">Z</IonLabel>
-            </IonItemDivider>
-            {listZ.map((item: any, index: any) => (
-              <IonItem key={index}>
-                <IonIcon src={documentTextOutline} color="primary"></IonIcon>
-                <IonLabel className="ml-2">{item.name}</IonLabel>
-              </IonItem>
-            ))}
-          </IonItemGroup>
-        )}
       </IonContent>
     </IonPage>
   );

@@ -5,3 +5,7 @@ ion-avatar {
 .identificador {
   height: 5rem;
 }
+
+.thumbnail {
+  margin-bottom: 1rem;
+}

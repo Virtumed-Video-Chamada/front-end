@@ -23,12 +23,12 @@ const QuickAccess: React.FC = () => {
   return (
     <div className="container">
      <h1 className="font-bold text-l pl-3">Acesso Rápido</h1>
-        <IonRow className="flex overflow-x-auto flex-nowrap  mb-0">
+        <IonRow className="flex overflow-x-auto flex-nowrap px-0 mb-0">
           <IonCard className="mr-1 bd-20 quickCard" routerLink="/exam-results">
             <IonImg className="imgCard mx-auto" src="./assets/icon/microscope.svg"></IonImg>
             <p className="text-sm pl-3 ">Resultados de Exames</p>
           </IonCard>
-          <IonCard className="mr-1 bd-20 quickCard" routerLink="/schedule-patient">
+          <IonCard className="mr-1 bd-20 quickCard" routerLink="/schedules">
             <IonImg className="imgCard mx-auto" src="./assets/icon/appointment.svg"></IonImg>
             <p className="text-center ">Minhas consultas</p>
           </IonCard>

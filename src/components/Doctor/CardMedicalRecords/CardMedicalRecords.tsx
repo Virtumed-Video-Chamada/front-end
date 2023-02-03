@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { mockedRecords } from "../../../mocks/records";
+import { findAllService } from "../../../services/findService";
 import PacientCard from "../PacientCard/PacientCard";
 
 const CardMedicalRecords: React.FC = () => {
@@ -9,8 +10,15 @@ const CardMedicalRecords: React.FC = () => {
   const [listFavorites, setFavorites] = useState<any>([]);
 
   useEffect(() => {
-    setFavorites(mockedRecords[0]);
+    handleChange();
   }, [])
+
+  const handleChange = async () => {
+    await findAllService.findAllUsers("pacient").then((response: any) => {
+      setFavorites(response.data);
+      console.log(response.data);
+    })
+  }
 
   const seeAll = () => {
     history.replace("/historical-doctor");
@@ -21,7 +29,7 @@ const CardMedicalRecords: React.FC = () => {
     <div className="container">
       <div className="titlePopular">
         <h1 className="font-bold text-l pl-3">Meus Prontuários</h1>
-        <span className="font-bold text-xs text-colored" onClick={() => seeAll()}>
+        <span className="font-bold text-xs text-colored cursor-pointer" onClick={() => seeAll()}>
           Ver todos...
         </span>
       </div>

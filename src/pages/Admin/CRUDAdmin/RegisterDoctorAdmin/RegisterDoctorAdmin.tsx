@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   IonBackButton,
   IonButton,
@@ -20,9 +20,14 @@ import { userDoctor } from "../../../../@types/interfaces";
 import { setStorage } from "../../../../services/adminStorage";
 import { registerService } from "../../../../services/registerService";
 import { alertaSucesso, alertaErro } from "../../../../utils/alertas";
+import axios from 'axios';
+import { findByIdService } from "../../../../services/findService";
+import { updateService } from "../../../../services/updateService";
 
 const RegisterDoctorAdmin: React.FC = () => {
   const history = useHistory();
+  const urlParams = new URLSearchParams(window.location.search);
+  const userId = urlParams.get("id");
   const [name, setName] = useState<string>("");
   const [cpf, setCpf] = useState<string>("");
   const [crm, setCrm] = useState<string>("");
@@ -37,7 +42,7 @@ const RegisterDoctorAdmin: React.FC = () => {
   const [state, setState] = useState<string>("");
   const [speciality, setSpeciality] = useState<string>("");
 
-  const values: userDoctor = {
+  const values: userDoctor= {
     name: name,
     cpf: cpf,
     crm: crm,
@@ -49,24 +54,86 @@ const RegisterDoctorAdmin: React.FC = () => {
     state: state,
     email: email,
     password: password,
-    confirmPassword: passwordConf,
+    // confirmPassword: passwordConf,
     speciality: speciality,
-    role: "doctor",
-    isAdmin: false,
+    // role: "doctors"
   };
 
-/*   const registerUser = async () => {
-    const response = await registerService.registerValues(values);
-    const jwt = response.data.id;
-    if (jwt) {
-      setStorage("jwt", jwt);
-      alertaSucesso.alerta("Médico cadastrado com sucesso !");
-      history.replace("/home-admin");
-    } else {
-      alertaErro.alerta(`${response.data.message}`);
+  interface ViaCep  {
+    cep: string,
+    logradouro: string,
+    complemento: string,
+    bairro: string,
+    localidade: string,
+    uf: string
     }
-  };
- */
+  
+    const api = axios.create({
+      // https://h-apigateway.conectagov.estaleiro.serpro.gov.br/oauth2/jwt-token
+      baseURL: `https://viacep.com.br/ws/`,
+    });
+  
+    const consultCep = () => {
+      if (cep.length == 8) {
+        api
+      .get<ViaCep>(`${cep}/json/`)
+          .then(({ data }: any) => {
+            setAddress(data.logradouro);
+            setDistrict(data.bairro);
+            setState(data.uf);
+            setCity(data.localidade);
+            console.log(data)
+      } )
+      .catch((error: any) => console.log('ERRO NA CHAMADA:', error))
+      }   
+  }
+
+  const id: any = {
+    id: userId,
+  }
+  const findUser = async () => {
+    await findByIdService.findProfileByIdDoctor(id).then((resp) => {
+      setName(resp.data.name);
+      setCpf(resp.data.doctor.cpf);
+      setEmail(resp.data.email);
+      setAddress(resp.data.doctor.address);
+      setCep(resp.data.doctor.cep);
+      setNumber(resp.data.doctor.number);
+      setCity(resp.data.doctor.city);
+      setDistrict(resp.data.doctor.district);
+      setState(resp.data.doctor.state);
+      setCrm(resp.data.doctor.crm);
+      setSpeciality(resp.data.doctor.speciality)
+    }).catch((err) => {
+       console.log(err);
+     })
+  }
+  
+
+  const registerUser = async () => {
+    if (password == passwordConf) {
+      let response;
+      if(userId == null) {
+        response = await registerService.registerValues(values, 'doctors')
+      } else {
+        response = await updateService.updateUser(values, 'doctors')
+      }
+      const jwt = response.data.id;
+      if (jwt) {
+        alertaSucesso.alerta("Médico registrado com sucesso !");
+        history.replace("/");
+      } else {
+        alertaErro.alerta(`${response.data.message}`);
+      }
+    } else {
+      alertaErro.alerta(`Senhas não Conferem`);
+    }
+  }; 
+
+  useEffect(() => {
+    findUser()
+  }, [])
+  
   return (
     <IonPage>
 <IonHeader>
@@ -83,7 +150,7 @@ const RegisterDoctorAdmin: React.FC = () => {
         className="imgLogoSmall flex items-center mx-auto"
       />
       <IonText class=" flex justify-center mt-5 text-black text-xl font-bold">
-        Registro de Médico
+      {userId == null ? 'Registrar Médico' : 'Editar Médico'}
       </IonText>
       <IonList>
       <IonItem lines="inset" className="pr-2">
@@ -97,7 +164,7 @@ const RegisterDoctorAdmin: React.FC = () => {
           </IonLabel>
           <IonInput
             className="inputSelsyn"
-            type="password"
+            type="email"
             value={email}
             placeholder="Informe e-mail"
             onIonChange={(e) => setEmail(e.detail.value!)}
@@ -168,13 +235,7 @@ const RegisterDoctorAdmin: React.FC = () => {
               <span className="text-sm font-medium pl-2">CEP</span>
             </span>
           </IonLabel>
-          <IonInput
-            className="inputSelsyn"
-            type="text"
-            value={cep}
-            placeholder="Informe o CEP"
-            onIonChange={(e) => setCep(e.detail.value!)}
-          ></IonInput>
+          <IonInput className='inputSelsyn' type="text" value={cep} placeholder="Informe seu CEP" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
         </IonItem>
         <IonItem lines="inset" className="pr-2">
           <IonLabel position="floating" color="form">
@@ -283,9 +344,10 @@ const RegisterDoctorAdmin: React.FC = () => {
       <IonButton
         className="btnDefault mt-5 mb-16"
         expand="block"
-     /*    onClick={registerUser} */
-      >
-        REGISTRAR
+       onClick={registerUser}
+        >
+          {userId == null ? ' REGISTRAR' : 'SALVAR'}
+      
       </IonButton>
     </IonContent>
     </IonPage>

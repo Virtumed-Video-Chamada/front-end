@@ -19,20 +19,25 @@ import {
 } from "@ionic/react";
 import {
   list,
+  medkitOutline,
   pencilOutline,
   star,
   trashBin,
   trashBinOutline,
 } from "ionicons/icons";
 import React, { useEffect, useState } from "react";
-import { userPacient } from "../../../@types/interfaces";
-import { mockedPatients } from "../../../mocks/patient";
+import { deleteService } from "../../../services/deleteService";
+import { findAllService } from "../../../services/findService";
+import { useHistory } from 'react-router-dom';
+import { getStorage } from "../../../services/adminStorage";
 
 const PatientList = () => {
-  const [items, setItems] = useState<any>(mockedPatients);
-  let listPatients = mockedPatients;
+  const [items, setItems] = useState<any>('');
+  let listPatients = items;
   const [results, setResults] = useState([...listPatients]);
-
+  const [category, setCategory] = useState('')
+  const history = useHistory();
+  
   const generateItems = () => {
     const newItems = [];
     for (let i = 0; i < 5; i++) {
@@ -41,23 +46,25 @@ const PatientList = () => {
     setItems([...items, ...newItems]);
   };
 
-  const handleChange = (ev?: Event) => {
-    let query = "";
+  const handleChange = async (ev?: Event) => {
+    getStorage('role').then((role) => {
+      setCategory(role)
+    })
+    await findAllService.findAllUsers("pacient").then((response: any) => {
+      setItems(response.data);
+      let query = "";
     if (ev != null) {
       const target = ev.target as HTMLIonSearchbarElement;
       if (target) query = target.value!.toLowerCase();
     }
-    setResults(
-      listPatients.filter((patient) => {
-        return (
-          patient.name!.toLowerCase().indexOf(query) > -1 ||
-          query === "" ||
-          patient.cpf!.indexOf(query) > -1 ||
-          query === ""
-        );
-      })
-    );
-  };
+    // eslint-disable-next-line array-callback-return
+      setResults(response.data.filter((patient: any) => {
+      return patient.name!.toLowerCase().indexOf(query) > -1 || patient.cpf!.toLowerCase().indexOf(query) > -1 || query === '';
+    }))
+    }).catch((err: any) => {
+      console.log(err);
+    });
+  }
 
   useEffect(() => {
     generateItems();
@@ -80,7 +87,7 @@ const PatientList = () => {
     });
   };
 
-  const alert = () => {
+  const alert = (id: string) => {
     presentAlert({
       header: "DESEJA APAGAR O PACIENTE DO SISTEMA?",
       cssClass: "custom-alert",
@@ -97,8 +104,11 @@ const PatientList = () => {
           text: "SIM",
           role: "confirm",
           cssClass: "alert-button-confirm",
-          handler: () => {
-            presentToast();
+          handler: async () => {
+            console.log(id);
+            await deleteService.deleteUser(id).then((response: any) => {
+              presentToast()
+            });
           },
         },
       ],
@@ -107,16 +117,31 @@ const PatientList = () => {
     });
   };
 
+  const redirect = (id: string) => {
+    history.replace(`/register-patient?id=${id}`)
+  }
+  const getPatientData = (id: string) => {
+    history.replace(`/health?id=${id}`)
+  }
+
   const renderize = () => {
     return results.map((element: any, index: any) => (
       <IonItem lines="full" key={index}>
         <IonLabel>{element.name}</IonLabel>
-        <IonButton slot="end" color="primary">
+        {category == "doctor" ? '' : 
+          <IonButton slot="end" color="primary" onClick={() => redirect(element.id)}>
           <IonIcon icon={pencilOutline}></IonIcon>
         </IonButton>
-        <IonButton slot="end" color="danger" onClick={alert}>
+        }
+        <IonButton slot="end" color="secondary" onClick={() => getPatientData(element.id)}>
+          <IonIcon icon={medkitOutline}></IonIcon>
+        </IonButton>
+        {category == "doctor" ? '' :
+          <IonButton slot="end" color="danger" onClick={() => alert(element.id)}>
           <IonIcon icon={trashBinOutline}></IonIcon>
         </IonButton>
+         }
+        
       </IonItem>
     ));
   };
@@ -136,7 +161,7 @@ const PatientList = () => {
         </IonText>
         <IonSearchbar
           debounce={1000}
-          placeholder="Pesquise por Nome ou CPF"
+          placeholder="Pesquise por Nome"
           onIonChange={(ev) => handleChange(ev)}
         ></IonSearchbar>
         <IonItem color="primary" lines="none">

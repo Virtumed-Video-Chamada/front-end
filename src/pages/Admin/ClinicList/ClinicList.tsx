@@ -17,12 +17,22 @@ import {
 } from "@ionic/react";
 import { pencilOutline, trashBinOutline } from "ionicons/icons";
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import { mockedClinics } from "../../../mocks/clinic";
+import { deleteService } from "../../../services/deleteService";
+import { findAllService } from "../../../services/findService";
 
 const ClinicList = () => {
-  const [items, setItems] = useState<any>(mockedClinics);
-  let listClinics = mockedClinics;
-  const [results, setResults] = useState([...listClinics]);
+  const history = useHistory();
+  const [items, setItems] = useState<any>('');
+  
+  const [results, setResults] = useState([...items]);
+  const [_class, setClass] = useState<string>("flex hidden");
+  const [presentAlert] = useIonAlert();
+  const [present] = useIonToast();
+  const [handlerMessage, setHandlerMessage] = useState("");
+  const [roleMessage, setRoleMessage] = useState("");
+  const iconSucces = "./assets/icon/success.svg";
 
   const generateItems = () => {
     const newItems = [];
@@ -32,14 +42,19 @@ const ClinicList = () => {
     setItems([...items, ...newItems]);
   };
 
-  const handleChange = (ev?: Event) => {
+  const handleChange = async (ev?: Event) => {
+    await findAllService.findAllUsers("clinic").then((response: any) => {
+      console.log(response);
+      setItems(response.data);
+    
     let query = "";
     if (ev != null) {
       const target = ev.target as HTMLIonSearchbarElement;
       if (target) query = target.value!.toLowerCase();
-    }
+      }
+    let listClinics = response.data;
     setResults(
-      listClinics.filter((clinic) => {
+      listClinics.filter((clinic: any) => {
         return (
           clinic.name!.toLowerCase().indexOf(query) > -1 ||
           query === "" ||
@@ -47,21 +62,20 @@ const ClinicList = () => {
           query === ""
         );
       })
-    );
+    )});
   };
 
   useEffect(() => {
+    findAllService.findAllUsers("clinic").then((response: any) => {
+      
+      setItems(response.data)
+    })
     generateItems();
     handleChange();
   }, []);
 
-  const [change, setChange] = useState<boolean>(false);
-  const [_class, setClass] = useState<string>("flex hidden");
-  const [presentAlert] = useIonAlert();
-  const [present] = useIonToast();
-  const [handlerMessage, setHandlerMessage] = useState("");
-  const [roleMessage, setRoleMessage] = useState("");
-  const iconSucces = "./assets/icon/success.svg";
+
+  
 
   const presentToast = () => {
     present({
@@ -72,7 +86,7 @@ const ClinicList = () => {
     });
   };
 
-  const alert = () => {
+  const alert = (id: string) => {
     presentAlert({
       header: "DESEJA APAGAR A CLÍNICA DO SISTEMA?",
       cssClass: "custom-alert",
@@ -89,8 +103,11 @@ const ClinicList = () => {
           text: "SIM",
           role: "confirm",
           cssClass: "alert-button-confirm",
-          handler: () => {
-            presentToast();
+          handler: async () => {
+            await deleteService.deleteUser(id).then((response: any) => {
+              console.log(response);
+              presentToast()
+            });
           },
         },
       ],
@@ -99,15 +116,18 @@ const ClinicList = () => {
     });
   };
 
+  const redirect = (id: string) => {
+    history.replace(`/register-clinic?id=${id}`)
+  }
+
   const renderize = () => {
     return results.map((element: any, index: any) => (
       <IonItem lines="full" key={index}>
         <IonLabel>{element.name}</IonLabel>
-
-        <IonButton slot="end" color="primary">
+        <IonButton slot="end" color="primary" onClick={() => redirect(element.id)}>
           <IonIcon icon={pencilOutline}></IonIcon>
         </IonButton>
-        <IonButton slot="end" color="danger" onClick={alert}>
+        <IonButton slot="end" color="danger" onClick={() => alert(element.id)}>
           <IonIcon icon={trashBinOutline}></IonIcon>
         </IonButton>
       </IonItem>

@@ -13,7 +13,6 @@ import axios from 'axios';
 
 const RegisterDoctor: React.FC = () => {
   const history = useHistory();
-
   const [name, setName] = useState<string>("");
   const [cpf, setCpf] = useState<string>("");
   const [crm, setCrm] = useState<string>("");
@@ -69,7 +68,7 @@ const RegisterDoctor: React.FC = () => {
             setAddress(data.logradouro);
             setDistrict(data.bairro);
             setState(data.uf);
-            console.log(data)
+            setCity(data.localidade);
       } )
       .catch((error: any) => console.log('ERRO NA CHAMADA:', error))
       }   
@@ -107,61 +106,61 @@ const RegisterDoctor: React.FC = () => {
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Nome</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={name} placeholder="Informe seu nome" onIonChange={e => setName(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={name} required placeholder="Informe seu nome" onIonChange={e => setName(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>CPF</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={cpf} placeholder="Informe seu CPF" onIonChange={e => setCpf(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={cpf} required maxlength={9} minlength={9} placeholder="Informe seu CPF (Apenas Números)" onIonChange={e => setCpf(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>CRM</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={crm} placeholder="Informe seu CRM" onIonChange={e => setCrm(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={crm} required placeholder="Informe seu CRM" onIonChange={e => setCrm(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Especialidade</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={speciality} placeholder="Informe sua Especialidade" onIonChange={e => setSpeciality(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={speciality} required placeholder="Informe sua Especialidade" onIonChange={e => setSpeciality(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>CEP</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={cep} placeholder="Informe seu CEP" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={cep} required  maxlength={8} minlength={8} placeholder="Informe seu CEP (Apenas Números)" onIonChange={e => setCep(e.detail.value!)} onClick={() => consultCep()}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Endereço</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={address} placeholder="Informe endereço" onIonChange={e => setAddress(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={address} required placeholder="Informe endereço" onIonChange={e => setAddress(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Número</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={number} placeholder="Informe número ou S/N" onIonChange={e => setNumber(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={number} required placeholder="Informe número ou S/N" onIonChange={e => setNumber(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Bairro</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={district} placeholder="Informe seu bairro" onIonChange={e => setDistrict(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={district} required placeholder="Informe seu bairro" onIonChange={e => setDistrict(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Cidade</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={city} placeholder="Informe sua cidade" onIonChange={e => setCity(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={city} required placeholder="Informe sua cidade" onIonChange={e => setCity(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Estado</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="text" value={state} placeholder="Informe seu estado" onIonChange={e => setState(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="text" value={state} required placeholder="Informe seu estado" onIonChange={e => setState(e.detail.value!)}></IonInput>
           </IonItem>
 
           <IonItem lines="inset" className="pr-2">
@@ -174,13 +173,13 @@ const RegisterDoctor: React.FC = () => {
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Senha</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="password" value={password} placeholder="Informe senha" onIonChange={e => setPassword(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="password" value={password} required placeholder="Informe senha" onIonChange={e => setPassword(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem lines="inset" className="pr-2">
             <IonLabel position="floating" color="form">
               <span className="flex items-center"><span className='text-sm font-medium pl-2'>Confirmar Senha</span></span>
             </IonLabel>
-            <IonInput className='inputSelsyn' type="password" value={passwordConf} placeholder="confirme sua senha" onIonChange={e => setPasswordConf(e.detail.value!)}></IonInput>
+            <IonInput className='inputSelsyn' type="password" value={passwordConf} required placeholder="confirme sua senha" onIonChange={e => setPasswordConf(e.detail.value!)}></IonInput>
           </IonItem>
           
           <IonButton className='btnDefault mt-10' expand="block"  onClick={registerUser}>REGISTRE-SE</IonButton>

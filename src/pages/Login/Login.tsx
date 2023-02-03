@@ -7,6 +7,7 @@ import * as service from '../../services/authService';
 import { alertaErro, alertaSucesso } from '../../utils/alertas';
 import { IonButton, IonImg, IonInput, IonItem, IonLabel, IonList, IonPage, IonText } from '@ionic/react';
 import { useHistory } from "react-router";
+import { appointmentService } from '../../services/appointmentService';
 // import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -21,7 +22,8 @@ const Login: React.FC = () => {
 const values: userLogin = {
   email: email,
   password: password
-}
+  }
+  
 
 const executeLogin = async () => {
   await service.loginService.login(values)
@@ -31,13 +33,34 @@ const executeLogin = async () => {
     const user = response.data.user.id;
     const admin = response.data.user.isAdmin;
     const name = response.data.user.name;
-    setStorage('jwt', jwt);
-    setStorage('userIdStorage', user);
-    setStorage('userAdminStorage', admin);
+      const category = response.data.user.role.toLowerCase();
+      console.log(category);
+      setStorage('jwt', jwt);
+      setStorage('userIdStorage', user);
+      setStorage('userAdminStorage', admin);
       setStorage('nameStorage', name);
-      setStorage('token', response);
-      history.replace("/");
-      window.location.reload();
+      setStorage('tokenJwt', response);
+      setStorage('role', category);
+      if (category === 'pacient') {
+        appointmentService.appointmentListPatient(user).then((resp) => {
+          console.log(resp.data)
+          setStorage('appointments', resp.data);
+          history.replace("/");
+        window.location.reload();
+        });
+        
+      } else if (category === 'doctor') {
+         appointmentService.appointmentListDoctor(user).then((resp) => {
+           setStorage('appointments', resp.data);
+           history.replace("/");
+           window.location.reload();
+         });
+        
+      } else {
+        history.replace("/");
+        window.location.reload();
+      }
+     
    })
    .catch ((err) => {
     alertaErro.alerta(`Usuario ou Senha Invalidos`);
@@ -47,7 +70,7 @@ const executeLogin = async () => {
   const [user, setUser] = useState<any>(null);
      
   useEffect(() => {
-    getStorage('token').then((response: any) => {
+    getStorage('tokenJwt').then((response: any) => {
       setUser(response);
       setEmail(response.data.email);
       setPassword(response.data.password);
@@ -56,7 +79,7 @@ const executeLogin = async () => {
 
   return (
     <IonPage>
-      <div className="container px-8 py-3 font-semibold">
+      <div className="container px-8 py-3 font-semibold mx-auto">
         <div className="splash-info"></div>
         <IonList>
           <IonImg src='./assets/logo.png' className='imgLogo flex items-center mx-auto'/>
@@ -77,11 +100,11 @@ const executeLogin = async () => {
           <IonButton className='btnDefault tracking-normal mt-8' expand="block" onClick={executeLogin}>ENTRAR</IonButton>
           <IonButton className='btnDefault tracking-normal mt-8' expand="block" routerLink="/register-choice">REGISTRE-SE</IonButton>
           
-          <div className='my-10'>
+          {/* <div className='my-10'>
             <IonText className="text-center text-sm text-colored font-semibold hover:font-bold">
               <p>Esqueci minha senha</p>
             </IonText>
-          </div>
+          </div> */}
 
           {/* <IonItem className='bgTransparentCinza lembrar'>
             <IonLabel><IonText>SALVAR USUARIO/SENHA</IonText></IonLabel>

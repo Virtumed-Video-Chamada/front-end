@@ -5,8 +5,10 @@ import {
   IonItem,
   IonPage,
   IonSearchbar,
+
 } from "@ionic/react";
 
+import {  useHistory } from "react-router";
 import Appointments from "../../../components/Appointments/Appointments";
 import CardMedicalRecords from "../../../components/Doctor/CardMedicalRecords/CardMedicalRecords";
 import QuickAccessDoctor from "../../../components/Doctor/QuickAccessDoctor/QuickAccess";
@@ -19,21 +21,18 @@ const HomeDoctor: React.FC = () => {
   return (
     <IonPage>
       <IonContent>
-        <IonImg
-          src="./assets/logo.png"
-          className="imgLogoSmall flex items-center mx-auto -mb-7"
-        />
-        <Identificador />
+        <IonImg src='./assets/logo.png' className='imgLogoSmall flex items-center mx-auto -mb-7' />
+        <Identificador/>
         <IonItem className="mt-0 mb-0" lines="none">
           <Appointments />
         </IonItem>
-        <IonItem className="mt-0 mb-0" lines="none">
+        <IonItem className="mt-0 mb-0 px-0" lines="none">
           <QuickAccessDoctor />
         </IonItem>
         <IonItem className="mt-0 mb-0" lines="none">
           <CardMedicalRecords />
         </IonItem>
-      </IonContent>
+     </IonContent> 
     </IonPage>
   );
 };

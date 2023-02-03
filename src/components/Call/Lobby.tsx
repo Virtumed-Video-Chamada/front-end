@@ -1,7 +1,9 @@
 import React from "react";
 import { LobbyProps } from "../../@types/interfaces";
-import { IonButton } from '@ionic/react';
+import { IonButton, } from '@ionic/react';
 import "./styles.css"
+import { getStorage } from "../../services/adminStorage";
+import {  useEffect,  useState } from "react";
 
 
 const Lobby = ({
@@ -12,12 +14,34 @@ const Lobby = ({
   handleSubmit,
   connecting,
 }: LobbyProps) => {
+
+  const [ avatar, setAvatar ] = useState<string>("https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y")
+
+  const handle = async () => {
+    getStorage("tokenJwt").then((response) => {
+      setAvatar(response.data.user.avatar_url);
+    })
+  }
+
+  useEffect(() => {
+    handle()
+  }, [])
+
+  const renderize = () => {
+    if (avatar == null || avatar == ' ') {
+      return 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'
+    } else {
+      return avatar
+    }
+  }
+
+
   return (
     <div className="lobby-container">
       <div className="extra-border">
         <div className="border-lobby ">
           <div className="img-container">
-            <img src="https://avatars.githubusercontent.com/u/97128625?v=4" alt="User Photo Avatar" />
+            <img className="min-w-[13rem] min-h-[13rem]" src={renderize()} alt="User Photo Avatar" />
           </div>
         </div>
       </div>
@@ -30,7 +54,8 @@ const Lobby = ({
           id="field"
           value={username}
           onChange={handleUsernameChange}
-          readOnly={connecting}
+            readOnly={connecting}
+            disabled
           required />
       </div>
 
@@ -41,7 +66,8 @@ const Lobby = ({
           id="room"
           value={roomName}
           onChange={handleRoomNameChange}
-          readOnly={connecting}
+            readOnly={connecting}
+            disabled
           required />
       </div>
 

@@ -23,10 +23,11 @@ function SideMenu() {
   const logout = () => {
     removeStorage('nameStorage');
     removeStorage('jwt');
-    removeStorage('token');
+    removeStorage('tokenJwt');
     removeStorage('role');
     removeStorage('userIdStorage');
     removeStorage('userAdminStorage');
+    removeStorage('appointments');
     history.replace("/login");
     window.location.reload();
   }
@@ -45,6 +46,8 @@ function SideMenu() {
 
   window.addEventListener('click', function(e: any) {
     if (document.getElementById('element-modal')!.contains(e.target)) {
+      dismiss()
+    } else {
       dismiss()
     }
 });

@@ -7,7 +7,6 @@ import {
   IonList
 } from "@ionic/react";
 import { useEffect, useState } from "react";
-import { mockedDoctors } from "../../../mocks/doctor";
 import DoctorCard from "../../Patient/DoctorCard/DoctorCard";
 import { findAllService } from "../../../services/findService";
 
@@ -19,6 +18,7 @@ const ListDoctor: React.FC = () => {
   const data = items;
   const [results, setResults] = useState([...data]);
   const role: string = "doctors";
+ 
 
   const generateItems = () => {
     const newItems = [];
@@ -32,11 +32,9 @@ const ListDoctor: React.FC = () => {
     generateItems();
     handleChange();
       }, []);
-
-  // const data = ['Amsterdam', 'Buenos Aires', 'Cairo', 'Geneva', 'Hong Kong', 'Istanbul', 'London', 'Madrid', 'New York', 'Panama City'];
  
   const handleChange = async (ev?: Event) => {
-    await findAllService.findAllDoctors(role).then((response: any) => {
+    await findAllService.findAllUsers(role).then((response: any) => {
       console.log(response.data);
       setItems(response.data);
       let query = "";
@@ -45,18 +43,14 @@ const ListDoctor: React.FC = () => {
       if (target) query = target.value!.toLowerCase();
     }
     // eslint-disable-next-line array-callback-return
-    setResults(response.data.filter((doctor: any) => {
-      return doctor.name!.toLowerCase().indexOf(query) > -1 || query === '';
-           // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      // teste.toLowerCase().indexOf(query) > -1;
+      setResults(response.data.filter((doctor: any) => {
+      return doctor.name!.toLowerCase().indexOf(query) > -1 || doctor.doctor.speciality!.toLowerCase().indexOf(query) > -1 || query === '';
     }))
     }).catch((err: any) => {
       console.log(err);
     });
     
   }
-
-
 
   const renderize = () => {
       return  (results.map((element: any, index: any) => (
@@ -69,9 +63,9 @@ const ListDoctor: React.FC = () => {
 
 
   return (
-    <IonContent>
+    <div>
       <IonSearchbar debounce={1000} onIonChange={(ev) => handleChange(ev)}></IonSearchbar>
-      <IonList>
+      <IonList className="md:flex md:flex-col md:justify-center md:items-center">
         {renderize()}
       </IonList>
       <IonInfiniteScroll
@@ -82,7 +76,7 @@ const ListDoctor: React.FC = () => {
       >
         <IonInfiniteScrollContent></IonInfiniteScrollContent>
       </IonInfiniteScroll>
-    </IonContent>
+    </div>
 
   );
 };

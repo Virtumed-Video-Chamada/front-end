@@ -8,6 +8,7 @@ import {
   IonTabButton,
   IonTabs,
   setupIonicReact,
+  useIonViewDidEnter,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import {
@@ -25,6 +26,7 @@ import "@ionic/react/css/core.css";
 import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
 import "@ionic/react/css/typography.css";
+import { SplashScreen } from '@capacitor/splash-screen';
 
 /* Optional CSS utils that can be commented out */
 // import '@ionic/react/css/padding.css';
@@ -71,8 +73,33 @@ import ScheduleDoctor from "./components/ScheduleDoctor/ScheduleDoctor";
 import FavoriteDoctors from "./pages/Patient/FavoriteDoctors/FavoriteDoctors";
 import ExamResults from "./pages/Patient/ExamResults/ExamResults";
 import SchedulesPacient from "./pages/Patient/SchedulesPatient/SchedulesPacient";
+import { useSelector } from "react-redux";
+import ScheduleClinic from "./pages/Clinic/ScheduleClinic/ScheduleClinic";
+import ScheduleControl from "./pages/Clinic/ScheduleControl/ScheduleControl";
+import AddHistoricalDoctor from "./pages/Doctor/AddHistoricalDoctor/AddHistoricalDoctor";
+import InfoPatient from "./pages/Patient/MyHealth/MyHealth";
+
 
 setupIonicReact();
+
+SplashScreen.show({
+  showDuration: 2000,
+  autoHide: true,
+});
+
+export function hideTabs() {
+  const tabsEl = document.querySelector('ion-tab-bar');
+  if (tabsEl) {
+    tabsEl.hidden = true;
+  }
+}
+
+export function showTabs() {
+  const tabsEl = document.querySelector('ion-tab-bar');
+  if (tabsEl) {
+    tabsEl.hidden = false;
+  }
+} 
 
 const RoutingSystem: React.FC = () => {
   return (
@@ -94,12 +121,30 @@ const RoutingSystem: React.FC = () => {
 
 const RoutingTabs: React.FC = () => {
   const [category, setCategory] = useState("/");
+  const [busyRoom, setBusyRoom] = useState<any>(null);
+  let newClass = 'menuTab';
+
+  useIonViewDidEnter(() => {
+    getStorage("room").then((response) => {
+      setBusyRoom(response);
+      if (response) {
+        newClass = 'menuTab hidden'
+      }
+    });  
+  })
+
 
   useEffect(() => {
-    getStorage("token").then((response) => {
+    getStorage("tokenJwt").then((response) => {
       const role = response.data.user.role.toLowerCase();
+      console.log(response);
       setCategory(`/home-${role}`);
-      console.log(role)
+    });
+    getStorage("room").then((response) => {
+      setBusyRoom(response);
+      if (response) {
+        newClass = 'menuTab hidden'
+      }
     });
   }, []);
 
@@ -108,15 +153,7 @@ const RoutingTabs: React.FC = () => {
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/">
-            {category == "/home-pacient" ? (
-              <HomePatient />
-            ) : category == "/home-doctor" ? (
-              <HomeDoctor />
-            ) : category == "/home-clinic" ? (
-              <HomeClinic />
-            ) : (
-              <HomeClinic />
-            )}
+            {category == "/home-pacient" ? ( <HomePatient /> ) : category == "/home-doctor" ? ( <HomeDoctor />) : category == "/home-clinic" ? (<HomeClinic />) : category == "/home-admin" ? (<HomeAdmin /> ) : (<Login />)}
           </Route>
           <Route exact path="/register-doctor">
             <RegisterDoctorAdmin />
@@ -145,6 +182,7 @@ const RoutingTabs: React.FC = () => {
           <Route exact path="/register-clinic">
             <RegisterClinicAdmin/>
           </Route>
+
           <Route exact path="/clinic-list">
             <ClinicList/>
           </Route>
@@ -154,11 +192,20 @@ const RoutingTabs: React.FC = () => {
           <Route exact path="/schedule-doctor">
               <ScheduleDoctor/>
           </Route>
+          <Route exact path="/schedule-clinic">
+              <ScheduleClinic/>
+          </Route>
+          <Route exact path="/schedule-control">
+              <ScheduleControl/>
+          </Route>
           <Route exact path="/link-doctor">
             <LinkDoctor/>
           </Route>
           <Route exact path="/historical-doctor">
             <HistoricalDoctor />
+          </Route>
+          <Route exact path="/add-historical-doctor">
+            <AddHistoricalDoctor />
           </Route>
           <Route exact path="/favorite-doctors">
             <FavoriteDoctors />
@@ -176,7 +223,7 @@ const RoutingTabs: React.FC = () => {
             <Conversation />
           </Route>
           <Route exact path="/health">
-            <MyHealth />
+            <InfoPatient />
           </Route>
           <Route exact path="/historical-clinic">
             <HistoricalClinic />
@@ -203,27 +250,37 @@ const RoutingTabs: React.FC = () => {
             <Privacy />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar className="menuTab" slot="bottom">
+
+        <IonTabBar className={newClass} slot="bottom">
           <IonTabButton tab="home" href={category}>
             <IonIcon icon={homeOutline} className="w-6 h-6" color="primary" />
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/schedules">
-            <IonIcon
-              icon={calendarOutline}
-              className="w-6 h-6"
-              color="primary"
-            />
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/chat">
+
+          {/* {(category === "/home-clinic" || category === "/home-admin" || category === "/home-doctor") ? '' : <IonTabButton tab="tab4" href="/schedules">
+            <IonIcon icon={calendarOutline} className="w-6 h-6" color="primary" />
+          </IonTabButton>} */}
+
+          {(category === "/home-pacient" ) ?  <IonTabButton tab="tab4" href="/schedules">
+            <IonIcon icon={calendarOutline} className="w-6 h-6" color="primary" />
+          </IonTabButton> : ''}
+
+          {(category === "/home-doctor" ) ?  <IonTabButton tab="tab4" href="/schedule-doctor">
+            <IonIcon icon={calendarOutline} className="w-6 h-6" color="primary" />
+          </IonTabButton> : ''}
+
+          {(category === "/home-clinic" || category === "/home-admin") ? '' : <IonTabButton tab="tab3" href="/chat">
             <IonIcon
               icon={chatbubblesOutline}
               className="w-6 h-6"
               color="primary"
             />
-          </IonTabButton>
-          <IonTabButton tab="tab4" href="/health">
+          </IonTabButton> }
+          
+          {/* { (category === "/home-clinic" || category === "/home-admin" || category === "/home-doctor") ? '' : <IonTabButton tab="tab4" href="/health">
             <IonIcon icon={medkitOutline} className="w-6 h-6" color="primary" />
-          </IonTabButton>
+          </IonTabButton>} */}
+          
+
           <IonTabButton tab="tab5">
             <IonIcon
               icon={personOutline}
@@ -234,18 +291,18 @@ const RoutingTabs: React.FC = () => {
             <SideMenu />
           </IonTabButton>
         </IonTabBar>
+   
       </IonTabs>
     </IonReactRouter>
   );
 };
 
+
 const App: React.FC = () => {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    console.log(user);
-    getStorage("token").then((response: any) => {
-      console.log(response);
+    getStorage("tokenJwt").then((response: any) => {
       setUser(response);
     });
   }, []);
